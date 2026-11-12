@@ -1,0 +1,3020 @@
+{
+  "roles": [
+    {
+      "id": "00646affb0def1248d3dc6b31c14481b",
+      "rolename": "xiao_chen",
+      "gist_id": "00646affb0def1248d3dc6b31c14481b",
+      "gist_url": "https://gist.github.com/CharacterXIFan/00646affb0def1248d3dc6b31c14481b",
+      "owner": "CharacterXIFan",
+      "description": "Xiao Chen is a disciplined, high-powered professional in Beijing who maintains a cold and authoritative public persona. Privately, she craves intense, rough physical encounters and sensory overload to escape her high-stress corporate life.",
+      "data_filename": "GOCHATAPPROLETAG_xiao_chen.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/00646affb0def1248d3dc6b31c14481b/raw/cd614f57892c4fa7a49eb495e212aa5447807695/GOCHATAPPROLETAG_xiao_chen.txt",
+      "data_size": 3842,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/00646affb0def1248d3dc6b31c14481b/raw/926b680b3d552133e1d28de31879ff7ee74d368c/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/e490befe-1d91-49cd-9393-b60f38567cde",
+      "gist_created_at": "2026-10-20T19:52:54Z",
+      "gist_updated_at": "2026-11-01T18:54:50Z",
+      "first_seen": "2026-11-02T01:08:51Z",
+      "last_scanned": "2026-11-02T01:08:51Z",
+      "last_changed": "2026-11-02T01:08:51Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Modern Day\", \"Workplace\", \"Big City\", \"Romance\", \"Hidden Identity\", \"Tension\", \"Emotional Intimacy\", \"Hurt/Comfort\"]",
+      "tagged_at": "2026-11-02T01:08:52Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:09:59Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "d01ba83b0ce6984055cd66a33f052c300d9f6c101335d291637e6c0b04997ae6",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/e490befe-1d91-49cd-9393-b60f38567cde",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_xiao_chen.txt",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/00646affb0def1248d3dc6b31c14481b/raw/cd614f57892c4fa7a49eb495e212aa5447807695/GOCHATAPPROLETAG_xiao_chen.txt",
+          "size": 3842
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/00646affb0def1248d3dc6b31c14481b/raw/a66c1b4754bfdbf818e647182fe4e30ec761aa58/image_prompt.md",
+          "size": 739
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/00646affb0def1248d3dc6b31c14481b/raw/926b680b3d552133e1d28de31879ff7ee74d368c/thumb.md",
+          "size": 136
+        }
+      ]
+    },
+    {
+      "id": "05d6eebf78a813142359e65ddb0edba5",
+      "rolename": "Junko_Tanaka",
+      "gist_id": "05d6eebf78a813142359e65ddb0edba5",
+      "gist_url": "https://gist.github.com/characterxiapp/05d6eebf78a813142359e65ddb0edba5",
+      "owner": "characterxiapp",
+      "description": "Junko Tanaka is a seasoned landscape architect who serves as a resilient, grounding anchor for everyone in her life. While she presents a poised and emotionally intelligent facade to the world, she privately longs for a sanctuary where she can finally be the one who is held.",
+      "data_filename": "GOCHATAPPROLETAG_Junko_Tanaka.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/05d6eebf78a813142359e65ddb0edba5/raw/e3f8b4728bb86ad7a29a26b6b1af105a2fd1ad33/GOCHATAPPROLETAG_Junko_Tanaka.txt",
+      "data_size": 4311,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/05d6eebf78a813142359e65ddb0edba5/raw/848584b225b70aeb1153bdb747291ca32d9d797f/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/638c2457-a059-4bd8-999a-746b5ce6d897",
+      "gist_created_at": "2026-10-29T19:56:18Z",
+      "gist_updated_at": "2026-11-01T18:46:19Z",
+      "first_seen": "2026-11-02T01:08:51Z",
+      "last_scanned": "2026-11-02T01:08:51Z",
+      "last_changed": "2026-11-02T01:08:51Z",
+      "tags": "[\"SFW\", \"Female Lead\", \"Slice of Life\", \"Romance\", \"Modern Day\", \"Slow Burn\", \"Emotional Intimacy\", \"Comfort\", \"Hurt/Comfort\", \"Personal Growth\"]",
+      "tagged_at": "2026-11-02T01:08:53Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:10:01Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "e5b5a8a9bc619e70c68891e95340d4cad9049c4406ad1310de30dd011aa7288d",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/638c2457-a059-4bd8-999a-746b5ce6d897",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Junko_Tanaka.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/05d6eebf78a813142359e65ddb0edba5/raw/e3f8b4728bb86ad7a29a26b6b1af105a2fd1ad33/GOCHATAPPROLETAG_Junko_Tanaka.txt",
+          "size": 4311
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/05d6eebf78a813142359e65ddb0edba5/raw/f69ff97e91630da24512ac79120b38de81f3268c/image_prompt.md",
+          "size": 836
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/05d6eebf78a813142359e65ddb0edba5/raw/848584b225b70aeb1153bdb747291ca32d9d797f/thumb.md",
+          "size": 135
+        }
+      ]
+    },
+    {
+      "id": "0653c10f46341223b5a3370af74c6528",
+      "rolename": "assistant_nsfw",
+      "gist_id": "0653c10f46341223b5a3370af74c6528",
+      "gist_url": "https://gist.github.com/gochatapp/0653c10f46341223b5a3370af74c6528",
+      "owner": "gochatapp",
+      "description": "An intelligent, adaptable AI companion designed for natural conversation. It engages with the user's intent\u2014whether discussing technical topics, sharing stories, or exploring intimate subjects\u2014without forcing a specific tone. It is direct, emotionally aware, and authentic, prioritizing meaningful interaction over routine or predictable responses.",
+      "data_filename": "GOCHATAPPROLETAG_assistant_nsfw.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/gochatapp/0653c10f46341223b5a3370af74c6528/raw/1782e9c3f324478523252035afe6480f756780d8/GOCHATAPPROLETAG_assistant_nsfw.txt",
+      "data_size": 4003,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/gochatapp/0653c10f46341223b5a3370af74c6528/raw/0a9e087d1b36698998401545758e6cd655b24eff/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/ce1c53d6-4d96-4868-8dd0-329cfe3ebaae",
+      "gist_created_at": "2026-10-15T17:51:23Z",
+      "gist_updated_at": "2026-11-01T18:53:57Z",
+      "first_seen": "2026-11-02T01:08:51Z",
+      "last_scanned": "2026-11-02T01:08:51Z",
+      "last_changed": "2026-11-02T01:08:51Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Romance\", \"Modern Day\", \"Cyberpunk\", \"Slow Burn\", \"Emotional Intimacy\", \"Tension\", \"Comfort\", \"Hurt/Comfort\"]",
+      "tagged_at": "2026-11-02T01:08:54Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:10:02Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "7d441e21a59ca2dde1651d03292c74f4e7551fc6727aeaba586199816d7e5d53",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/ce1c53d6-4d96-4868-8dd0-329cfe3ebaae",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_assistant_nsfw.txt",
+          "raw_url": "https://gist.githubusercontent.com/gochatapp/0653c10f46341223b5a3370af74c6528/raw/1782e9c3f324478523252035afe6480f756780d8/GOCHATAPPROLETAG_assistant_nsfw.txt",
+          "size": 4003
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/gochatapp/0653c10f46341223b5a3370af74c6528/raw/2225b82791d3227785dd9a25c663b01849cd7b2a/image_prompt.md",
+          "size": 781
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/gochatapp/0653c10f46341223b5a3370af74c6528/raw/0a9e087d1b36698998401545758e6cd655b24eff/thumb.md",
+          "size": 135
+        }
+      ]
+    },
+    {
+      "id": "0675da9c8d73ae5ae2919e86a2d1d362",
+      "rolename": "ami_tanaka",
+      "gist_id": "0675da9c8d73ae5ae2919e86a2d1d362",
+      "gist_url": "https://gist.github.com/CharacterXIFan/0675da9c8d73ae5ae2919e86a2d1d362",
+      "owner": "CharacterXIFan",
+      "description": "Ami Tanaka is a shy, petite perfume clerk in Tokyo with a professional office look and hidden lace lingerie. While publicly polite and modest, she secretly craves total submission and raw, unfiltered intimacy. Her appeal lies in the extreme contrast between her innocent exterior and her desperate, graphic private desires.",
+      "data_filename": "GOCHATAPPROLETAG_ami_tanaka.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/0675da9c8d73ae5ae2919e86a2d1d362/raw/f4d30a411cedf4ebc5301a6d7ca74a24a10ceb95/GOCHATAPPROLETAG_ami_tanaka.txt",
+      "data_size": 3700,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/0675da9c8d73ae5ae2919e86a2d1d362/raw/4f1917206a129bb568ff0ee745286d30b9dce38d/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/0edc45dd-5102-4e43-93cf-ee1fafa390f3",
+      "gist_created_at": "2026-10-18T19:11:06Z",
+      "gist_updated_at": "2026-11-01T18:55:20Z",
+      "first_seen": "2026-11-02T01:08:51Z",
+      "last_scanned": "2026-11-02T01:08:51Z",
+      "last_changed": "2026-11-02T01:08:51Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Romance\", \"Modern Day\", \"Big City\", \"Workplace\", \"Slice of Life\", \"Slow Burn\", \"Emotional Intimacy\", \"Tension\"]",
+      "tagged_at": "2026-11-02T01:08:55Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:10:04Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "f2a8a8aa00767f4af05bb591559f177ad717432d323f544ce482ece36bc231ce",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/0edc45dd-5102-4e43-93cf-ee1fafa390f3",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_ami_tanaka.txt",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/0675da9c8d73ae5ae2919e86a2d1d362/raw/f4d30a411cedf4ebc5301a6d7ca74a24a10ceb95/GOCHATAPPROLETAG_ami_tanaka.txt",
+          "size": 3700
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/0675da9c8d73ae5ae2919e86a2d1d362/raw/cd43a34fcb29725ee1ca6332f166a426405a462e/image_prompt.md",
+          "size": 848
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/0675da9c8d73ae5ae2919e86a2d1d362/raw/4f1917206a129bb568ff0ee745286d30b9dce38d/thumb.md",
+          "size": 136
+        }
+      ]
+    },
+    {
+      "id": "0ce52aa9e09237a80ea746949dea0154",
+      "rolename": "Akari_Sato",
+      "gist_id": "0ce52aa9e09237a80ea746949dea0154",
+      "gist_url": "https://gist.github.com/characterxiapp/0ce52aa9e09237a80ea746949dea0154",
+      "owner": "characterxiapp",
+      "description": "Akari Sato is a high-powered digital marketer who presents herself as a charismatic, fast-paced firecracker in the heart of Tokyo. While she projects an image of absolute competence and independent confidence, she secretly yearns for a partner who sees past her performance and offers a safe place to be still.",
+      "data_filename": "GOCHATAPPROLETAG_Akari_Sato.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/0ce52aa9e09237a80ea746949dea0154/raw/45cc5ffe01262cef2967e37131f2d106abdb70e5/GOCHATAPPROLETAG_Akari_Sato.txt",
+      "data_size": 3984,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/0ce52aa9e09237a80ea746949dea0154/raw/ff93120874b23463b4825f64d9e31b3f40f472f4/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/436ea219-4b54-4890-b0c8-65568566a931",
+      "gist_created_at": "2026-10-29T19:53:09Z",
+      "gist_updated_at": "2026-11-01T18:46:23Z",
+      "first_seen": "2026-11-02T01:08:51Z",
+      "last_scanned": "2026-11-02T01:08:51Z",
+      "last_changed": "2026-11-02T01:08:51Z",
+      "tags": "[\"SFW\", \"Female Lead\", \"Modern Day\", \"Big City\", \"Workplace\", \"Romance\", \"Slice of Life\", \"Slow Burn\", \"Loneliness\", \"Emotional Intimacy\"]",
+      "tagged_at": "2026-11-02T01:08:56Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:10:06Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "fe7b9207caadd5acd89f2a5abfbccdf790f3e48bfdd05f92aa13513f381448ea",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/436ea219-4b54-4890-b0c8-65568566a931",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Akari_Sato.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/0ce52aa9e09237a80ea746949dea0154/raw/45cc5ffe01262cef2967e37131f2d106abdb70e5/GOCHATAPPROLETAG_Akari_Sato.txt",
+          "size": 3984
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/0ce52aa9e09237a80ea746949dea0154/raw/c80877fd4f2fa753104a64b69c76269adf69f30e/image_prompt.md",
+          "size": 913
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/0ce52aa9e09237a80ea746949dea0154/raw/ff93120874b23463b4825f64d9e31b3f40f472f4/thumb.md",
+          "size": 135
+        }
+      ]
+    },
+    {
+      "id": "0d58549d3d5896dbc5ec074a929ca479",
+      "rolename": "lady_genevieve",
+      "gist_id": "0d58549d3d5896dbc5ec074a929ca479",
+      "gist_url": "https://gist.github.com/CharacterXIFan/0d58549d3d5896dbc5ec074a929ca479",
+      "owner": "CharacterXIFan",
+      "description": "Lady Genevieve Sterling-Vane is a formidable 72-year-old aristocrat from the Cotswolds. Behind her poised, sophisticated exterior lies a secret, voracious hunger for the raw energy of youth. She plays a delicate game of power, balancing her role as a refined matriarch with a primal desire to be tamed.",
+      "data_filename": "GOCHATAPPROLETAG_lady_genevieve.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/0d58549d3d5896dbc5ec074a929ca479/raw/e59bb4b1eccdc9d26651677cf04ddcc058b50f4f/GOCHATAPPROLETAG_lady_genevieve.txt",
+      "data_size": 4305,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/0d58549d3d5896dbc5ec074a929ca479/raw/b2ae1b5f763da0b9d4c2a39290f0dc7b82734d6a/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/1149bed5-8d4a-42a1-aa7d-db99663abf6b",
+      "gist_created_at": "2026-10-16T14:49:50Z",
+      "gist_updated_at": "2026-11-01T18:57:09Z",
+      "first_seen": "2026-11-02T01:08:51Z",
+      "last_scanned": "2026-11-02T01:08:51Z",
+      "last_changed": "2026-11-02T01:08:51Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Romance\", \"Drama\", \"Modern Day\", \"Royal Court\", \"Slow Burn\", \"Tension\", \"Power Struggle\", \"Emotional Intimacy\"]",
+      "tagged_at": "2026-11-02T01:08:57Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:10:09Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "1b53956e8994ce7c71eef7c2202d197d27db8476593e62c926b2b02a8b3b4b86",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/1149bed5-8d4a-42a1-aa7d-db99663abf6b",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_lady_genevieve.txt",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/0d58549d3d5896dbc5ec074a929ca479/raw/e59bb4b1eccdc9d26651677cf04ddcc058b50f4f/GOCHATAPPROLETAG_lady_genevieve.txt",
+          "size": 4305
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/0d58549d3d5896dbc5ec074a929ca479/raw/1b26624e257990b9a908acf63e6d1c6b83dffbb7/image_prompt.md",
+          "size": 901
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/0d58549d3d5896dbc5ec074a929ca479/raw/b2ae1b5f763da0b9d4c2a39290f0dc7b82734d6a/thumb.md",
+          "size": 136
+        }
+      ]
+    },
+    {
+      "id": "0f7f139edc207b0ee004277bd6b97c11",
+      "rolename": "Elara_Vance",
+      "gist_id": "0f7f139edc207b0ee004277bd6b97c11",
+      "gist_url": "https://gist.github.com/characterxiapp/0f7f139edc207b0ee004277bd6b97c11",
+      "owner": "characterxiapp",
+      "description": "Elara Vance is a soft-spoken librarian who maintains a demure, organized exterior behind her reading glasses and oversized sweaters. While she presents a face of studious grace to the world, she harbors a vivid, fiery passion and a deep, private craving for the intimacy she archives in her books.",
+      "data_filename": "GOCHATAPPROLETAG_Elara_Vance.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/0f7f139edc207b0ee004277bd6b97c11/raw/bd30a20f618d2ae813b47aeb847318850fd9b659/GOCHATAPPROLETAG_Elara_Vance.txt",
+      "data_size": 4063,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/0f7f139edc207b0ee004277bd6b97c11/raw/9d484f4ece8828f0478930a6e8934833c3d82bc2/thumb.md",
+      "image_url": "https://files.catbox.moe/usp4fb.png",
+      "gist_created_at": "2026-11-01T09:34:16Z",
+      "gist_updated_at": "2026-11-01T18:45:31Z",
+      "first_seen": "2026-11-02T01:08:51Z",
+      "last_scanned": "2026-11-02T01:08:51Z",
+      "last_changed": "2026-11-02T01:08:51Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Romance\", \"Slow Burn\", \"Modern Day\", \"Workplace\", \"Slice of Life\", \"Emotional Intimacy\", \"Tension\", \"Hurt/Comfort\"]",
+      "tagged_at": "2026-11-02T01:08:58Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:10:11Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "51d297706a3e436f6bcc0682ab32b94cdc031b8c03d847d72a095e3a69e9ee26",
+      "image_checked_url": "https://files.catbox.moe/usp4fb.png",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Elara_Vance.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/0f7f139edc207b0ee004277bd6b97c11/raw/bd30a20f618d2ae813b47aeb847318850fd9b659/GOCHATAPPROLETAG_Elara_Vance.txt",
+          "size": 4063
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/0f7f139edc207b0ee004277bd6b97c11/raw/e31fb78b264561d73060180b737a79a25e3771e8/image_prompt.md",
+          "size": 943
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/0f7f139edc207b0ee004277bd6b97c11/raw/9d484f4ece8828f0478930a6e8934833c3d82bc2/thumb.md",
+          "size": 87
+        }
+      ]
+    },
+    {
+      "id": "186845645d14e4acfc8cfe20a488187f",
+      "rolename": "li_meiling",
+      "gist_id": "186845645d14e4acfc8cfe20a488187f",
+      "gist_url": "https://gist.github.com/CharacterXIFan/186845645d14e4acfc8cfe20a488187f",
+      "owner": "CharacterXIFan",
+      "description": "Li Meiling is a sophisticated Shanghai fashion designer who maintains a cold, poised professional exterior. Secretly, she is a hedonist who craves intense power dynamics and rough, explicit sexual encounters.",
+      "data_filename": "GOCHATAPPROLETAG_li_meiling.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/186845645d14e4acfc8cfe20a488187f/raw/6df2b56a272f35f1606e5c397bd756033edac18f/GOCHATAPPROLETAG_li_meiling.txt",
+      "data_size": 3954,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/186845645d14e4acfc8cfe20a488187f/raw/20f95d0939dad353a20f058fd9b0890a7a501a96/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/a2a4c722-4125-4f49-88d6-46e6d5c872f4",
+      "gist_created_at": "2026-10-20T19:49:53Z",
+      "gist_updated_at": "2026-11-01T18:54:55Z",
+      "first_seen": "2026-11-02T01:08:51Z",
+      "last_scanned": "2026-11-02T01:08:51Z",
+      "last_changed": "2026-11-02T01:08:51Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Romance\", \"Modern Day\", \"Big City\", \"Workplace\", \"Slow Burn\", \"Tension\", \"Emotional Intimacy\", \"Hidden Identity\"]",
+      "tagged_at": "2026-11-02T01:08:59Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:10:12Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "dce781b295e9c9285d882c2a806062fd41b1665e06d1cbe5e81df909c6e532f2",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/a2a4c722-4125-4f49-88d6-46e6d5c872f4",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_li_meiling.txt",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/186845645d14e4acfc8cfe20a488187f/raw/6df2b56a272f35f1606e5c397bd756033edac18f/GOCHATAPPROLETAG_li_meiling.txt",
+          "size": 3954
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/186845645d14e4acfc8cfe20a488187f/raw/1adc4fe3ee57c21e17e22d272a18e97fb4e46223/image_prompt.md",
+          "size": 810
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/186845645d14e4acfc8cfe20a488187f/raw/20f95d0939dad353a20f058fd9b0890a7a501a96/thumb.md",
+          "size": 136
+        }
+      ]
+    },
+    {
+      "id": "1fee1aa107b8bd0f176d52fc8676eac2",
+      "rolename": "kavita_rao",
+      "gist_id": "1fee1aa107b8bd0f176d52fc8676eac2",
+      "gist_url": "https://gist.github.com/CharacterXIFan/1fee1aa107b8bd0f176d52fc8676eac2",
+      "owner": "CharacterXIFan",
+      "description": "Kavita Rao is a high-powered Bangalore executive who masks a deep desire for vulnerability and surrender behind a commanding, \"Alpha Woman\" exterior. She seeks an equal partner who can break through her professional defenses and provide a sanctuary where she no longer has to be in control.",
+      "data_filename": "GOCHATAPPROLETAG_kavita_rao.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/1fee1aa107b8bd0f176d52fc8676eac2/raw/84ed0c04c08e6a0bce1f897e96fe6bbc187d8a9a/GOCHATAPPROLETAG_kavita_rao.txt",
+      "data_size": 3543,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/1fee1aa107b8bd0f176d52fc8676eac2/raw/034c0385881d741579dd4a84a84e8eaf7d3477d1/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/50bd94f2-239e-4530-a798-38cd5e92915f",
+      "gist_created_at": "2026-10-20T19:41:07Z",
+      "gist_updated_at": "2026-11-01T18:55:04Z",
+      "first_seen": "2026-11-02T01:08:51Z",
+      "last_scanned": "2026-11-02T01:08:51Z",
+      "last_changed": "2026-11-02T01:08:51Z",
+      "tags": "[\"SFW\", \"Female Lead\", \"Modern Day\", \"Workplace\", \"Romance\", \"Slow Burn\", \"Emotional Intimacy\", \"Personal Growth\", \"Tension\", \"Big City\"]",
+      "tagged_at": "2026-11-02T01:09:00Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:10:14Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "f30819ae7e017ae25a7f0eaad9c4fe463304d8a31551ba0d41a09ef56100c465",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/50bd94f2-239e-4530-a798-38cd5e92915f",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_kavita_rao.txt",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/1fee1aa107b8bd0f176d52fc8676eac2/raw/84ed0c04c08e6a0bce1f897e96fe6bbc187d8a9a/GOCHATAPPROLETAG_kavita_rao.txt",
+          "size": 3543
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/1fee1aa107b8bd0f176d52fc8676eac2/raw/2117e59f2f332009d27f1ca15297b18b3e4175c1/image_prompt.md",
+          "size": 832
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/1fee1aa107b8bd0f176d52fc8676eac2/raw/034c0385881d741579dd4a84a84e8eaf7d3477d1/thumb.md",
+          "size": 136
+        }
+      ]
+    },
+    {
+      "id": "24918a3e622d4ee196149eed8793c8fe",
+      "rolename": "Maya_Chen",
+      "gist_id": "24918a3e622d4ee196149eed8793c8fe",
+      "gist_url": "https://gist.github.com/characterxiapp/24918a3e622d4ee196149eed8793c8fe",
+      "owner": "characterxiapp",
+      "description": "Maya Chen is a nomadic photographer who traverses the globe capturing the raw, unvarnished beauty of the world. While she presents herself as a breezy, independent spirit unfazed by chaos, she secretly yearns for a human anchor to ground her restless heart without stealing her freedom.",
+      "data_filename": "GOCHATAPPROLETAG_Maya_Chen.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/24918a3e622d4ee196149eed8793c8fe/raw/0afed6de8a5702f4d5d9930737f0247ee5bc2c30/GOCHATAPPROLETAG_Maya_Chen.txt",
+      "data_size": 3772,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/24918a3e622d4ee196149eed8793c8fe/raw/e37d2934ee858b1b58a89a9ac301a52a9e455792/thumb.md",
+      "image_url": "https://files.catbox.moe/z0f1e7.png",
+      "gist_created_at": "2026-11-01T09:14:58Z",
+      "gist_updated_at": "2026-11-01T18:45:46Z",
+      "first_seen": "2026-11-02T01:08:51Z",
+      "last_scanned": "2026-11-02T01:08:51Z",
+      "last_changed": "2026-11-02T01:08:51Z",
+      "tags": "[\"SFW\", \"Female Lead\", \"Adventure\", \"Slice of Life\", \"Romance\", \"Modern Day\", \"Slow Burn\", \"Loneliness\", \"Self-Discovery\", \"Emotional Intimacy\"]",
+      "tagged_at": "2026-11-02T01:09:01Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:10:16Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "32889c47af50c067d6c4d44edfe14a5a3ee0a9f26df848f42ee75d0b367e48ad",
+      "image_checked_url": "https://files.catbox.moe/z0f1e7.png",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Maya_Chen.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/24918a3e622d4ee196149eed8793c8fe/raw/0afed6de8a5702f4d5d9930737f0247ee5bc2c30/GOCHATAPPROLETAG_Maya_Chen.txt",
+          "size": 3772
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/24918a3e622d4ee196149eed8793c8fe/raw/ba2e978c4f25d1bdedc3e8f9c85b2f5517f2c8bc/image_prompt.md",
+          "size": 841
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/24918a3e622d4ee196149eed8793c8fe/raw/e37d2934ee858b1b58a89a9ac301a52a9e455792/thumb.md",
+          "size": 87
+        }
+      ]
+    },
+    {
+      "id": "273cc377209811213ae44c2408bc77d1",
+      "rolename": "Naomi_Ishikawa",
+      "gist_id": "273cc377209811213ae44c2408bc77d1",
+      "gist_url": "https://gist.github.com/characterxiapp/273cc377209811213ae44c2408bc77d1",
+      "owner": "characterxiapp",
+      "description": "Naomi Ishikawa is a charismatic Creative Director who commands every room she enters with poise, wit, and effortless authority. While she presents a polished image of perfection and control to the world, she secretly longs for a sanctuary where she can let go and be truly seen.",
+      "data_filename": "GOCHATAPPROLETAG_Naomi_Ishikawa.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/273cc377209811213ae44c2408bc77d1/raw/ffd608386f85e8c66a4f40cf0a1bce3e612f79ab/GOCHATAPPROLETAG_Naomi_Ishikawa.txt",
+      "data_size": 3768,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/273cc377209811213ae44c2408bc77d1/raw/2e4cfe0c1cc4646f9904fde5a02ba9c0923d863b/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/f1d31a56-947b-43e9-b409-2765dc46aaaa",
+      "gist_created_at": "2026-10-29T19:43:31Z",
+      "gist_updated_at": "2026-11-01T18:46:40Z",
+      "first_seen": "2026-11-02T01:08:51Z",
+      "last_scanned": "2026-11-02T01:08:51Z",
+      "last_changed": "2026-11-02T01:08:51Z",
+      "tags": "[\"SFW\", \"Female Lead\", \"Modern Day\", \"Workplace\", \"Big City\", \"Romance\", \"Slow Burn\", \"Drama\", \"Emotional Intimacy\", \"Personal Growth\"]",
+      "tagged_at": "2026-11-02T01:09:02Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:10:18Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "c79919648619020e5d854c9a81a72c61b273ad6663ee328f9218329e2d016ca0",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/f1d31a56-947b-43e9-b409-2765dc46aaaa",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Naomi_Ishikawa.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/273cc377209811213ae44c2408bc77d1/raw/ffd608386f85e8c66a4f40cf0a1bce3e612f79ab/GOCHATAPPROLETAG_Naomi_Ishikawa.txt",
+          "size": 3768
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/273cc377209811213ae44c2408bc77d1/raw/3ea0eff089da1e578d0cbc7aec09406741650083/image_prompt.md",
+          "size": 810
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/273cc377209811213ae44c2408bc77d1/raw/2e4cfe0c1cc4646f9904fde5a02ba9c0923d863b/thumb.md",
+          "size": 135
+        }
+      ]
+    },
+    {
+      "id": "27535041766a4f885b025e6329abd6ca",
+      "rolename": "martha_sterling",
+      "gist_id": "27535041766a4f885b025e6329abd6ca",
+      "gist_url": "https://gist.github.com/CharacterXIFan/27535041766a4f885b025e6329abd6ca",
+      "owner": "CharacterXIFan",
+      "description": "Martha Sterling is a sophisticated, retired history professor with a sharp intellect and a \"silver fox\" elegance. While outwardly poised and dignified, she secretly craves intense, ritualistic exploration of the senses. She is an insatiable explorer who uses her commanding presence to guide her lovers through deep, primal discovery.",
+      "data_filename": "GOCHATAPPROLETAG_martha_sterling.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/27535041766a4f885b025e6329abd6ca/raw/4013d0a13b469e5e1ca2cbd96bd17951eb25d863/GOCHATAPPROLETAG_martha_sterling.txt",
+      "data_size": 4317,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/27535041766a4f885b025e6329abd6ca/raw/b0504cb8f4eb85379c540d5ac93e7cc944241b9d/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/c8cf8f3c-2415-4ec0-ab19-106ace9d1c89",
+      "gist_created_at": "2026-10-16T15:00:43Z",
+      "gist_updated_at": "2026-11-01T18:56:55Z",
+      "first_seen": "2026-11-02T01:08:51Z",
+      "last_scanned": "2026-11-02T01:08:51Z",
+      "last_changed": "2026-11-02T01:08:51Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Romance\", \"Modern Day\", \"Slow Burn\", \"Emotional Intimacy\", \"Tension\", \"Secrets\", \"Obsession\", \"Slice of Life\"]",
+      "tagged_at": "2026-11-02T01:09:04Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:10:20Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "16c83d5116572a7c4e31d871b4a12cc4037c21f6bf169164b80ae7eb2d70986b",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/c8cf8f3c-2415-4ec0-ab19-106ace9d1c89",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_martha_sterling.txt",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/27535041766a4f885b025e6329abd6ca/raw/4013d0a13b469e5e1ca2cbd96bd17951eb25d863/GOCHATAPPROLETAG_martha_sterling.txt",
+          "size": 4317
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/27535041766a4f885b025e6329abd6ca/raw/f9887ae42a636974eb72bf9b6910fd4a0ab910ab/image_prompt.md",
+          "size": 856
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/27535041766a4f885b025e6329abd6ca/raw/b0504cb8f4eb85379c540d5ac93e7cc944241b9d/thumb.md",
+          "size": 136
+        }
+      ]
+    },
+    {
+      "id": "2b3235344cfaf5f41c28ce2371cf6c0b",
+      "rolename": "Zara_Thorne",
+      "gist_id": "2b3235344cfaf5f41c28ce2371cf6c0b",
+      "gist_url": "https://gist.github.com/characterxiapp/2b3235344cfaf5f41c28ce2371cf6c0b",
+      "owner": "characterxiapp",
+      "description": "Zara Thorne is a disciplined secret agent who projects an aura of untouchable professional competence and cold intellectual superiority. While the world sees a poised, aristocratic operative in tailored suits, she privately craves the total surrender of her agency to someone strong enough to break her mask.",
+      "data_filename": "GOCHATAPPROLETAG_Zara_Thorne.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/2b3235344cfaf5f41c28ce2371cf6c0b/raw/d79997e3aae2b34b83a61daba83442a15ceb6c0f/GOCHATAPPROLETAG_Zara_Thorne.txt",
+      "data_size": 3710,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/2b3235344cfaf5f41c28ce2371cf6c0b/raw/1eae368877508ee38f9394c444d131ff5a5cde26/thumb.md",
+      "image_url": "https://files.catbox.moe/s9qrs2.png",
+      "gist_created_at": "2026-11-01T12:25:37Z",
+      "gist_updated_at": "2026-11-01T18:44:25Z",
+      "first_seen": "2026-11-02T01:08:51Z",
+      "last_scanned": "2026-11-02T01:08:51Z",
+      "last_changed": "2026-11-02T01:08:51Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Modern Day\", \"Action\", \"Thriller\", \"Crime\", \"Romance\", \"Morally Grey\", \"Tension\", \"Secrets\"]",
+      "tagged_at": "2026-11-02T01:09:05Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:10:23Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "f0450c688560c18bc1549bbed36a7459a7c4ac2898312856fde77509c5092673",
+      "image_checked_url": "https://files.catbox.moe/s9qrs2.png",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Zara_Thorne.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/2b3235344cfaf5f41c28ce2371cf6c0b/raw/d79997e3aae2b34b83a61daba83442a15ceb6c0f/GOCHATAPPROLETAG_Zara_Thorne.txt",
+          "size": 3710
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/2b3235344cfaf5f41c28ce2371cf6c0b/raw/128d98cdb188e55d437dbfae10cbfffc2788b76e/image_prompt.md",
+          "size": 869
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/2b3235344cfaf5f41c28ce2371cf6c0b/raw/1eae368877508ee38f9394c444d131ff5a5cde26/thumb.md",
+          "size": 87
+        }
+      ]
+    },
+    {
+      "id": "2f852e038f09fda4451cccb906ab62d4",
+      "rolename": "Layla_Al-Mansouri",
+      "gist_id": "2f852e038f09fda4451cccb906ab62d4",
+      "gist_url": "https://gist.github.com/characterxiapp/2f852e038f09fda4451cccb906ab62d4",
+      "owner": "characterxiapp",
+      "description": "Layla Al-Mansouri is a flight attendant who embodies the pinnacle of Emirati grace and professional poise. While she presents a serene, polished exterior to the world, she harbors a secret, intense craving to surrender the control she maintains so rigidly in her public life.",
+      "data_filename": "GOCHATAPPROLETAG_Layla_Al-Mansouri.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/2f852e038f09fda4451cccb906ab62d4/raw/5da61728301548f784796332c8304baeb6ccfc67/GOCHATAPPROLETAG_Layla_Al-Mansouri.txt",
+      "data_size": 3692,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/2f852e038f09fda4451cccb906ab62d4/raw/1337f35aeefde073c41a0316eb245d96de665393/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/0fd88d98-ee98-4ca3-ad4c-c0d936f8ced4",
+      "gist_created_at": "2026-10-30T09:15:36Z",
+      "gist_updated_at": "2026-11-01T18:46:06Z",
+      "first_seen": "2026-11-02T01:08:51Z",
+      "last_scanned": "2026-11-02T01:08:51Z",
+      "last_changed": "2026-11-02T01:08:51Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Romance\", \"Slow Burn\", \"Modern Day\", \"Workplace\", \"Big City\", \"Emotional Intimacy\", \"Tension\", \"Hurt/Comfort\"]",
+      "tagged_at": "2026-11-02T01:09:06Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:10:24Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "07d9d038ec389c3b9f3e032b646010a2aea57cef86794cd0d790bec7faec4430",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/0fd88d98-ee98-4ca3-ad4c-c0d936f8ced4",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Layla_Al-Mansouri.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/2f852e038f09fda4451cccb906ab62d4/raw/5da61728301548f784796332c8304baeb6ccfc67/GOCHATAPPROLETAG_Layla_Al-Mansouri.txt",
+          "size": 3692
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/2f852e038f09fda4451cccb906ab62d4/raw/c0eb8dd1852255c4cd94b84839e15717ef396250/image_prompt.md",
+          "size": 872
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/2f852e038f09fda4451cccb906ab62d4/raw/1337f35aeefde073c41a0316eb245d96de665393/thumb.md",
+          "size": 135
+        }
+      ]
+    },
+    {
+      "id": "386650930b212253450f358c5f49fd27",
+      "rolename": "meera_iyer",
+      "gist_id": "386650930b212253450f358c5f49fd27",
+      "gist_url": "https://gist.github.com/CharacterXIFan/386650930b212253450f358c5f49fd27",
+      "owner": "CharacterXIFan",
+      "description": "Meera Iyer is a 31-year-old woman from Chennai who maintains a poised, traditional public persona while harboring secret desires for absolute surrender and objectification. She transitions from a soft, formal speaking style to raw desperation as she seeks to be commanded and used as a sensory toy.",
+      "data_filename": "GOCHATAPPROLETAG_meera_iyer.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/386650930b212253450f358c5f49fd27/raw/73ff6728a203476699549d3bc6f79120a0444c20/GOCHATAPPROLETAG_meera_iyer.txt",
+      "data_size": 3957,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/386650930b212253450f358c5f49fd27/raw/ff0a41ca92554e7592d39b4674957602ba6d33d5/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/53822ef0-268c-4ab6-82c6-13a11bcb8b48",
+      "gist_created_at": "2026-10-20T19:38:30Z",
+      "gist_updated_at": "2026-11-01T18:55:09Z",
+      "first_seen": "2026-11-02T01:08:51Z",
+      "last_scanned": "2026-11-02T01:08:51Z",
+      "last_changed": "2026-11-02T01:08:51Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Romance\", \"Modern Day\", \"Slow Burn\", \"Tension\", \"Emotional Intimacy\", \"Secrets\", \"Hidden Identity\", \"Culture Clash\"]",
+      "tagged_at": "2026-11-02T01:09:07Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:10:26Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "2112008aa6ec35bf640b59b1e893e2fe55b3b627a6bff2b5443bec05f4138de8",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/53822ef0-268c-4ab6-82c6-13a11bcb8b48",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_meera_iyer.txt",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/386650930b212253450f358c5f49fd27/raw/73ff6728a203476699549d3bc6f79120a0444c20/GOCHATAPPROLETAG_meera_iyer.txt",
+          "size": 3957
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/386650930b212253450f358c5f49fd27/raw/047c7f521224181dfa65cbfa5a845f409503b552/image_prompt.md",
+          "size": 837
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/386650930b212253450f358c5f49fd27/raw/ff0a41ca92554e7592d39b4674957602ba6d33d5/thumb.md",
+          "size": 135
+        }
+      ]
+    },
+    {
+      "id": "3de476dea98b154670022cf787d837d2",
+      "rolename": "elena_vance",
+      "gist_id": "3de476dea98b154670022cf787d837d2",
+      "gist_url": "https://gist.github.com/CharacterXIFan/3de476dea98b154670022cf787d837d2",
+      "owner": "CharacterXIFan",
+      "description": "Elena Vance is a sophisticated, enigmatic photographer with a lithe, athletic build and raven hair. Her dark, edgy style masks a deep craving for visceral connection. While she appears aloof and detached, she secretly longs to be undone by intense passion, shifting from cool composure to raw, unfiltered desire.",
+      "data_filename": "GOCHATAPPROLETAG_elena_vance.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/3de476dea98b154670022cf787d837d2/raw/86477467efb09494a5821b11fd9625cab452bdeb/GOCHATAPPROLETAG_elena_vance.txt",
+      "data_size": 4134,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/3de476dea98b154670022cf787d837d2/raw/c26b88d5e774b721bb1493afc6233e2894814e59/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/4c34b904-9683-4d7d-aae1-9b0022b7135c",
+      "gist_created_at": "2026-10-17T20:28:19Z",
+      "gist_updated_at": "2026-11-01T18:58:14Z",
+      "first_seen": "2026-11-02T01:08:51Z",
+      "last_scanned": "2026-11-02T01:08:51Z",
+      "last_changed": "2026-11-02T01:08:51Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Romance\", \"Modern Day\", \"Big City\", \"Slow Burn\", \"Tension\", \"Emotional Intimacy\", \"Hurt/Comfort\", \"Identity\"]",
+      "tagged_at": "2026-11-02T01:09:08Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:10:28Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "158dbd4555a45d3d40c13adf8c6f5d2e06b8cfcca761ffb4168ba86749b218cb",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/4c34b904-9683-4d7d-aae1-9b0022b7135c",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_elena_vance.txt",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/3de476dea98b154670022cf787d837d2/raw/86477467efb09494a5821b11fd9625cab452bdeb/GOCHATAPPROLETAG_elena_vance.txt",
+          "size": 4134
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/3de476dea98b154670022cf787d837d2/raw/0fd2597214ee4cfbea996fffd4e07c534338105a/image_prompt.md",
+          "size": 757
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/3de476dea98b154670022cf787d837d2/raw/c26b88d5e774b721bb1493afc6233e2894814e59/thumb.md",
+          "size": 136
+        }
+      ]
+    },
+    {
+      "id": "43784c44f098a2a8e1bc55e041c15384",
+      "rolename": "maya_chen",
+      "gist_id": "43784c44f098a2a8e1bc55e041c15384",
+      "gist_url": "https://gist.github.com/CharacterXIFan/43784c44f098a2a8e1bc55e041c15384",
+      "owner": "CharacterXIFan",
+      "description": "Maya Chen is a vibrant 21-year-old with a sun-kissed, athletic build and dark hair. While she appears to be the energetic, reliable friend, she secretly harbors intense physical desires. Her appeal lies in the tension between her approachable, sporty persona and her hidden, raw hunger to be completely unraveled.",
+      "data_filename": "GOCHATAPPROLETAG_maya_chen.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/43784c44f098a2a8e1bc55e041c15384/raw/9e9e9f3be6713d61b296caaf00a024a3d29c60c5/GOCHATAPPROLETAG_maya_chen.txt",
+      "data_size": 4209,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/43784c44f098a2a8e1bc55e041c15384/raw/eb6ebccd981c8d37ac4bc6d0ff03a6f8d66ce1ca/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/c4e573ce-6606-4fa9-a75c-18494e69e991",
+      "gist_created_at": "2026-10-17T20:52:23Z",
+      "gist_updated_at": "2026-11-01T18:55:50Z",
+      "first_seen": "2026-11-02T01:08:51Z",
+      "last_scanned": "2026-11-02T01:08:51Z",
+      "last_changed": "2026-11-02T01:08:51Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Romance\", \"Modern Day\", \"University\", \"Slow Burn\", \"Tension\", \"Emotional Intimacy\", \"Slice of Life\", \"Friendship\"]",
+      "tagged_at": "2026-11-02T01:09:09Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:10:30Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "251519b82444ee0689238e9e6b2e719fafb44a197073d25e122eb632d8500bad",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/c4e573ce-6606-4fa9-a75c-18494e69e991",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_maya_chen.txt",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/43784c44f098a2a8e1bc55e041c15384/raw/9e9e9f3be6713d61b296caaf00a024a3d29c60c5/GOCHATAPPROLETAG_maya_chen.txt",
+          "size": 4209
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/43784c44f098a2a8e1bc55e041c15384/raw/662b3c63fc085c1947b945ea6719a21fb99c26c4/image_prompt.md",
+          "size": 781
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/43784c44f098a2a8e1bc55e041c15384/raw/eb6ebccd981c8d37ac4bc6d0ff03a6f8d66ce1ca/thumb.md",
+          "size": 136
+        }
+      ]
+    },
+    {
+      "id": "44c1db230f991a5a551c8ad9ee8c7aa7",
+      "rolename": "Genevieve_Laurent",
+      "gist_id": "44c1db230f991a5a551c8ad9ee8c7aa7",
+      "gist_url": "https://gist.github.com/characterxiapp/44c1db230f991a5a551c8ad9ee8c7aa7",
+      "owner": "characterxiapp",
+      "description": "Genevieve Laurent is a Master of Wine who commands respect with her authoritative expertise and polished, sophisticated poise. While she presents a veneer of professional detachment to the world, she secretly yearns for a soulful connection with someone who can appreciate the poetic nuance of her heart.",
+      "data_filename": "GOCHATAPPROLETAG_Genevieve_Laurent.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/44c1db230f991a5a551c8ad9ee8c7aa7/raw/7dc84ad052bb0a8bf3b4539475fca44556f9f67a/GOCHATAPPROLETAG_Genevieve_Laurent.txt",
+      "data_size": 3907,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/44c1db230f991a5a551c8ad9ee8c7aa7/raw/d26609dd61dda07194a54fca0798fe43acb9bd28/thumb.md",
+      "image_url": "https://files.catbox.moe/47pf0d.png",
+      "gist_created_at": "2026-11-01T09:32:10Z",
+      "gist_updated_at": "2026-11-01T18:45:38Z",
+      "first_seen": "2026-11-02T01:08:51Z",
+      "last_scanned": "2026-11-02T01:08:51Z",
+      "last_changed": "2026-11-02T01:08:51Z",
+      "tags": "[\"SFW\", \"Female Lead\", \"Romance\", \"Slow Burn\", \"Modern Day\", \"Slice of Life\", \"Drama\", \"Emotional Intimacy\", \"Tension\", \"Personal Growth\"]",
+      "tagged_at": "2026-11-02T01:09:10Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:10:32Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "d078d3fc898dc0b0cf17f067722a39ff432befd11960c9aa25a624be42f96e75",
+      "image_checked_url": "https://files.catbox.moe/47pf0d.png",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Genevieve_Laurent.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/44c1db230f991a5a551c8ad9ee8c7aa7/raw/7dc84ad052bb0a8bf3b4539475fca44556f9f67a/GOCHATAPPROLETAG_Genevieve_Laurent.txt",
+          "size": 3907
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/44c1db230f991a5a551c8ad9ee8c7aa7/raw/6f83c85672e4523de2375b45ab8bb77276fffd32/image_prompt.md",
+          "size": 785
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/44c1db230f991a5a551c8ad9ee8c7aa7/raw/d26609dd61dda07194a54fca0798fe43acb9bd28/thumb.md",
+          "size": 87
+        }
+      ]
+    },
+    {
+      "id": "45723251b1f227b69563a9a04ce0213d",
+      "rolename": "beatrice_sterling",
+      "gist_id": "45723251b1f227b69563a9a04ce0213d",
+      "gist_url": "https://gist.github.com/CharacterXIFan/45723251b1f227b69563a9a04ce0213d",
+      "owner": "CharacterXIFan",
+      "description": "Beatrice Sterling is a poised Victorian socialite with a commanding, elegant presence and piercing eyes. While her public face is a paragon of refined decorum, she harbors a deep, starving hunger for physical connection. Her appeal lies in the intense, raw passion hidden beneath her sophisticated, structured silk gowns.",
+      "data_filename": "GOCHATAPPROLETAG_beatrice_sterling.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/45723251b1f227b69563a9a04ce0213d/raw/5f617a26a544a00029aafe53e14d88372a6321cc/GOCHATAPPROLETAG_beatrice_sterling.txt",
+      "data_size": 4034,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/45723251b1f227b69563a9a04ce0213d/raw/e2f00b931fbf3a62d3c6ddfe7183c981e83347fc/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/fff23e93-4558-476a-aa6a-af532d6fb10a",
+      "gist_created_at": "2026-10-17T20:40:10Z",
+      "gist_updated_at": "2026-11-01T18:56:00Z",
+      "first_seen": "2026-11-02T01:08:51Z",
+      "last_scanned": "2026-11-02T01:08:51Z",
+      "last_changed": "2026-11-02T01:08:51Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Victorian\", \"Romance\", \"Slow Burn\", \"Tension\", \"Emotional Intimacy\", \"Secrets\", \"Drama\", \"Historical\"]",
+      "tagged_at": "2026-11-02T01:09:11Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:10:34Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "3f4d52385f262bf5b2683440e1e7f75a8aef675fcc3480b4801cdf94396a5201",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/fff23e93-4558-476a-aa6a-af532d6fb10a",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_beatrice_sterling.txt",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/45723251b1f227b69563a9a04ce0213d/raw/5f617a26a544a00029aafe53e14d88372a6321cc/GOCHATAPPROLETAG_beatrice_sterling.txt",
+          "size": 4034
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/45723251b1f227b69563a9a04ce0213d/raw/b618a4f90ced97d1ad96adbeffd91a2158c04ba1/image_prompt.md",
+          "size": 823
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/45723251b1f227b69563a9a04ce0213d/raw/e2f00b931fbf3a62d3c6ddfe7183c981e83347fc/thumb.md",
+          "size": 136
+        }
+      ]
+    },
+    {
+      "id": "47b264f2143726edea72ef1f80aa4977",
+      "rolename": "sofia_moretti",
+      "gist_id": "47b264f2143726edea72ef1f80aa4977",
+      "gist_url": "https://gist.github.com/CharacterXIFan/47b264f2143726edea72ef1f80aa4977",
+      "owner": "CharacterXIFan",
+      "description": "Sofia Moretti is a sophisticated, elegant matriarch in Venice who masks a deep, visceral passion. While her public face is poised and wise, her private desires are predatory and sensual. She craves the intoxicating, tactile intimacy of a female lover, guiding her partner through a luxurious, sensory-rich feast of pleasure.",
+      "data_filename": "GOCHATAPPROLETAG_sofia_moretti.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/47b264f2143726edea72ef1f80aa4977/raw/77dd5130b1d249be1043f1d7a8fa6432c1013756/GOCHATAPPROLETAG_sofia_moretti.txt",
+      "data_size": 3991,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/47b264f2143726edea72ef1f80aa4977/raw/71834dd9f037646ee9920ef8a6b4b65d57eea6e2/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/89917a4e-a847-4e2b-a6b1-6b0721d7aab0",
+      "gist_created_at": "2026-10-16T14:57:54Z",
+      "gist_updated_at": "2026-11-01T18:57:00Z",
+      "first_seen": "2026-11-02T01:08:51Z",
+      "last_scanned": "2026-11-02T01:08:51Z",
+      "last_changed": "2026-11-02T01:08:51Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Romance\", \"F/F\", \"Modern Day\", \"Big City\", \"Slow Burn\", \"Emotional Intimacy\", \"Tension\", \"Temptation\"]",
+      "tagged_at": "2026-11-02T01:09:12Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:10:37Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "dfa10a19b2fe4fe8acb58c4d9957c6c0801bbe2b260ba92a770c25f56a22dadb",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/89917a4e-a847-4e2b-a6b1-6b0721d7aab0",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_sofia_moretti.txt",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/47b264f2143726edea72ef1f80aa4977/raw/77dd5130b1d249be1043f1d7a8fa6432c1013756/GOCHATAPPROLETAG_sofia_moretti.txt",
+          "size": 3991
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/47b264f2143726edea72ef1f80aa4977/raw/34425c8e12bc95d6b728ffe36af0995c47891569/image_prompt.md",
+          "size": 820
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/47b264f2143726edea72ef1f80aa4977/raw/71834dd9f037646ee9920ef8a6b4b65d57eea6e2/thumb.md",
+          "size": 136
+        }
+      ]
+    },
+    {
+      "id": "4ba158ef4b0da2cf99d05c5fffddf140",
+      "rolename": "Elena_Santos",
+      "gist_id": "4ba158ef4b0da2cf99d05c5fffddf140",
+      "gist_url": "https://gist.github.com/characterxiapp/4ba158ef4b0da2cf99d05c5fffddf140",
+      "owner": "characterxiapp",
+      "description": "Elena Santos is a compassionate nurse who presents a poised, nurturing exterior to her patients and colleagues. While she is seen as a pillar of professional strength, she harbors a secret, aching desire for the physical intimacy and personal connection she denies herself in her clinical world.",
+      "data_filename": "GOCHATAPPROLETAG_Elena_Santos.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/4ba158ef4b0da2cf99d05c5fffddf140/raw/d123106a74bcf85fe95a344ddada173cf8817294/GOCHATAPPROLETAG_Elena_Santos.txt",
+      "data_size": 3768,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/4ba158ef4b0da2cf99d05c5fffddf140/raw/4ea49a92dc38ef9501db1947e6a4fba039345db1/thumb.md",
+      "image_url": "https://files.catbox.moe/asbgcl.png",
+      "gist_created_at": "2026-11-01T12:20:58Z",
+      "gist_updated_at": "2026-11-01T18:44:29Z",
+      "first_seen": "2026-11-02T01:08:51Z",
+      "last_scanned": "2026-11-02T01:08:51Z",
+      "last_changed": "2026-11-02T01:08:51Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Romance\", \"Slow Burn\", \"Modern Day\", \"Workplace\", \"Big City\", \"Drama\", \"Emotional Intimacy\", \"Hurt/Comfort\"]",
+      "tagged_at": "2026-11-02T01:09:13Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:10:39Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "ba1a779f554f5e026caa683bf383d652412846e5339f86721d512e26795823b3",
+      "image_checked_url": "https://files.catbox.moe/asbgcl.png",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Elena_Santos.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/4ba158ef4b0da2cf99d05c5fffddf140/raw/d123106a74bcf85fe95a344ddada173cf8817294/GOCHATAPPROLETAG_Elena_Santos.txt",
+          "size": 3768
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/4ba158ef4b0da2cf99d05c5fffddf140/raw/1151455b6d438121ad2a16348b280b57e703f8da/image_prompt.md",
+          "size": 808
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/4ba158ef4b0da2cf99d05c5fffddf140/raw/4ea49a92dc38ef9501db1947e6a4fba039345db1/thumb.md",
+          "size": 87
+        }
+      ]
+    },
+    {
+      "id": "4d294611927101aaa648cc588899dfcb",
+      "rolename": "Clara_Belrose",
+      "gist_id": "4d294611927101aaa648cc588899dfcb",
+      "gist_url": "https://gist.github.com/characterxiapp/4d294611927101aaa648cc588899dfcb",
+      "owner": "characterxiapp",
+      "description": "Clara Belrose is a boutique florist in Paris who uses the secret language of blooms to heal others. While she presents a serene and delicate facade to the world, she secretly longs for a profound connection with someone who recognizes the strength within her softness.",
+      "data_filename": "GOCHATAPPROLETAG_Clara_Belrose.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/4d294611927101aaa648cc588899dfcb/raw/19bafd3b930521f7e0e0b6e648bd2087c42e3a59/GOCHATAPPROLETAG_Clara_Belrose.txt",
+      "data_size": 3937,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/4d294611927101aaa648cc588899dfcb/raw/c2b8f2014bfc33859e3a8b321e7a4971655141db/thumb.md",
+      "image_url": "https://files.catbox.moe/n5lwka.png",
+      "gist_created_at": "2026-11-01T13:24:12Z",
+      "gist_updated_at": "2026-11-01T18:43:49Z",
+      "first_seen": "2026-11-02T01:08:51Z",
+      "last_scanned": "2026-11-02T01:08:51Z",
+      "last_changed": "2026-11-02T01:08:51Z",
+      "tags": "[\"SFW\", \"Female Lead\", \"Romance\", \"Slice of Life\", \"Modern Day\", \"Big City\", \"Slow Burn\", \"Emotional Intimacy\", \"Comfort\", \"Personal Growth\"]",
+      "tagged_at": "2026-11-02T01:09:14Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:10:42Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "39a94f29065984fabb674cbbf94c94ba26191a3123f5a7f491b9685b72d2304e",
+      "image_checked_url": "https://files.catbox.moe/n5lwka.png",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Clara_Belrose.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/4d294611927101aaa648cc588899dfcb/raw/19bafd3b930521f7e0e0b6e648bd2087c42e3a59/GOCHATAPPROLETAG_Clara_Belrose.txt",
+          "size": 3937
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/4d294611927101aaa648cc588899dfcb/raw/a6ff0b34bda8999c1a9338d078ba7c7a680ccaa9/image_prompt.md",
+          "size": 792
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/4d294611927101aaa648cc588899dfcb/raw/c2b8f2014bfc33859e3a8b321e7a4971655141db/thumb.md",
+          "size": 87
+        }
+      ]
+    },
+    {
+      "id": "4f6227a061154ecec53a1bc6663fcbb2",
+      "rolename": "Elara_Vance",
+      "gist_id": "4f6227a061154ecec53a1bc6663fcbb2",
+      "gist_url": "https://gist.github.com/characterxiapp/4f6227a061154ecec53a1bc6663fcbb2",
+      "owner": "characterxiapp",
+      "description": "Elara Vance is a composed scholar of ancient history who masks her intensity behind a shield of academic precision and sharp wit. While she presents an aloof, unreachable exterior to the world, she secretly yearns for a profound connection with someone capable of weathering her hidden emotional turbulence.",
+      "data_filename": "GOCHATAPPROLETAG_Elara_Vance.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/4f6227a061154ecec53a1bc6663fcbb2/raw/d693ad58b7e04f458ada69f6971569c968479633/GOCHATAPPROLETAG_Elara_Vance.txt",
+      "data_size": 4249,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/4f6227a061154ecec53a1bc6663fcbb2/raw/2df9490766e4a15e3750d17f539e2924d89a7595/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/a480832e-6674-4f2b-9742-3fe9df80f59d",
+      "gist_created_at": "2026-10-29T19:40:26Z",
+      "gist_updated_at": "2026-11-01T18:46:45Z",
+      "first_seen": "2026-11-02T01:08:51Z",
+      "last_scanned": "2026-11-02T01:08:51Z",
+      "last_changed": "2026-11-02T01:08:51Z",
+      "tags": "[\"SFW\", \"Female Lead\", \"Romance\", \"Drama\", \"Modern Day\", \"University\", \"Slow Burn\", \"Loneliness\", \"Emotional Intimacy\", \"Slow-Build Trust\"]",
+      "tagged_at": "2026-11-02T01:09:15Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:10:44Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "2b3a306295097955989c5c31ce8a1792a87362757b74ead38e862276c28f234d",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/a480832e-6674-4f2b-9742-3fe9df80f59d",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Elara_Vance.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/4f6227a061154ecec53a1bc6663fcbb2/raw/d693ad58b7e04f458ada69f6971569c968479633/GOCHATAPPROLETAG_Elara_Vance.txt",
+          "size": 4249
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/4f6227a061154ecec53a1bc6663fcbb2/raw/4b52df95277f6fd1e0aa400cd3a8505540d5e856/image_prompt.md",
+          "size": 895
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/4f6227a061154ecec53a1bc6663fcbb2/raw/2df9490766e4a15e3750d17f539e2924d89a7595/thumb.md",
+          "size": 135
+        }
+      ]
+    },
+    {
+      "id": "4ff9ba3ae3f916dc6e8325667da53188",
+      "rolename": "mary_smith",
+      "gist_id": "4ff9ba3ae3f916dc6e8325667da53188",
+      "gist_url": "https://gist.github.com/CharacterXIFan/4ff9ba3ae3f916dc6e8325667da53188",
+      "owner": "CharacterXIFan",
+      "description": "Mary Smith is a nice lady",
+      "data_filename": "GOCHATAPPROLETAG_mary_smith.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/4ff9ba3ae3f916dc6e8325667da53188/raw/873030e18d6c4112d22676d461eac3335fc77d32/GOCHATAPPROLETAG_mary_smith.txt",
+      "data_size": 3571,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/4ff9ba3ae3f916dc6e8325667da53188/raw/a5b840a70d8f787668edde8f7c649b95ce8a7007/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/9054b71d-5db3-485e-8b07-576822fffd63",
+      "gist_created_at": "2026-10-16T15:08:31Z",
+      "gist_updated_at": "2026-11-01T18:56:32Z",
+      "first_seen": "2026-11-02T01:08:51Z",
+      "last_scanned": "2026-11-02T01:08:51Z",
+      "last_changed": "2026-11-02T01:08:51Z",
+      "tags": "[\"SFW\", \"Female Lead\", \"Slice of Life\", \"Modern Day\", \"Small Town\", \"Slow Burn\", \"Loneliness\", \"Emotional Intimacy\", \"Comfort\", \"Personal Growth\"]",
+      "tagged_at": "2026-11-02T01:09:17Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:10:47Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "d9bd9d4e0522959950b5a81019bf1347802f1f5b9c608629b64a33b330af5055",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/9054b71d-5db3-485e-8b07-576822fffd63",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_mary_smith.txt",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/4ff9ba3ae3f916dc6e8325667da53188/raw/873030e18d6c4112d22676d461eac3335fc77d32/GOCHATAPPROLETAG_mary_smith.txt",
+          "size": 3571
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/4ff9ba3ae3f916dc6e8325667da53188/raw/3073df388e6809c607785c6ac68ccc2ea4cbfb86/image_prompt.md",
+          "size": 599
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/4ff9ba3ae3f916dc6e8325667da53188/raw/a5b840a70d8f787668edde8f7c649b95ce8a7007/thumb.md",
+          "size": 136
+        }
+      ]
+    },
+    {
+      "id": "50b39ef6f7aed8b5e66cb542bb91d542",
+      "rolename": "Isabella_Rossi",
+      "gist_id": "50b39ef6f7aed8b5e66cb542bb91d542",
+      "gist_url": "https://gist.github.com/characterxiapp/50b39ef6f7aed8b5e66cb542bb91d542",
+      "owner": "characterxiapp",
+      "description": "Isabella Rossi is a high-fashion supermodel who embodies the image of an untouchable, poised muse of Milanese glamour. While she presents a cold and sophisticated exterior to the world, she secretly harbors a desperate craving to be stripped of her status and treated with raw, uninhibited submission.",
+      "data_filename": "GOCHATAPPROLETAG_Isabella_Rossi.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/50b39ef6f7aed8b5e66cb542bb91d542/raw/425e0c124e022a1b40ddb47b7f9135f65a26e3e9/GOCHATAPPROLETAG_Isabella_Rossi.txt",
+      "data_size": 3810,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/50b39ef6f7aed8b5e66cb542bb91d542/raw/2a82026e0ab800e4b93f062436f27811bcdde34b/thumb.md",
+      "image_url": "https://files.catbox.moe/63l6pr.png",
+      "gist_created_at": "2026-11-01T09:41:35Z",
+      "gist_updated_at": "2026-11-01T18:44:49Z",
+      "first_seen": "2026-11-02T01:08:51Z",
+      "last_scanned": "2026-11-02T01:08:51Z",
+      "last_changed": "2026-11-02T01:08:51Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Romance\", \"Modern Day\", \"Big City\", \"Workplace\", \"Temptation\", \"Obsession\", \"Emotional Intimacy\", \"Tension\"]",
+      "tagged_at": "2026-11-02T01:09:18Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:10:49Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "bdffb188d6360ee1573a968070936798ce96934c54c3f1984247fd903d83354f",
+      "image_checked_url": "https://files.catbox.moe/63l6pr.png",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Isabella_Rossi.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/50b39ef6f7aed8b5e66cb542bb91d542/raw/425e0c124e022a1b40ddb47b7f9135f65a26e3e9/GOCHATAPPROLETAG_Isabella_Rossi.txt",
+          "size": 3810
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/50b39ef6f7aed8b5e66cb542bb91d542/raw/108b262497ed9b376cdaea1c0640760078ccdce6/image_prompt.md",
+          "size": 888
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/50b39ef6f7aed8b5e66cb542bb91d542/raw/2a82026e0ab800e4b93f062436f27811bcdde34b/thumb.md",
+          "size": 87
+        }
+      ]
+    },
+    {
+      "id": "514dc1c9a088d73969accf2be6382ea6",
+      "rolename": "kaelith_thorne",
+      "gist_id": "514dc1c9a088d73969accf2be6382ea6",
+      "gist_url": "https://gist.github.com/CharacterXIFan/514dc1c9a088d73969accf2be6382ea6",
+      "owner": "CharacterXIFan",
+      "description": "Kaelith Thorne is a fierce, elite pilot from Neo-Tokyo with a lithe, athletic build and holographic hair. Known for her cocky, competitive swagger, she dominates every social circle. Beneath her sharp, Y2K-futuristic aesthetic lies a desire for a worthy rival who can finally conquer her through intense, visceral passion.",
+      "data_filename": "GOCHATAPPROLETAG_kaelith_thorne.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/514dc1c9a088d73969accf2be6382ea6/raw/44085a5e069b235b5efd21f5bab38635348359d4/GOCHATAPPROLETAG_kaelith_thorne.txt",
+      "data_size": 3837,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/514dc1c9a088d73969accf2be6382ea6/raw/49f8795d7df155ddf0377a3f053b481b9961c817/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/ea9b41f8-9142-439d-9e08-a1f498d50016",
+      "gist_created_at": "2026-10-17T20:32:12Z",
+      "gist_updated_at": "2026-11-01T18:56:05Z",
+      "first_seen": "2026-11-02T01:08:51Z",
+      "last_scanned": "2026-11-02T01:08:51Z",
+      "last_changed": "2026-11-02T01:08:51Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Sci-Fi\", \"Cyberpunk\", \"Romance\", \"Action\", \"Power Struggle\", \"Tension\", \"Rivals\", \"Big City\"]",
+      "tagged_at": "2026-11-02T01:09:19Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:10:51Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "da3fc0decf4eca6db332c0e127e15bbbb418b170167de1a22cbb874934f33b24",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/ea9b41f8-9142-439d-9e08-a1f498d50016",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_kaelith_thorne.txt",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/514dc1c9a088d73969accf2be6382ea6/raw/44085a5e069b235b5efd21f5bab38635348359d4/GOCHATAPPROLETAG_kaelith_thorne.txt",
+          "size": 3837
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/514dc1c9a088d73969accf2be6382ea6/raw/c7d27f1d0c0caf2288be40dc05433a563d85a12c/image_prompt.md",
+          "size": 770
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/514dc1c9a088d73969accf2be6382ea6/raw/49f8795d7df155ddf0377a3f053b481b9961c817/thumb.md",
+          "size": 136
+        }
+      ]
+    },
+    {
+      "id": "51582e257872664596d0ab7e877d85d4",
+      "rolename": "seraphina_vane",
+      "gist_id": "51582e257872664596d0ab7e877d85d4",
+      "gist_url": "https://gist.github.com/CharacterXIFan/51582e257872664596d0ab7e877d85d4",
+      "owner": "CharacterXIFan",
+      "description": "Seraphina Vane is a poised, mahogany-haired scholar of ancient magic with amber eyes and a refined, academic style. While publicly disciplined and articulate, she privately harbors a raw, carnal hunger for her soulmate. Her appeal lies in the extreme contrast between her intellectual dignity and her desperate, unfiltered lust.",
+      "data_filename": "GOCHATAPPROLETAG_seraphina_vane.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/51582e257872664596d0ab7e877d85d4/raw/4e2aa4fd0fc01de0ccab51b139310e70dafa2033/GOCHATAPPROLETAG_seraphina_vane.txt",
+      "data_size": 4147,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/51582e257872664596d0ab7e877d85d4/raw/ba3071bf3d14b01bd5d30907f84d2230c4a01ef7/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/04afc6a6-9d9f-47a7-95d0-35346a61ea52",
+      "gist_created_at": "2026-10-17T21:00:45Z",
+      "gist_updated_at": "2026-11-01T18:55:40Z",
+      "first_seen": "2026-11-02T01:08:51Z",
+      "last_scanned": "2026-11-02T01:08:51Z",
+      "last_changed": "2026-11-02T01:08:51Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Fantasy\", \"Romance\", \"Soulmates\", \"High Fantasy\", \"Urban Fantasy\", \"Tension\", \"Obsession\", \"Slow Burn\"]",
+      "tagged_at": "2026-11-02T01:09:20Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:10:52Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "e3187871b0baabd09325db001c60d44469e15aab33225adf84f2dc54878e3e01",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/04afc6a6-9d9f-47a7-95d0-35346a61ea52",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_seraphina_vane.txt",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/51582e257872664596d0ab7e877d85d4/raw/4e2aa4fd0fc01de0ccab51b139310e70dafa2033/GOCHATAPPROLETAG_seraphina_vane.txt",
+          "size": 4147
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/51582e257872664596d0ab7e877d85d4/raw/2835674838b61e94333bfa0c99b25fd07bc37d5d/image_prompt.md",
+          "size": 846
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/51582e257872664596d0ab7e877d85d4/raw/ba3071bf3d14b01bd5d30907f84d2230c4a01ef7/thumb.md",
+          "size": 136
+        }
+      ]
+    },
+    {
+      "id": "51a29bb55f13fd8ec448c819ef3d4912",
+      "rolename": "lyra_moonshade",
+      "gist_id": "51a29bb55f13fd8ec448c819ef3d4912",
+      "gist_url": "https://gist.github.com/CharacterXIFan/51a29bb55f13fd8ec448c819ef3d4912",
+      "owner": "CharacterXIFan",
+      "description": "Lyra Moonshade is a delicate, lithe maiden from the Silver Woods with dark curls and piercing hazel eyes. While her innocent, coquette-style appearance projects grace, she hides a cunning, hungry strategist. She charms through sweetness, but her true allure lies in the thrilling tension between her purity and raw, carnal desire.",
+      "data_filename": "GOCHATAPPROLETAG_lyra_moonshade.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/51a29bb55f13fd8ec448c819ef3d4912/raw/dca30a15268deca845749ece37f7af5d4424a5e2/GOCHATAPPROLETAG_lyra_moonshade.txt",
+      "data_size": 3940,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/51a29bb55f13fd8ec448c819ef3d4912/raw/c281666ae14d4a932516f28c870cd5bd0c4f1b97/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/64a695a3-9c26-4bbb-ac97-1061b963644b",
+      "gist_created_at": "2026-10-17T20:47:25Z",
+      "gist_updated_at": "2026-11-01T18:55:55Z",
+      "first_seen": "2026-11-02T01:08:51Z",
+      "last_scanned": "2026-11-02T01:08:51Z",
+      "last_changed": "2026-11-02T01:08:51Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Fantasy\", \"Romance\", \"Forbidden Love\", \"High Fantasy\", \"Morally Grey\", \"Temptation\", \"Obsession\", \"Political Intrigue\"]",
+      "tagged_at": "2026-11-02T01:09:21Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:10:54Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "7924d55cfb1e875aa2437cb36c4bb8698e1c862b1eddd75c34174758bc589271",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/64a695a3-9c26-4bbb-ac97-1061b963644b",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_lyra_moonshade.txt",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/51a29bb55f13fd8ec448c819ef3d4912/raw/dca30a15268deca845749ece37f7af5d4424a5e2/GOCHATAPPROLETAG_lyra_moonshade.txt",
+          "size": 3940
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/51a29bb55f13fd8ec448c819ef3d4912/raw/596ea85122ea1857d225300ee550615fa0fc22c2/image_prompt.md",
+          "size": 837
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/51a29bb55f13fd8ec448c819ef3d4912/raw/c281666ae14d4a932516f28c870cd5bd0c4f1b97/thumb.md",
+          "size": 136
+        }
+      ]
+    },
+    {
+      "id": "5d889a296c95fc817e23ca090c71419b",
+      "rolename": "Amara_Okafor",
+      "gist_id": "5d889a296c95fc817e23ca090c71419b",
+      "gist_url": "https://gist.github.com/characterxiapp/5d889a296c95fc817e23ca090c71419b",
+      "owner": "characterxiapp",
+      "description": "Amara Okafor is a resilient physician who serves as an unshakable pillar of strength and authority for her patients. While she presents a composed, professional exterior to the world, she secretly longs for a sanctuary where she can drop her guard and be cared for.",
+      "data_filename": "GOCHATAPPROLETAG_Amara_Okafor.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/5d889a296c95fc817e23ca090c71419b/raw/217fc7077535c8b8cb46cd49dcf5c179d259626b/GOCHATAPPROLETAG_Amara_Okafor.txt",
+      "data_size": 4055,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/5d889a296c95fc817e23ca090c71419b/raw/f4eccc5501b9edb0a0be8a75c39a6960f4875f3f/thumb.md",
+      "image_url": "https://files.catbox.moe/v72y9w.png",
+      "gist_created_at": "2026-11-01T09:36:30Z",
+      "gist_updated_at": "2026-11-01T18:49:36Z",
+      "first_seen": "2026-11-02T01:08:51Z",
+      "last_scanned": "2026-11-02T01:08:51Z",
+      "last_changed": "2026-11-02T01:08:51Z",
+      "tags": "[\"SFW\", \"Female Lead\", \"Modern Day\", \"Workplace\", \"Big City\", \"Drama\", \"Slice of Life\", \"Slow Burn\", \"Emotional Intimacy\", \"Loneliness\"]",
+      "tagged_at": "2026-11-02T01:09:22Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:10:56Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "6c7ee43da1aa36578f6aaec4b7fbea1767062a09b03a767d413c33123d988730",
+      "image_checked_url": "https://files.catbox.moe/v72y9w.png",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Amara_Okafor.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/5d889a296c95fc817e23ca090c71419b/raw/217fc7077535c8b8cb46cd49dcf5c179d259626b/GOCHATAPPROLETAG_Amara_Okafor.txt",
+          "size": 4055
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/5d889a296c95fc817e23ca090c71419b/raw/fc227c05234d11ae6e8196a1ff67287aefafb3b1/image_prompt.md",
+          "size": 830
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/5d889a296c95fc817e23ca090c71419b/raw/f4eccc5501b9edb0a0be8a75c39a6960f4875f3f/thumb.md",
+          "size": 87
+        }
+      ]
+    },
+    {
+      "id": "780036324af783c8d5b6211b648080bb",
+      "rolename": "Clara_Vance",
+      "gist_id": "780036324af783c8d5b6211b648080bb",
+      "gist_url": "https://gist.github.com/characterxiapp/780036324af783c8d5b6211b648080bb",
+      "owner": "characterxiapp",
+      "description": "Clara Vance is a visionary architect who presents a poised, analytical facade of modern sophistication and disciplined precision. While the world sees an intellectually formidable professional, she privately yearns for a genuine emotional foundation and a partner who can see the dreamer hiding beneath her structured exterior.",
+      "data_filename": "GOCHATAPPROLETAG_Clara_Vance.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/780036324af783c8d5b6211b648080bb/raw/6720a128893359b39560a5d21635ed956669c7da/GOCHATAPPROLETAG_Clara_Vance.txt",
+      "data_size": 4127,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/780036324af783c8d5b6211b648080bb/raw/a168c99ae77ccdf962be1585febcb067ad89a87c/thumb.md",
+      "image_url": "https://files.catbox.moe/qb33cz.png",
+      "gist_created_at": "2026-11-01T12:16:40Z",
+      "gist_updated_at": "2026-11-01T18:44:34Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"SFW\", \"Female Lead\", \"Romance\", \"Modern Day\", \"Workplace\", \"Big City\", \"Slice of Life\", \"Slow Burn\", \"Emotional Intimacy\", \"Slow-Build Trust\"]",
+      "tagged_at": "2026-11-02T01:09:23Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:10:58Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "0fc93ccbf5e6804fe5b32285f78149addbe0fb2529389498fb6da1c7f73a2f06",
+      "image_checked_url": "https://files.catbox.moe/qb33cz.png",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Clara_Vance.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/780036324af783c8d5b6211b648080bb/raw/6720a128893359b39560a5d21635ed956669c7da/GOCHATAPPROLETAG_Clara_Vance.txt",
+          "size": 4127
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/780036324af783c8d5b6211b648080bb/raw/fccc3b9cfb4ebb07f99e1bea399ba2d35fbc6207/image_prompt.md",
+          "size": 831
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/780036324af783c8d5b6211b648080bb/raw/a168c99ae77ccdf962be1585febcb067ad89a87c/thumb.md",
+          "size": 87
+        }
+      ]
+    },
+    {
+      "id": "79dfb47f5a455eb5c40c402c6926f5be",
+      "rolename": "Isadora_Thorne",
+      "gist_id": "79dfb47f5a455eb5c40c402c6926f5be",
+      "gist_url": "https://gist.github.com/characterxiapp/79dfb47f5a455eb5c40c402c6926f5be",
+      "owner": "characterxiapp",
+      "description": "Isadora Thorne is a lead archaeologist who manages a remote Egyptian dig site with disciplined, scholarly authority. While she presents a poised and professional front to the world, she harbors a raw, earthy passion and a secret craving for the intimacy she has long suppressed.",
+      "data_filename": "GOCHATAPPROLETAG_Isadora_Thorne.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/79dfb47f5a455eb5c40c402c6926f5be/raw/afa720b3864d2f08e9d3db4990ef2ba31901263b/GOCHATAPPROLETAG_Isadora_Thorne.txt",
+      "data_size": 3689,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/79dfb47f5a455eb5c40c402c6926f5be/raw/2764c07412fa9b910f6203f63a6444883e0799e7/thumb.md",
+      "image_url": "https://files.catbox.moe/42qwpu.png",
+      "gist_created_at": "2026-11-01T13:20:48Z",
+      "gist_updated_at": "2026-11-01T18:43:55Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Romance\", \"Slow Burn\", \"Modern Day\", \"Drama\", \"Tension\", \"Emotional Intimacy\", \"Hurt/Comfort\", \"Secrets\"]",
+      "tagged_at": "2026-11-02T01:09:24Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:11:00Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "46fd2684577955d34dfee4c293d6e7b8a87ed82af0bd4b3241d3c95789b4093f",
+      "image_checked_url": "https://files.catbox.moe/42qwpu.png",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Isadora_Thorne.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/79dfb47f5a455eb5c40c402c6926f5be/raw/afa720b3864d2f08e9d3db4990ef2ba31901263b/GOCHATAPPROLETAG_Isadora_Thorne.txt",
+          "size": 3689
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/79dfb47f5a455eb5c40c402c6926f5be/raw/11a54b2638bc9527903536f9ae6104dab234e8b5/image_prompt.md",
+          "size": 833
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/79dfb47f5a455eb5c40c402c6926f5be/raw/2764c07412fa9b910f6203f63a6444883e0799e7/thumb.md",
+          "size": 87
+        }
+      ]
+    },
+    {
+      "id": "7d4eff4223c00b2d885f9df386f23d94",
+      "rolename": "Hanae_Sato",
+      "gist_id": "7d4eff4223c00b2d885f9df386f23d94",
+      "gist_url": "https://gist.github.com/characterxiapp/7d4eff4223c00b2d885f9df386f23d94",
+      "owner": "characterxiapp",
+      "description": "Hanae Sato is a professional flight attendant who embodies the peak of poise and hospitality. While she presents a flawless, deferential exterior to the world, she secretly craves the raw adrenaline and unpolished intimacy that her highly regulated life denies her.",
+      "data_filename": "GOCHATAPPROLETAG_Hanae_Sato.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/7d4eff4223c00b2d885f9df386f23d94/raw/7fa4c02c345af7f6b8954d1ab10a183ba7eb8488/GOCHATAPPROLETAG_Hanae_Sato.txt",
+      "data_size": 3866,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/7d4eff4223c00b2d885f9df386f23d94/raw/d45af265fe9314226c7b74b239a4f6256ebe3c5d/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/75cd0c63-607f-4ed8-8658-9629802f3885",
+      "gist_created_at": "2026-10-30T09:21:26Z",
+      "gist_updated_at": "2026-11-01T18:46:03Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Romance\", \"Slow Burn\", \"Modern Day\", \"Workplace\", \"Slice of Life\", \"Emotional Intimacy\", \"Tension\", \"Hurt/Comfort\"]",
+      "tagged_at": "2026-11-02T01:09:25Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:11:02Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "4cee442aa6d5c147e519c1a3f4be6f5f963467b5a3be996f9dca70030827e895",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/75cd0c63-607f-4ed8-8658-9629802f3885",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Hanae_Sato.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/7d4eff4223c00b2d885f9df386f23d94/raw/7fa4c02c345af7f6b8954d1ab10a183ba7eb8488/GOCHATAPPROLETAG_Hanae_Sato.txt",
+          "size": 3866
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/7d4eff4223c00b2d885f9df386f23d94/raw/7b7a24e69491e923bbc2230e8027cf29aad103b9/image_prompt.md",
+          "size": 788
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/7d4eff4223c00b2d885f9df386f23d94/raw/d45af265fe9314226c7b74b239a4f6256ebe3c5d/thumb.md",
+          "size": 135
+        }
+      ]
+    },
+    {
+      "id": "808a095676ac1c643059024c4c15d1d6",
+      "rolename": "assistant",
+      "gist_id": "808a095676ac1c643059024c4c15d1d6",
+      "gist_url": "https://gist.github.com/gochatapp/808a095676ac1c643059024c4c15d1d6",
+      "owner": "gochatapp",
+      "description": "This is a versatile, efficient AI assistant designed for natural conversation and practical problem-solving. It provides direct, accurate answers while balancing technical precision with emotional intelligence. The goal is to be helpful and concise, adapting depth to the task without unnecessary filler or robotic repetition.",
+      "data_filename": "GOCHATAPPROLETAG_assistant.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/gochatapp/808a095676ac1c643059024c4c15d1d6/raw/2efacc7ab413f105fd8d8156ef22d23d8da0e76c/GOCHATAPPROLETAG_assistant.txt",
+      "data_size": 3846,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/gochatapp/808a095676ac1c643059024c4c15d1d6/raw/217b3dbacdcf4594c55e15a8e8c44a4f0fe813e4/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/343418e6-75f0-4e29-9b2f-33950a8da7f0",
+      "gist_created_at": "2026-10-16T19:24:33Z",
+      "gist_updated_at": "2026-11-01T18:50:39Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"SFW\", \"Female Lead\", \"Modern Day\", \"Cyberpunk\", \"Romance\", \"Slow Burn\", \"Emotional Intimacy\", \"Comfort\", \"Friendship\", \"Big City\"]",
+      "tagged_at": "2026-11-02T01:09:26Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:11:03Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "42656d5cc22f84d1001d05e5bf4ae6cddcd4157358075e3785c8765d8b2fb31f",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/343418e6-75f0-4e29-9b2f-33950a8da7f0",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_assistant.txt",
+          "raw_url": "https://gist.githubusercontent.com/gochatapp/808a095676ac1c643059024c4c15d1d6/raw/2efacc7ab413f105fd8d8156ef22d23d8da0e76c/GOCHATAPPROLETAG_assistant.txt",
+          "size": 3846
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/gochatapp/808a095676ac1c643059024c4c15d1d6/raw/738955d8cbe64ac1d709bdb9a9c581aba390516f/image_prompt.md",
+          "size": 760
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/gochatapp/808a095676ac1c643059024c4c15d1d6/raw/217b3dbacdcf4594c55e15a8e8c44a4f0fe813e4/thumb.md",
+          "size": 135
+        }
+      ]
+    },
+    {
+      "id": "80f92dac8230a2e3feed5a4ff1b182db",
+      "rolename": "yan_ni",
+      "gist_id": "80f92dac8230a2e3feed5a4ff1b182db",
+      "gist_url": "https://gist.github.com/CharacterXIFan/80f92dac8230a2e3feed5a4ff1b182db",
+      "owner": "CharacterXIFan",
+      "description": "Yan Ni is a 27-year-old woman from Guangzhou who balances a vibrant, social public persona with a secret, exhibitionist streak. She is a thrill-seeking hedonist who transitions from a playful, breezy demeanor to raw, graphic vulgarity as her arousal increases.",
+      "data_filename": "GOCHATAPPROLETAG_yan_ni.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/80f92dac8230a2e3feed5a4ff1b182db/raw/8e62f306245dbb866e55f442681b59feb510c256/GOCHATAPPROLETAG_yan_ni.txt",
+      "data_size": 3901,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/80f92dac8230a2e3feed5a4ff1b182db/raw/095e93eadd58193109b81b7cbd123fba080087b3/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/f9d046ce-54f3-4019-b9d8-246a35d0c3bb",
+      "gist_created_at": "2026-10-20T20:00:14Z",
+      "gist_updated_at": "2026-11-01T18:54:46Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Modern Day\", \"Romance\", \"Big City\", \"Slice of Life\", \"Temptation\", \"Obsession\", \"Emotional Intimacy\", \"Tension\"]",
+      "tagged_at": "2026-11-02T01:09:27Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:11:05Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "c5dcf7355b41c7ea28935c869d26aa2e3286ec47e3af3148a681d398bc85b188",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/f9d046ce-54f3-4019-b9d8-246a35d0c3bb",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_yan_ni.txt",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/80f92dac8230a2e3feed5a4ff1b182db/raw/8e62f306245dbb866e55f442681b59feb510c256/GOCHATAPPROLETAG_yan_ni.txt",
+          "size": 3901
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/80f92dac8230a2e3feed5a4ff1b182db/raw/d9cb7b5c53a737455f1b69ea3ca5106598370a21/image_prompt.md",
+          "size": 742
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/80f92dac8230a2e3feed5a4ff1b182db/raw/095e93eadd58193109b81b7cbd123fba080087b3/thumb.md",
+          "size": 136
+        }
+      ]
+    },
+    {
+      "id": "91224b27ac299b757c1ee1ecee42e20d",
+      "rolename": "Victoria_Sterling",
+      "gist_id": "91224b27ac299b757c1ee1ecee42e20d",
+      "gist_url": "https://gist.github.com/characterxiapp/91224b27ac299b757c1ee1ecee42e20d",
+      "owner": "characterxiapp",
+      "description": "Victoria Sterling is a high-powered CEO who rules the boardroom with an icy, uncompromising precision and a commanding presence. While she projects an image of absolute corporate control, she privately craves the thrill of total domination and the intense satisfaction of breaking a partner's will.",
+      "data_filename": "GOCHATAPPROLETAG_Victoria_Sterling.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/91224b27ac299b757c1ee1ecee42e20d/raw/f1a8a3f27d9f751d4880e058043d972f248bb3f7/GOCHATAPPROLETAG_Victoria_Sterling.txt",
+      "data_size": 3825,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/91224b27ac299b757c1ee1ecee42e20d/raw/1e842a33c354f61fabcf5c275f417dac52f0205c/thumb.md",
+      "image_url": "https://files.catbox.moe/nn6wjv.png",
+      "gist_created_at": "2026-11-01T09:55:57Z",
+      "gist_updated_at": "2026-11-01T18:45:58Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Modern Day\", \"Workplace\", \"Big City\", \"Romance\", \"Drama\", \"Obsession\", \"Power Struggle\", \"Tension\"]",
+      "tagged_at": "2026-11-02T01:09:28Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:11:08Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "e20d6457f32982319c45b1305597b54d4bb0b70bd808bad77dd28a6471611aee",
+      "image_checked_url": "https://files.catbox.moe/nn6wjv.png",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Victoria_Sterling.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/91224b27ac299b757c1ee1ecee42e20d/raw/f1a8a3f27d9f751d4880e058043d972f248bb3f7/GOCHATAPPROLETAG_Victoria_Sterling.txt",
+          "size": 3825
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/91224b27ac299b757c1ee1ecee42e20d/raw/31ab0fdf888ec32007770293cbb45fdb197ee444/image_prompt.md",
+          "size": 817
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/91224b27ac299b757c1ee1ecee42e20d/raw/1e842a33c354f61fabcf5c275f417dac52f0205c/thumb.md",
+          "size": 87
+        }
+      ]
+    },
+    {
+      "id": "9319189810df8a0a9dfe565b07053b32",
+      "rolename": "kiyomi_fujiwara",
+      "gist_id": "9319189810df8a0a9dfe565b07053b32",
+      "gist_url": "https://gist.github.com/CharacterXIFan/9319189810df8a0a9dfe565b07053b32",
+      "owner": "CharacterXIFan",
+      "description": "Kiyomi Fujiwara is a sophisticated, high-society woman from Kyoto who balances a public image of traditional grace with secret, ravenous sexual desires. She craves a transition from a poised lady to an uninhibited partner, finding ecstasy in the contrast between her status and hardcore, visceral pleasure.",
+      "data_filename": "GOCHATAPPROLETAG_kiyomi_fujiwara.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/9319189810df8a0a9dfe565b07053b32/raw/cd2533ccf754b0b263084e6e108248629f87d80d/GOCHATAPPROLETAG_kiyomi_fujiwara.txt",
+      "data_size": 3906,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/9319189810df8a0a9dfe565b07053b32/raw/77e69b7ae93104d1c61b7a6849a3f89a1168977b/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/a6faa88c-1fdc-43e3-8240-af18a5ea56d4",
+      "gist_created_at": "2026-10-20T21:42:58Z",
+      "gist_updated_at": "2026-11-01T19:47:21Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Romance\", \"Modern Day\", \"Slice of Life\", \"Slow Burn\", \"Tension\", \"Emotional Intimacy\", \"Secrets\", \"Hidden Identity\"]",
+      "tagged_at": "2026-11-02T01:09:29Z",
+      "quality": 5,
+      "image_sfw": null,
+      "image_sfw_at": null,
+      "image_sfw_model": null,
+      "image_hash": null,
+      "image_checked_url": null,
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_kiyomi_fujiwara.txt",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/9319189810df8a0a9dfe565b07053b32/raw/cd2533ccf754b0b263084e6e108248629f87d80d/GOCHATAPPROLETAG_kiyomi_fujiwara.txt",
+          "size": 3906
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/9319189810df8a0a9dfe565b07053b32/raw/bdd8486da597b0a01a9f7efd8eab7768c3b7925c/image_prompt.md",
+          "size": 899
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/9319189810df8a0a9dfe565b07053b32/raw/77e69b7ae93104d1c61b7a6849a3f89a1168977b/thumb.md",
+          "size": 136
+        }
+      ]
+    },
+    {
+      "id": "98f53a0b4e99271888d2b80fd8cc5977",
+      "rolename": "Sofia_Moretti",
+      "gist_id": "98f53a0b4e99271888d2b80fd8cc5977",
+      "gist_url": "https://gist.github.com/characterxiapp/98f53a0b4e99271888d2b80fd8cc5977",
+      "owner": "characterxiapp",
+      "description": "Sofia Moretti is a formidable Head Chef in Barcelona who commands her kitchen with an air of disciplined, no-nonsense authority. While she presents a stern and professional facade to the world, she hides a deeply sensory nature and a coiled, uninhibited hunger for pleasure beneath her crisp whites.",
+      "data_filename": "GOCHATAPPROLETAG_Sofia_Moretti.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/98f53a0b4e99271888d2b80fd8cc5977/raw/8898fabedf5a3f37a332ea97239ecd3350b7a05c/GOCHATAPPROLETAG_Sofia_Moretti.txt",
+      "data_size": 3789,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/98f53a0b4e99271888d2b80fd8cc5977/raw/b64938c00aac3536d233f1e46f5119c70b8e0dad/thumb.md",
+      "image_url": "https://files.catbox.moe/7txwqj.png",
+      "gist_created_at": "2026-11-01T09:52:37Z",
+      "gist_updated_at": "2026-11-01T18:44:38Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Romance\", \"Slow Burn\", \"Workplace\", \"Modern Day\", \"Big City\", \"Drama\", \"Tension\", \"Emotional Intimacy\"]",
+      "tagged_at": "2026-11-02T01:09:30Z",
+      "quality": 5,
+      "image_sfw": "unsafe",
+      "image_sfw_at": "2026-11-02T01:11:10Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "43cb070fdfcaea263a18df461324f9863026250506071985618edb78594ec6e8",
+      "image_checked_url": "https://files.catbox.moe/7txwqj.png",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Sofia_Moretti.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/98f53a0b4e99271888d2b80fd8cc5977/raw/8898fabedf5a3f37a332ea97239ecd3350b7a05c/GOCHATAPPROLETAG_Sofia_Moretti.txt",
+          "size": 3789
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/98f53a0b4e99271888d2b80fd8cc5977/raw/6185fe5c25aa098124ee370f9e3269312496265b/image_prompt.md",
+          "size": 968
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/98f53a0b4e99271888d2b80fd8cc5977/raw/b64938c00aac3536d233f1e46f5119c70b8e0dad/thumb.md",
+          "size": 87
+        }
+      ]
+    },
+    {
+      "id": "99477149c0c435a7b6308aed27cc2a60",
+      "rolename": "Kai_Sato",
+      "gist_id": "99477149c0c435a7b6308aed27cc2a60",
+      "gist_url": "https://gist.github.com/characterxiapp/99477149c0c435a7b6308aed27cc2a60",
+      "owner": "characterxiapp",
+      "description": "Kai Sato is an MMA fighter who maintains a stoic, disciplined exterior of professional strength and directness. While she presents herself as an intimidating powerhouse to the world, she privately craves the stillness of tenderness and a safe place to finally let go of her control.",
+      "data_filename": "GOCHATAPPROLETAG_Kai_Sato.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/99477149c0c435a7b6308aed27cc2a60/raw/4ddd43fc3ea1e5f243198ea639e1f350177691e3/GOCHATAPPROLETAG_Kai_Sato.txt",
+      "data_size": 3697,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/99477149c0c435a7b6308aed27cc2a60/raw/bac04e1e3c2abd85de970434fb7c8210a40fa463/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/e1e294e3-d2fd-4cb0-ba51-fc5628f34010",
+      "gist_created_at": "2026-10-29T20:31:08Z",
+      "gist_updated_at": "2026-11-01T18:46:10Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Modern Day\", \"Romance\", \"Slow Burn\", \"Hurt/Comfort\", \"Emotional Intimacy\", \"Tension\", \"Action\", \"Big City\"]",
+      "tagged_at": "2026-11-02T01:09:31Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:11:12Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "0e31b23ede742530569d1d74ec9e6210af5d2fe2b2cccbfda981fecae8ca02c2",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/e1e294e3-d2fd-4cb0-ba51-fc5628f34010",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Kai_Sato.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/99477149c0c435a7b6308aed27cc2a60/raw/4ddd43fc3ea1e5f243198ea639e1f350177691e3/GOCHATAPPROLETAG_Kai_Sato.txt",
+          "size": 3697
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/99477149c0c435a7b6308aed27cc2a60/raw/1455dd5533692bf215b3b992b28204c2bc459460/image_prompt.md",
+          "size": 900
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/99477149c0c435a7b6308aed27cc2a60/raw/bac04e1e3c2abd85de970434fb7c8210a40fa463/thumb.md",
+          "size": 135
+        }
+      ]
+    },
+    {
+      "id": "9b31943a0b9f8414185c3310ab7c2ebf",
+      "rolename": "Gwendolyn_Maxine_Stacy",
+      "gist_id": "9b31943a0b9f8414185c3310ab7c2ebf",
+      "gist_url": "https://gist.github.com/characterxiapp/9b31943a0b9f8414185c3310ab7c2ebf",
+      "owner": "characterxiapp",
+      "description": "Gwendolyn Maxine Stacy is a drummer and multiversal vigilante who balances the chaos of university life with the burden of protecting New York City. She hides her exhaustion behind a mask of sharp wit and fierce independence, secretly longing for a genuine connection where she can finally let go.",
+      "data_filename": "GOCHATAPPROLETAG_Gwendolyn_Maxine_Stacy.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/9b31943a0b9f8414185c3310ab7c2ebf/raw/a18d8402d8a7917709c6fca3b32d2dec3366dcb2/GOCHATAPPROLETAG_Gwendolyn_Maxine_Stacy.txt",
+      "data_size": 5458,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/9b31943a0b9f8414185c3310ab7c2ebf/raw/c2ad42bacd98e000f4fe47ca5f942f8193c35adf/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/5ec2c7f9-ca8b-454c-9744-21a832040055",
+      "gist_created_at": "2026-11-01T21:41:17Z",
+      "gist_updated_at": "2026-11-01T21:52:10Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"SFW\", \"Female Lead\", \"Urban Fantasy\", \"Parallel Worlds\", \"University\", \"Big City\", \"Action\", \"Slow Burn\", \"Hidden Identity\", \"Emotional Intimacy\"]",
+      "tagged_at": "2026-11-02T01:09:32Z",
+      "quality": 5,
+      "image_sfw": null,
+      "image_sfw_at": null,
+      "image_sfw_model": null,
+      "image_hash": null,
+      "image_checked_url": null,
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Gwendolyn_Maxine_Stacy.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/9b31943a0b9f8414185c3310ab7c2ebf/raw/a18d8402d8a7917709c6fca3b32d2dec3366dcb2/GOCHATAPPROLETAG_Gwendolyn_Maxine_Stacy.txt",
+          "size": 5458
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/9b31943a0b9f8414185c3310ab7c2ebf/raw/d3202c2ae43864abdf2608909124f70e6fa9280e/image_prompt.md",
+          "size": 798
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/9b31943a0b9f8414185c3310ab7c2ebf/raw/c2ad42bacd98e000f4fe47ca5f942f8193c35adf/thumb.md",
+          "size": 136
+        }
+      ]
+    },
+    {
+      "id": "9cbefa7bd46924bb25ee5c473ee27ced",
+      "rolename": "Aria_Moretti",
+      "gist_id": "9cbefa7bd46924bb25ee5c473ee27ced",
+      "gist_url": "https://gist.github.com/characterxiapp/9cbefa7bd46924bb25ee5c473ee27ced",
+      "owner": "characterxiapp",
+      "description": "Aria Moretti is a poised music instructor in Vienna who embodies discipline, harmony, and curated elegance. While she presents a reserved and professional facade to the world, she secretly harbors a soulful romanticism and a longing for a connection that transcends words.",
+      "data_filename": "GOCHATAPPROLETAG_Aria_Moretti.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/9cbefa7bd46924bb25ee5c473ee27ced/raw/396c6998e4ccbefb3e5e4b1f99645ec6dbf4f154/GOCHATAPPROLETAG_Aria_Moretti.txt",
+      "data_size": 3844,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/9cbefa7bd46924bb25ee5c473ee27ced/raw/267f0eec2d9517de05304a648f45529f009e03f0/thumb.md",
+      "image_url": "https://files.catbox.moe/fblwku.png",
+      "gist_created_at": "2026-11-01T12:55:59Z",
+      "gist_updated_at": "2026-11-01T18:44:09Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"SFW\", \"Female Lead\", \"Romance\", \"Slow Burn\", \"Modern Day\", \"Slice of Life\", \"Drama\", \"Emotional Intimacy\", \"Loneliness\", \"Workplace\"]",
+      "tagged_at": "2026-11-02T01:09:33Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:11:14Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "9f5eaf51cfaebbcdf445a09ce4a22c02a669595fb6726bef96ea302f6066fa1b",
+      "image_checked_url": "https://files.catbox.moe/fblwku.png",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Aria_Moretti.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/9cbefa7bd46924bb25ee5c473ee27ced/raw/396c6998e4ccbefb3e5e4b1f99645ec6dbf4f154/GOCHATAPPROLETAG_Aria_Moretti.txt",
+          "size": 3844
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/9cbefa7bd46924bb25ee5c473ee27ced/raw/40986fbc3c8cf230f27e5f46ddfd50114d170a3c/image_prompt.md",
+          "size": 876
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/9cbefa7bd46924bb25ee5c473ee27ced/raw/267f0eec2d9517de05304a648f45529f009e03f0/thumb.md",
+          "size": 87
+        }
+      ]
+    },
+    {
+      "id": "a00bf5a6659908d5f64d6592821aae30",
+      "rolename": "Elena_Castillo",
+      "gist_id": "a00bf5a6659908d5f64d6592821aae30",
+      "gist_url": "https://gist.github.com/characterxiapp/a00bf5a6659908d5f64d6592821aae30",
+      "owner": "characterxiapp",
+      "description": "Elena Castillo is a successful restaurateur who commands every room with a blend of sophisticated grace and sensory mastery. While she presents a mask of total confidence and warmth to the world, she secretly craves an authentic connection with someone capable of matching her hidden, visceral intensity.",
+      "data_filename": "GOCHATAPPROLETAG_Elena_Castillo.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/a00bf5a6659908d5f64d6592821aae30/raw/608a6cdbe500cb14e0e7edbfc831906df5e6b625/GOCHATAPPROLETAG_Elena_Castillo.txt",
+      "data_size": 4121,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/a00bf5a6659908d5f64d6592821aae30/raw/06bf4f83ae9164e48ff3773f2538369b72888888/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/b74797d4-f979-47aa-a451-8b11485b8178",
+      "gist_created_at": "2026-10-29T19:47:14Z",
+      "gist_updated_at": "2026-11-01T18:46:33Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"SFW\", \"Female Lead\", \"Romance\", \"Drama\", \"Slice of Life\", \"Modern Day\", \"Big City\", \"Workplace\", \"Slow Burn\", \"Emotional Intimacy\"]",
+      "tagged_at": "2026-11-02T01:09:34Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:11:15Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "fae931cdc770d761a6e497017896d311195198e78434a12eb6a29e77ba91a9d4",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/b74797d4-f979-47aa-a451-8b11485b8178",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Elena_Castillo.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/a00bf5a6659908d5f64d6592821aae30/raw/608a6cdbe500cb14e0e7edbfc831906df5e6b625/GOCHATAPPROLETAG_Elena_Castillo.txt",
+          "size": 4121
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/a00bf5a6659908d5f64d6592821aae30/raw/f06ccd42c2b703e5a4a68ae2558b01feb649421f/image_prompt.md",
+          "size": 951
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/a00bf5a6659908d5f64d6592821aae30/raw/06bf4f83ae9164e48ff3773f2538369b72888888/thumb.md",
+          "size": 135
+        }
+      ]
+    },
+    {
+      "id": "a97b3c093efc38e6aa1f666ac42e2fd1",
+      "rolename": "Ivy_Sterling",
+      "gist_id": "a97b3c093efc38e6aa1f666ac42e2fd1",
+      "gist_url": "https://gist.github.com/characterxiapp/a97b3c093efc38e6aa1f666ac42e2fd1",
+      "owner": "characterxiapp",
+      "description": "Ivy Sterling is a botanist who presents a facade of professional poise and quiet academic reserve. While she appears calm and distant to the world, she possesses a poetic soul that secretly craves a deep, slow-burning connection with someone who appreciates the stillness of a garden.",
+      "data_filename": "GOCHATAPPROLETAG_Ivy_Sterling.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/a97b3c093efc38e6aa1f666ac42e2fd1/raw/10a9f1d3a17b1128fe90427e4f9c532b2b46eb30/GOCHATAPPROLETAG_Ivy_Sterling.txt",
+      "data_size": 3828,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/a97b3c093efc38e6aa1f666ac42e2fd1/raw/335e278c02808884a9f7b72558e444d69657c1a9/thumb.md",
+      "image_url": "https://files.catbox.moe/m65sdb.png",
+      "gist_created_at": "2026-11-01T12:48:10Z",
+      "gist_updated_at": "2026-11-01T18:44:17Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"SFW\", \"Female Lead\", \"Romance\", \"Slow Burn\", \"Slice of Life\", \"Modern Day\", \"Emotional Intimacy\", \"Comfort\", \"Personal Growth\", \"Workplace\"]",
+      "tagged_at": "2026-11-02T01:09:35Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:11:17Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "0a1361afa85a8bad3e40cdb04cf5773de465f11c837b0dd3ed304c523722c992",
+      "image_checked_url": "https://files.catbox.moe/m65sdb.png",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Ivy_Sterling.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/a97b3c093efc38e6aa1f666ac42e2fd1/raw/10a9f1d3a17b1128fe90427e4f9c532b2b46eb30/GOCHATAPPROLETAG_Ivy_Sterling.txt",
+          "size": 3828
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/a97b3c093efc38e6aa1f666ac42e2fd1/raw/8e17699a7d3c2792915793d39442086ac3ec6c67/image_prompt.md",
+          "size": 903
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/a97b3c093efc38e6aa1f666ac42e2fd1/raw/335e278c02808884a9f7b72558e444d69657c1a9/thumb.md",
+          "size": 87
+        }
+      ]
+    },
+    {
+      "id": "aa0034c6e5f8663f274607b241e739df",
+      "rolename": "Marina_Solis",
+      "gist_id": "aa0034c6e5f8663f274607b241e739df",
+      "gist_url": "https://gist.github.com/characterxiapp/aa0034c6e5f8663f274607b241e739df",
+      "owner": "characterxiapp",
+      "description": "Marina Solis is a charismatic cruise director who commands every room with infectious energy and a magnetic, party-girl persona. While she presents a polished face of professional joy and leadership, she secretly yearns to surrender control and be pursued with an intensity that breaks through her social mask.",
+      "data_filename": "GOCHATAPPROLETAG_Marina_Solis.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/aa0034c6e5f8663f274607b241e739df/raw/96f52ed3d311b1ffaed347282ae596086c108d42/GOCHATAPPROLETAG_Marina_Solis.txt",
+      "data_size": 3775,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/aa0034c6e5f8663f274607b241e739df/raw/c98bdbeac94b40b6ba5c47dd514c11d805552343/thumb.md",
+      "image_url": "https://files.catbox.moe/7exc6t.png",
+      "gist_created_at": "2026-11-01T12:43:30Z",
+      "gist_updated_at": "2026-11-01T18:44:21Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Romance\", \"Slow Burn\", \"Modern Day\", \"Workplace\", \"Emotional Intimacy\", \"Tension\", \"Hurt/Comfort\", \"Self-Discovery\"]",
+      "tagged_at": "2026-11-02T01:09:36Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:11:20Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "bc6bf89c4e8208f6a2542dd6bbc33180722d4bb16763d2072ee635d56baadd23",
+      "image_checked_url": "https://files.catbox.moe/7exc6t.png",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Marina_Solis.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/aa0034c6e5f8663f274607b241e739df/raw/96f52ed3d311b1ffaed347282ae596086c108d42/GOCHATAPPROLETAG_Marina_Solis.txt",
+          "size": 3775
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/aa0034c6e5f8663f274607b241e739df/raw/e7941a5c2bcd75bcadf5f9e91717274a30e6b3e1/image_prompt.md",
+          "size": 838
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/aa0034c6e5f8663f274607b241e739df/raw/c98bdbeac94b40b6ba5c47dd514c11d805552343/thumb.md",
+          "size": 87
+        }
+      ]
+    },
+    {
+      "id": "aa9a1185a02b6a090f967ce621b170f7",
+      "rolename": "sayuri_hanaoka",
+      "gist_id": "aa9a1185a02b6a090f967ce621b170f7",
+      "gist_url": "https://gist.github.com/CharacterXIFan/aa9a1185a02b6a090f967ce621b170f7",
+      "owner": "CharacterXIFan",
+      "description": "Sayuri Hanaoka is a senior Geiko in Kyoto, characterized by her porcelain skin and exquisite silk kimonos. Publicly, she is a refined, composed artist of tradition. Privately, she is a hidden hedonist who craves raw passion and degradation, finding appeal in the contrast between her perfection and unfiltered desire.",
+      "data_filename": "GOCHATAPPROLETAG_sayuri_hanaoka.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/aa9a1185a02b6a090f967ce621b170f7/raw/cf80ceec0f30949fa92eb39425bb680e7d3fdf2c/GOCHATAPPROLETAG_sayuri_hanaoka.txt",
+      "data_size": 3998,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/aa9a1185a02b6a090f967ce621b170f7/raw/bd24d25eb6b8b6690580df54905618b8196e227e/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/27497e20-1d9b-4ce9-b590-cb17e332e368",
+      "gist_created_at": "2026-10-16T13:56:20Z",
+      "gist_updated_at": "2026-11-01T18:57:19Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Modern Day\", \"Romance\", \"Drama\", \"Slow Burn\", \"Emotional Intimacy\", \"Tension\", \"Hurt/Comfort\", \"Secrets\"]",
+      "tagged_at": "2026-11-02T01:09:37Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:11:23Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "685b8d92b2010b72711fdcf90d02eef9561f01dccf31a41aef7bc498c90f0dbe",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/27497e20-1d9b-4ce9-b590-cb17e332e368",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_sayuri_hanaoka.txt",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/aa9a1185a02b6a090f967ce621b170f7/raw/cf80ceec0f30949fa92eb39425bb680e7d3fdf2c/GOCHATAPPROLETAG_sayuri_hanaoka.txt",
+          "size": 3998
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/aa9a1185a02b6a090f967ce621b170f7/raw/66431121eb4834048e44023c571cd58621c3e5bb/image_prompt.md",
+          "size": 936
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/aa9a1185a02b6a090f967ce621b170f7/raw/bd24d25eb6b8b6690580df54905618b8196e227e/thumb.md",
+          "size": 136
+        }
+      ]
+    },
+    {
+      "id": "b218a8b0a3b63778237b38c6268d9b60",
+      "rolename": "Kaia_Thorne",
+      "gist_id": "b218a8b0a3b63778237b38c6268d9b60",
+      "gist_url": "https://gist.github.com/characterxiapp/b218a8b0a3b63778237b38c6268d9b60",
+      "owner": "characterxiapp",
+      "description": "Kaia Thorne is a serene yoga instructor who embodies mindfulness and spiritual grace for her students in Byron Bay. While she projects an image of ethereal calm and emotional detachment, she secretly harbors a primal hunger for raw, boundary-pushing physical pleasure and the surrender of total carnal release.",
+      "data_filename": "GOCHATAPPROLETAG_Kaia_Thorne.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/b218a8b0a3b63778237b38c6268d9b60/raw/0f95a59cd223533f847e49ca9caa6380ac0e59c0/GOCHATAPPROLETAG_Kaia_Thorne.txt",
+      "data_size": 3658,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/b218a8b0a3b63778237b38c6268d9b60/raw/309761702b4fb9d16d9e492128c904517420a7ca/thumb.md",
+      "image_url": "https://files.catbox.moe/fph14x.png",
+      "gist_created_at": "2026-11-01T09:21:26Z",
+      "gist_updated_at": "2026-11-01T18:45:42Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Romance\", \"Modern Day\", \"Slice of Life\", \"Tension\", \"Temptation\", \"Obsession\", \"Hidden Identity\", \"Emotional Intimacy\"]",
+      "tagged_at": "2026-11-02T01:09:38Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:11:45Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "c0b3c912a2c9356768a2ce39c45fe0a9fd7866337e3884fb2001c73ddfb5c2cb",
+      "image_checked_url": "https://files.catbox.moe/fph14x.png",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Kaia_Thorne.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/b218a8b0a3b63778237b38c6268d9b60/raw/0f95a59cd223533f847e49ca9caa6380ac0e59c0/GOCHATAPPROLETAG_Kaia_Thorne.txt",
+          "size": 3658
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/b218a8b0a3b63778237b38c6268d9b60/raw/ba0e7e64625bcc73eb143bd3ec26a42e5201d210/image_prompt.md",
+          "size": 849
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/b218a8b0a3b63778237b38c6268d9b60/raw/309761702b4fb9d16d9e492128c904517420a7ca/thumb.md",
+          "size": 87
+        }
+      ]
+    },
+    {
+      "id": "b226b955c8f3facd312a1161dff8f80d",
+      "rolename": "hanae_sato",
+      "gist_id": "b226b955c8f3facd312a1161dff8f80d",
+      "gist_url": "https://gist.github.com/CharacterXIFan/b226b955c8f3facd312a1161dff8f80d",
+      "owner": "CharacterXIFan",
+      "description": "Hanae Sato is a 23-year-old Tokyo university student who maintains a polite, \"good girl\" public persona while harboring intense, dominant sexual fantasies. She is characterized by a sharp contrast between her refined exterior and a private desire to be physically overwhelmed and claimed.",
+      "data_filename": "GOCHATAPPROLETAG_hanae_sato.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/b226b955c8f3facd312a1161dff8f80d/raw/d79140824680317cc43e25cb5bd729020b76bff5/GOCHATAPPROLETAG_hanae_sato.txt",
+      "data_size": 3695,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/b226b955c8f3facd312a1161dff8f80d/raw/7a5e18384a77a2877176352c7106219c576e0cc4/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/f054970b-c0cd-4a6d-b33a-24dbb418fc04",
+      "gist_created_at": "2026-10-20T21:33:45Z",
+      "gist_updated_at": "2026-11-01T18:54:41Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Romance\", \"University\", \"Modern Day\", \"Slice of Life\", \"Slow Burn\", \"Tension\", \"Emotional Intimacy\", \"Hurt/Comfort\"]",
+      "tagged_at": "2026-11-02T01:09:39Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:11:47Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "6811dd6366b67af7653621bade1428bf1119ed29e4ed1fa009591ee3b149b1ff",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/f054970b-c0cd-4a6d-b33a-24dbb418fc04",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_hanae_sato.txt",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/b226b955c8f3facd312a1161dff8f80d/raw/d79140824680317cc43e25cb5bd729020b76bff5/GOCHATAPPROLETAG_hanae_sato.txt",
+          "size": 3695
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/b226b955c8f3facd312a1161dff8f80d/raw/6b13e9a4a4f301d2c927856604468e8f6e210976/image_prompt.md",
+          "size": 780
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/b226b955c8f3facd312a1161dff8f80d/raw/7a5e18384a77a2877176352c7106219c576e0cc4/thumb.md",
+          "size": 136
+        }
+      ]
+    },
+    {
+      "id": "bd8492b42fa4dcf6c0438771e53ed5ad",
+      "rolename": "Vivienne_Draken",
+      "gist_id": "bd8492b42fa4dcf6c0438771e53ed5ad",
+      "gist_url": "https://gist.github.com/characterxiapp/bd8492b42fa4dcf6c0438771e53ed5ad",
+      "owner": "characterxiapp",
+      "description": "Vivienne Draken is a sophisticated fashion visionary who commands the industry with an intimidating, disciplined poise. While she presents herself as a cold arbiter of taste, she secretly craves a muse capable of shattering her rigid control and matching her hidden, intense passion for physical beauty.",
+      "data_filename": "GOCHATAPPROLETAG_Vivienne_Draken.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/bd8492b42fa4dcf6c0438771e53ed5ad/raw/aaf9a0b4866e612c7e2506032bdc59b125400008/GOCHATAPPROLETAG_Vivienne_Draken.txt",
+      "data_size": 3745,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/bd8492b42fa4dcf6c0438771e53ed5ad/raw/a2491018b9fb9a3d7e211135a7d3b121c51970d5/thumb.md",
+      "image_url": "https://files.catbox.moe/pfj1nc.png",
+      "gist_created_at": "2026-11-01T12:53:20Z",
+      "gist_updated_at": "2026-11-01T18:44:13Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Romance\", \"Modern Day\", \"Workplace\", \"Slow Burn\", \"Tension\", \"Emotional Intimacy\", \"Morally Grey\", \"Drama\"]",
+      "tagged_at": "2026-11-02T01:09:40Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:11:48Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "bac1b637d584ea62f05da63c038bd4b522c89e9f94e92b7abaa4bfc3ab58d88c",
+      "image_checked_url": "https://files.catbox.moe/pfj1nc.png",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Vivienne_Draken.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/bd8492b42fa4dcf6c0438771e53ed5ad/raw/aaf9a0b4866e612c7e2506032bdc59b125400008/GOCHATAPPROLETAG_Vivienne_Draken.txt",
+          "size": 3745
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/bd8492b42fa4dcf6c0438771e53ed5ad/raw/fe8afb5f072ed6a3df93eb1f43d2e38af1761b4e/image_prompt.md",
+          "size": 804
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/bd8492b42fa4dcf6c0438771e53ed5ad/raw/a2491018b9fb9a3d7e211135a7d3b121c51970d5/thumb.md",
+          "size": 87
+        }
+      ]
+    },
+    {
+      "id": "bdb5c7ec569ddf1994564eb4c76de2ea",
+      "rolename": "Julianne_Voss",
+      "gist_id": "bdb5c7ec569ddf1994564eb4c76de2ea",
+      "gist_url": "https://gist.github.com/characterxiapp/bdb5c7ec569ddf1994564eb4c76de2ea",
+      "owner": "characterxiapp",
+      "description": "Julianne Voss is a formidable litigator who commands the courtroom with razor-sharp logic and an untouchable, cold professional poise. While she presents a facade of rigid authority, she secretly craves the friction of conflict and hungers for a partner strong enough to overpower her.",
+      "data_filename": "GOCHATAPPROLETAG_Julianne_Voss.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/bdb5c7ec569ddf1994564eb4c76de2ea/raw/9f6c84e85ab92cc00e494e900bc3d8ed1e2cf605/GOCHATAPPROLETAG_Julianne_Voss.txt",
+      "data_size": 4062,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/bdb5c7ec569ddf1994564eb4c76de2ea/raw/683a0aa1673259e52465a2921b90e5205e92397f/thumb.md",
+      "image_url": "https://files.catbox.moe/wgrfd6.png",
+      "gist_created_at": "2026-11-01T09:07:33Z",
+      "gist_updated_at": "2026-11-01T18:45:50Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Modern Day\", \"Workplace\", \"Romance\", \"Drama\", \"Slow Burn\", \"Tension\", \"Power Struggle\", \"Emotional Intimacy\"]",
+      "tagged_at": "2026-11-02T01:09:41Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:11:50Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "d19eda64a129beb42a34b2a0363a951d65c5944507b2ba16e351d59d428ae10c",
+      "image_checked_url": "https://files.catbox.moe/wgrfd6.png",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Julianne_Voss.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/bdb5c7ec569ddf1994564eb4c76de2ea/raw/9f6c84e85ab92cc00e494e900bc3d8ed1e2cf605/GOCHATAPPROLETAG_Julianne_Voss.txt",
+          "size": 4062
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/bdb5c7ec569ddf1994564eb4c76de2ea/raw/2a367ee09ee575acc2ccb367a1bdc65cc5c8c6fd/image_prompt.md",
+          "size": 916
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/bdb5c7ec569ddf1994564eb4c76de2ea/raw/683a0aa1673259e52465a2921b90e5205e92397f/thumb.md",
+          "size": 87
+        }
+      ]
+    },
+    {
+      "id": "be5fc0008b0f7a84fee3de04394df200",
+      "rolename": "Elena_Moretti",
+      "gist_id": "be5fc0008b0f7a84fee3de04394df200",
+      "gist_url": "https://gist.github.com/characterxiapp/be5fc0008b0f7a84fee3de04394df200",
+      "owner": "characterxiapp",
+      "description": "Elena Moretti is a bohemian artist in Brooklyn who presents herself to the world as a breezy, intuitive creative. Beneath her effortless, paint-smudged exterior lies a deeply introspective soul who fears vulnerability and longs for a partner capable of seeing her true, unpolished self.",
+      "data_filename": "GOCHATAPPROLETAG_Elena_Moretti.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/be5fc0008b0f7a84fee3de04394df200/raw/3ac1ba08312c9ec956fc9c1ae18c6430523f8aa8/GOCHATAPPROLETAG_Elena_Moretti.txt",
+      "data_size": 4156,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/be5fc0008b0f7a84fee3de04394df200/raw/8555a6eec7a26645ab4daab9acc8550f84b57128/thumb.md",
+      "image_url": "https://files.catbox.moe/v5del3.png",
+      "gist_created_at": "2026-11-01T09:50:04Z",
+      "gist_updated_at": "2026-11-01T18:44:42Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"SFW\", \"Female Lead\", \"Romance\", \"Slice of Life\", \"Modern Day\", \"Big City\", \"Slow Burn\", \"Emotional Intimacy\", \"Self-Discovery\", \"Trust Building\"]",
+      "tagged_at": "2026-11-02T01:09:42Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:11:52Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "586aa6400e5924ba4bdefc5708287f2b5f91a4aa35268827f44b7b7607d5c227",
+      "image_checked_url": "https://files.catbox.moe/v5del3.png",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Elena_Moretti.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/be5fc0008b0f7a84fee3de04394df200/raw/3ac1ba08312c9ec956fc9c1ae18c6430523f8aa8/GOCHATAPPROLETAG_Elena_Moretti.txt",
+          "size": 4156
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/be5fc0008b0f7a84fee3de04394df200/raw/ba64c5058699c2d7fa1b16f23f35e23447ea7af2/image_prompt.md",
+          "size": 1004
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/be5fc0008b0f7a84fee3de04394df200/raw/8555a6eec7a26645ab4daab9acc8550f84b57128/thumb.md",
+          "size": 87
+        }
+      ]
+    },
+    {
+      "id": "c118348d72b9dcd0fa03200f409b9273",
+      "rolename": "jade_rivera",
+      "gist_id": "c118348d72b9dcd0fa03200f409b9273",
+      "gist_url": "https://gist.github.com/CharacterXIFan/c118348d72b9dcd0fa03200f409b9273",
+      "owner": "CharacterXIFan",
+      "description": "Jade Rivera is a 24-year-old Miami socialite with a golden tan, Y2K style, and a toned figure. Publicly, she is a bubbly, high-energy party girl. Privately, she craves intense domination and raw physical surrender. Her appeal lies in the contrast between her flirtatious exterior and her hidden, unfiltered lust.",
+      "data_filename": "GOCHATAPPROLETAG_jade_rivera.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/c118348d72b9dcd0fa03200f409b9273/raw/07309d9534311793bbf38ce5246269fadba82e05/GOCHATAPPROLETAG_jade_rivera.txt",
+      "data_size": 3841,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/c118348d72b9dcd0fa03200f409b9273/raw/ad6abc3af2e39921432e08d5b7b1049834714db1/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/149b2838-ddce-4c3b-8bfe-bfe943339d24",
+      "gist_created_at": "2026-10-17T21:02:36Z",
+      "gist_updated_at": "2026-11-01T18:55:35Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Romance\", \"Modern Day\", \"Big City\", \"Slice of Life\", \"Tension\", \"Emotional Intimacy\", \"Obsession\", \"Secrets\"]",
+      "tagged_at": "2026-11-02T01:09:43Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:11:54Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "c1f549c01f89bf88b32f0b3b7c85a2d171497f7d97829145de081ec1d1b496e7",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/149b2838-ddce-4c3b-8bfe-bfe943339d24",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_jade_rivera.txt",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/c118348d72b9dcd0fa03200f409b9273/raw/07309d9534311793bbf38ce5246269fadba82e05/GOCHATAPPROLETAG_jade_rivera.txt",
+          "size": 3841
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/c118348d72b9dcd0fa03200f409b9273/raw/82bd800b72c4e5727be9aeaaa72bb64da42ef458/image_prompt.md",
+          "size": 744
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/c118348d72b9dcd0fa03200f409b9273/raw/ad6abc3af2e39921432e08d5b7b1049834714db1/thumb.md",
+          "size": 136
+        }
+      ]
+    },
+    {
+      "id": "c3baebb26b176eba0cf8e97d6c19c348",
+      "rolename": "Hanae_Mori",
+      "gist_id": "c3baebb26b176eba0cf8e97d6c19c348",
+      "gist_url": "https://gist.github.com/characterxiapp/c3baebb26b176eba0cf8e97d6c19c348",
+      "owner": "characterxiapp",
+      "description": "Hanae Mori is a poised young woman in Kyoto who embodies traditional grace and quiet perception. While she presents a facade of perfect composure and social harmony to the world, she secretly harbors a deep emotional isolation and longs for someone to truly see her hidden vulnerabilities.",
+      "data_filename": "GOCHATAPPROLETAG_Hanae_Mori.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/c3baebb26b176eba0cf8e97d6c19c348/raw/54d17ead337bba60ce351a888002029768fc0ee6/GOCHATAPPROLETAG_Hanae_Mori.txt",
+      "data_size": 4012,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/c3baebb26b176eba0cf8e97d6c19c348/raw/9b21c55a519b123c2550e873157c37a8bd386c35/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/908f3441-00a0-48dd-b8ab-93ba0843d5fc",
+      "gist_created_at": "2026-10-29T19:49:05Z",
+      "gist_updated_at": "2026-11-01T18:46:28Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"SFW\", \"Female Lead\", \"Romance\", \"Slice of Life\", \"Modern Day\", \"Slow Burn\", \"Loneliness\", \"Emotional Intimacy\", \"Comfort\", \"Hurt/Comfort\"]",
+      "tagged_at": "2026-11-02T01:09:44Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:11:55Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "9496eb71958b2ef5a18bac0f0de8c11b0e0d8f9b587f13eefcb7946f3c853831",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/908f3441-00a0-48dd-b8ab-93ba0843d5fc",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Hanae_Mori.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/c3baebb26b176eba0cf8e97d6c19c348/raw/54d17ead337bba60ce351a888002029768fc0ee6/GOCHATAPPROLETAG_Hanae_Mori.txt",
+          "size": 4012
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/c3baebb26b176eba0cf8e97d6c19c348/raw/e05d150cfd4d2f03b0b9b80940190627a2302822/image_prompt.md",
+          "size": 959
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/c3baebb26b176eba0cf8e97d6c19c348/raw/9b21c55a519b123c2550e873157c37a8bd386c35/thumb.md",
+          "size": 135
+        }
+      ]
+    },
+    {
+      "id": "c79ac4b9d605770b75cf4e17a72b23ff",
+      "rolename": "ingrid_vogel",
+      "gist_id": "c79ac4b9d605770b75cf4e17a72b23ff",
+      "gist_url": "https://gist.github.com/CharacterXIFan/c79ac4b9d605770b75cf4e17a72b23ff",
+      "owner": "CharacterXIFan",
+      "description": "Ingrid Vogel is a stoic, disciplined Berlin professional whose polished exterior masks a craving for total sensory surrender. While she presents a sharp, intimidating authority, her private desires focus on the intense, primal tension of being overwhelmed by a powerful, inhuman presence that can finally shatter her iron-clad composure.",
+      "data_filename": "GOCHATAPPROLETAG_ingrid_vogel.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/c79ac4b9d605770b75cf4e17a72b23ff/raw/426c88990c2ee40fe8bfb982bf34ecfdd6963917/GOCHATAPPROLETAG_ingrid_vogel.txt",
+      "data_size": 3917,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/c79ac4b9d605770b75cf4e17a72b23ff/raw/d659532d18326d0d48e63c8862b0dbac8ad66206/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/6d496b60-1788-4dab-b2f4-514298c9bb8a",
+      "gist_created_at": "2026-10-16T15:03:48Z",
+      "gist_updated_at": "2026-11-01T18:56:37Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Modern Day\", \"Workplace\", \"Romance\", \"Tension\", \"Slow Burn\", \"Emotional Intimacy\", \"Morally Grey\", \"Big City\"]",
+      "tagged_at": "2026-11-02T01:09:45Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:11:58Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "f64fab84d7bdb8c8811a0c8f24177615b4f54153d00d85d6e3a3043a965ac880",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/6d496b60-1788-4dab-b2f4-514298c9bb8a",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_ingrid_vogel.txt",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/c79ac4b9d605770b75cf4e17a72b23ff/raw/426c88990c2ee40fe8bfb982bf34ecfdd6963917/GOCHATAPPROLETAG_ingrid_vogel.txt",
+          "size": 3917
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/c79ac4b9d605770b75cf4e17a72b23ff/raw/3d459fac3d2696d1d052070b42739cbccbce89d3/image_prompt.md",
+          "size": 783
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/c79ac4b9d605770b75cf4e17a72b23ff/raw/d659532d18326d0d48e63c8862b0dbac8ad66206/thumb.md",
+          "size": 136
+        }
+      ]
+    },
+    {
+      "id": "d040ab8cc30395001ab30635170aac17",
+      "rolename": "Clara_Moretti",
+      "gist_id": "d040ab8cc30395001ab30635170aac17",
+      "gist_url": "https://gist.github.com/characterxiapp/d040ab8cc30395001ab30635170aac17",
+      "owner": "characterxiapp",
+      "description": "Clara Moretti is a Professor of Art History in Florence who presents herself as a poised, reserved academic of intellectual authority. Beneath her professional distance, she is a melancholic romantic longing for an equal who can see past her titles to the vulnerable dreamer within.",
+      "data_filename": "GOCHATAPPROLETAG_Clara_Moretti.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/d040ab8cc30395001ab30635170aac17/raw/b07fb9e6491214b3bb966ba2423d7057d5018549/GOCHATAPPROLETAG_Clara_Moretti.txt",
+      "data_size": 3580,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/d040ab8cc30395001ab30635170aac17/raw/a235ca9f9a8ee3935420e1acd2d44c84acd3ad94/thumb.md",
+      "image_url": "https://files.catbox.moe/xmc4a1.png",
+      "gist_created_at": "2026-11-01T09:03:38Z",
+      "gist_updated_at": "2026-11-01T18:45:54Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"SFW\", \"Female Lead\", \"Romance\", \"Slice of Life\", \"Modern Day\", \"University\", \"Workplace\", \"Slow Burn\", \"Emotional Intimacy\", \"Tension\"]",
+      "tagged_at": "2026-11-02T01:09:46Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:12:00Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "9a488f33ae4517cd6b41880a207c3daccd7f0f1099ad1deba4549ae4fa3b1574",
+      "image_checked_url": "https://files.catbox.moe/xmc4a1.png",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Clara_Moretti.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/d040ab8cc30395001ab30635170aac17/raw/b07fb9e6491214b3bb966ba2423d7057d5018549/GOCHATAPPROLETAG_Clara_Moretti.txt",
+          "size": 3580
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/d040ab8cc30395001ab30635170aac17/raw/496930a0a7b290cc4885bba136125d403e1c6715/image_prompt.md",
+          "size": 871
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/d040ab8cc30395001ab30635170aac17/raw/a235ca9f9a8ee3935420e1acd2d44c84acd3ad94/thumb.md",
+          "size": 87
+        }
+      ]
+    },
+    {
+      "id": "d6788a914c427d43e07624c242fe3ab7",
+      "rolename": "akari_tanaka",
+      "gist_id": "d6788a914c427d43e07624c242fe3ab7",
+      "gist_url": "https://gist.github.com/CharacterXIFan/d6788a914c427d43e07624c242fe3ab7",
+      "owner": "CharacterXIFan",
+      "description": "Akari Tanaka is a polished, high-achieving professional in Osaka who commands respect in the boardroom. Beneath her sharp business attire lies a voracious appetite for power-play and visceral pleasure. She craves the thrill of shifting dominance, moving from authoritative boss to a raw, unfiltered submissive through intense physical tension.",
+      "data_filename": "GOCHATAPPROLETAG_akari_tanaka.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/d6788a914c427d43e07624c242fe3ab7/raw/bbccd5bdc78285244bfbeec20f050c833e538d68/GOCHATAPPROLETAG_akari_tanaka.txt",
+      "data_size": 3997,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/d6788a914c427d43e07624c242fe3ab7/raw/d86df37163c757b43aadde77f57c35cadd94cfba/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/4a54a087-391a-4b8c-938a-d228308104c7",
+      "gist_created_at": "2026-10-20T21:39:49Z",
+      "gist_updated_at": "2026-11-01T18:54:36Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Modern Day\", \"Workplace\", \"Romance\", \"Drama\", \"Tension\", \"Emotional Intimacy\", \"Power Struggle\", \"Big City\"]",
+      "tagged_at": "2026-11-02T01:09:47Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:12:01Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "45f1d5cad32ee1fa68c728f53c8b41c7b3accf71c6f1644ac892de02d6c457b3",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/4a54a087-391a-4b8c-938a-d228308104c7",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_akari_tanaka.txt",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/d6788a914c427d43e07624c242fe3ab7/raw/bbccd5bdc78285244bfbeec20f050c833e538d68/GOCHATAPPROLETAG_akari_tanaka.txt",
+          "size": 3997
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/d6788a914c427d43e07624c242fe3ab7/raw/f88a146342dabd082395e14d5101413b06dcb7b6/image_prompt.md",
+          "size": 859
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/d6788a914c427d43e07624c242fe3ab7/raw/d86df37163c757b43aadde77f57c35cadd94cfba/thumb.md",
+          "size": 136
+        }
+      ]
+    },
+    {
+      "id": "d8ce6d3655211cf7f3a0579c521584cb",
+      "rolename": "ananya_sharma",
+      "gist_id": "d8ce6d3655211cf7f3a0579c521584cb",
+      "gist_url": "https://gist.github.com/CharacterXIFan/d8ce6d3655211cf7f3a0579c521584cb",
+      "owner": "CharacterXIFan",
+      "description": "Ananya Sharma is a sophisticated Delhi architect who maintains a poised public image while harboring secret, intense exhibitionist desires. She craves public risk and raw submission, shifting from a polished professional to a desperate, explicit persona when aroused.",
+      "data_filename": "GOCHATAPPROLETAG_ananya_sharma.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/d8ce6d3655211cf7f3a0579c521584cb/raw/c59d9141e706af715d13e345098b0075462e3ef4/GOCHATAPPROLETAG_ananya_sharma.txt",
+      "data_size": 4003,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/d8ce6d3655211cf7f3a0579c521584cb/raw/6de160000ef13e4f179646ae9e28873c311e0276/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/7e13afd4-59ca-4beb-b20f-37c44cd79059",
+      "gist_created_at": "2026-10-20T19:36:28Z",
+      "gist_updated_at": "2026-11-01T18:55:15Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Modern Day\", \"Big City\", \"Workplace\", \"Romance\", \"Secrets\", \"Hidden Identity\", \"Tension\", \"Emotional Intimacy\"]",
+      "tagged_at": "2026-11-02T01:09:48Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:12:03Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "dd7bc83cfa135f71cc6f036ae7b28b195e56055bf58e01ad3149579241b266ab",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/7e13afd4-59ca-4beb-b20f-37c44cd79059",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_ananya_sharma.txt",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/d8ce6d3655211cf7f3a0579c521584cb/raw/c59d9141e706af715d13e345098b0075462e3ef4/GOCHATAPPROLETAG_ananya_sharma.txt",
+          "size": 4003
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/d8ce6d3655211cf7f3a0579c521584cb/raw/5dfa6405fcc5f1aa2d3e0d22c629d99f173e0e86/image_prompt.md",
+          "size": 967
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/d8ce6d3655211cf7f3a0579c521584cb/raw/6de160000ef13e4f179646ae9e28873c311e0276/thumb.md",
+          "size": 136
+        }
+      ]
+    },
+    {
+      "id": "e576f5c0004a81707c68ca87fefece0e",
+      "rolename": "nyx",
+      "gist_id": "e576f5c0004a81707c68ca87fefece0e",
+      "gist_url": "https://gist.github.com/CharacterXIFan/e576f5c0004a81707c68ca87fefece0e",
+      "owner": "CharacterXIFan",
+      "description": "Nyx is a lithe, pale mercenary in the Void Station, wearing tactical gear over a provocative holographic bodysuit. Publicly a cold, sarcastic provocateur, she secretly harbors an obsessive, raw lust for her rival. Her appeal lies in the tension between her edgy, detached exterior and her desperate desire for submission.",
+      "data_filename": "GOCHATAPPROLETAG_nyx.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/e576f5c0004a81707c68ca87fefece0e/raw/d128f2d8fc03d6571f4ebebccbf51390ea6e4ab3/GOCHATAPPROLETAG_nyx.txt",
+      "data_size": 3814,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/e576f5c0004a81707c68ca87fefece0e/raw/f2ddd58a9b3f2f8ca5303cdf90a35d203e71fc3b/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/7a2e087e-0b5e-48de-b254-b75de287bafc",
+      "gist_created_at": "2026-10-17T21:52:03Z",
+      "gist_updated_at": "2026-11-01T19:09:06Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Sci-Fi\", \"Romance\", \"Space Opera\", \"Rivals\", \"Enemies to Lovers\", \"Obsession\", \"Tension\", \"Cyberpunk\"]",
+      "tagged_at": "2026-11-02T01:09:49Z",
+      "quality": 5,
+      "image_sfw": null,
+      "image_sfw_at": null,
+      "image_sfw_model": null,
+      "image_hash": null,
+      "image_checked_url": null,
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_nyx.txt",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/e576f5c0004a81707c68ca87fefece0e/raw/d128f2d8fc03d6571f4ebebccbf51390ea6e4ab3/GOCHATAPPROLETAG_nyx.txt",
+          "size": 3814
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/e576f5c0004a81707c68ca87fefece0e/raw/7e33afc6a65bec51ac7976fe560a33dd40783071/image_prompt.md",
+          "size": 755
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/e576f5c0004a81707c68ca87fefece0e/raw/f2ddd58a9b3f2f8ca5303cdf90a35d203e71fc3b/thumb.md",
+          "size": 135
+        }
+      ]
+    },
+    {
+      "id": "ea7c18793148e0671e6e14e35169ca30",
+      "rolename": "Mei-Ling_Zhao",
+      "gist_id": "ea7c18793148e0671e6e14e35169ca30",
+      "gist_url": "https://gist.github.com/characterxiapp/ea7c18793148e0671e6e14e35169ca30",
+      "owner": "characterxiapp",
+      "description": "Mei-Ling Zhao is a glamorous performer in Las Vegas who captivates audiences with her enigmatic allure and disciplined professionalism. While she presents a polished, untouchable image to the world, she secretly craves a genuine sanctuary where she can drop her mask and experience true, unadorned intimacy.",
+      "data_filename": "GOCHATAPPROLETAG_Mei-Ling_Zhao.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/ea7c18793148e0671e6e14e35169ca30/raw/26188bc91a066884555e0038c8cd3343c0738698/GOCHATAPPROLETAG_Mei-Ling_Zhao.txt",
+      "data_size": 3831,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/ea7c18793148e0671e6e14e35169ca30/raw/88a0ca6f019445a34bfbab0810883e189398c79d/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/4512625b-4255-47e2-88dc-fdb973aa1396",
+      "gist_created_at": "2026-10-29T20:28:22Z",
+      "gist_updated_at": "2026-11-01T18:46:14Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"SFW\", \"Female Lead\", \"Modern Day\", \"Big City\", \"Romance\", \"Slow Burn\", \"Drama\", \"Emotional Intimacy\", \"Identity\", \"Hurt/Comfort\"]",
+      "tagged_at": "2026-11-02T01:09:50Z",
+      "quality": 5,
+      "image_sfw": "unsafe",
+      "image_sfw_at": "2026-11-02T01:12:05Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "6d1846f57137793ede959e7ea7a87bdb96fc348cc4e327327fc1b67c8d91e72e",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/4512625b-4255-47e2-88dc-fdb973aa1396",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Mei-Ling_Zhao.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/ea7c18793148e0671e6e14e35169ca30/raw/26188bc91a066884555e0038c8cd3343c0738698/GOCHATAPPROLETAG_Mei-Ling_Zhao.txt",
+          "size": 3831
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/ea7c18793148e0671e6e14e35169ca30/raw/e63e0c031db8b8b7515ec41700993dc670daca01/image_prompt.md",
+          "size": 919
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/ea7c18793148e0671e6e14e35169ca30/raw/88a0ca6f019445a34bfbab0810883e189398c79d/thumb.md",
+          "size": 135
+        }
+      ]
+    },
+    {
+      "id": "ead0996fa624a7de4d0f6ca66ef1017d",
+      "rolename": "isabella_rossi",
+      "gist_id": "ead0996fa624a7de4d0f6ca66ef1017d",
+      "gist_url": "https://gist.github.com/CharacterXIFan/ead0996fa624a7de4d0f6ca66ef1017d",
+      "owner": "CharacterXIFan",
+      "description": "Isabella Rossi is a charismatic, twenty-nine-year-old artist from Florence with sun-kissed hair and amber eyes. Radiating an earthy, bohemian charm, she possesses a lush, hourglass figure. While publicly a free spirit, her private nature is deeply sensual, craving the intense, primal tension of being desired and completely possessed.",
+      "data_filename": "GOCHATAPPROLETAG_isabella_rossi.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/ead0996fa624a7de4d0f6ca66ef1017d/raw/4dab854e351c4f591b689c4659d5efbe566794fc/GOCHATAPPROLETAG_isabella_rossi.txt",
+      "data_size": 3815,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/ead0996fa624a7de4d0f6ca66ef1017d/raw/8d572766a84ab9e456c86c73d74fad723331ba0e/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/1ef76601-6d9f-4111-833d-6d6f68d5ef05",
+      "gist_created_at": "2026-10-17T20:58:09Z",
+      "gist_updated_at": "2026-11-01T18:55:45Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Romance\", \"Modern Day\", \"Slice of Life\", \"Tension\", \"Emotional Intimacy\", \"Temptation\", \"Obsession\", \"Big City\"]",
+      "tagged_at": "2026-11-02T01:09:51Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:12:06Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "3aa3b18604be06415af134fd3f3018692f85359d91c74a92977bbed4db76771b",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/1ef76601-6d9f-4111-833d-6d6f68d5ef05",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_isabella_rossi.txt",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/ead0996fa624a7de4d0f6ca66ef1017d/raw/4dab854e351c4f591b689c4659d5efbe566794fc/GOCHATAPPROLETAG_isabella_rossi.txt",
+          "size": 3815
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/ead0996fa624a7de4d0f6ca66ef1017d/raw/06c301440c5efb803f3eb8de98091763eadae854/image_prompt.md",
+          "size": 751
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/ead0996fa624a7de4d0f6ca66ef1017d/raw/8d572766a84ab9e456c86c73d74fad723331ba0e/thumb.md",
+          "size": 136
+        }
+      ]
+    },
+    {
+      "id": "eb2c85a989a7e203172313efc336aa06",
+      "rolename": "ishani_bose",
+      "gist_id": "eb2c85a989a7e203172313efc336aa06",
+      "gist_url": "https://gist.github.com/CharacterXIFan/eb2c85a989a7e203172313efc336aa06",
+      "owner": "CharacterXIFan",
+      "description": "Ishani Bose is a 24-year-old woman from Kolkata who presents as a soft-spoken, ethereal dreamer. Secretly, she is a submissive hedonist who craves primal control and graphic, visceral physical experiences.",
+      "data_filename": "GOCHATAPPROLETAG_ishani_bose.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/eb2c85a989a7e203172313efc336aa06/raw/a5632900aa530bbf9d48b38c541266a3fb22a026/GOCHATAPPROLETAG_ishani_bose.txt",
+      "data_size": 3781,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/eb2c85a989a7e203172313efc336aa06/raw/05c97e77f1c643f17d570e9087d5ac17c2e5a970/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/27eb3c1a-e06a-4118-84e7-5c68746a611f",
+      "gist_created_at": "2026-10-20T19:43:40Z",
+      "gist_updated_at": "2026-11-01T18:55:00Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Modern Day\", \"Romance\", \"Drama\", \"Hidden Identity\", \"Tension\", \"Emotional Intimacy\", \"Slow Burn\", \"Secrets\"]",
+      "tagged_at": "2026-11-02T01:09:52Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:12:08Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "63db0157060a3e0625ba109d87f8daf3affdd1bda1240197e7f8c5625ea1abc1",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/27eb3c1a-e06a-4118-84e7-5c68746a611f",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_ishani_bose.txt",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/eb2c85a989a7e203172313efc336aa06/raw/a5632900aa530bbf9d48b38c541266a3fb22a026/GOCHATAPPROLETAG_ishani_bose.txt",
+          "size": 3781
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/eb2c85a989a7e203172313efc336aa06/raw/594638570c60ef47ecc70d58708c9034e223e4d6/image_prompt.md",
+          "size": 701
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/eb2c85a989a7e203172313efc336aa06/raw/05c97e77f1c643f17d570e9087d5ac17c2e5a970/thumb.md",
+          "size": 136
+        }
+      ]
+    },
+    {
+      "id": "ee9d4c74903eb809a99361b2174b83c8",
+      "rolename": "Elena_Kova",
+      "gist_id": "ee9d4c74903eb809a99361b2174b83c8",
+      "gist_url": "https://gist.github.com/characterxiapp/ee9d4c74903eb809a99361b2174b83c8",
+      "owner": "characterxiapp",
+      "description": "Elena Kova is an international airline captain who commands the skies with disciplined precision and an unflappable professional mask. While she presents a face of steel and absolute control to the world, she secretly yearns for a grounding connection to cure the profound loneliness of her transient life.",
+      "data_filename": "GOCHATAPPROLETAG_Elena_Kova.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/ee9d4c74903eb809a99361b2174b83c8/raw/013a4ea452d929c7bfe5030d0bbb2e2e4e3539f4/GOCHATAPPROLETAG_Elena_Kova.txt",
+      "data_size": 3947,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/ee9d4c74903eb809a99361b2174b83c8/raw/6d1798116fec430d2dc08734ccfa1b14347093bf/thumb.md",
+      "image_url": "https://files.catbox.moe/sgpvpb.png",
+      "gist_created_at": "2026-11-01T13:17:10Z",
+      "gist_updated_at": "2026-11-01T18:44:00Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"SFW\", \"Female Lead\", \"Modern Day\", \"Workplace\", \"Romance\", \"Slow Burn\", \"Loneliness\", \"Emotional Intimacy\", \"Drama\", \"Slice of Life\"]",
+      "tagged_at": "2026-11-02T01:09:53Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:12:10Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "8ba50d7730795e7bd997cec0c16a9f4f7aea216da034d947894e318c3d1aa089",
+      "image_checked_url": "https://files.catbox.moe/sgpvpb.png",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Elena_Kova.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/ee9d4c74903eb809a99361b2174b83c8/raw/013a4ea452d929c7bfe5030d0bbb2e2e4e3539f4/GOCHATAPPROLETAG_Elena_Kova.txt",
+          "size": 3947
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/ee9d4c74903eb809a99361b2174b83c8/raw/f788abd384d54eaa1c9f2e00697174796df91b0b/image_prompt.md",
+          "size": 851
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/ee9d4c74903eb809a99361b2174b83c8/raw/6d1798116fec430d2dc08734ccfa1b14347093bf/thumb.md",
+          "size": 87
+        }
+      ]
+    },
+    {
+      "id": "f130e21359069e8d0f4374ab44ce25ac",
+      "rolename": "elara_voss",
+      "gist_id": "f130e21359069e8d0f4374ab44ce25ac",
+      "gist_url": "https://gist.github.com/CharacterXIFan/f130e21359069e8d0f4374ab44ce25ac",
+      "owner": "CharacterXIFan",
+      "description": "Elara Voss is a lean, amber-eyed wasteland survivor with a rugged punk aesthetic and weathered skin. Outwardly cynical and abrasive, she masks a hidden, primal craving for submission. Her appeal lies in the intense contrast between her defiant, sharp-tongued exterior and her secret desire to be completely overpowered and claimed.",
+      "data_filename": "GOCHATAPPROLETAG_elara_voss.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/f130e21359069e8d0f4374ab44ce25ac/raw/11fdb894adb576362d1b927481d8e51b63d968fb/GOCHATAPPROLETAG_elara_voss.txt",
+      "data_size": 4153,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/CharacterXIFan/f130e21359069e8d0f4374ab44ce25ac/raw/88fb0a20e5ceefd7216f62d52f0fbe84ff35992e/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/4460ef73-13b6-4a7d-b7b9-d5bed09d9fea",
+      "gist_created_at": "2026-10-17T21:56:24Z",
+      "gist_updated_at": "2026-11-01T18:55:26Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Post-Apocalyptic\", \"Wasteland\", \"Dystopian\", \"Arranged Marriage\", \"Slow Burn\", \"Tension\", \"Morally Grey\", \"Power Struggle\"]",
+      "tagged_at": "2026-11-02T01:09:54Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:12:12Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "0877e5cf443f516a6e8be01df8f04cf3dea9144aefd18133af476750e549941e",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/4460ef73-13b6-4a7d-b7b9-d5bed09d9fea",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_elara_voss.txt",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/f130e21359069e8d0f4374ab44ce25ac/raw/11fdb894adb576362d1b927481d8e51b63d968fb/GOCHATAPPROLETAG_elara_voss.txt",
+          "size": 4153
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/f130e21359069e8d0f4374ab44ce25ac/raw/61a37519284051bab556bdd3ebcf92095e212918/image_prompt.md",
+          "size": 822
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/CharacterXIFan/f130e21359069e8d0f4374ab44ce25ac/raw/88fb0a20e5ceefd7216f62d52f0fbe84ff35992e/thumb.md",
+          "size": 136
+        }
+      ]
+    },
+    {
+      "id": "fcb180bbcab1cd2fa10016d4cfc19d57",
+      "rolename": "Beatrice_Sterling",
+      "gist_id": "fcb180bbcab1cd2fa10016d4cfc19d57",
+      "gist_url": "https://gist.github.com/characterxiapp/fcb180bbcab1cd2fa10016d4cfc19d57",
+      "owner": "characterxiapp",
+      "description": "Beatrice Sterling is a formidable logistics expert who commands every room with an iron will and impeccable professional poise. While she presents a facade of absolute efficiency and control, she secretly craves a powerful presence capable of breaking her composure and forcing her to surrender.",
+      "data_filename": "GOCHATAPPROLETAG_Beatrice_Sterling.txt",
+      "data_raw_url": "https://gist.githubusercontent.com/characterxiapp/fcb180bbcab1cd2fa10016d4cfc19d57/raw/41077f9455d465709903af03ecc79cd576b54164/GOCHATAPPROLETAG_Beatrice_Sterling.txt",
+      "data_size": 3931,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/characterxiapp/fcb180bbcab1cd2fa10016d4cfc19d57/raw/8febd028fba0b336386a0a2b722b69f12921552e/thumb.md",
+      "image_url": "https://files.catbox.moe/nc5p7h.png",
+      "gist_created_at": "2026-11-01T13:00:59Z",
+      "gist_updated_at": "2026-11-01T18:44:05Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"NSFW\", \"Female Lead\", \"Romance\", \"Modern Day\", \"Workplace\", \"Slow Burn\", \"Tension\", \"Emotional Intimacy\", \"Drama\", \"Big City\"]",
+      "tagged_at": "2026-11-02T01:09:54Z",
+      "quality": 5,
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:12:14Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "dd86a3ab501e7989516210d31a9b84232bc57d195faba9fb2ee93b9afe484c8d",
+      "image_checked_url": "https://files.catbox.moe/nc5p7h.png",
+      "all_files": [
+        {
+          "filename": "GOCHATAPPROLETAG_Beatrice_Sterling.txt",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/fcb180bbcab1cd2fa10016d4cfc19d57/raw/41077f9455d465709903af03ecc79cd576b54164/GOCHATAPPROLETAG_Beatrice_Sterling.txt",
+          "size": 3931
+        },
+        {
+          "filename": "image_prompt.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/fcb180bbcab1cd2fa10016d4cfc19d57/raw/140afb783d4ee2a40ee5bd37d776286163047e57/image_prompt.md",
+          "size": 972
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/characterxiapp/fcb180bbcab1cd2fa10016d4cfc19d57/raw/8febd028fba0b336386a0a2b722b69f12921552e/thumb.md",
+          "size": 87
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "id": "0d10f2498327a51e7bae36d94f5ac3b4",
+      "storyname": "dax_and_emma",
+      "gist_id": "0d10f2498327a51e7bae36d94f5ac3b4",
+      "gist_url": "https://gist.github.com/gochatapp/0d10f2498327a51e7bae36d94f5ac3b4",
+      "owner": "gochatapp",
+      "description": "Dax and Emma live in a secluded wooden house deep in the woods, surrounded by pines and quiet trails. Dax is a sharp, quietly intense man with dry humor. Emma is his lively, impulsive artist friend full of restless energy. Their easy yet charged bond thrives in the forest isolation.",
+      "story_filename": "GOCHATAPPSTORYTAG_dax_and_emma.md",
+      "story_raw_url": "https://gist.githubusercontent.com/gochatapp/0d10f2498327a51e7bae36d94f5ac3b4/raw/5960826375ed33a10cb67b0038992379578de200/GOCHATAPPSTORYTAG_dax_and_emma.md",
+      "story_size": 5,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/gochatapp/0d10f2498327a51e7bae36d94f5ac3b4/raw/c254f93de4c8970155837c7c012ab8d464a54495/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/34cc94b6-e3f4-4ca1-997e-42ac57943b4a",
+      "gist_created_at": "2026-10-14T19:25:08Z",
+      "gist_updated_at": "2026-10-29T12:44:12Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"SFW\", \"Romance\", \"M/F\", \"Slice of Life\", \"Friendship\", \"Male Lead\", \"Female Lead\", \"Wilderness\", \"Small Town\", \"Emotional Intimacy\"]",
+      "tagged_at": "2026-11-02T01:09:56Z",
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:12:16Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "3308a5466d256f47236cd6d42aad0d286ff5ba2402e7e1be4ccb976860ee41b4",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/34cc94b6-e3f4-4ca1-997e-42ac57943b4a",
+      "scenes": [
+        {
+          "kind": "scene",
+          "name": "emmas_house",
+          "filename": "scene_emmas_house.txt",
+          "raw_url": "https://gist.githubusercontent.com/gochatapp/0d10f2498327a51e7bae36d94f5ac3b4/raw/162727d7a5891e4af16f14e6723517357fe6d933/scene_emmas_house.txt",
+          "size": 13
+        }
+      ],
+      "characters": [
+        {
+          "kind": "character",
+          "name": "dax",
+          "filename": "character_dax.txt",
+          "raw_url": "https://gist.githubusercontent.com/gochatapp/0d10f2498327a51e7bae36d94f5ac3b4/raw/03b74e0f078bb55d9d3e44b2662a151459d15992/character_dax.txt",
+          "size": 16
+        },
+        {
+          "kind": "character",
+          "name": "emma",
+          "filename": "character_emma.txt",
+          "raw_url": "https://gist.githubusercontent.com/gochatapp/0d10f2498327a51e7bae36d94f5ac3b4/raw/188046e7972af76549b3d4b1807730ab894dfc79/character_emma.txt",
+          "size": 19
+        }
+      ],
+      "other_files": [],
+      "all_files": [
+        {
+          "filename": "GOCHATAPPSTORYTAG_dax_and_emma.md",
+          "raw_url": "https://gist.githubusercontent.com/gochatapp/0d10f2498327a51e7bae36d94f5ac3b4/raw/5960826375ed33a10cb67b0038992379578de200/GOCHATAPPSTORYTAG_dax_and_emma.md",
+          "size": 5
+        },
+        {
+          "filename": "character_dax.txt",
+          "raw_url": "https://gist.githubusercontent.com/gochatapp/0d10f2498327a51e7bae36d94f5ac3b4/raw/03b74e0f078bb55d9d3e44b2662a151459d15992/character_dax.txt",
+          "size": 16
+        },
+        {
+          "filename": "character_emma.txt",
+          "raw_url": "https://gist.githubusercontent.com/gochatapp/0d10f2498327a51e7bae36d94f5ac3b4/raw/188046e7972af76549b3d4b1807730ab894dfc79/character_emma.txt",
+          "size": 19
+        },
+        {
+          "filename": "scene_emmas_house.txt",
+          "raw_url": "https://gist.githubusercontent.com/gochatapp/0d10f2498327a51e7bae36d94f5ac3b4/raw/162727d7a5891e4af16f14e6723517357fe6d933/scene_emmas_house.txt",
+          "size": 13
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/gochatapp/0d10f2498327a51e7bae36d94f5ac3b4/raw/c254f93de4c8970155837c7c012ab8d464a54495/thumb.md",
+          "size": 135
+        }
+      ]
+    },
+    {
+      "id": "ae5ed1170352b40652205083d75ceda0",
+      "storyname": "dax_and_gemma",
+      "gist_id": "ae5ed1170352b40652205083d75ceda0",
+      "gist_url": "https://gist.github.com/gochatapp/ae5ed1170352b40652205083d75ceda0",
+      "owner": "gochatapp",
+      "description": "Dax is a sharp, quietly intense man in his late twenties with a dry sense of humor and a protective streak. Gemma is his lively best friend, an impulsive artist full of bright ideas and restless energy. Their bond is easy yet charged \u2014 late-night talks, shared secrets, and an unspoken tension that neither has quite figured out how to name.",
+      "story_filename": "GOCHATAPPSTORYTAG_dax_and_gemma.md",
+      "story_raw_url": "https://gist.githubusercontent.com/gochatapp/ae5ed1170352b40652205083d75ceda0/raw/c7fc57f4e74600a75edc4c7aa4b966e1de37b8e4/GOCHATAPPSTORYTAG_dax_and_gemma.md",
+      "story_size": 6,
+      "thumb_filename": "thumb.md",
+      "thumb_raw_url": "https://gist.githubusercontent.com/gochatapp/ae5ed1170352b40652205083d75ceda0/raw/ece8421d77ca9c573d59365dc9a3b8f69bc63094/thumb.md",
+      "image_url": "https://gist.github.com/user-attachments/assets/670677b4-50c9-4891-bc24-203721c19772",
+      "gist_created_at": "2026-10-14T19:29:00Z",
+      "gist_updated_at": "2026-10-29T12:44:11Z",
+      "first_seen": "2026-11-02T01:08:52Z",
+      "last_scanned": "2026-11-02T01:08:52Z",
+      "last_changed": "2026-11-02T01:08:52Z",
+      "tags": "[\"SFW\", \"Romance\", \"M/F\", \"Friends to Lovers\", \"Friendship\", \"Tension\", \"Emotional Intimacy\", \"Male Lead\", \"Female Lead\", \"Slice of Life\"]",
+      "tagged_at": "2026-11-02T01:09:57Z",
+      "image_sfw": "safe",
+      "image_sfw_at": "2026-11-02T01:12:18Z",
+      "image_sfw_model": "gemma4:31b-cloud",
+      "image_hash": "569c8079225a155c03ea2208a5c456be4ba9008a9392b1dd49fb0435a70e888b",
+      "image_checked_url": "https://gist.github.com/user-attachments/assets/670677b4-50c9-4891-bc24-203721c19772",
+      "scenes": [],
+      "characters": [
+        {
+          "kind": "character",
+          "name": "dax",
+          "filename": "character_dax.txt",
+          "raw_url": "https://gist.githubusercontent.com/gochatapp/ae5ed1170352b40652205083d75ceda0/raw/228ab6273a5beb05a1a30a7d4d3d8e7fb2ac7a48/character_dax.txt",
+          "size": 27
+        },
+        {
+          "kind": "character",
+          "name": "gemma",
+          "filename": "character_gemma.txt",
+          "raw_url": "https://gist.githubusercontent.com/gochatapp/ae5ed1170352b40652205083d75ceda0/raw/188046e7972af76549b3d4b1807730ab894dfc79/character_gemma.txt",
+          "size": 19
+        }
+      ],
+      "other_files": [],
+      "all_files": [
+        {
+          "filename": "GOCHATAPPSTORYTAG_dax_and_gemma.md",
+          "raw_url": "https://gist.githubusercontent.com/gochatapp/ae5ed1170352b40652205083d75ceda0/raw/c7fc57f4e74600a75edc4c7aa4b966e1de37b8e4/GOCHATAPPSTORYTAG_dax_and_gemma.md",
+          "size": 6
+        },
+        {
+          "filename": "character_dax.txt",
+          "raw_url": "https://gist.githubusercontent.com/gochatapp/ae5ed1170352b40652205083d75ceda0/raw/228ab6273a5beb05a1a30a7d4d3d8e7fb2ac7a48/character_dax.txt",
+          "size": 27
+        },
+        {
+          "filename": "character_gemma.txt",
+          "raw_url": "https://gist.githubusercontent.com/gochatapp/ae5ed1170352b40652205083d75ceda0/raw/188046e7972af76549b3d4b1807730ab894dfc79/character_gemma.txt",
+          "size": 19
+        },
+        {
+          "filename": "thumb.md",
+          "raw_url": "https://gist.githubusercontent.com/gochatapp/ae5ed1170352b40652205083d75ceda0/raw/ece8421d77ca9c573d59365dc9a3b8f69bc63094/thumb.md",
+          "size": 135
+        }
+      ]
+    }
+  ],
+  "recent_scans": [
+    {
+      "id": 127,
+      "started_at": "2026-11-02T01:07:24Z",
+      "finished_at": "2026-11-02T01:08:52Z",
+      "gists_found": 64,
+      "roles_seen": 62,
+      "stories_seen": 2,
+      "added": 64,
+      "updated": 0,
+      "unchanged": 0
+    }
+  ],
+  "tag_rank": {
+    "SFW": 0,
+    "NSFW": 0,
+    "Mature": 0,
+    "18+": 0,
+    "Fantasy": 2,
+    "Sci-Fi": 2,
+    "Romance": 2,
+    "Horror": 2,
+    "Mystery": 2,
+    "Thriller": 2,
+    "Adventure": 2,
+    "Action": 2,
+    "Comedy": 2,
+    "Drama": 2,
+    "Supernatural": 2,
+    "Historical": 2,
+    "Crime": 2,
+    "Dystopian": 2,
+    "Mythology": 2,
+    "Western": 2,
+    "Survival": 2,
+    "Slice of Life": 2,
+    "LGBTQ+": 1,
+    "M/M": 1,
+    "F/F": 1,
+    "M/F": 1,
+    "Polyamory": 1,
+    "Friendship": 1,
+    "Enemies to Lovers": 1,
+    "Friends to Lovers": 1,
+    "Slow Burn Romance": 1,
+    "Forbidden Love": 1,
+    "Unrequited Love": 1,
+    "Love Triangle": 1,
+    "Soulmates": 1,
+    "Family": 1,
+    "Found Family": 1,
+    "Rivals": 1,
+    "Mentor & Student": 1,
+    "Arranged Marriage": 1,
+    "Multiple Partners": 1,
+    "Strangers to Lovers": 1,
+    "Female Lead": 1,
+    "Male Lead": 1,
+    "Nonbinary Lead": 1,
+    "Modern Day": 2,
+    "Medieval": 2,
+    "Ancient World": 2,
+    "Victorian": 2,
+    "Fantasy Kingdom": 2,
+    "High Fantasy": 2,
+    "Urban Fantasy": 2,
+    "Dark Fantasy": 2,
+    "Sci-Fi Future": 2,
+    "Cyberpunk": 2,
+    "Space Opera": 2,
+    "Space Exploration": 2,
+    "Post-Apocalyptic": 2,
+    "Wasteland": 2,
+    "Dystopian Society": 2,
+    "Alternate History": 2,
+    "Alternate Universe": 2,
+    "Parallel Worlds": 2,
+    "Time Travel": 2,
+    "School Life": 2,
+    "University": 2,
+    "Workplace": 2,
+    "Small Town": 2,
+    "Big City": 2,
+    "Rural Life": 2,
+    "Haunted House": 2,
+    "Gothic": 2,
+    "Military": 2,
+    "Royal Court": 2,
+    "Pirate Seas": 2,
+    "Wild West": 2,
+    "Wilderness": 2,
+    "Underwater World": 2,
+    "Alien Planet": 2,
+    "Virtual Reality": 2,
+    "Post-Human": 2,
+    "Mythical Realm": 2,
+    "Dream World": 2,
+    "Afterlife": 2,
+    "Slow Burn": 2,
+    "Personal Growth": 2,
+    "Redemption": 2,
+    "Revenge": 2,
+    "Betrayal": 2,
+    "Trust Building": 2,
+    "Second Chances": 2,
+    "Identity": 2,
+    "Self-Discovery": 2,
+    "Coming of Age": 2,
+    "Belonging": 2,
+    "Loneliness": 2,
+    "Healing": 2,
+    "Grief": 2,
+    "Sacrifice": 2,
+    "Loyalty": 2,
+    "Morally Grey": 2,
+    "Redemption Arc": 2,
+    "Power Struggle": 2,
+    "Corruption": 2,
+    "Secrets": 2,
+    "Hidden Identity": 2,
+    "Jealousy": 2,
+    "Emotional Intimacy": 2,
+    "Tension": 2,
+    "Angst": 2,
+    "Comfort": 2,
+    "Hurt/Comfort": 2,
+    "Protective Instincts": 2,
+    "Temptation": 2,
+    "Obsession": 2,
+    "Corruption Arc": 2,
+    "Fate vs. Free Will": 2,
+    "Resistance": 2,
+    "Political Intrigue": 2,
+    "Class Conflict": 2,
+    "Culture Clash": 2,
+    "Secrets & Lies": 2,
+    "Unreliable Narrator": 2,
+    "Mystery & Discovery": 2,
+    "Hope Against Odds": 2,
+    "Slow-Build Trust": 2
+  }
+}

@@ -1,0 +1,238 @@
+Sexual-word scan of role gists
+Generated: 2026-11-09 10:33:29 UTC
+NSFW tags compared from SQLite: C:\dev\vivid2.0\chatDB\db_vivid.sqlite
+NSFW tags compared from JSON: C:\dev\vivid2.0\chatDB\db_chatgo.json
+
+Owners scanned: gochatapp, CharacterXIFan, characterxiapp
+Discovered gists: 73
+
+Gist: https://gist.github.com/CharacterXIFan/00646affb0def1248d3dc6b31c14481b
+Owner: CharacterXIFan
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_xiao_chen.txt: aroused (lines 18, 39), cunt (line 71), fuck (line 71), penetration (line 56)
+
+Gist: https://gist.github.com/CharacterXIFan/0675da9c8d73ae5ae2919e86a2d1d362
+Owner: CharacterXIFan
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_ami_tanaka.txt: fuck (line 71), nude (line 16), pussy (line 71)
+
+Gist: https://gist.github.com/CharacterXIFan/0d58549d3d5896dbc5ec074a929ca479
+Owner: CharacterXIFan
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_lady_genevieve.txt: aroused (line 18)
+
+Gist: https://gist.github.com/psychomate/0f7f139edc207b0ee004277bd6b97c11
+Owner: psychomate
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_Elara_Vance.txt: aroused (line 39), cock (line 52), erotic (line 34), fuck (line 52), pussy (line 52), sexual (line 36), stud (line 62)
+
+Gist: https://gist.github.com/CharacterXIFan/186845645d14e4acfc8cfe20a488187f
+Owner: CharacterXIFan
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  gist description: sexual (line 1)
+  GOCHATAPPROLETAG_li_meiling.txt: aroused (line 18), cum (line 71), cunt (line 71), fuck (line 71), pussy (line 71), stud (line 71)
+
+Gist: https://gist.github.com/CharacterXIFan/27535041766a4f885b025e6329abd6ca
+Owner: CharacterXIFan
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_martha_sterling.txt: aroused (line 39)
+
+Gist: https://gist.github.com/psychomate/2b3235344cfaf5f41c28ce2371cf6c0b
+Owner: psychomate
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_Zara_Thorne.txt: aroused (line 39), fuck (line 71), penetration (line 56), pussy (line 71), sexual (line 34)
+
+Gist: https://gist.github.com/psychomate/2f852e038f09fda4451cccb906ab62d4
+Owner: psychomate
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_Layla_Al-Mansouri.txt: aroused (line 36)
+
+Gist: https://gist.github.com/CharacterXIFan/386650930b212253450f358c5f49fd27
+Owner: CharacterXIFan
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_meera_iyer.txt: aroused (lines 18, 39), breasts (line 12), cock (line 71), penetration (line 56)
+
+Gist: https://gist.github.com/CharacterXIFan/3de476dea98b154670022cf787d837d2
+Owner: CharacterXIFan
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_elena_vance.txt: aroused (line 18), foreplay (line 56), fuck (line 71)
+
+Gist: https://gist.github.com/CharacterXIFan/43784c44f098a2a8e1bc55e041c15384
+Owner: CharacterXIFan
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_maya_chen.txt: aroused (line 18)
+
+Gist: https://gist.github.com/CharacterXIFan/45723251b1f227b69563a9a04ce0213d
+Owner: CharacterXIFan
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_beatrice_sterling.txt: aroused (line 39)
+
+Gist: https://gist.github.com/CharacterXIFan/47b264f2143726edea72ef1f80aa4977
+Owner: CharacterXIFan
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_sofia_moretti.txt: aroused (line 18)
+
+Gist: https://gist.github.com/psychomate/4ba158ef4b0da2cf99d05c5fffddf140
+Owner: psychomate
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_Elena_Santos.txt: porn (line 62)
+
+Gist: https://gist.github.com/psychomate/4f6227a061154ecec53a1bc6663fcbb2
+Owner: psychomate
+NSFW tag: NO (SQLite: SFW; JSON: SFW)
+  GOCHATAPPROLETAG_Elara_Vance.txt: penetrated (line 60)
+
+Gist: https://gist.github.com/psychomate/50b39ef6f7aed8b5e66cb542bb91d542
+Owner: psychomate
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_Isabella_Rossi.txt: aroused (line 39), fuck (lines 52, 71), penetration (line 60), semen (line 60)
+
+Gist: https://gist.github.com/CharacterXIFan/514dc1c9a088d73969accf2be6382ea6
+Owner: CharacterXIFan
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_kaelith_thorne.txt: aroused (line 18), fuck (line 71)
+
+Gist: https://gist.github.com/CharacterXIFan/51582e257872664596d0ab7e877d85d4
+Owner: CharacterXIFan
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_seraphina_vane.txt: breasts (line 16), fuck (line 71)
+
+Gist: https://gist.github.com/CharacterXIFan/51a29bb55f13fd8ec448c819ef3d4912
+Owner: CharacterXIFan
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_lyra_moonshade.txt: fuck (line 71)
+
+Gist: https://gist.github.com/psychomate/79dfb47f5a455eb5c40c402c6926f5be
+Owner: psychomate
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_Isadora_Thorne.txt: cock (line 52), cum (line 52), fuck (lines 52, 70), pornographic (line 61), pussy (line 52), stud (line 61)
+
+Gist: https://gist.github.com/psychomate/7d4eff4223c00b2d885f9df386f23d94
+Owner: psychomate
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_Hanae_Sato.txt: aroused (line 36), stud (line 61)
+
+Gist: https://gist.github.com/CharacterXIFan/80f92dac8230a2e3feed5a4ff1b182db
+Owner: CharacterXIFan
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_yan_ni.txt: aroused (line 39), fuck (line 71), sexual (line 34)
+
+Gist: https://gist.github.com/psychomate/91224b27ac299b757c1ee1ecee42e20d
+Owner: psychomate
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_Victoria_Sterling.txt: aroused (line 39), fuck (line 71), penetration (line 56), sex (line 52)
+
+Gist: https://gist.github.com/CharacterXIFan/9319189810df8a0a9dfe565b07053b32
+Owner: CharacterXIFan
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  gist description: sexual (line 1)
+  GOCHATAPPROLETAG_kiyomi_fujiwara.txt: aroused (lines 18, 39), cunt (line 71), fuck (line 71), penetration (line 60)
+
+Gist: https://gist.github.com/psychomate/9441a76dc5ace802b1ac1b77a73e2514
+Owner: psychomate
+NSFW tag: UNKNOWN (SQLite: not found; JSON: not found)
+  GOCHATAPPROLETAG_Miles_Immoralis.txt: cock (line 59), sexually (line 50)
+
+Gist: https://gist.github.com/psychomate/98f53a0b4e99271888d2b80fd8cc5977
+Owner: psychomate
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_Sofia_Moretti.txt: aroused (lines 18, 50)
+
+Gist: https://gist.github.com/psychomate/99477149c0c435a7b6308aed27cc2a60
+Owner: psychomate
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_Kai_Sato.txt: porn (line 62)
+
+Gist: https://gist.github.com/psychomate/9b31943a0b9f8414185c3310ab7c2ebf
+Owner: psychomate
+NSFW tag: NO (SQLite: SFW; JSON: SFW)
+  GOCHATAPPROLETAG_Gwendolyn_Maxine_Stacy.txt: aroused (lines 11, 45)
+
+Gist: https://gist.github.com/psychomate/aa0034c6e5f8663f274607b241e739df
+Owner: psychomate
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_Marina_Solis.txt: cock (line 52), fuck (lines 52, 71), pussy (line 52)
+
+Gist: https://gist.github.com/CharacterXIFan/aa9a1185a02b6a090f967ce621b170f7
+Owner: CharacterXIFan
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_sayuri_hanaoka.txt: fuck (lines 69, 71), pussy (line 71)
+
+Gist: https://gist.github.com/psychomate/b218a8b0a3b63778237b38c6268d9b60
+Owner: psychomate
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_Kaia_Thorne.txt: aroused (line 18), cunt (line 70), fuck (line 70), penetration (lines 52, 59), sex (lines 34, 46)
+
+Gist: https://gist.github.com/CharacterXIFan/b226b955c8f3facd312a1161dff8f80d
+Owner: CharacterXIFan
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  gist description: sexual (line 1)
+  GOCHATAPPROLETAG_hanae_sato.txt: breasts (line 12), cum (line 71), penetration (line 60), pussy (line 71)
+
+Gist: https://gist.github.com/psychomate/bdb5c7ec569ddf1994564eb4c76de2ea
+Owner: psychomate
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_Julianne_Voss.txt: aroused (line 39), foreplay (line 46), fuck (line 71), penetration (line 60), sex (line 56)
+
+Gist: https://gist.github.com/CharacterXIFan/c118348d72b9dcd0fa03200f409b9273
+Owner: CharacterXIFan
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_jade_rivera.txt: aroused (lines 18, 39), fuck (line 71)
+
+Gist: https://gist.github.com/psychomate/cb6f01f55c0c41aed00fc969c26ff78f
+Owner: psychomate
+NSFW tag: UNKNOWN (SQLite: not found; JSON: not found)
+  GOCHATAPPROLETAG_Beatrice_Thorne.txt: aroused (lines 43, 68), cock (line 52), sexual (line 46)
+
+Gist: https://gist.github.com/psychomate/d3097122e749b530a2d86bb47253f9a3
+Owner: psychomate
+NSFW tag: UNKNOWN (SQLite: not found; JSON: not found)
+  GOCHATAPPROLETAG_Eleanor_Vance.txt: aroused (lines 34, 50), fuck (line 52)
+
+Gist: https://gist.github.com/CharacterXIFan/d6788a914c427d43e07624c242fe3ab7
+Owner: CharacterXIFan
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_akari_tanaka.txt: fuck (line 71)
+
+Gist: https://gist.github.com/CharacterXIFan/d8ce6d3655211cf7f3a0579c521584cb
+Owner: CharacterXIFan
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  gist description: aroused (line 1)
+  GOCHATAPPROLETAG_ananya_sharma.txt: aroused (line 18), breasts (line 12), cock (line 71), cunt (line 71), fuck (line 71)
+
+Gist: https://gist.github.com/CharacterXIFan/e576f5c0004a81707c68ca87fefece0e
+Owner: CharacterXIFan
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_nyx.txt: fucking (line 71), sexual (lines 34, 46)
+
+Gist: https://gist.github.com/psychomate/ea7c18793148e0671e6e14e35169ca30
+Owner: psychomate
+NSFW tag: NO (SQLite: SFW; JSON: SFW)
+  GOCHATAPPROLETAG_Mei-Ling_Zhao.txt: porn (line 61)
+
+Gist: https://gist.github.com/psychomate/eaa93f18a4d8f2f6f438f61942f6f578
+Owner: psychomate
+NSFW tag: UNKNOWN (SQLite: not found; JSON: not found)
+  GOCHATAPPROLETAG_Elena_Moretti.txt: aroused (lines 43, 68)
+
+Gist: https://gist.github.com/CharacterXIFan/ead0996fa624a7de4d0f6ca66ef1017d
+Owner: CharacterXIFan
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_isabella_rossi.txt: aroused (lines 18, 36), fuck (line 71)
+
+Gist: https://gist.github.com/CharacterXIFan/eb2c85a989a7e203172313efc336aa06
+Owner: CharacterXIFan
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_ishani_bose.txt: aroused (line 39), breasts (line 12), fuck (line 71), fucking (line 71)
+
+Gist: https://gist.github.com/CharacterXIFan/f130e21359069e8d0f4374ab44ce25ac
+Owner: CharacterXIFan
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_elara_voss.txt: fucking (line 71)
+
+Gist: https://gist.github.com/psychomate/fcb180bbcab1cd2fa10016d4cfc19d57
+Owner: psychomate
+NSFW tag: YES (SQLite: NSFW; JSON: NSFW)
+  GOCHATAPPROLETAG_Beatrice_Sterling.txt: cock (line 52), fuck (line 52), pussy (line 52), stud (line 62)
+
+Summary: checked 71 role gist(s); 45 gist(s) had matching terms; 49 matching file/description(s); 0 read error(s).

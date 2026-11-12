@@ -1,0 +1,169 @@
+## 1. Content rating
+
+Tag      | Meaning
+---------|---------------------------------------------------------------
+SFW      | Suitable for general audiences; focus is on plot/tension.
+NSFW     | High sexual content; the focus is on the physical acts.
+Mature   | High emotional/violent content; heavy language or dark themes.
+18+      | The highest level; combines extreme physicals with dark/taboo themes.
+
+## 2. Genre
+
+The main type of story being told.
+
+| Tag           | Description                                      |
+| ------------- | ------------------------------------------------ |
+| Fantasy       | Magic, mythical creatures, enchanted worlds      |
+| Sci-Fi        | Advanced technology, futuristic worlds, space    |
+| Romance       | Love, attraction, and relationships              |
+| Horror        | Fear, suspense, and disturbing situations        |
+| Mystery       | Secrets, investigations, and solving puzzles     |
+| Thriller      | High tension, danger, and suspense               |
+| Adventure     | Exploration, quests, and discovery               |
+| Action        | Combat, chases, and fast-paced events            |
+| Comedy        | Humour, amusing situations, and banter           |
+| Drama         | Emotional conflicts and difficult decisions      |
+| Supernatural  | Ghosts, spirits, demons, and unexplained events  |
+| Historical    | Stories set in a real historical period          |
+| Crime         | Criminal underworlds, investigations, and heists |
+| Dystopian     | Oppressive societies and bleak futures           |
+| Mythology     | Gods, legends, folklore, and ancient myths       |
+| Western       | Frontier towns, outlaws, and the Wild West       |
+| Survival      | Enduring dangerous environments or disasters     |
+| Slice of Life | Everyday experiences and personal relationships  |
+
+## 3. Relationship
+
+Who the characters are to one another, or the nature of their relationships.
+
+| Tag                 | Description                                                  |
+| ------------------- | ------------------------------------------------------------ |
+| LGBTQ+              | LGBTQ+ characters or relationships                           |
+| M/M                 | Male–male relationships                                      |
+| F/F                 | Female–female relationships                                  |
+| M/F                 | Male–female relationships                                    |
+| Polyamory           | Multiple consensual romantic relationships                   |
+| Friendship          | Platonic bonds and companionship                             |
+| Enemies to Lovers   | Romantic tension between rivals or enemies                   |
+| Friends to Lovers   | Friendship gradually becomes romantic                        |
+| Slow Burn Romance   | Romance that develops gradually                              |
+| Forbidden Love      | A relationship facing social or personal barriers            |
+| Unrequited Love     | Feelings that aren't returned                                |
+| Love Triangle       | Romantic conflict involving three people                     |
+| Soulmates           | Destined or deeply connected partners                        |
+| Family              | Family bonds and family conflict                             |
+| Found Family        | Unrelated people forming a family-like bond                  |
+| Rivals              | Competitive relationships and rivalry                        |
+| Mentor & Student    | A teacher, guide, or experienced character and their student |
+| Arranged Marriage   | A relationship formed through an arrangement                 |
+| Multiple Partners   | Stories involving multiple romantic partners                 |
+| Strangers to Lovers | Romance between people who initially don't know each other   |
+
+## 4. Lead Character
+
+The gender of the central character or role. Include one when it is clear from the text.
+
+| Tag            | Description                                              |
+| -------------- | -------------------------------------------------------- |
+| Female Lead    | The central character is female                          |
+| Male Lead      | The central character is male                            |
+| Nonbinary Lead | The central character is nonbinary or genderfluid        |
+
+## 5. Setting
+
+Where and when the story takes place. I'd give this category the largest expansion because setting tags are especially useful for browsing roleplay scenarios.
+
+| Tag                | Description                                                |
+| ------------------ | ---------------------------------------------------------- |
+| Modern Day         | Contemporary real-world life                               |
+| Historical         | A real-world historical era                                |
+| Medieval           | Castles, kingdoms, knights, and feudal societies           |
+| Ancient World      | Ancient civilizations and empires                          |
+| Victorian          | Victorian-era society and aesthetics                       |
+| Fantasy Kingdom    | Fictional kingdoms and royal courts                        |
+| High Fantasy       | Elaborate magical worlds and mythical races                |
+| Urban Fantasy      | Magic and supernatural elements in modern cities           |
+| Dark Fantasy       | Fantasy with grim, sinister, or frightening elements       |
+| Sci-Fi Future      | A technologically advanced future                          |
+| Cyberpunk          | High technology, mega-corporations, and urban dystopia      |
+| Space Opera        | Galactic empires, space battles, and grand adventures      |
+| Space Exploration  | Discovering planets and encountering alien life            |
+| Post-Apocalyptic   | Life after civilization collapses                          |
+| Wasteland          | Harsh, desolate environments and survival                  |
+| Dystopian Society  | A repressive or tightly controlled society                 |
+| Alternate History  | History diverges from actual events                        |
+| Alternate Universe | A different version of an established world or reality     |
+| Parallel Worlds    | Multiple realities or alternate dimensions                 |
+| Time Travel        | Travel between different periods in time                   |
+| School Life        | Schools, students, and campus experiences                  |
+| University         | College life, study, and young adulthood                   |
+| Workplace          | Offices, businesses, and professional relationships        |
+| Small Town         | Close-knit communities and local secrets                   |
+| Big City           | Urban life, crowded streets, and city culture              |
+| Rural Life         | Countryside, farms, and remote communities                 |
+| Haunted House      | A residence with supernatural activity                     |
+| Gothic             | Dark architecture, old estates, and eerie atmospheres      |
+| Military           | Armed forces, missions, and military life                  |
+| Royal Court        | Royal families, politics, intrigue, and etiquette          |
+| Pirate Seas        | Ships, piracy, treasure, and ocean adventures              |
+| Wild West          | Frontier towns, cowboys, and outlaws                       |
+| Wilderness         | Forests, mountains, and remote natural environments        |
+| Underwater World   | Ocean civilizations and deep-sea exploration               |
+| Alien Planet       | An unfamiliar world with extraterrestrial life             |
+| Virtual Reality    | Immersive digital worlds and simulated experiences         |
+| Post-Human         | A world transformed by AI, cybernetics, or human evolution |
+| Mythical Realm     | A world inspired by gods, folklore, or legends             |
+| Dream World        | Surreal landscapes and dreamlike realities                 |
+| Afterlife          | Heaven, hell, purgatory, or other realms of the dead       |
+
+## 6. Themes
+
+The central ideas, emotional experiences, conflicts, or dynamics explored by the story. Themes can overlap with genres, but they describe what the story explores rather than what kind of story it is.
+
+| Tag                  | Description                                               |
+| -------------------- | --------------------------------------------------------- |
+| Slow Burn            | Gradual emotional or romantic development                 |
+| Found Family         | Building a family through friendship and loyalty          |
+| Forbidden Love       | Love challenged by rules, obligations, or social barriers |
+| Personal Growth      | Characters learning and changing                          |
+| Redemption           | Seeking forgiveness or making amends                      |
+| Revenge              | Pursuing justice or retaliation                           |
+| Betrayal             | Broken trust and its consequences                         |
+| Trust Building       | Developing confidence in another character                |
+| Second Chances       | Renewed opportunities after failure or separation         |
+| Identity             | Discovering or understanding oneself                      |
+| Self-Discovery       | Exploring personal values, desires, and purpose           |
+| Coming of Age        | Transitioning into adulthood                              |
+| Belonging            | Finding acceptance and a place in the world               |
+| Loneliness           | Isolation and the desire for connection                   |
+| Healing              | Recovering from emotional hardship                        |
+| Grief                | Loss, mourning, and remembrance                           |
+| Sacrifice            | Giving something up for another person or cause           |
+| Loyalty              | Commitment to people, ideals, or groups                   |
+| Morally Grey         | Characters and choices that aren't simply good or evil    |
+| Redemption Arc       | A character's journey toward becoming better              |
+| Power Struggle       | Conflicts over control, authority, or influence           |
+| Corruption           | The deterioration of morals, institutions, or power       |
+| Secrets              | Hidden truths and concealed identities                    |
+| Hidden Identity      | A character concealing who they really are                |
+| Jealousy             | Insecurity and rivalry over affection or attention        |
+| Emotional Intimacy   | Deep trust, vulnerability, and connection                 |
+| Tension              | Unresolved conflict, anticipation, or attraction          |
+| Angst                | Emotional turmoil and internal conflict                   |
+| Comfort              | Reassurance, affection, and emotional support             |
+| Hurt/Comfort         | One character suffers while another offers care           |
+| Protective Instincts | Characters protecting someone they care about             |
+| Temptation           | Struggling with a desire or difficult choice              |
+| Obsession            | An intense and potentially unhealthy fixation             |
+| Corruption Arc       | A character gradually becoming morally compromised        |
+| Fate vs. Free Will   | Whether choices can overcome destiny                      |
+| Survival             | Endurance under extreme circumstances                     |
+| Resistance           | Fighting oppression or an established order               |
+| Political Intrigue   | Manipulation, alliances, and power games                  |
+| Class Conflict       | Tension between social or economic groups                 |
+| Culture Clash        | Conflicting customs, beliefs, or values                   |
+| Secrets & Lies       | Deception and the consequences of hidden truths           |
+| Unreliable Narrator  | The storyteller's account may be misleading               |
+| Mystery & Discovery  | Uncovering hidden information or forgotten history        |
+| Hope Against Odds    | Maintaining hope in difficult circumstances               |
+| Slow-Build Trust     | Trust developing gradually through shared experiences     |
