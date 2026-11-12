@@ -1,5 +1,3 @@
-<img src="assets/logo.png" alt="Logo" width="300">
-
 # Vivid Chat 
 
 **Vivid Chat** is a Python-based Telegram chat bot program, vivid is designed for high-flexibility roleplay and conversation management.  
@@ -88,24 +86,29 @@ pip install -r requirements.txt
 ---
 
 ### 4. Configuration
-Copy the sample environment file to env.json and edit it as follows:
+Copy the sample configuration file to config.yaml and edit it as follows:
 
    **Windows**
    ```powershell
-   copy env.json.sample env.json
-   notepad env.json
+   copy config.yaml.sample config.yaml
+   notepad config.yaml
    ```
    **Linux / macOS**
    ```bash
-   cp env.json.sample env.json
-   nano env.json
+   cp config.yaml.sample config.yaml
+   nano config.yaml
    ```
-Update the env.json file with the following information:
+Update the config.yaml file with the following information:
   - `TELEGRAM_USER_ID`: Your numeric Telegram User ID (get this from `@userinfobot`).
-   - `VIVID_PREFIX`: The default bot identifier (must match a key in `TELEGRAM_TOKENS` this can be anything you want, default 'vivid1').
-   - `TELEGRAM_TOKENS`: A map of prefixes to bot tokens (get tokens from `@BotFather` using  `/newbot` or `/mybots` command).
-   - `OLLAMA_ONLINE`: API keys and descriptions for hosted Ollama-compatible services keys can be found at [https://ollama.com/settings/keys](https://ollama.com/settings/keys) choose `Add API key` button when it is generated paste it to the `api_key` field. You can have multiple keys but that would require multiple accounts. This is handy because Ollama online has usage limits, but since your chat data is stored on your local computer you can just select a different account to continue.
-   - `OLLAMA_LOCAL`: IP/host URLs for instances running on a local computer. Since many users may not be running local instances, the `"show_on_provider_list"` flag is set to `false` by default, so they are not listed in the `.provider` command unless manually enabled by setting it to `true`.
+  - `TELEGRAM_TOKENS`: A map of bot names to bot tokens (get tokens from `@BotFather` using `/newbot` or `/mybots` command). Every token configured here will automatically be started as a concurrent bot instance.
+  - `PROVIDERS`: List of provider configurations. Each provider has:
+    - `name`: Unique identifier
+    - `type`: Provider type (`ollama`, `openai_compatible`, `gemini`)
+    - `url`: API endpoint URL
+    - `api_key`: (Optional) API key for authenticated providers
+    - `extra_headers`: (Optional) Extra HTTP headers for OpenAI-compatible providers
+    - `show_on_provider_list`: (Optional) Whether to show in `.provider` list (default: true)
+  - `OLLAMA_NUM_CTX`: Context window size for Ollama (default: 4096)
 
 ---
 
@@ -160,20 +163,33 @@ or something similar
 ```
 ---
 
-## 💾 Session & Context Management
+## 💾 Session, Context & Status Management
 
-Vivid Chat automatically preserves conversations—even if vivid.py crashes.
+Vivid Chat automatically preserves conversations and bot configuration across restarts and role/story switches.
 
-- Active chat is continuously saved in the `chats/` folder
-- Session file format:
-  `[VIVID_PREFIX]_last_session.json`
+- **Multi-Bot Concurrency**: Each bot defined under `TELEGRAM_TOKENS` runs concurrently with its own isolated context, active role/story, and configuration.
+- **Mutual Exclusion Tracking**: No two bots can use the same role or story simultaneously. Active assignments are tracked in `settings/bot_assignments.json`.
+- **Role/Story Switching & Auto-Reload**:
+  - When switching roles or stories, the current conversation context and configuration are automatically saved to disk before loading the target's previous context and status.
+  - Role contexts are stored in `chats_stories/chats/chat_context/<role_name>.txt`.
+  - Story contexts are stored in `chats_stories/stories/<story_name>/story_context/context.txt`.
+  - Context files use the block format:
+    ```
+    user -----------
+    <user message>
+
+    assistant -----------
+    <assistant response>
+    ```
+- **Configuration & Status Storage**:
+  - Saved in `.status` JSON files containing the active model, provider, role, mode, active characters/scenes, context limit, and generation options.
+  - For roles: stored in `chats_stories/chats/config/<role_name>.status` and `chats_stories/chats/config/.status`.
+  - For stories: stored in `chats_stories/stories/<story_name>/.status`.
+- **Session Snapshots**:
+  - Session file format: `chats_stories/chats/session/[bot_name]_last_session.json`.
 
 ### Crash Recovery or Vivid Restart
-If vivid.py crashes or you restart vivid.py, vivid.py will load your last session automatically.
-
-So vivid.py will remember the provider, model, role, character(s), scene(s) and the whole conversation history (context).
-These are all kept inside the session json.
-`[VIVID_PREFIX]_last_session.json`
+If `vivid.py` crashes or is restarted, each bot automatically reloads its last session, restoring provider, model, role/story, characters, scenes, and full context.
 
 ---
 
@@ -259,7 +275,7 @@ NOTE: commands documentation (this section) may not be the most up to date. For 
 VividChat/
 ├── vivid.py
 ├── requirements.txt
-├── env.json
+├── config.yaml
 ├── chats/
 ├── roles/
 ├── settings/
@@ -304,24 +320,33 @@ Sign up if you don't already have an account.
 
 ------------------------------------------------------------------------
 
-### 3. Add API Key to `env.json`
+### 3. Add API Key to `config.yaml`
 
-Paste your API key into the `OLLAMA_ONLINE` section:
+Add your API keys to the `PROVIDERS` section:
 
-``` json
-"OLLAMA_ONLINE": [
-  {
-    "api_key": "PUT_YOUR_KEY_HERE",
-    "description": "Ollama 1"
-  },
-  {
-    "api_key": "PUT_YOUR_KEY_HERE",
-    "description": "Ollama 2"
-  }
-]
+``` yaml
+PROVIDERS:
+  - name: "openrouter"
+    type: "openai_compatible"
+    url: "https://openrouter.ai/api/v1"
+    api_key: "your-openrouter-api-key"
+    show_on_provider_list: true
+    extra_headers:
+      HTTP-Referer: "https://github.com/your-repo"
+      X-Title: "Vivid Chat"
+  - name: "ollama-online-1"
+    type: "ollama"
+    url: "https://ollama.com"
+    api_key: "your-ollama-api-key"
+    show_on_provider_list: true
+  - name: "ollama-online-2"
+    type: "ollama"
+    url: "https://ollama.com"
+    api_key: "your-second-ollama-api-key"
+    show_on_provider_list: true
 ```
 
-------------------------------------------------------------------------
+---------------------------------------------------------------------
 
 ### 💡 Using Multiple Accounts (Recommended)
 
@@ -331,20 +356,20 @@ To work around this:
 
 -   Create **2 accounts** (for example, using two Gmail addresses)\
 -   Generate an API key for each account\
--   Add vividh keys to `env.json`
+-   Add them to `config.yaml` under the `PROVIDERS` list
 
 This allows you to:
 
--   Switch between accounts when limits are reached\
+-   Switch between accounts when limits are reached using `.provider [n]`\
 -   Continue conversations seamlessly (context is stored locally in
     `vivid.py`)
 
-------------------------------------------------------------------------
+---------------------------------------------------------------------
 
 ### 🧠 Notes
 
 -   Context is managed locally, so switching accounts does **not** reset
-    your conversation\
+    your conversation
 -   You don't need a powerful machine --- vivid mainly acts as a controller
 
 Example setup:
@@ -352,15 +377,15 @@ Example setup:
 -   Running on a **Raspberry Pi Zero W** this is what I am doing it works fine
 -   Multiple vivid instances connected to Telegram
 
-------------------------------------------------------------------------
+---------------------------------------------------------------------
 
 ### ✅ Summary
 
 -   Create Ollama account(s)\
 -   Generate API key(s)\
--   Add them to `env.json`\
+-   Add them to `config.yaml` under `PROVIDERS`\
 -   Run vivid.py\
--   Switch accounts if limits are reached
+-   Switch accounts with `.provider [n]` if limits are reached
 
 ### Running locally 
 Honestly if you're just intested in NSFW chatting use the online, if not install Ollama and do an `ollama pull [modelname]` I find Gemma 4 models are really good for NSFW roleplay / chatting.

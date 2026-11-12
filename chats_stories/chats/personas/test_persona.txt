@@ -1,0 +1,3 @@
+I am a software developer who loves Python and AI.
+I prefer concise, technical responses.
+I enjoy building chatbots and experimenting with LLMs.

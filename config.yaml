@@ -1,0 +1,62 @@
+TELEGRAM_USER_ID: 8786836755
+TELEGRAM_TOKENS:
+  chat1: "8620277934:AAH_EfxQ8HWDlU0rFj9Kqqp3rvG2PZ-hSkY"
+  chat2: "8995834058:AAGv2OZKvGEEmHyogDU9akoPzhEEhs7EnrE"
+
+# GitHub token for gist installation (increases rate limit from 60/hr to 5000/hr)
+GITHUB_TOKEN: "your-github-token"
+
+PROVIDERS:
+  - name: "local-ollama"
+    type: "ollama"
+    url: "http://192.168.1.201:11434"
+    show_on_provider_list: true
+  - name: "local-ollama-2"
+    type: "ollama"
+    url: "http://192.168.1.202:9931"
+    show_on_provider_list: true
+  - name: "openrouter"
+    type: "openai_compatible"
+    url: "https://openrouter.ai/api/v1"
+    api_key: "your-openrouter-api-key"
+    show_on_provider_list: true
+    extra_headers:
+      HTTP-Referer: "https://github.com/your-repo"
+      X-Title: "Vivid Chat"
+  - name: "llamacpp"
+    type: "openai_compatible"
+    url: "http://192.168.1.162:9931/v1"
+    # llama.cpp serves models at /models (not /v1/models), so specify models_url:
+    models_url: "http://192.168.1.162:9931/models"
+    show_on_provider_list: true
+  - name: "llamacpp-ollama"
+    type: "ollama"
+    url: "http://localhost:8080"
+    show_on_provider_list: true
+  - name: "llamacpp-remote"
+    type: "openai_compatible"
+    url: "https://your-proxy-url/v1"
+    api_key: "optional-if-auth-required"
+    show_on_provider_list: true
+  - name: "gemini"
+    type: "gemini"
+    api_key: "your-gemini-api-key"
+    show_on_provider_list: true
+
+OLLAMA_NUM_CTX: 4096
+
+# Paths
+CHATS_PATH_WINDOWS: "./chats"
+CHATS_PATH_LINUX: "./chats"
+ROLES_PATH_WINDOWS: "./roles"
+ROLES_PATH_LINUX: "./roles"
+CHARACTERS_PATH_WINDOWS: "./characters"
+CHARACTERS_PATH_LINUX: "./characters"
+SCENES_PATH_WINDOWS: "./scenes"
+SCENES_PATH_LINUX: "./scenes"
+CONTEXT_PATH_WINDOWS: "./context"
+CONTEXT_PATH_LINUX: "./context"
+SETTINGS_PATH_WINDOWS: "./settings"
+SETTINGS_PATH_LINUX: "./settings"
+STORY_PATH_WINDOWS: "./stories"
+STORY_PATH_LINUX: "./stories"

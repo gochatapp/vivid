@@ -1,0 +1,38 @@
+{
+    "metadata": {
+        "bot_name": "testbot2",
+        "model": "test-model-custom",
+        "role": "Test_Detective_Sarah",
+        "provider": "local-ollama",
+        "context_limit": 50,
+        "mode": "story",
+        "active_characters": [],
+        "active_scenes": [],
+        "active_story": "Test_Story_Alpha",
+        "num_ctx": 4096,
+        "lazy_mode": false,
+        "think_mode": false,
+        "verbose_mode": false,
+        "trace_mode": false
+    },
+    "history": [
+        {
+            "role": "system",
+            "content": "You are Sarah, a detective.",
+            "msg_ids": [],
+            "is_command": false
+        },
+        {
+            "role": "user",
+            "content": "What is happening in the city?",
+            "msg_ids": [],
+            "is_command": false
+        },
+        {
+            "role": "assistant",
+            "content": "The rain falls heavily on the neon streets.",
+            "msg_ids": [],
+            "is_command": false
+        }
+    ]
+}

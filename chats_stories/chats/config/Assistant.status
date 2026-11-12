@@ -1,0 +1,20 @@
+{
+    "model": "llama3.2:3b",
+    "provider": "local-ollama",
+    "role": "Assistant",
+    "mode": "chat",
+    "active_story": "",
+    "active_characters": [],
+    "active_scenes": [],
+    "context_limit": 50,
+    "num_ctx": 4096,
+    "temperature": 0.8,
+    "top_p": 0.9,
+    "repeat_penalty": 1.2,
+    "repeat_last_n": 64,
+    "lazy_mode": false,
+    "think_mode": false,
+    "verbose_mode": false,
+    "trace_mode": false,
+    "total_messages_sent": 0
+}
