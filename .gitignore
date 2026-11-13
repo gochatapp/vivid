@@ -1,34 +1,39 @@
-<<<<<<< HEAD
-__pycache__/
-*.pyc
-db_vivid.sqlite
+# Secrets & local configuration
+.env
+env.json
+env.paths.json
+config.yaml
 .github_token
 gist_token.txt
 gist_local.yaml
 token.txt
-db_chagto.sqlite
-scan_skipped.txt
-format_role_gists.html
-system_assets/
-=======
-# Secrets & Config
-.env
-env.json
-env.paths.json
-gist_token.txt
 
 # Python
 venv/
 __pycache__/
-*.pyc
+*.py[cod]
 
-# Data
+# Local databases and generated files
+db_vivid.sqlite
+db_chagto.sqlite
+scan_skipped.txt
+format_role_gists.html
+system_assets/
+
+# Runtime chat and story data
+chats_stories/chats/backups/
+chats_stories/chats/chat_context/
+chats_stories/chats/config/
+chats_stories/chats/session/
+chats_stories/stories/*/backups/
+chats_stories/stories/*/config/
+chats_stories/stories/*/session/
+chats_stories/stories/*/story_context/
+
+# Legacy data locations
 chats/*
 !chats/README.md
-
 characters/*
 !characters/README.md
-
 context/*
 !context/README.md
->>>>>>> 419a6478a64fa4e6d807b6f9da823424c00b3c03
