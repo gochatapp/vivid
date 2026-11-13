@@ -22,7 +22,6 @@
             </section>
 
             <section class="actions">
-                <a href="/chat" class="btn btn-primary">💬 Open Web Chat</a>
                 <button class="btn btn-secondary" onclick="refreshBots()">🔄 Refresh</button>
             </section>
         </main>
@@ -33,7 +32,7 @@
         // Initialize dashboard
         document.addEventListener('DOMContentLoaded', () => {
             loadBots();
-            setInterval(loadBots, 5000); // Auto-refresh every 5 seconds
+            setInterval(loadBots, 10000); // Auto-refresh every 10 seconds
         });
     </script>
 </body>
