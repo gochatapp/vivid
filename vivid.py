@@ -2957,7 +2957,7 @@ async def _install_story_from_gist(gist_id, gist_root, story_tag_file, status_ms
         if f.is_file() and f.name.startswith("character_") and f.suffix == ".txt":
             char_name = f.stem.replace("character_", "")
             character_names.add(char_name)
-            (story_dir / "characters" / f"{char_name}.txt").write_text(f.read_text(encoding='utf-8'))
+            (story_dir / "characters" / f"{char_name}.txt").write_text(f.read_text(encoding='utf-8'), encoding='utf-8')
     
     # Second pass: process thumb files and other files
     for f in gist_root.rglob("*"):
@@ -2989,7 +2989,7 @@ async def _install_story_from_gist(gist_id, gist_root, story_tag_file, status_ms
         # Story element files
         elif f.name.startswith("storyelement_") and f.suffix == ".txt":
             elem_name = f.stem.replace("storyelement_", "")
-            (story_dir / "storyelements" / f"{elem_name}.txt").write_text(f.read_text(encoding='utf-8'))
+            (story_dir / "storyelements" / f"{elem_name}.txt").write_text(f.read_text(encoding='utf-8'), encoding='utf-8')
         
         # Story thumb
         elif f.name == "thumb.md":

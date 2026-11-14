@@ -205,8 +205,6 @@ NOTE: commands documentation (this section) may not be the most up to date. For 
 ### 🎭 Roles
 - `.role` / `.r` — List available role profiles.
 - `.role [n]` — Switch to a role by index.
-- `.role edit [n]` — Get role text to edit.
-- `.role save [name] [text]` — Save or update a role profile file.
 - `.reload` — Reload the current role's text file from disk (updates the system prompt in history).
 - `.rs [n]` / `.rolesummary [n]` — Summarize the current role profile using a prompt template from `roles_recap.json`.
 
@@ -229,10 +227,6 @@ NOTE: commands documentation (this section) may not be the most up to date. For 
 - `.provider [n]` — Switch to a different provider.
 - `.model` / `.m` — List models available on the current provider.
 - `.model [n]` — Switch to a model by index.
-- `.model pull [name]` — (Ollama) Download a new model.
-- `.model test` — (Ollama Online) Test models for subscription requirements and save status.
-- `.model rm [n]` — (Ollama) Delete a model by index.
-- `.model loaded` — (Ollama) Sync vivid's current model with whatever is currently loaded in the provider's RAM.
 - `.mf` / `.modelsfiltered` [n/next/prev] — (Ollama Online) List, select, or cycle standard models that do not require an account upgrade.
 - `.think` — Toggle "Think Mode" (adds thinking logic/parameters for supported models).
 - `.llmctx [nk]` — Set or show the model context window size (e.g., 8k, 32k).
@@ -251,7 +245,8 @@ NOTE: commands documentation (this section) may not be the most up to date. For 
 - `.del` — Delete the last user message and vivid's response from memory.
 - `.resend` — Remove the last user message and re-trigger generation.
 - `.context [n]` — View or set the sliding context window limit (number of messages sent to LLM).
-- `.last [n]` / `.l [n]` — Show the last `n` messages from the chat history (default 3).
+- `.last [n]` — Show the last `n` messages from the chat history (default 3).
+- `.length [n]` / `.l [n]` — Set target response length (~n words); `.length clear` to reset; `.length` to view current setting.
 
 ### 📝 Predefined Messages
 - `.msg` — List saved predefined messages in the library.

@@ -3,6 +3,7 @@ BotInstance class - encapsulates state, configuration, and handlers for a single
 Extracted from vivid.py BotInstance class.
 """
 
+import asyncio
 import time
 import json
 import re
@@ -87,6 +88,7 @@ def get_bot_status_dict(bot: 'BotInstance') -> Dict[str, Any]:
         "active_characters": bot.active_characters,
         "active_scenes": bot.active_scenes,
         "context_limit": bot.context_limit,
+        "response_length": bot.response_length,
         "num_ctx": bot.generation_options.get("num_ctx", 4096),
         "temperature": bot.generation_options.get("temperature", 0.8),
         "top_p": bot.generation_options.get("top_p", 0.9),
@@ -119,6 +121,8 @@ def apply_status_dict(bot: 'BotInstance', data: Dict[str, Any]):
         bot.active_scenes = list(data["active_scenes"])
     if "context_limit" in data:
         bot.context_limit = int(data["context_limit"])
+    if "response_length" in data:
+        bot.response_length = int(data["response_length"]) if data["response_length"] is not None else None
     if "num_ctx" in data:
         bot.generation_options["num_ctx"] = int(data["num_ctx"])
     if "temperature" in data:
@@ -160,6 +164,7 @@ class BotInstance:
         self.trace_mode = False
         self.lazy_mode = False
         self.context_limit = CONTEXT_LIMIT
+        self.response_length: Optional[int] = None
         self.last_latency = 0.0
         self.total_messages_sent = 0
         self.generation_options = {
@@ -422,6 +427,7 @@ class BotInstance:
                 "persona": self.current_persona,
                 "provider": self.current_provider,
                 "context_limit": self.context_limit,
+                "response_length": self.response_length,
                 "mode": self.current_mode,
                 "active_characters": self.active_characters,
                 "active_scenes": self.active_scenes,
@@ -460,6 +466,7 @@ class BotInstance:
                         self.current_persona = meta.get("persona", self.current_persona)
                         self.current_provider = meta.get("provider", self.current_provider)
                         self.context_limit = meta.get("context_limit", self.context_limit)
+                        self.response_length = meta.get("response_length", None)
                         self.current_mode = meta.get("mode", "chat")
                         self.active_characters = meta.get("active_characters", [])
                         self.active_scenes = meta.get("active_scenes", [])

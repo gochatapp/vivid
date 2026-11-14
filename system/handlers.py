@@ -34,7 +34,7 @@ from .config import (
     AI_PROVIDERS,
     providers,
     provider_display_info,
-    TELEGRAM_USER_ID,
+    get_telegram_user_id,
     VIVID_PREFIX,
     CONFIG,
     BOT_INSTANCES,
@@ -90,9 +90,9 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     """Displays the available bot commands to the user."""
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
-        print(f"≡ƒÜ½ Help command rejected: user {update.effective_user.id} != config {TELEGRAM_USER_ID}")
+        print(f"🚫 Help command rejected: user {update.effective_user.id} != config {get_telegram_user_id()}")
 
         return
 
@@ -100,111 +100,103 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     help_text = (
 
-        "≡ƒñû *Vivid commands*\n"
+        "🤖 *Vivid commands*\n"
 
         "Commands start with a dot. Use the shown arguments where needed.\n\n"
 
         "*Help and roles*\n"
 
-        "ΓÇó `.help` / `.h` - Show this command list\n"
+        "• `.help` / `.h` - Show this command list\n"
 
-        "ΓÇó `.role` / `.r` - List roles; `.role N` switches role\n"
+        "• `.role` / `.r` - List roles; `.role N` switches role\n"
 
-        "ΓÇó `.role i` / `.role image` / `.r i` / `.r image` - List all roles with their images\n"
+        "• `.role i` / `.role image` / `.r i` / `.r image` - List all roles with their images\n"
 
-        "ΓÇó `.role edit N` - Show role text; `.role save NAME TEXT` saves it\n"
+        "• `.reload` - Reload current role; `.image` - Show its image\n"
 
-        "ΓÇó `.reload` - Reload current role; `.image` - Show its image\n"
+        "• `.rs [N]` / `.rolesummary [N]` - Summarize the current role\n"
 
-        "ΓÇó `.rs [N]` / `.rolesummary [N]` - Summarize the current role\n"
-
-        "ΓÇó `.roles` - List all available roles (chat mode only)\n\n"
+        "• `.roles` - List all available roles (chat mode only)\n\n"
 
         "*Personas (user identity)*\n"
 
-        "ΓÇó `.persona` / `.per` - List personas; `.persona N` switches persona\n"
+        "• `.persona` / `.per` - List personas; `.persona N` switches persona\n"
 
-        "ΓÇó `.persona i` / `.persona image` - List all personas with their images\n"
+        "• `.persona i` / `.persona image` - List all personas with their images\n"
 
-        "ΓÇó `.persona clear` - Clear current persona\n\n"
+        "• `.persona clear` - Clear current persona\n\n"
 
         
 
         "*Providers and models*\n"
 
-        "ΓÇó `.provider` / `.p` - List providers; `.provider N` switches provider\n"
+        "• `.provider` / `.p` - List providers; `.provider N` switches provider\n"
 
-        "ΓÇó `.model` / `.m` - List models; `.model N` switches model\n"
+        "• `.model` / `.m` - List models; `.model N` switches model\n"
 
-        "ΓÇó `.model pull NAME` - Pull model (Ollama only)\n"
+        "• `.mf [n|next|prev]` / `.modelsfiltered` - Browse accessible models\n"
 
-        "ΓÇó `.model rm N` - Remove listed model (Ollama only)\n"
+        "• `.think` - Toggle think mode\n"
 
-        "ΓÇó `.model loaded` - Select a model loaded in RAM (Ollama only)\n"
-
-        "ΓÇó `.model test` - Check model access (Ollama only)\n"
-
-        "ΓÇó `.mf [n|next|prev]` / `.modelsfiltered` - Browse accessible models\n"
-
-        "ΓÇó `.think` - Toggle think mode\n"
-
-        "ΓÇó `.llmctx [Nk]` / `.mc` / `.mcontext` - Show/set context size, e.g. `8k`\n\n"
+        "• `.llmctx [Nk]` / `.mc` / `.mcontext` - Show/set context size, e.g. `8k`\n\n"
 
         "*Stories*\n"
 
-        "ΓÇó `.story select` - List stories; `.story select NAME|N` activates one\n"
+        "• `.story select` - List stories; `.story select NAME|N` activates one\n"
 
-        "ΓÇó `.story save NAME` / `.store save NAME` - Save assistant story text\n"
+        "• `.story save NAME` / `.store save NAME` - Save assistant story text\n"
 
-        "ΓÇó `.stories` / `.st` - List stories (story mode only); `.st [N]` selects story\n"
+        "• `.stories` / `.st` - List stories (story mode only); `.st [N]` selects story\n"
 
-        "ΓÇó `.stories image` / `.stories i` - Show story thumbnails\n"
+        "• `.stories image` / `.stories i` - Show story thumbnails\n"
 
-        "ΓÇó `.char` - List characters; `.char [N|NAME] [on|off]` toggles one\n"
+        "• `.char` - List characters; `.char [N|NAME] [on|off]` toggles one\n"
 
-        "ΓÇó `.char all off` - Deactivate all characters\n"
+        "• `.char all off` - Deactivate all characters\n"
 
-        "ΓÇó `.char edit N`; `.char save NAME TEXT`\n"
+        "• `.char edit N`; `.char save NAME TEXT`\n"
 
-        "ΓÇó `.element` / `.el` - List story elements\n"
+        "• `.element` / `.el` - List story elements\n"
 
-        "ΓÇó `.element [N|NAME] [on|off]`; `.element all off`\n"
+        "• `.element [N|NAME] [on|off]`; `.element all off`\n"
 
-        "ΓÇó `.element edit N`; `.element save NAME TEXT`\n"
+        "• `.element edit N`; `.element save NAME TEXT`\n"
 
-        "ΓÇó `.install GIST_ID_OR_URL` - Install a role or story from a GitHub Gist\n\n"
+        "• `.install GIST_ID_OR_URL` - Install a role or story from a GitHub Gist\n\n"
 
         "*Chats and history*\n"
 
-        "ΓÇó `.chat` / `.chats` / `.c` - List saved chats\n"
+        "• `.chat` / `.chats` / `.c` - List saved chats\n"
 
-        "ΓÇó `.chat save NAME`; `.chat load NAME`\n"
+        "• `.chat save NAME`; `.chat load NAME`\n"
 
-        "ΓÇó `.clear` - Clear conversation memory\n"
+        "• `.clear` - Clear conversation memory\n"
 
-        "ΓÇó `.clean` / `.cl` - Clear memory and remove chat messages\n"
+        "• `.clean` / `.cl` - Clear memory and remove chat messages\n"
 
-        "ΓÇó `.mode [chat|story]` / `.mo` - Show or change mode\n"
+        "• `.mode [chat|story]` / `.mo` - Show or change mode\n"
 
-        f"ΓÇó `.recap [N]` - Summarize the last {CONTEXT_LIMIT} messages, with optional prompt N\n"
+        f"• `.recap [N]` - Summarize the last {CONTEXT_LIMIT} messages, with optional prompt N\n"
 
-        "ΓÇó `.ask QUESTION` - Ask about conversation history\n"
+        "• `.ask QUESTION` - Ask about conversation history\n"
 
-        "ΓÇó `.last [N]` / `.l` - Show recent messages (3 by default)\n"
+        "• `.last [N]` - Show recent messages (3 by default)\n"
 
-        "ΓÇó `.del` - Delete last exchange; `.resend` - Retry last user message\n"
+        "• `.length [N]` / `.l [N]` - Set target response length (~N words); `.length clear` to reset\n"
 
-        "ΓÇó `.context [NUMBER]` - Show/set history context limit\n\n"
+        "• `.del` - Delete last exchange; `.resend` - Retry last user message\n"
+
+        "• `.context [NUMBER]` - Show/set history context limit\n\n"
 
         "*Settings and status*\n"
 
-        "ΓÇó `.status` / `.s` - Show current settings\n"
+        "• `.status` / `.s` - Show current settings\n"
 
-        "ΓÇó `.verbose` / `.v` - Toggle response details\n"
+        "• `.verbose` / `.v` - Toggle response details\n"
 
-        "ΓÇó `.trace [on|off]` - Toggle request tracing\n"
+        "• `.trace [on|off]` - Toggle request tracing\n"
 
-        "ΓÇó `.lazy` / `.lz` - Toggle commands without the dot"
+        "• `.lazy` / `.lz` - Toggle commands without the dot"
 
     )
 
@@ -228,7 +220,7 @@ async def provider_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     """
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -258,7 +250,7 @@ async def list_providers(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     bot = get_bot(context, update)
 
-    text = f"≡ƒîÉ **AI Providers (Bot: {bot.name})**\n\n"
+    text = f"🌐 **AI Providers (Bot: {bot.name})**\n\n"
 
     idx = 1
 
@@ -266,7 +258,7 @@ async def list_providers(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     for p in AI_PROVIDERS:
 
-        active = "Γ£à" if p == bot.current_provider else ""
+        active = "✅" if p == bot.current_provider else ""
 
         desc = provider_display_info.get(p, p)
 
@@ -294,11 +286,11 @@ async def switch_provider(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         display = provider_display_info.get(bot.current_provider, bot.current_provider)
 
-        await reply_transient(update, context, f"≡ƒÜÇ Using: `{display}`")
+        await reply_transient(update, context, f"🚀 Using: `{display}`")
 
     except:
 
-        await reply_and_log(update, "Γ¥î Usage: `.provider [n]`", bot=bot)
+        await reply_and_log(update, "❌ Usage: `.provider [n]`", bot=bot)
 
 
 
@@ -310,7 +302,7 @@ async def list_models(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     """
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -324,7 +316,7 @@ async def list_models(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         provider_name = escape_markdown(bot.current_provider)
 
-        await reply_and_log(update, f"ΓÜá∩╕Å Provider '{provider_name}' not found.", bot=bot)
+        await reply_and_log(update, f"⚠️ Provider '{provider_name}' not found.", bot=bot)
 
         return
 
@@ -336,7 +328,7 @@ async def list_models(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if not models:
 
-            await reply_and_log(update, "≡ƒô¡ No models found.", bot=bot)
+            await reply_and_log(update, "📭 No models found.", bot=bot)
 
             return
 
@@ -352,7 +344,7 @@ async def list_models(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         for i, m in enumerate(models):
 
-            active = " Γ£à" if m == bot.current_model else ""
+            active = " ✅" if m == bot.current_model else ""
 
             model_list.append(f"{i+1}) `{m}`{active}")
 
@@ -360,7 +352,7 @@ async def list_models(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         display = provider.get_display_name()
 
-        text = f"≡ƒñû **`{display}` Models (Bot: {bot.name}):**\n" + "\n".join(model_list)
+        text = f"🤖 **`{display}` Models (Bot: {bot.name}):**\n" + "\n".join(model_list)
 
         await reply_and_log(update, text, bot=bot)
 
@@ -368,7 +360,7 @@ async def list_models(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         display = provider.get_display_name()
 
-        await reply_and_log(update, f"Γ¥î Failed to reach {display}: {e}", bot=bot)
+        await reply_and_log(update, f"❌ Failed to reach {display}: {e}", bot=bot)
 
 
 
@@ -392,55 +384,13 @@ async def model_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 
-async def delete_model_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-
-    """Deletes a model from the provider (Ollama only)."""
-
-    bot = get_bot(context, update)
-
-    provider = providers.get(bot.current_provider)
-
-    if not provider or not provider.supports_model_management():
-
-        await reply_and_log(update, "Γ¥î Model deletion only supported for Ollama providers.", bot=bot)
-
-        return
-
-    try:
-
-        idx = int(context.args[1]) - 1
-
-        if not bot.cached_models:
-
-            bot.cached_models = await provider.list_models()
-
-            bot.cached_models.sort()
-
-        target = bot.cached_models[idx]
-
-        await provider.delete_model(target)
-
-        bot.cached_models = []
-
-        await reply_and_log(update, f"≡ƒùæ∩╕Å Model `{target}` deleted.", bot=bot)
-
-    except Exception as e:
-
-        await reply_and_log(update, f"Γ¥î Failed to delete model: {e}", bot=bot)
-
-
-
 async def switch_model(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     """
 
-    Handles model switching and management sub-commands:
+    Handles model switching:
 
-    - 'loaded': Syncs current_model with whatever is in the provider's RAM (Ollama only).
-
-    - 'pull': Triggers an async model download (Ollama only).
-
-    - 'rm': Deletes a model from the provider (Ollama only).
+    - Switches model by number (.model 3)
 
     """
 
@@ -452,7 +402,7 @@ async def switch_model(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         provider_name = escape_markdown(bot.current_provider)
 
-        await reply_and_log(update, f"ΓÜá∩╕Å Provider '{provider_name}' not found.", bot=bot)
+        await reply_and_log(update, f"⚠️ Provider '{provider_name}' not found.", bot=bot)
 
         return
 
@@ -462,81 +412,7 @@ async def switch_model(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 
-    # --- TEST MODELS (.model test) ---
-
-    if sub_cmd == "test":
-
-        await test_provider_models(update, context)
-
-        return
-
-
-
-    # --- A. SYNC WITH RAM (Ollama only) ---
-
-    if sub_cmd == "loaded":
-
-        if not provider.supports_model_management():
-
-            await reply_and_log(update, "Γ¥î 'loaded' command only supported for Ollama providers.", bot=bot)
-
-            return
-
-        try:
-
-            if isinstance(provider, OllamaProvider):
-
-                resp = await provider.client.ps()
-
-                if hasattr(resp, 'models') and resp.models:
-
-                    bot.current_model = resp.models[0].model
-
-                    bot.save_active_context_and_status()
-
-                    await reply_transient(update, context, f"≡ƒöä **Syncing:** Now using `{bot.current_model}`.")
-
-                else:
-
-                    display = provider.get_display_name()
-
-                    await reply_and_log(update, f"Γä╣∩╕Å No models loaded in RAM on `{display}`.", bot=bot)
-
-            else:
-
-                await reply_and_log(update, "Γ¥î 'loaded' command only supported for Ollama providers.", bot=bot)
-
-        except Exception as e:
-
-            display = provider.get_display_name()
-
-            await reply_and_log(update, f"Γ¥î Failed to check {display}: {e}", bot=bot)
-
-        return
-
-
-
-    # --- B. PULL MODEL (.model pull name) ---
-
-    if sub_cmd == "pull" and len(context.args) > 1:
-
-        await pull_model(update, context)
-
-        return
-
-
-
-    # --- C. REMOVE MODEL (.model rm 2) ---
-
-    if sub_cmd == "rm" and len(context.args) > 1:
-
-        await delete_model_command(update, context)
-
-        return
-
-
-
-    # --- D. SWITCH BY NUMBER (.model 3) ---
+    # Switch by number (.model 3)
 
     try:
 
@@ -550,73 +426,17 @@ async def switch_model(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
             bot.cached_models = models
 
-        
+
 
         bot.current_model = bot.cached_models[index]
 
         bot.save_active_context_and_status()
 
-        await reply_transient(update, context, f"≡ƒºá Switched to: `{bot.current_model}`")
+        await reply_transient(update, context, f"🧠 Switched to: `{bot.current_model}`")
 
     except:
 
-        await reply_and_log(update, "Γ¥î Invalid command or index. Use `.model` for options.", bot=bot)
-
-
-
-async def pull_model(update: Update, context: ContextTypes.DEFAULT_TYPE):
-
-    """Asynchronously pulls a model to the provider (Ollama only)."""
-
-    bot = get_bot(context, update)
-
-    provider = providers.get(bot.current_provider)
-
-    if not provider:
-
-        provider_name = escape_markdown(bot.current_provider)
-
-        await reply_and_log(update, f"Γ¥î Provider '{provider_name}' not found.", bot=bot)
-
-        return
-
-
-
-    if not provider.supports_model_management():
-
-        await reply_and_log(update, "Γ¥î Model pulling only supported for Ollama providers.", bot=bot)
-
-        return
-
-
-
-    model_name = context.args[1]
-
-    status_msg = await update.message.reply_text(f"≡ƒôÑ Starting pull for `{model_name}`...")
-
-    
-
-    try:
-
-        async for part in provider.pull_model(model_name):
-
-            if 'percentage' in part:
-
-                progress = part['percentage']
-
-                if progress % 10 == 0:
-
-                    await status_msg.edit_text(f"≡ƒôÑ Pulling `{model_name}`: {progress}%")
-
-        
-
-        await status_msg.edit_text(f"Γ£à Successfully pulled `{model_name}`!")
-
-        bot.cached_models = []
-
-    except Exception as e:
-
-        await status_msg.edit_text(f"Γ¥î Pull failed: {e}")
+        await reply_and_log(update, "❌ Invalid command or index. Use `.model` for options.", bot=bot)
 
 
 
@@ -632,7 +452,7 @@ async def reload_role_command(update: Update, context: ContextTypes.DEFAULT_TYPE
 
     """
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -662,7 +482,7 @@ async def reload_role_command(update: Update, context: ContextTypes.DEFAULT_TYPE
 
         display_name = format_role_display(bot.current_role)
 
-        await reply_transient(update, context, f"≡ƒöä Role `{display_name}` reloaded.")
+        await reply_transient(update, context, f"🔄 Role `{display_name}` reloaded.")
 
     else:
 
@@ -670,7 +490,7 @@ async def reload_role_command(update: Update, context: ContextTypes.DEFAULT_TYPE
 
         display_name = format_role_display(bot.current_role)
 
-        await reply_transient(update, context, f"Γ£¿ Role `{display_name}` reloaded.")
+        await reply_transient(update, context, f"✨ Role `{display_name}` reloaded.")
 
 
 
@@ -690,7 +510,7 @@ async def role_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     """
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -704,7 +524,7 @@ async def role_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if not context.args:
 
-        text = f"≡ƒÄ¡ **Available Roles (Bot: {bot.name}):**\n"
+        text = f"🎭 **Available Roles (Bot: {bot.name}):**\n"
 
         for i, f in enumerate(role_files):
 
@@ -716,11 +536,11 @@ async def role_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
             if is_active:
 
-                indicator = "Γ£à"
+                indicator = "✅"
 
             elif owner and owner != bot.name:
 
-                indicator = f"≡ƒöÆ (in use by {owner})"
+                indicator = f"🔒 (in use by {owner})"
 
             else:
 
@@ -746,52 +566,6 @@ async def role_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 
-    # Handle .role save [name] [text]
-
-    if len(context.args) >= 3 and context.args[0].lower() == "save":
-
-        target = context.args[1]
-
-        content = " ".join(context.args[2:])
-
-        (ROLES_DIR / f"{target}.txt").write_text(content, encoding='utf-8')
-
-        await reply_and_log(update, f"≡ƒÆ╛ Role `{target}` saved.", bot=bot)
-
-        return
-
-
-
-    # Handle .role edit [n]
-
-    if len(context.args) >= 2 and context.args[0].lower() == "edit":
-
-        try:
-
-            idx = int(context.args[1]) - 1
-
-            selected_file = role_files[idx]
-
-            name = selected_file.stem
-
-            content = selected_file.read_text(encoding='utf-8').strip()
-
-            text = f".role save {name} {content}"
-
-            for i in range(0, len(text), 4000):
-
-                await update.message.reply_text(text[i:i+4000])
-
-            return
-
-        except Exception:
-
-            await reply_and_log(update, "Γ¥î Use `.role edit [number]`", bot=bot)
-
-            return
-
-
-
     try:
 
         idx = int(context.args[0]) - 1
@@ -806,7 +580,7 @@ async def role_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if not success:
 
-            await reply_and_log(update, f"Γ¥î {err}", bot=bot)
+            await reply_and_log(update, f"❌ {err}", bot=bot)
 
             return
 
@@ -814,13 +588,13 @@ async def role_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         display_name = format_role_display(bot.current_role)
 
-        await reply_transient(update, context, f"Γ£à Switched to `{display_name}`.")
+        await reply_transient(update, context, f"✅ Switched to `{display_name}`.")
 
         await show_role_image(update, context, bot.current_role)
 
     except:
 
-        await reply_and_log(update, "Γ¥î Use `.role [number]`", bot=bot)
+        await reply_and_log(update, "❌ Use `.role [number]`", bot=bot)
 
 
 
@@ -848,7 +622,7 @@ async def show_role_image(update: Update, context: ContextTypes.DEFAULT_TYPE, ro
 
             except Exception as e:
 
-                print(f"ΓÜá∩╕Å Failed to send role image: {e}")
+                print(f"⚠️ Failed to send role image: {e}")
 
     display_name = format_role_display(role_name)
 
@@ -878,7 +652,7 @@ async def show_persona_image(update: Update, context: ContextTypes.DEFAULT_TYPE,
 
             except Exception as e:
 
-                print(f"ΓÜá∩╕Å Failed to send persona image: {e}")
+                print(f"⚠️ Failed to send persona image: {e}")
 
     # No image found
 
@@ -900,13 +674,13 @@ async def list_personas_with_images(update: Update, context: ContextTypes.DEFAUL
 
     if not persona_files:
 
-        await reply_and_log(update, "≡ƒô¡ No personas found in chats/personas/", bot=bot)
+        await reply_and_log(update, "📭 No personas found in chats/personas/", bot=bot)
 
         return
 
     
 
-    await reply_and_log(update, f"≡ƒæñ **Available Personas (Bot: {bot.name}):**", bot=bot)
+    await reply_and_log(update, f"👤 **Available Personas (Bot: {bot.name}):**", bot=bot)
 
     
 
@@ -918,7 +692,7 @@ async def list_personas_with_images(update: Update, context: ContextTypes.DEFAUL
 
         display_name = format_role_display(p_stem)
 
-        indicator = "Γ£à" if is_active else ""
+        indicator = "✅" if is_active else ""
 
         
 
@@ -952,7 +726,7 @@ async def persona_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     """
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -966,7 +740,7 @@ async def persona_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if not context.args:
 
-        text = f"≡ƒæñ **Available Personas (Bot: {bot.name}):**\n"
+        text = f"👤 **Available Personas (Bot: {bot.name}):**\n"
 
         for i, f in enumerate(persona_files):
 
@@ -976,7 +750,7 @@ async def persona_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
             display_name = format_role_display(p_stem)
 
-            indicator = "Γ£à" if is_active else ""
+            indicator = "✅" if is_active else ""
 
             text += f"{i+1}. `{display_name}` {indicator}\n"
 
@@ -1008,11 +782,11 @@ async def persona_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if success:
 
-            await reply_transient(update, context, "Γ£à Persona cleared.")
+            await reply_transient(update, context, "✅ Persona cleared.")
 
         else:
 
-            await reply_and_log(update, f"Γ¥î {err}", bot=bot)
+            await reply_and_log(update, f"❌ {err}", bot=bot)
 
         return
 
@@ -1032,7 +806,7 @@ async def persona_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if not success:
 
-            await reply_and_log(update, f"Γ¥î {err}", bot=bot)
+            await reply_and_log(update, f"❌ {err}", bot=bot)
 
             return
 
@@ -1040,15 +814,15 @@ async def persona_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         display_name = format_role_display(bot.current_persona)
 
-        await reply_transient(update, context, f"Γ£à Switched to persona `{display_name}`.")
+        await reply_transient(update, context, f"✅ Switched to persona `{display_name}`.")
 
         await show_persona_image(update, context, bot.current_persona)
 
     except:
 
-        await reply_and_log(update, "Γ¥î Use `.persona [number]`, `.persona i`, or `.persona clear`", bot=bot)
+        await reply_and_log(update, "❌ Use `.persona [number]`, `.persona i`, or `.persona clear`", bot=bot)
 
-    await reply_and_log(update, f"≡ƒû╝∩╕Å No image found for role `{display_name}`.", bot=bot)
+    await reply_and_log(update, f"🖼️ No image found for role `{display_name}`.", bot=bot)
 
 
 
@@ -1058,7 +832,7 @@ async def list_roles_with_images(update: Update, context: ContextTypes.DEFAULT_T
 
     """List all available roles with their images (each role name shown with its image as caption)."""
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -1072,7 +846,7 @@ async def list_roles_with_images(update: Update, context: ContextTypes.DEFAULT_T
 
     if not role_files:
 
-        await reply_and_log(update, "≡ƒô¡ No roles found.", bot=bot)
+        await reply_and_log(update, "📭 No roles found.", bot=bot)
 
         return
 
@@ -1084,7 +858,7 @@ async def list_roles_with_images(update: Update, context: ContextTypes.DEFAULT_T
 
         display_name = format_role_display(f.stem)
 
-        active = "Γ£à " if f.stem == bot.current_role else ""
+        active = "✅ " if f.stem == bot.current_role else ""
 
         caption = f"{i+1}. {active}`{display_name}`"
 
@@ -1112,13 +886,13 @@ async def list_roles_with_images(update: Update, context: ContextTypes.DEFAULT_T
 
                 except Exception as e:
 
-                    print(f"ΓÜá∩╕Å Failed to send role image for {f.stem}: {e}")
+                    print(f"⚠️ Failed to send role image for {f.stem}: {e}")
 
         
 
         if not image_found:
 
-            await reply_and_log(update, f"≡ƒû╝∩╕Å {caption} ΓÇö *No image*", bot=bot)
+            await reply_and_log(update, f"🖼️ {caption} — *No image*", bot=bot)
 
 
 
@@ -1134,7 +908,7 @@ async def image_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     """
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -1156,7 +930,7 @@ async def chat_actions(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     """
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -1206,7 +980,7 @@ async def chat_actions(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 
-        notice = "≡ƒº╣ Chat and UI cleaned." if is_clean else "Γ£¿ Memory cleared."
+        notice = "🧹 Chat and UI cleaned." if is_clean else "✨ Memory cleared."
 
         await reply_transient(update, context, notice)
 
@@ -1220,7 +994,7 @@ async def chat_actions(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if not files:
 
-            await update.message.reply_text("≡ƒôé No saved chats found.")
+            await update.message.reply_text("📂 No saved chats found.")
 
             return
 
@@ -1228,7 +1002,7 @@ async def chat_actions(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         chat_names = [f.stem for f in files if "last_session" not in f.name]
 
-        text = f"≡ƒôé **Saved Chats on Disk (Bot: {bot.name}):**\n" + "\n".join([f"ΓÇó `{name}`" for name in chat_names])
+        text = f"📂 **Saved Chats on Disk (Bot: {bot.name}):**\n" + "\n".join([f"• `{name}`" for name in chat_names])
 
         await reply_and_log(update, text, bot=bot)
 
@@ -1254,7 +1028,7 @@ async def chat_actions(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
             json.dump(get_bot_status_dict(bot), f, indent=4, ensure_ascii=False)
 
-        await reply_and_log(update, f"≡ƒÆ╛ Saved as `{target_name}`", bot=bot)
+        await reply_and_log(update, f"💾 Saved as `{target_name}`", bot=bot)
 
     elif cmd == "load" and len(context.args) > 1:
 
@@ -1264,7 +1038,7 @@ async def chat_actions(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
             owner = tracker.get_chat_owner(target_name)
 
-            await reply_and_log(update, f"Γ¥î Chat `{target_name}` is currently in use by bot `{owner}`. No two bots can use the same role or chat.", bot=bot)
+            await reply_and_log(update, f"❌ Chat `{target_name}` is currently in use by bot `{owner}`. No two bots can use the same role or chat.", bot=bot)
 
             return
 
@@ -1298,7 +1072,7 @@ async def chat_actions(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
             bot.save_session("last_session")
 
-            await reply_and_log(update, f"≡ƒôé Loaded `{target_name}`", bot=bot)
+            await reply_and_log(update, f"📂 Loaded `{target_name}`", bot=bot)
 
             
 
@@ -1306,11 +1080,11 @@ async def chat_actions(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
             if recent:
 
-                await reply_and_log(update, "≡ƒô£ **Recent History Preview:**", bot=bot)
+                await reply_and_log(update, "📜 **Recent History Preview:**", bot=bot)
 
                 for msg in recent:
 
-                    icon = "≡ƒæñ" if msg.get('role') == 'user' else "≡ƒñû"
+                    icon = "👤" if msg.get('role') == 'user' else "🤖"
 
                     text = f"{icon} {msg.get('content', '')}"
 
@@ -1318,7 +1092,7 @@ async def chat_actions(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         else:
 
-            await reply_and_log(update, f"Γ¥î Could not load chat `{target_name}`", bot=bot)
+            await reply_and_log(update, f"❌ Could not load chat `{target_name}`", bot=bot)
 
 
 
@@ -1334,7 +1108,7 @@ async def resend_last_message(update: Update, context: ContextTypes.DEFAULT_TYPE
 
     """
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -1344,7 +1118,7 @@ async def resend_last_message(update: Update, context: ContextTypes.DEFAULT_TYPE
 
     if len(bot.chat_history) < 2:
 
-        await reply_and_log(update, "Γ¥î No message history to resend.", bot=bot)
+        await reply_and_log(update, "❌ No message history to resend.", bot=bot)
 
         return
 
@@ -1388,7 +1162,7 @@ async def resend_last_message(update: Update, context: ContextTypes.DEFAULT_TYPE
 
     else:
 
-        await reply_and_log(update, "Γ¥î Could not find a user message to resend.", bot=bot)
+        await reply_and_log(update, "❌ Could not find a user message to resend.", bot=bot)
 
 
 
@@ -1396,7 +1170,7 @@ async def toggle_lazy(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     """Toggles 'Lazy Mode' allowing commands to work without the leading dot."""
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -1408,7 +1182,7 @@ async def toggle_lazy(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     bot.save_active_context_and_status()
 
-    status = "ON ≡ƒÿ┤ (Commands work without dots)" if bot.lazy_mode else "OFF ΓÜí (Dots required)"
+    status = "ON 😴 (Commands work without dots)" if bot.lazy_mode else "OFF ⚡ (Dots required)"
 
     await reply_and_log(update, f"Lazy Mode: {status}", bot=bot)
 
@@ -1426,7 +1200,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE, inc
 
     """
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -1528,6 +1302,12 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE, inc
 
 
 
+    if bot.response_length:
+
+        full_system_prompt += f"\n\nIMPORTANT INSTRUCTION: Your response must be approximately {bot.response_length} words long."
+
+
+
     # Track ID for the user's incoming prompt
 
     user_entry = {"role": "user", "content": prompt, "is_command": False}
@@ -1582,7 +1362,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE, inc
 
         except Exception as e:
 
-            print(f"Γ¥î Trace failed: {e}")
+            print(f"❌ Trace failed: {e}")
 
 
 
@@ -1610,7 +1390,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE, inc
 
             except Exception as e:
 
-                print(f"Γ¥î Response Trace failed: {e}")
+                print(f"❌ Response Trace failed: {e}")
 
 
 
@@ -1654,7 +1434,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE, inc
 
     except Exception as e:
 
-        await update.message.reply_text(f"Γ¥î Error: {e}")
+        await update.message.reply_text(f"❌ Error: {e}")
 
         
 
@@ -1662,7 +1442,7 @@ async def toggle_think(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     """Toggles 'Think Mode' for Ollama models (adds <think> logic to options)."""
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -1674,7 +1454,7 @@ async def toggle_think(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     bot.save_active_context_and_status()
 
-    await reply_transient(update, context, f"Think Mode: {'ON ≡ƒºá' if bot.think_mode else 'OFF ΓÜí'}")
+    await reply_transient(update, context, f"Think Mode: {'ON 🧠' if bot.think_mode else 'OFF ⚡'}")
 
 
 
@@ -1682,7 +1462,7 @@ async def llmcontext_command(update: Update, context: ContextTypes.DEFAULT_TYPE)
 
     """Sets or shows the LLM context window (num_ctx). Requires 'k' suffix."""
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -1694,7 +1474,7 @@ async def llmcontext_command(update: Update, context: ContextTypes.DEFAULT_TYPE)
 
         ctx_val = bot.generation_options.get("num_ctx", 4096)
 
-        await reply_and_log(update, f"≡ƒºá Model Context Window (num_ctx): `{ctx_val}`", bot=bot)
+        await reply_and_log(update, f"🧠 Model Context Window (num_ctx): `{ctx_val}`", bot=bot)
 
         return
 
@@ -1704,7 +1484,7 @@ async def llmcontext_command(update: Update, context: ContextTypes.DEFAULT_TYPE)
 
     if not val.endswith("k"):
 
-        await reply_and_log(update, "Γ¥î Error: Context must be specified with 'k' (e.g., 8k, 32k, 128k).", bot=bot)
+        await reply_and_log(update, "❌ Error: Context must be specified with 'k' (e.g., 8k, 32k, 128k).", bot=bot)
 
         return
 
@@ -1718,11 +1498,11 @@ async def llmcontext_command(update: Update, context: ContextTypes.DEFAULT_TYPE)
 
         bot.save_active_context_and_status()
 
-        await reply_transient(update, context, f"Γ£à Model context window set to `{num}` ({val}).")
+        await reply_transient(update, context, f"✅ Model context window set to `{num}` ({val}).")
 
     except ValueError:
 
-        await reply_and_log(update, "Γ¥î Error: Invalid number format. Use e.g., 8k.", bot=bot)
+        await reply_and_log(update, "❌ Error: Invalid number format. Use e.g., 8k.", bot=bot)
 
 
 
@@ -1730,7 +1510,7 @@ async def toggle_verbose(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     """Toggles the display of metadata (latency, size) after each message."""
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -1742,7 +1522,7 @@ async def toggle_verbose(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     bot.save_active_context_and_status()
 
-    await reply_transient(update, context, f"Verbose Mode: {'ON Γ£à' if bot.verbose_mode else 'OFF Γ¥î'}")
+    await reply_transient(update, context, f"Verbose Mode: {'ON ✅' if bot.verbose_mode else 'OFF ❌'}")
 
 
 
@@ -1750,7 +1530,7 @@ async def toggle_trace(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     """Toggles 'Trace Mode' to write LLM payloads to the context folder."""
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -1778,7 +1558,7 @@ async def toggle_trace(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     bot.save_active_context_and_status()
 
-    await reply_transient(update, context, f"Trace Mode: {'ON ≡ƒô¥' if bot.trace_mode else 'OFF Γ¥î'}")
+    await reply_transient(update, context, f"Trace Mode: {'ON 📝' if bot.trace_mode else 'OFF ❌'}")
 
 
 
@@ -1792,7 +1572,7 @@ async def status_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     """Displays current configuration and session statistics."""
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -1812,29 +1592,31 @@ async def status_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     status_text = (
 
-        f"≡ƒôè **Status (Bot: {bot.name})**\n---\n"
+        f"📊 **Status (Bot: {bot.name})**\n---\n"
 
-        f"≡ƒîÉ Provider: `{display}`\n"
+        f"🌐 Provider: `{display}`\n"
 
-        f"≡ƒºá Model: `{bot.current_model}`\n"
+        f"🧠 Model: `{bot.current_model}`\n"
 
-        f"≡ƒÄ¡ Role: `{display_name}`\n"
+        f"🎭 Role: `{display_name}`\n"
 
-        f"≡ƒæñ Persona: `{persona_display}`\n"
+        f"👤 Persona: `{persona_display}`\n"
 
-        f"≡ƒôû Mode: `{bot.current_mode}`\n"
+        f"📖 Mode: `{bot.current_mode}`\n"
 
-        f"≡ƒô¥ Trace Mode: `{'ON' if bot.trace_mode else 'OFF'}`\n"
+        f"📝 Trace Mode: `{'ON' if bot.trace_mode else 'OFF'}`\n"
 
-        f"≡ƒÿ┤ Lazy Mode: `{'ON' if bot.lazy_mode else 'OFF'}`\n"
+        f"😴 Lazy Mode: `{'ON' if bot.lazy_mode else 'OFF'}`\n"
 
-        f"≡ƒæÑ Active Chars: `{', '.join(bot.active_characters) if bot.active_characters else 'None'}`\n"
+        f"👥 Active Chars: `{', '.join(bot.active_characters) if bot.active_characters else 'None'}`\n"
 
-        f"≡ƒÄ¼ Active Scenes: `{', '.join(bot.active_scenes) if bot.active_scenes else 'None'}`\n"
+        f"🎬 Active Scenes: `{', '.join(bot.active_scenes) if bot.active_scenes else 'None'}`\n"
 
-        f"≡ƒÆ╛ Context: `{len(bot.chat_history)}` msgs `{size_kb}KB` max `{bot.context_limit}`\n"
+        f"💾 Context: `{len(bot.chat_history)}` msgs `{size_kb}KB` max `{bot.context_limit}`\n"
 
-        f"≡ƒºá LLM Ctx: `{bot.generation_options['num_ctx']}`"
+        f"📏 Length: `{f'~{bot.response_length} words' if bot.response_length else 'None'}`\n"
+
+        f"🧠 LLM Ctx: `{bot.generation_options['num_ctx']}`"
 
     )
 
@@ -1846,7 +1628,7 @@ async def mode_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     """Switches between chat mode (full history) and story mode (assistant only history)."""
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -1856,7 +1638,7 @@ async def mode_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if not context.args:
 
-        await reply_and_log(update, f"≡ƒôû Current Mode: `{bot.current_mode}`\nUsage: `.mode [chat/story]`", bot=bot)
+        await reply_and_log(update, f"📖 Current Mode: `{bot.current_mode}`\nUsage: `.mode [chat/story]`", bot=bot)
 
         return
 
@@ -1886,11 +1668,11 @@ async def mode_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         bot.save_session("last_session")
 
-        await reply_transient(update, context, f"Γ£à Mode switched to `{bot.current_mode}`.")
+        await reply_transient(update, context, f"✅ Mode switched to `{bot.current_mode}`.")
 
     else:
 
-        await reply_and_log(update, "Γ¥î Invalid mode. Use `.mode chat` or `.mode story`.", bot=bot)
+        await reply_and_log(update, "❌ Invalid mode. Use `.mode chat` or `.mode story`.", bot=bot)
 
 
 
@@ -1906,7 +1688,7 @@ async def ask_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     """
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -1916,7 +1698,7 @@ async def ask_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if not context.args:
 
-        await reply_and_log(update, "Γ¥î Usage: `.ask [question]`", bot=bot)
+        await reply_and_log(update, "❌ Usage: `.ask [question]`", bot=bot)
 
         return
 
@@ -1950,7 +1732,7 @@ async def ask_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         except Exception as e:
 
-            print(f"Γ¥î Trace failed: {e}")
+            print(f"❌ Trace failed: {e}")
 
 
 
@@ -1976,11 +1758,11 @@ async def ask_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
             except Exception as e:
 
-                print(f"Γ¥î Response Trace failed: {e}")
+                print(f"❌ Response Trace failed: {e}")
 
 
 
-        header = f"Γ¥ô **Ask:** {question}\n\n≡ƒÆí **Answer:**\n"
+        header = f"❓ **Ask:** {question}\n\n💡 **Answer:**\n"
 
         full_response = header + reply
 
@@ -1988,7 +1770,7 @@ async def ask_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     except Exception as e:
 
-        await reply_and_log(update, f"Γ¥î Ask failed: {e}", bot=bot)
+        await reply_and_log(update, f"❌ Ask failed: {e}", bot=bot)
 
 
 
@@ -2002,7 +1784,7 @@ async def delete_last_message(update: Update, context: ContextTypes.DEFAULT_TYPE
 
     """
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -2012,7 +1794,7 @@ async def delete_last_message(update: Update, context: ContextTypes.DEFAULT_TYPE
 
     if len(bot.chat_history) < 2:
 
-        await reply_and_log(update, "Γ¥î Not enough messages to delete.", bot=bot)
+        await reply_and_log(update, "❌ Not enough messages to delete.", bot=bot)
 
         return
 
@@ -2036,7 +1818,7 @@ async def delete_last_message(update: Update, context: ContextTypes.DEFAULT_TYPE
 
     bot.save_active_context_and_status()
 
-    await reply_and_log(update, "≡ƒùæ∩╕Å Deleted last entries from history and chat.", bot=bot)
+    await reply_and_log(update, "🗑️ Deleted last entries from history and chat.", bot=bot)
 
 
 
@@ -2044,7 +1826,7 @@ async def set_context_limit(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     """Sets how many history messages are sent to the LLM per prompt."""
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -2054,7 +1836,7 @@ async def set_context_limit(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if not context.args:
 
-        await reply_and_log(update, f"≡ƒôè Current context limit: `{bot.context_limit}` messages", bot=bot)
+        await reply_and_log(update, f"📊 Current context limit: `{bot.context_limit}` messages", bot=bot)
 
         return
 
@@ -2066,7 +1848,7 @@ async def set_context_limit(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if new_limit < 1:
 
-            await reply_and_log(update, "Γ¥î Context limit must be at least 1.", bot=bot)
+            await reply_and_log(update, "❌ Context limit must be at least 1.", bot=bot)
 
             return
 
@@ -2074,11 +1856,11 @@ async def set_context_limit(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         bot.save_active_context_and_status()
 
-        await reply_transient(update, context, f"Γ£à Context limit changed to `{bot.context_limit}` messages.")
+        await reply_transient(update, context, f"✅ Context limit changed to `{bot.context_limit}` messages.")
 
     except ValueError:
 
-        await reply_and_log(update, "Γ¥î Usage: `.context [number]`", bot=bot)
+        await reply_and_log(update, "❌ Usage: `.context [number]`", bot=bot)
 
 
 
@@ -2086,7 +1868,7 @@ async def role_summary_command(update: Update, context: ContextTypes.DEFAULT_TYP
 
     """Generates a summary of the current role based on instructions in roles_recap.json."""
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -2104,7 +1886,7 @@ async def role_summary_command(update: Update, context: ContextTypes.DEFAULT_TYP
 
         except ValueError:
 
-            await reply_and_log(update, "Γ¥î Usage: `.rs [n]` where n is a number.", bot=bot)
+            await reply_and_log(update, "❌ Usage: `.rs [n]` where n is a number.", bot=bot)
 
             return
 
@@ -2114,7 +1896,7 @@ async def role_summary_command(update: Update, context: ContextTypes.DEFAULT_TYP
 
     if not recap_file.exists():
 
-        await reply_and_log(update, f"Γ¥î `roles_recap.json` not found in `{SETTINGS_DIR}`", bot=bot)
+        await reply_and_log(update, f"❌ `roles_recap.json` not found in `{SETTINGS_DIR}`", bot=bot)
 
         return
 
@@ -2130,7 +1912,7 @@ async def role_summary_command(update: Update, context: ContextTypes.DEFAULT_TYP
 
         if not (0 <= index < len(instructions)):
 
-            await reply_and_log(update, f"Γ¥î Index {index + 1} out of range. (Available: 1-{len(instructions)})", bot=bot)
+            await reply_and_log(update, f"❌ Index {index + 1} out of range. (Available: 1-{len(instructions)})", bot=bot)
 
             return
 
@@ -2140,7 +1922,7 @@ async def role_summary_command(update: Update, context: ContextTypes.DEFAULT_TYP
 
     except json.JSONDecodeError as e:
 
-        await reply_and_log(update, f"Γ¥î Error parsing `roles_recap.json`: {e}", bot=bot)
+        await reply_and_log(update, f"❌ Error parsing `roles_recap.json`: {e}", bot=bot)
 
         return
 
@@ -2162,11 +1944,11 @@ async def role_summary_command(update: Update, context: ContextTypes.DEFAULT_TYP
 
         display_name = format_role_display(bot.current_role)
 
-        await reply_and_log(update, f"≡ƒÄ¡ **Role Summary: {display_name}**\n\n{summary}", bot=bot)
+        await reply_and_log(update, f"🎭 **Role Summary: {display_name}**\n\n{summary}", bot=bot)
 
     except Exception as e:
 
-        await reply_and_log(update, f"Γ¥î Role summary failed: {e}", bot=bot)
+        await reply_and_log(update, f"❌ Role summary failed: {e}", bot=bot)
 
 
 
@@ -2184,7 +1966,7 @@ async def story_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     """
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -2194,7 +1976,7 @@ async def story_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if not context.args:
 
-        await reply_and_log(update, "Γ¥î Usage: `.story save [name]` or `.story select [name]`", bot=bot)
+        await reply_and_log(update, "❌ Usage: `.story save [name]` or `.story select [name]`", bot=bot)
 
         return
 
@@ -2218,7 +2000,7 @@ async def story_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if len(context.args) < 2:
 
-            await reply_and_log(update, "Γ¥î Usage: `.story save [name]`", bot=bot)
+            await reply_and_log(update, "❌ Usage: `.story save [name]`", bot=bot)
 
             return
 
@@ -2228,7 +2010,7 @@ async def story_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if not assistant_content:
 
-            await reply_and_log(update, "Γä╣∩╕Å No assistant content found to extract.", bot=bot)
+            await reply_and_log(update, "ℹ️ No assistant content found to extract.", bot=bot)
 
             return
 
@@ -2238,11 +2020,11 @@ async def story_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
             file_path.write_text("\n\n".join(assistant_content), encoding='utf-8')
 
-            await reply_and_log(update, f"Γ£à Story extracted to `{file_path.name}`", bot=bot)
+            await reply_and_log(update, f"✅ Story extracted to `{file_path.name}`", bot=bot)
 
         except Exception as e:
 
-            await reply_and_log(update, f"Γ¥î Failed to save story: {e}", bot=bot)
+            await reply_and_log(update, f"❌ Failed to save story: {e}", bot=bot)
 
         return
 
@@ -2254,23 +2036,23 @@ async def story_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
             if not story_dirs:
 
-                await reply_and_log(update, "≡ƒôé No story containers found in `chats_stories/stories/`.", bot=bot)
+                await reply_and_log(update, "📂 No story containers found in `chats_stories/stories/`.", bot=bot)
 
                 return
 
-            text = f"≡ƒôû **Available Stories (Bot: {bot.name}):**\n---\n"
+            text = f"📖 **Available Stories (Bot: {bot.name}):**\n---\n"
 
             for i, story_dir in enumerate(story_dirs):
 
                 s_name = story_dir.name
 
-                current_marker = " ΓåÉ CURRENT" if s_name == bot.active_story else ""
+                current_marker = " ← CURRENT" if s_name == bot.active_story else ""
 
                 owner = tracker.get_story_owner(s_name)
 
                 if owner and owner != bot.name:
 
-                    current_marker = f" ≡ƒöÆ (in use by {owner})"
+                    current_marker = f" 🔒 (in use by {owner})"
 
                 text += f"{i+1}. `{s_name}`{current_marker}\n"
 
@@ -2302,7 +2084,7 @@ async def story_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if not target_story:
 
-            await reply_and_log(update, "Γ¥î Story not found.", bot=bot)
+            await reply_and_log(update, "❌ Story not found.", bot=bot)
 
             return
 
@@ -2310,17 +2092,17 @@ async def story_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if not success:
 
-            await reply_and_log(update, f"Γ¥î {err}", bot=bot)
+            await reply_and_log(update, f"❌ {err}", bot=bot)
 
             return
 
-        await reply_and_log(update, f"≡ƒôû Active story set to: `{bot.active_story}`", bot=bot)
+        await reply_and_log(update, f"📖 Active story set to: `{bot.active_story}`", bot=bot)
 
         return
 
     else:
 
-        await reply_and_log(update, "Γ¥î Unknown subcommand. Use `.story save [name]` or `.story select [name]`", bot=bot)
+        await reply_and_log(update, "❌ Unknown subcommand. Use `.story save [name]` or `.story select [name]`", bot=bot)
 
         return
 
@@ -2336,7 +2118,7 @@ async def story_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     """
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -2346,7 +2128,7 @@ async def story_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if not context.args:
 
-        await reply_and_log(update, "Γ¥î Usage: `.story save [name]` or `.story select [name]`", bot=bot)
+        await reply_and_log(update, "❌ Usage: `.story save [name]` or `.story select [name]`", bot=bot)
 
         return
 
@@ -2360,7 +2142,7 @@ async def story_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if len(context.args) < 2:
 
-            await reply_and_log(update, "Γ¥î Usage: `.story save [name]`", bot=bot)
+            await reply_and_log(update, "❌ Usage: `.story save [name]`", bot=bot)
 
             return
 
@@ -2374,7 +2156,7 @@ async def story_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if not assistant_content:
 
-            await reply_and_log(update, "Γä╣∩╕Å No assistant content found to extract.", bot=bot)
+            await reply_and_log(update, "ℹ️ No assistant content found to extract.", bot=bot)
 
             return
 
@@ -2386,11 +2168,11 @@ async def story_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
             file_path.write_text("\n\n".join(assistant_content), encoding='utf-8')
 
-            await reply_and_log(update, f"Γ£à Story extracted to `{file_path.name}`", bot=bot)
+            await reply_and_log(update, f"✅ Story extracted to `{file_path.name}`", bot=bot)
 
         except Exception as e:
 
-            await reply_and_log(update, f"Γ¥î Failed to save story: {e}", bot=bot)
+            await reply_and_log(update, f"❌ Failed to save story: {e}", bot=bot)
 
         return
 
@@ -2404,25 +2186,25 @@ async def story_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
             if not story_dirs:
 
-                await reply_and_log(update, "≡ƒôé No story containers found in `chats_stories/stories/`.", bot=bot)
+                await reply_and_log(update, "📂 No story containers found in `chats_stories/stories/`.", bot=bot)
 
                 return
 
             
 
-            text = f"≡ƒôû **Available Stories (Bot: {bot.name}):**\n---\n"
+            text = f"📖 **Available Stories (Bot: {bot.name}):**\n---\n"
 
             for i, story_dir in enumerate(story_dirs):
 
                 s_name = story_dir.name
 
-                current_marker = " ΓåÉ CURRENT" if s_name == bot.active_story else ""
+                current_marker = " ← CURRENT" if s_name == bot.active_story else ""
 
                 owner = tracker.get_story_owner(s_name)
 
                 if owner and owner != bot.name:
 
-                    current_marker = f" ≡ƒöÆ (in use by {owner})"
+                    current_marker = f" 🔒 (in use by {owner})"
 
                 text += f"{i+1}. `{s_name}`{current_marker}\n"
 
@@ -2460,7 +2242,7 @@ async def story_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if not target_story:
 
-            await reply_and_log(update, "Γ¥î Story not found.", bot=bot)
+            await reply_and_log(update, "❌ Story not found.", bot=bot)
 
             return
 
@@ -2470,13 +2252,13 @@ async def story_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if not success:
 
-            await reply_and_log(update, f"Γ¥î {err}", bot=bot)
+            await reply_and_log(update, f"❌ {err}", bot=bot)
 
             return
 
 
 
-        await reply_and_log(update, f"≡ƒôû Active story set to: `{bot.active_story}`", bot=bot)
+        await reply_and_log(update, f"📖 Active story set to: `{bot.active_story}`", bot=bot)
 
         return
 
@@ -2484,7 +2266,7 @@ async def story_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     else:
 
-        await reply_and_log(update, "Γ¥î Unknown subcommand. Use `.story save [name]` or `.story select [name]`", bot=bot)
+        await reply_and_log(update, "❌ Unknown subcommand. Use `.story save [name]` or `.story select [name]`", bot=bot)
 
 
 
@@ -2492,7 +2274,7 @@ async def roles_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     """Lists available roles. Only works in chat mode."""
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -2502,7 +2284,7 @@ async def roles_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if bot.current_mode != "chat":
 
-        await reply_and_log(update, "Γ¥î `.roles` only works in chat mode. Use `.mode chat` to switch.", bot=bot)
+        await reply_and_log(update, "❌ `.roles` only works in chat mode. Use `.mode chat` to switch.", bot=bot)
 
         return
 
@@ -2514,13 +2296,13 @@ async def roles_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if not role_files:
 
-        await reply_and_log(update, "≡ƒô¡ No roles found.", bot=bot)
+        await reply_and_log(update, "📭 No roles found.", bot=bot)
 
         return
 
 
 
-    text = f"≡ƒÄ¡ **Available Roles (Bot: {bot.name}):**\n---\n"
+    text = f"🎭 **Available Roles (Bot: {bot.name}):**\n---\n"
 
     for i, f in enumerate(role_files):
 
@@ -2532,11 +2314,11 @@ async def roles_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if is_active:
 
-            indicator = " Γ£à"
+            indicator = " ✅"
 
         elif owner and owner != bot.name:
 
-            indicator = f" ≡ƒöÆ (in use by {owner})"
+            indicator = f" 🔒 (in use by {owner})"
 
         else:
 
@@ -2560,7 +2342,7 @@ async def stories_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     """Lists available stories with thumbnails. Only works in story mode."""
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -2570,7 +2352,7 @@ async def stories_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if bot.current_mode != "story":
 
-        await reply_and_log(update, "Γ¥î `.stories` only works in story mode. Use `.mode story` to switch.", bot=bot)
+        await reply_and_log(update, "❌ `.stories` only works in story mode. Use `.mode story` to switch.", bot=bot)
 
         return
 
@@ -2592,13 +2374,13 @@ async def stories_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if not story_dirs:
 
-        await reply_and_log(update, "≡ƒôé No story containers found in `chats_stories/stories/`.", bot=bot)
+        await reply_and_log(update, "📂 No story containers found in `chats_stories/stories/`.", bot=bot)
 
         return
 
 
 
-    text = f"≡ƒôû **Available Stories (Bot: {bot.name}):**\n---\n"
+    text = f"📖 **Available Stories (Bot: {bot.name}):**\n---\n"
 
     for i, story_dir in enumerate(story_dirs):
 
@@ -2606,13 +2388,13 @@ async def stories_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         display_name = format_story_display(s_name)
 
-        current_marker = " ΓåÉ CURRENT" if s_name == bot.active_story else ""
+        current_marker = " ← CURRENT" if s_name == bot.active_story else ""
 
         owner = tracker.get_story_owner(s_name)
 
         if owner and owner != bot.name:
 
-            current_marker = f" ≡ƒöÆ (in use by {owner})"
+            current_marker = f" 🔒 (in use by {owner})"
 
         text += f"{i+1}. `{display_name}`{current_marker}\n"
 
@@ -2632,7 +2414,7 @@ async def st_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     """Alias for stories command. With a number argument, selects the story."""
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -2642,7 +2424,7 @@ async def st_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if bot.current_mode != "story":
 
-        await reply_and_log(update, "Γ¥î `.st` only works in story mode. Use `.mode story` to switch.", bot=bot)
+        await reply_and_log(update, "❌ `.st` only works in story mode. Use `.mode story` to switch.", bot=bot)
 
         return
 
@@ -2678,7 +2460,7 @@ async def st_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if not available_stories:
 
-        await reply_and_log(update, "≡ƒôé No story containers found in `chats_stories/stories/`.", bot=bot)
+        await reply_and_log(update, "📂 No story containers found in `chats_stories/stories/`.", bot=bot)
 
         return
 
@@ -2706,7 +2488,7 @@ async def st_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if not target_story:
 
-        await reply_and_log(update, "Γ¥î Story not found.", bot=bot)
+        await reply_and_log(update, "❌ Story not found.", bot=bot)
 
         return
 
@@ -2716,13 +2498,13 @@ async def st_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if not success:
 
-        await reply_and_log(update, f"Γ¥î {err}", bot=bot)
+        await reply_and_log(update, f"❌ {err}", bot=bot)
 
         return
 
 
 
-    await reply_and_log(update, f"≡ƒôû Active story set to: `{bot.active_story}`", bot=bot)
+    await reply_and_log(update, f"📖 Active story set to: `{bot.active_story}`", bot=bot)
 
 
 
@@ -2732,7 +2514,7 @@ async def list_story_images(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     """List all available stories with their images (each story shown with its image as caption)."""
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -2746,7 +2528,7 @@ async def list_story_images(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if not story_dirs:
 
-        await reply_and_log(update, "≡ƒô¡ No stories found.", bot=bot)
+        await reply_and_log(update, "📭 No stories found.", bot=bot)
 
         return
 
@@ -2760,7 +2542,7 @@ async def list_story_images(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         display_name = format_story_display(s_name)
 
-        current_marker = "Γ£à " if s_name == bot.active_story else ""
+        current_marker = "✅ " if s_name == bot.active_story else ""
 
         caption = f"{i+1}. {current_marker}`{display_name}`"
 
@@ -2790,7 +2572,7 @@ async def list_story_images(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
                     except Exception as e:
 
-                        print(f"ΓÜá∩╕Å Failed to send story image for {s_name}: {e}")
+                        print(f"⚠️ Failed to send story image for {s_name}: {e}")
 
             if image_found:
 
@@ -2822,7 +2604,7 @@ async def list_story_images(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
                         except Exception as e:
 
-                            print(f"ΓÜá∩╕Å Failed to send story image for {s_name}: {e}")
+                            print(f"⚠️ Failed to send story image for {s_name}: {e}")
 
                 if image_found:
 
@@ -2832,7 +2614,7 @@ async def list_story_images(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if not image_found:
 
-            await reply_and_log(update, f"≡ƒû╝∩╕Å {caption} ΓÇö *No image*", bot=bot)
+            await reply_and_log(update, f"🖼️ {caption} — *No image*", bot=bot)
 
 
 
@@ -2848,7 +2630,7 @@ async def recap_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     """
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -2858,7 +2640,7 @@ async def recap_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if len(bot.chat_history) < 2:
 
-        await reply_and_log(update, "Γ¥î No conversation history to recap.", bot=bot)
+        await reply_and_log(update, "❌ No conversation history to recap.", bot=bot)
 
         return
 
@@ -2878,7 +2660,7 @@ async def recap_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         except ValueError:
 
-            await reply_and_log(update, "Γ¥î Usage: `.recap [n]` where n is a number.", bot=bot)
+            await reply_and_log(update, "❌ Usage: `.recap [n]` where n is a number.", bot=bot)
 
             return
 
@@ -2888,7 +2670,7 @@ async def recap_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if not recap_file.exists():
 
-        await reply_and_log(update, f"Γ¥î `recap.json` not found in `{SETTINGS_DIR}`", bot=bot)
+        await reply_and_log(update, f"❌ `recap.json` not found in `{SETTINGS_DIR}`", bot=bot)
 
         return
 
@@ -2904,7 +2686,7 @@ async def recap_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if not (0 <= index < len(instructions)):
 
-            await reply_and_log(update, f"Γ¥î Index {index + 1} out of range. (Available: 1-{len(instructions)})", bot=bot)
+            await reply_and_log(update, f"❌ Index {index + 1} out of range. (Available: 1-{len(instructions)})", bot=bot)
 
             return
 
@@ -2914,7 +2696,7 @@ async def recap_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     except Exception as e:
 
-        await reply_and_log(update, f"Γ¥î Error reading `recap.json`: {e}", bot=bot)
+        await reply_and_log(update, f"❌ Error reading `recap.json`: {e}", bot=bot)
 
         return
 
@@ -2934,13 +2716,13 @@ async def recap_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         summary = await generate_response([{"role": "user", "content": recap_prompt}], bot=bot)
 
-        text = f"≡ƒô¥ **Conversation Recap (Last {len(history_to_recap)} msgs):**\n\n{summary}"
+        text = f"📝 **Conversation Recap (Last {len(history_to_recap)} msgs):**\n\n{summary}"
 
         await reply_and_log(update, text, bot=bot)
 
     except Exception as e:
 
-        await reply_and_log(update, f"Γ¥î Recap failed: {e}", bot=bot)
+        await reply_and_log(update, f"❌ Recap failed: {e}", bot=bot)
 
 
 
@@ -3000,7 +2782,7 @@ async def install_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     """
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -3008,7 +2790,7 @@ async def install_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if not context.args:
 
-        await reply_and_log(update, "Γ¥î Usage: `.install <gist_id_or_url>`")
+        await reply_and_log(update, "❌ Usage: `.install <gist_id_or_url>`")
 
         return
 
@@ -3028,7 +2810,7 @@ async def install_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     
 
-    status_msg = await update.message.reply_text(f"Γ¼ç∩╕Å Fetching gist `{gist_id}` via GitHub API...")
+    status_msg = await update.message.reply_text(f"⬇️ Fetching gist `{gist_id}` via GitHub API...")
 
     
 
@@ -3060,7 +2842,7 @@ async def install_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if not files:
 
-            await status_msg.edit_text("Γ¥î No files found in gist.")
+            await status_msg.edit_text("❌ No files found in gist.")
 
             return
 
@@ -3086,7 +2868,7 @@ async def install_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if not role_tag_filename and not story_tag_filename:
 
-            await status_msg.edit_text("Γ¥î No recognized tag found (GOCHATAPPROLETAG_* or GOCHATAPPSTORYTAG_*)")
+            await status_msg.edit_text("❌ No recognized tag found (GOCHATAPPROLETAG_* or GOCHATAPPSTORYTAG_*)")
 
             return
 
@@ -3154,19 +2936,19 @@ async def install_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if e.code == 404:
 
-            await status_msg.edit_text(f"Γ¥î Gist not found: `{gist_id}`")
+            await status_msg.edit_text(f"❌ Gist not found: `{gist_id}`")
 
         elif e.code == 403:
 
-            await status_msg.edit_text(f"Γ¥î GitHub API rate limit exceeded. Add GITHUB_TOKEN to config.yaml for higher limits (5000/hr vs 60/hr).")
+            await status_msg.edit_text(f"❌ GitHub API rate limit exceeded. Add GITHUB_TOKEN to config.yaml for higher limits (5000/hr vs 60/hr).")
 
         else:
 
-            await status_msg.edit_text(f"Γ¥î GitHub API error: {e.code} {e.reason}")
+            await status_msg.edit_text(f"❌ GitHub API error: {e.code} {e.reason}")
 
     except Exception as e:
 
-        await status_msg.edit_text(f"Γ¥î Install failed: {e}")
+        await status_msg.edit_text(f"❌ Install failed: {e}")
 
 
 
@@ -3260,15 +3042,15 @@ async def _install_role_from_gist(gist_id, gist_root, role_tag_file, status_msg,
 
                     img_path.write_bytes(response.read())
 
-                print(f"Γ£à Downloaded role image: {img_name}")
+                print(f"✅ Downloaded role image: {img_name}")
 
             except Exception as e:
 
-                print(f"ΓÜá∩╕Å Failed to download role image from {url}: {e}")
+                print(f"⚠️ Failed to download role image from {url}: {e}")
 
     
 
-    await status_msg.edit_text(f"Γ£à Role installed: `{full_name}.txt`\nUse `.role` to select it.")
+    await status_msg.edit_text(f"✅ Role installed: `{full_name}.txt`\nUse `.role` to select it.")
 
 
 
@@ -3340,7 +3122,7 @@ async def _install_story_from_gist(gist_id, gist_root, story_tag_file, status_ms
 
             character_names.add(char_name)
 
-            (story_dir / "characters" / f"{char_name}.txt").write_text(f.read_text(encoding='utf-8'))
+            (story_dir / "characters" / f"{char_name}.txt").write_text(f.read_text(encoding='utf-8'), encoding='utf-8')
 
     
 
@@ -3404,7 +3186,7 @@ async def _install_story_from_gist(gist_id, gist_root, story_tag_file, status_ms
 
             elem_name = f.stem.replace("storyelement_", "")
 
-            (story_dir / "storyelements" / f"{elem_name}.txt").write_text(f.read_text(encoding='utf-8'))
+            (story_dir / "storyelements" / f"{elem_name}.txt").write_text(f.read_text(encoding='utf-8'), encoding='utf-8')
 
         
 
@@ -3432,7 +3214,7 @@ async def _install_story_from_gist(gist_id, gist_root, story_tag_file, status_ms
 
     
 
-    await status_msg.edit_text(f"Γ£à Story installed: `{full_story_name}`\nUse `.story select {full_story_name}` to activate it.")
+    await status_msg.edit_text(f"✅ Story installed: `{full_story_name}`\nUse `.story select {full_story_name}` to activate it.")
 
 
 
@@ -3440,7 +3222,7 @@ async def last_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     """Displays the last n messages from the chat history."""
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -3458,7 +3240,7 @@ async def last_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         except ValueError:
 
-            await reply_and_log(update, "Γ¥î Usage: `.last [n]` where n is a number.", bot=bot)
+            await reply_and_log(update, "❌ Usage: `.last [n]` where n is a number.", bot=bot)
 
             return
 
@@ -3466,7 +3248,7 @@ async def last_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if not bot.chat_history:
 
-        await reply_and_log(update, "≡ƒô£ History is empty.", bot=bot)
+        await reply_and_log(update, "📜 History is empty.", bot=bot)
 
         return
 
@@ -3474,17 +3256,17 @@ async def last_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     history_slice = bot.chat_history[-n:]
 
-    text = f"≡ƒô£ **Showing last {len(history_slice)} messages (Bot: {bot.name}):**\n\n"
+    text = f"📜 **Showing last {len(history_slice)} messages (Bot: {bot.name}):**\n\n"
 
 
 
     for msg in history_slice:
 
-        role_icon = "≡ƒæñ" if msg['role'] == 'user' else "≡ƒñû"
+        role_icon = "👤" if msg['role'] == 'user' else "🤖"
 
         if msg['role'] == 'system': 
 
-            role_icon = "ΓÜÖ∩╕Å"
+            role_icon = "⚙️"
 
         
 
@@ -3498,6 +3280,78 @@ async def last_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 
+async def length_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
+    """
+
+    Sets, displays, or clears target response length for the LLM.
+
+    Usage:
+
+        .length [n] / .l [n]  - Instructs LLM to return response of ~n words
+
+        .length clear         - Clears response length restriction
+
+        .length               - Displays current response length setting
+
+    """
+
+    if update.effective_user.id != get_telegram_user_id():
+
+        return
+
+
+
+    bot = get_bot(context, update)
+
+    if not context.args:
+
+        if bot.response_length:
+
+            await reply_and_log(update, f"📏 Current response length: ~{bot.response_length} words.", bot=bot)
+
+        else:
+
+            await reply_and_log(update, "📏 No response length limit set (default).", bot=bot)
+
+        return
+
+
+
+    arg = context.args[0].lower()
+
+    if arg in ["clear", "reset", "off", "none"]:
+
+        bot.response_length = None
+
+        bot.save_active_context_and_status()
+
+        await reply_and_log(update, "📏 Response length limit cleared.", bot=bot)
+
+        return
+
+
+
+    try:
+
+        val = int(arg)
+
+        if val <= 0:
+
+            raise ValueError
+
+        bot.response_length = val
+
+        bot.save_active_context_and_status()
+
+        await reply_and_log(update, f"📏 Response length set to ~{val} words.", bot=bot)
+
+    except ValueError:
+
+        await reply_and_log(update, "❌ Usage: `.length [N]`, `.length clear`, or `.length` to display.", bot=bot)
+
+
+
 async def char_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     """
@@ -3508,7 +3362,7 @@ async def char_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     """
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -3518,7 +3372,7 @@ async def char_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if bot.current_mode != "story" or not bot.active_story:
 
-        await reply_and_log(update, "Γ¥î `.char` only works in story mode with an active story (`.story select <name>`).", bot=bot)
+        await reply_and_log(update, "❌ `.char` only works in story mode with an active story (`.story select <name>`).", bot=bot)
 
         return
 
@@ -3540,7 +3394,7 @@ async def char_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if not context.args:
 
-        text = f"≡ƒæÑ **Story Characters: {bot.active_story} (Bot: {bot.name})**\n---\n"
+        text = f"👥 **Story Characters: {bot.active_story} (Bot: {bot.name})**\n---\n"
 
         if not available_chars:
 
@@ -3548,7 +3402,7 @@ async def char_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         for i, name in enumerate(available_chars):
 
-            status = "Γ£à (ON)" if name in bot.active_characters else "Γ¥î (OFF)"
+            status = "✅ (ON)" if name in bot.active_characters else "❌ (OFF)"
 
             text += f"{i+1}. `{name}` {status}\n"
 
@@ -3568,7 +3422,7 @@ async def char_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         bot.active_characters = []
 
-        await reply_transient(update, context, "≡ƒº╣ All story characters deactivated.")
+        await reply_transient(update, context, "🧹 All story characters deactivated.")
 
         bot.save_active_context_and_status()
 
@@ -3584,7 +3438,7 @@ async def char_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         (chars_dir / f"{target}.txt").write_text(content, encoding='utf-8')
 
-        await reply_and_log(update, f"≡ƒÆ╛ Story character `{target}` saved.", bot=bot)
+        await reply_and_log(update, f"💾 Story character `{target}` saved.", bot=bot)
 
         return
 
@@ -3610,7 +3464,7 @@ async def char_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         except Exception:
 
-            await reply_and_log(update, "Γ¥î Use `.char edit [number]`", bot=bot)
+            await reply_and_log(update, "❌ Use `.char edit [number]`", bot=bot)
 
             return
 
@@ -3634,7 +3488,7 @@ async def char_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if not target:
 
-        await reply_and_log(update, "Γ¥î Character not found.", bot=bot)
+        await reply_and_log(update, "❌ Character not found.", bot=bot)
 
         return
 
@@ -3648,7 +3502,7 @@ async def char_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
             bot.active_characters.append(target)
 
-        await reply_transient(update, context, f"≡ƒæñ Story character `{target}` activated.")
+        await reply_transient(update, context, f"👤 Story character `{target}` activated.")
 
     elif action == "off":
 
@@ -3656,7 +3510,7 @@ async def char_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
             bot.active_characters.remove(target)
 
-        await reply_transient(update, context, f"≡ƒæñ Story character `{target}` deactivated.")
+        await reply_transient(update, context, f"👤 Story character `{target}` deactivated.")
 
 
 
@@ -3676,7 +3530,7 @@ async def element_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     """
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -3686,7 +3540,7 @@ async def element_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if bot.current_mode != "story" or not bot.active_story:
 
-        await reply_and_log(update, "Γ¥î `.element` only works in story mode with an active story (`.story select <name>`).", bot=bot)
+        await reply_and_log(update, "❌ `.element` only works in story mode with an active story (`.story select <name>`).", bot=bot)
 
         return
 
@@ -3708,7 +3562,7 @@ async def element_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if not context.args:
 
-        text = f"≡ƒÅù∩╕Å **Story Elements: {bot.active_story} (Bot: {bot.name})**\n---\n"
+        text = f"🏗️ **Story Elements: {bot.active_story} (Bot: {bot.name})**\n---\n"
 
         if not available_elements:
 
@@ -3716,7 +3570,7 @@ async def element_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         for i, name in enumerate(available_elements):
 
-            status = "Γ£à (ON)" if name in bot.active_scenes else "Γ¥î (OFF)"
+            status = "✅ (ON)" if name in bot.active_scenes else "❌ (OFF)"
 
             text += f"{i+1}. `{name}` {status}\n"
 
@@ -3736,7 +3590,7 @@ async def element_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         bot.active_scenes = []
 
-        await reply_transient(update, context, "≡ƒº╣ All story elements deactivated.")
+        await reply_transient(update, context, "🧹 All story elements deactivated.")
 
         bot.save_active_context_and_status()
 
@@ -3752,7 +3606,7 @@ async def element_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         (elements_dir / f"{target}.txt").write_text(content, encoding='utf-8')
 
-        await reply_and_log(update, f"≡ƒÆ╛ Story element `{target}` saved.", bot=bot)
+        await reply_and_log(update, f"💾 Story element `{target}` saved.", bot=bot)
 
         return
 
@@ -3778,7 +3632,7 @@ async def element_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         except Exception:
 
-            await reply_and_log(update, "Γ¥î Use `.element edit [number]`", bot=bot)
+            await reply_and_log(update, "❌ Use `.element edit [number]`", bot=bot)
 
             return
 
@@ -3802,7 +3656,7 @@ async def element_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if not target:
 
-        await reply_and_log(update, "Γ¥î Element not found.", bot=bot)
+        await reply_and_log(update, "❌ Element not found.", bot=bot)
 
         return
 
@@ -3816,7 +3670,7 @@ async def element_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
             bot.active_scenes.append(target)
 
-        await reply_transient(update, context, f"≡ƒÅù∩╕Å Story element `{target}` activated.")
+        await reply_transient(update, context, f"🏗️ Story element `{target}` activated.")
 
     elif action == "off":
 
@@ -3824,145 +3678,11 @@ async def element_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
             bot.active_scenes.remove(target)
 
-        await reply_transient(update, context, f"≡ƒÅù∩╕Å Story element `{target}` deactivated.")
+        await reply_transient(update, context, f"🏗️ Story element `{target}` deactivated.")
 
 
 
     bot.save_active_context_and_status()
-
-
-
-async def test_provider_models(update: Update, context: ContextTypes.DEFAULT_TYPE):
-
-    """Iterates through all models on a provider to check for access restrictions.
-
-    Works with Ollama providers (local and online).
-
-    """
-
-    if update.effective_user.id != TELEGRAM_USER_ID:
-
-        return
-
-
-
-    bot = get_bot(context, update)
-
-    provider = providers.get(bot.current_provider)
-
-    if not provider:
-
-        provider_name = escape_markdown(bot.current_provider)
-
-        await reply_and_log(update, f"Γ¥î Provider '{provider_name}' not found.", bot=bot)
-
-        return
-
-
-
-    if not provider.supports_model_management():
-
-        await reply_and_log(update, "ΓÜá∩╕Å This feature is only supported for Ollama providers.", bot=bot)
-
-        return
-
-
-
-    display_name = provider.get_display_name()
-
-    progress_msg = await update.message.reply_text(f"≡ƒº¬ Initializing model sweep for `{display_name}`...\nThis process verifies accessibility and may take several minutes.")
-
-
-
-    try:
-
-        all_models = await provider.list_models()
-
-        all_models.sort()
-
-        tested_models_status = {}
-
-        last_model_info = ""
-
-        
-
-        for i, model_name in enumerate(all_models):
-
-            current_display = f"≡ƒº¬ Testing: `{model_name}` ({i+1}/{len(all_models)})..."
-
-            display_text = f"{last_model_info}\n{current_display}" if last_model_info else current_display
-
-            await progress_msg.edit_text(display_text)
-
-
-
-            try:
-
-                test_response = await provider.chat(
-
-                    model=model_name,
-
-                    messages=[{"role": "user", "content": "hello"}],
-
-                    options={"temperature": 0.1}
-
-                )
-
-                if "Error: this model requires a subscription, upgrade for access:" in test_response:
-
-                    tested_models_status[model_name] = "bad"
-
-                    last_model_info = f"Γ¥î `{model_name}`: Restricted"
-
-                else:
-
-                    tested_models_status[model_name] = "good"
-
-                    last_model_info = f"Γ£à `{model_name}`: Accessible"
-
-            except Exception as e:
-
-                error_str = str(e).lower()
-
-                if "subscription" in error_str or "upgrade" in error_str:
-
-                    tested_models_status[model_name] = "bad"
-
-                    last_model_info = f"Γ¥î `{model_name}`: Restricted"
-
-                else:
-
-                    tested_models_status[model_name] = "unknown"
-
-                    last_model_info = f"ΓÜá∩╕Å `{model_name}`: Unknown Status"
-
-            
-
-            await asyncio.sleep(0.5)
-
-        
-
-        # Store results in bot's filtered_models for use with .mf command
-
-        good_models = [m for m, status in tested_models_status.items() if status == "good"]
-
-        bot.filtered_models = good_models
-
-        
-
-        summary = f"Γ£à **Sweep Complete: `{display_name}`**\n\n"
-
-        summary += f"≡ƒƒó Standard: {list(tested_models_status.values()).count('good')}\n"
-
-        summary += f"≡ƒö┤ Restricted: {list(tested_models_status.values()).count('bad')}"
-
-        await progress_msg.edit_text(summary)
-
-
-
-    except Exception as e:
-
-        await reply_and_log(update, f"Γ¥î Failed to test models on `{display_name}`: {e}", bot=bot)
 
 
 
@@ -3982,7 +3702,7 @@ async def mf_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     """
 
-    if update.effective_user.id != TELEGRAM_USER_ID:
+    if update.effective_user.id != get_telegram_user_id():
 
         return
 
@@ -3996,7 +3716,7 @@ async def mf_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         provider_name = escape_markdown(bot.current_provider)
 
-        await reply_and_log(update, f"Γ¥î Provider '{provider_name}' not found.", bot=bot)
+        await reply_and_log(update, f"❌ Provider '{provider_name}' not found.", bot=bot)
 
         return
 
@@ -4004,7 +3724,7 @@ async def mf_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if not provider.supports_model_management():
 
-        await reply_and_log(update, "ΓÜá∩╕Å The `.mf` command is only applicable to Ollama providers.", bot=bot)
+        await reply_and_log(update, "⚠️ The `.mf` command is only applicable to Ollama providers.", bot=bot)
 
         return
 
@@ -4036,17 +3756,17 @@ async def mf_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
             if not bot.filtered_models:
 
-                await reply_and_log(update, f"Γä╣∩╕Å No filtered model list stored. Use `.mf [partial_name]` to filter models.", bot=bot)
+                await reply_and_log(update, f"ℹ️ No filtered model list stored. Use `.mf [partial_name]` to filter models.", bot=bot)
 
                 return
 
             
 
-            text = f"≡ƒöì **Filtered Models (`{display_name}` - Bot: {bot.name}):**\n"
+            text = f"🔍 **Filtered Models (`{display_name}` - Bot: {bot.name}):**\n"
 
             for i, name in enumerate(bot.filtered_models):
 
-                active = " Γ£à" if name == bot.current_model else ""
+                active = " ✅" if name == bot.current_model else ""
 
                 text += f"{i+1}. `{name}`{active}\n"
 
@@ -4072,11 +3792,11 @@ async def mf_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
                 bot.save_active_context_and_status()
 
-                await reply_transient(update, context, f"≡ƒºá Switched to model: `{bot.current_model}`")
+                await reply_transient(update, context, f"🧠 Switched to model: `{bot.current_model}`")
 
             else:
 
-                await reply_and_log(update, "Γ¥î Invalid model number.", bot=bot)
+                await reply_and_log(update, "❌ Invalid model number.", bot=bot)
 
             return
 
@@ -4092,7 +3812,7 @@ async def mf_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
             if not filtered:
 
-                await reply_and_log(update, f"Γä╣∩╕Å No models found matching `{arg}` on `{display_name}`.", bot=bot)
+                await reply_and_log(update, f"ℹ️ No models found matching `{arg}` on `{display_name}`.", bot=bot)
 
                 return
 
@@ -4104,11 +3824,11 @@ async def mf_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
             
 
-            text = f"≡ƒöì **Filtered Models (`{display_name}` - Bot: {bot.name})** ΓÇö matching `{arg}`:\n"
+            text = f"🔍 **Filtered Models (`{display_name}` - Bot: {bot.name})** — matching `{arg}`:\n"
 
             for i, name in enumerate(filtered):
 
-                active = " Γ£à" if name == bot.current_model else ""
+                active = " ✅" if name == bot.current_model else ""
 
                 text += f"{i+1}. `{name}`{active}\n"
 
@@ -4122,7 +3842,7 @@ async def mf_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     except Exception as e:
 
-        await reply_and_log(update, f"Γ¥î Failed to list models: {e}", bot=bot)
+        await reply_and_log(update, f"❌ Failed to list models: {e}", bot=bot)
 
 
 
@@ -4170,7 +3890,7 @@ LAZY_COMMAND_MAP = {
 
     "stories": stories_command, "st": st_command,
 
-    "last": last_command, "l": last_command, "ask": ask_command,
+    "last": last_command, "length": length_command, "len": length_command, "l": length_command, "ask": ask_command,
 
     "mode": mode_command, "mo": mode_command,
 
@@ -4206,7 +3926,7 @@ async def handle_failed_command(update: Update, context: ContextTypes.DEFAULT_TY
 
         error_text = (
 
-            "ΓÜá∩╕Å **Unknown Command or Typo Detected**\n"
+            "⚠️ **Unknown Command or Typo Detected**\n"
 
             "It looks like you tried a command but added a space or typo. "
 
@@ -4298,7 +4018,11 @@ def setup_handlers(app: Application):
 
     app.add_handler(PrefixHandler(".", "last", last_command))
 
-    app.add_handler(PrefixHandler(".", "l", last_command))
+    app.add_handler(PrefixHandler(".", "length", length_command))
+
+    app.add_handler(PrefixHandler(".", "len", length_command))
+
+    app.add_handler(PrefixHandler(".", "l", length_command))
 
     app.add_handler(PrefixHandler(".", "ask", ask_command))
 
@@ -4354,7 +4078,7 @@ async def run_all_bots(bot_instances: List[BotInstance]):
 
 
 
-    print(f"Γ£à All {len(bot_instances)} bot(s) started and listening!")
+    print(f"✅ All {len(bot_instances)} bot(s) started and listening!")
 
 
 
@@ -4418,7 +4142,7 @@ def main():
 
     if not tokens:
 
-        print("Γ¥î Error: No TELEGRAM_TOKENS found in config.yaml.")
+        print("❌ Error: No TELEGRAM_TOKENS found in config.yaml.")
 
         return
 
@@ -4442,7 +4166,7 @@ def main():
 
         if not token or token.startswith("your-"):
 
-            print(f"ΓÜá∩╕Å Skipping bot '{bot_name}': Invalid or placeholder token.")
+            print(f"⚠️ Skipping bot '{bot_name}': Invalid or placeholder token.")
 
             continue
 
@@ -4482,7 +4206,7 @@ def main():
 
     if not bot_instances:
 
-        print("Γ¥î Error: No valid bots initialized.")
+        print("❌ Error: No valid bots initialized.")
 
         return
 
