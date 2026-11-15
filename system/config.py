@@ -74,6 +74,13 @@ def get_telegram_user_id() -> int:
 
 CONTEXT_LIMIT = 50  # Number of recent messages to send
 
+# Telegram's Bot API rejects a single message longer than 4096 characters with
+# "BadRequest: Message is too long". The limit is counted in UTF-16 units, so
+# emoji count as two. Use a conservative 4000-char chunk size (matching the
+# manual chunking already used in handlers.py) so long replies such as `.last`
+# history dumps are split safely into multiple messages.
+TELEGRAM_MESSAGE_LIMIT = 4000
+
 # Suggested default params for the bot
 GENERATION_OPTIONS = {
     "repeat_penalty": 1.2,

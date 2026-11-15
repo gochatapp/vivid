@@ -26,6 +26,7 @@ from .config import (
     CONTEXT_DIR,
     ROLE_IMAGES_DIR,
     CONTEXT_LIMIT,
+    TELEGRAM_MESSAGE_LIMIT,
     GENERATION_OPTIONS,
     AI_PROVIDERS,
     providers,
@@ -633,8 +634,46 @@ async def generate_response(messages: List[Dict[str, Any]], options: Optional[Di
         return f"Error generating response: {e}"
 
 
+def split_telegram_message(text: str, limit: int = TELEGRAM_MESSAGE_LIMIT) -> List[str]:
+    """Split *text* into chunks no longer than *limit* characters.
+
+    Splits on line boundaries where possible and hard-splits any single line
+    that is longer than *limit*. Line endings are kept, so joining the returned
+    chunks reproduces the original text exactly. Always returns at least one
+    chunk (an empty string for empty input).
+    """
+    if len(text) <= limit:
+        return [text]
+
+    chunks: List[str] = []
+    current = ""
+    for line in text.splitlines(keepends=True):
+        # Hard-split a single overlong line so every piece fits in a chunk.
+        while len(line) > limit:
+            if current:
+                chunks.append(current)
+                current = ""
+            chunks.append(line[:limit])
+            line = line[limit:]
+
+        if len(current) + len(line) <= limit:
+            current += line
+        else:
+            if current:
+                chunks.append(current)
+            current = line
+
+    if current or not chunks:
+        chunks.append(current)
+    return chunks
+
+
 async def reply_and_log(update: Update, text: str, is_command: bool = True, bot: Optional[BotInstance] = None) -> None:
-    """Helper to send a message, capture IDs, and log to history for session persistence."""
+    """Helper to send a message, capture IDs, and log to history for session persistence.
+
+    Messages longer than ``TELEGRAM_MESSAGE_LIMIT`` are split into multiple
+    Telegram messages so the API's "Message is too long" error is avoided.
+    """
     if bot is None:
         bot = get_bot(update=update)
 
@@ -646,11 +685,26 @@ async def reply_and_log(update: Update, text: str, is_command: bool = True, bot:
         if user_msg_id not in bot.chat_history[-1].get("msg_ids", []):
             bot.chat_history[-1].setdefault("msg_ids", []).append(user_msg_id)
 
-    sent_msg = await update.message.reply_text(text, parse_mode="Markdown")
+    chunks = split_telegram_message(text)
+    sent_msg_ids: List[int] = []
+    chat_id = update.effective_chat.id if update.effective_chat else None
+
+    # Send the first chunk as a reply to the triggering message so the normal
+    # reply thread is preserved; send any extra chunks as plain messages.
+    for index, chunk in enumerate(chunks):
+        if index == 0:
+            sent_msg = await update.message.reply_text(chunk, parse_mode="Markdown")
+        elif getattr(bot, "app", None) is not None and chat_id is not None:
+            sent_msg = await bot.app.bot.send_message(
+                chat_id=chat_id, text=chunk, parse_mode="Markdown"
+            )
+        else:
+            sent_msg = await update.message.reply_text(chunk, parse_mode="Markdown")
+        sent_msg_ids.append(sent_msg.message_id)
     
     if is_command:
         if bot.chat_history and bot.chat_history[-1]["role"] == "assistant":
-            bot.chat_history[-1].setdefault("msg_ids", []).append(sent_msg.message_id)
+            bot.chat_history[-1].setdefault("msg_ids", []).extend(sent_msg_ids)
     
     bot.save_active_context_and_status()
 
