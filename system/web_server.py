@@ -961,6 +961,12 @@ async def api_roles_save(request: Request) -> Response:
     name = data.get("name", "").strip()
     text = data.get("text", "")
     image_png = data.get("image_png", "")
+    # Extension for the saved portrait. The Role Maker sends ".webp" for an
+    # animated WebP (so its frames survive) and ".jpg" for the resized still;
+    # anything unexpected falls back to ".jpg".
+    image_ext = str(data.get("image_ext", ".jpg") or ".jpg").lower()
+    if image_ext not in (".jpg", ".jpeg", ".png", ".webp", ".mp4"):
+        image_ext = ".jpg"
     overwrite = bool(data.get("overwrite", False))
 
     if not name or not text:
@@ -968,7 +974,7 @@ async def api_roles_save(request: Request) -> Response:
 
     safe_name = _sanitize_role_name(name)
     txt_path = CHAT_ROLES_DIR / f"{safe_name}.txt"
-    jpg_path = CHAT_ROLES_DIR / f"{safe_name}.jpg"
+    img_path = CHAT_ROLES_DIR / f"{safe_name}{image_ext}"
 
     if txt_path.exists() and not overwrite:
         base = safe_name
@@ -987,8 +993,8 @@ async def api_roles_save(request: Request) -> Response:
     if image_png:
         try:
             image_data = base64.b64decode(image_png)
-            jpg_path.write_bytes(image_data)
-            files_saved.append(f"chats/roles/{safe_name}.jpg")
+            img_path.write_bytes(image_data)
+            files_saved.append(f"chats/roles/{safe_name}{image_ext}")
         except Exception:
             pass
 

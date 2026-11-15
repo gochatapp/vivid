@@ -21,14 +21,7 @@ format_role_gists.html
 system_assets/
 
 # Runtime chat and story data
-chats_stories/chats/backups/
-chats_stories/chats/chat_context/
-chats_stories/chats/config/
-chats_stories/chats/session/
-chats_stories/stories/*/backups/
-chats_stories/stories/*/config/
-chats_stories/stories/*/session/
-chats_stories/stories/*/story_context/
+chats_stories/
 
 # Legacy data locations
 chats/*

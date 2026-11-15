@@ -372,12 +372,15 @@ async def role_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def show_role_image(update: Update, context: ContextTypes.DEFAULT_TYPE, role_name: str):
     """Display the image associated with a role, if it exists."""
     bot = get_bot(context, update)
-    for ext in [".jpg", ".jpeg", ".png"]:
-        img_path = ROLE_IMAGES_DIR / f"{role_name}{ext}"
-        if img_path.exists():
+    for ext in [".jpg", ".jpeg", ".png", ".mp4", ".webp"]:
+        media_path = ROLE_IMAGES_DIR / f"{role_name}{ext}"
+        if media_path.exists():
             try:
-                with open(img_path, 'rb') as photo:
-                    await update.message.reply_photo(photo=photo)
+                with open(media_path, 'rb') as media:
+                    if ext == ".mp4":
+                        await update.message.reply_video(video=media)
+                    else:
+                        await update.message.reply_photo(photo=media)
                 return
             except Exception as e:
                 print(f"⚠️ Failed to send role image: {e}")
@@ -503,12 +506,15 @@ async def list_roles_with_images(update: Update, context: ContextTypes.DEFAULT_T
 
         # Check for image
         image_found = False
-        for ext in [".jpg", ".jpeg", ".png", ".webp"]:
-            img_path = ROLE_IMAGES_DIR / f"{f.stem}{ext}"
-            if img_path.exists():
+        for ext in [".jpg", ".jpeg", ".png", ".mp4", ".webp"]:
+            media_path = ROLE_IMAGES_DIR / f"{f.stem}{ext}"
+            if media_path.exists():
                 try:
-                    with open(img_path, 'rb') as photo:
-                        await update.message.reply_photo(photo=photo, caption=caption)
+                    with open(media_path, 'rb') as media:
+                        if ext == ".mp4":
+                            await update.message.reply_video(video=media, caption=caption)
+                        else:
+                            await update.message.reply_photo(photo=media, caption=caption)
                     image_found = True
                     break
                 except Exception as e:

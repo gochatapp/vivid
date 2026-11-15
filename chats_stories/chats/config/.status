@@ -1,13 +1,13 @@
 {
     "model": "google/gemma-4-31b-it",
     "provider": "Nvidia",
-    "role": "Blaire",
+    "role": "Eli_Navarro!ea61c1a67e245eb02c3c1faceb7cf49d",
     "mode": "chat",
     "active_story": "",
     "active_characters": [],
     "active_scenes": [],
     "context_limit": 50,
-    "response_length": 75,
+    "response_length": 100,
     "num_ctx": 4096,
     "temperature": 0.8,
     "top_p": 0.9,
@@ -17,8 +17,8 @@
     "think_mode": false,
     "verbose_mode": false,
     "trace_mode": false,
-    "voice_mode": false,
-    "voice_name": "en-US-AvaNeural",
+    "voice_mode": true,
+    "voice_name": "en-GB-SoniaNeural",
     "voice_speed": 1.0,
-    "total_messages_sent": 1
+    "total_messages_sent": 0
 }
