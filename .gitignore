@@ -30,3 +30,4 @@ characters/*
 !characters/README.md
 context/*
 !context/README.md
+config.yaml
