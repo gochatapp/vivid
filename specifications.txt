@@ -114,6 +114,8 @@ Every LLM prompt is prefixed with a composite System Instruction:
     - Physically deletes the assistant response from the Telegram UI.
     - Re-injects the prompt into handle_message.
 * .clear vs .clean:
+    - Both write a timestamped backup first: chats go to `chats/backups/`, stories go to
+      `<story>/backups/`. Each backup is a `.txt` transcript plus a `.json` session snapshot.
     - .clear (Memory Wipe): Clears conversation history (keeps active role system prompt).
     - .clean (UI + Memory Wipe): Identical to `.clear`, but also deletes removed messages from Telegram chat.
 

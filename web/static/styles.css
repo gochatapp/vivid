@@ -1,0 +1,197 @@
+:root { --thumb-w: 400px; }
+* { box-sizing: border-box; }
+body { font-family: system-ui, sans-serif; margin: 0; background: #111418; color: #e8eaf0; }
+header { padding: 16px 20px; background: #1a1f27; position: sticky; top: 0; z-index: 5; }
+h1 { margin: 0; font-size: 22px; }
+.tabs { display: flex; gap: 8px; }
+.tab { padding: 8px 18px; border-radius: 20px; border: 1px solid #3a4353; background: #232b38; color: #fff; cursor: pointer; }
+.tab.active { background: #4f7cff; border-color: #4f7cff; }
+#grid { display: grid; gap: 24px; padding: 16px 20px; grid-template-columns: repeat(4, minmax(0, 1fr)); flex: 1; min-width: 0; align-items: start; }
+@media (max-width: 1200px) {
+  #grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  #grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.layout { display: flex; align-items: flex-start; }
+#sidebar { width: 230px; flex-shrink: 0; padding: 20px 0 20px 20px; position: sticky; top: 73px; max-height: calc(100vh - 73px); overflow-y: auto; }
+.sideSection { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+.sideSection .tab { text-align: left; }
+.sideLabel { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: #9aa6bd; margin: 0; }
+#tagFilter { padding: 8px 12px; border-radius: 8px; border: 1px solid #3a4353; background: #0f141c; color: #fff; }
+#tagListWrap { position: relative; }
+#tagSearch { width: 100%; padding: 8px 12px; border-radius: 8px; border: 1px solid #3a4353; background: #0f141c; color: #fff; }
+#mainCol { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.browseBar { display: flex; align-items: center; gap: 12px; padding: 12px 20px 4px; }
+.browseBar .pager { flex: 1; padding: 0; }
+.bbLeft { display: flex; align-items: center; gap: 8px; flex: 0 1 260px; min-width: 0; }
+.bbRight { display: flex; align-items: center; gap: 8px; flex: 0 0 auto; margin-left: auto; }
+#searchInput { width: 180px; max-width: 100%; padding: 8px 12px; border-radius: 8px; border: 1px solid #3a4353; background: #0f141c; color: #fff; }
+.sortLabel { color: #9aa6bd; font-size: 12px; }
+#sortSel { padding: 8px 12px; border-radius: 8px; border: 1px solid #3a4353; background: #232b38; color: #fff; cursor: pointer; }
+#resultCount { color: #9aa6bd; font-size: 12px; white-space: nowrap; }
+@media (max-width: 860px) {
+  .browseBar { flex-wrap: wrap; }
+  .browseBar .pager { order: 3; flex-basis: 100%; justify-content: flex-start; padding-top: 4px; }
+}
+.pager { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 6px; padding: 12px 20px; }
+.pager[hidden] { display: none; }
+.pageBtn { padding: 6px 14px; border-radius: 20px; border: 1px solid #3a4353; background: #232b38; color: #fff; cursor: pointer; font-size: 13px; }
+.pageBtn:hover:not(:disabled) { border-color: #4f7cff; }
+.pageBtn.active { background: #4f7cff; border-color: #4f7cff; }
+.pageBtn:disabled { opacity: .4; cursor: default; }
+.pageGap { color: #9aa6bd; padding: 0 4px; }
+.pageInfo { color: #9aa6bd; font-size: 12px; margin-left: 8px; }
+#tagOptions { display: flex; flex-direction: column; gap: 4px; margin-top: 4px; max-height: 260px; overflow-y: auto; }
+/* flex: 0 0 auto is what keeps this list readable. #tagOptions is a capped-height
+   column flex container, and flex items shrink by default, so 14+ tag rows were
+   squeezed to fit (each button collapsed from ~33px to ~16px). The label then
+   overflowed its own box and the :hover background painted a thin band slicing
+   through the text. The rows must keep their natural height and let the list
+   scroll instead. */
+.tagOpt { flex: 0 0 auto; text-align: left; padding: 6px 10px; border-radius: 6px; border: none; background: none; color: #e8eaf0; font-size: 13px; line-height: 1.6; cursor: pointer; min-height: 0; white-space: normal; overflow-wrap: anywhere; }
+.tagOpt:hover { background: #1a1f27; color: #8fb0ff; }
+.tagOptEmpty { font-size: 12px; color: #9aa6bd; padding: 4px 2px; }
+#tagActive { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.tags { display: flex; flex-wrap: wrap; gap: 0; justify-content: center; margin-top: 4px; line-height: 1.35; }
+.pill { padding: 3px 12px; border-radius: 999px; border: none; background: #232b38; color: #e8eaf0; font-size: 12px; cursor: pointer; }
+.pill:hover { background: #2c3546; }
+.pill.on { background: #4f7cff; color: #fff; }
+/* card tags: boxless comma-separated text, still clickable to filter */
+.tags .pill { padding: 0; min-height: 0; border: none; border-radius: 0; background: none; color: #ccd6ec; font-size: 12px; font-weight: 700; letter-spacing: 0.02em; }
+.tags .pill:not(:last-child)::after { content: ", "; }
+.tags .pill:hover { color: #8fb0ff; text-decoration: underline; }
+.tags .pill.on { background: none; border: none; color: #8fb0ff; font-weight: 700; text-decoration: underline; }
+.sideDiv { border: none; border-top: 1px solid #3a4353; margin: 12px 0; }
+#contribList { display: flex; flex-direction: column; gap: 0; }
+.contrib { padding: 5px 2px; border: none; border-bottom: 1px solid #2a3240; }
+.contrib:last-child { border-bottom: none; }
+.contrib.active { background: none; }
+.contrib.active .contribName { color: #8fb0ff; }
+.contribName { background: none; border: none; color: #e8eaf0; font-size: 14px; font-weight: 600; cursor: pointer; padding: 0; text-align: left; min-height: 0; }
+.contribName:hover { text-decoration: underline; }
+.contribLinks { font-size: 12px; color: #9aa6bd; margin-top: 2px; }
+.linklike { background: none; border: none; padding: 0; color: #8fb0ff; font-size: 12px; cursor: pointer; }
+.contrib .linklike { min-height: 0; }
+.linklike:hover { text-decoration: underline; }
+.card { background: #1a1f27; border: 1px solid #3a4353; border-radius: 12px; padding: 16px; text-align: center; }
+.card a { text-decoration: none; color: inherit; }
+.card img.thumb { width: 250px; height: 250px; display: block; margin: 0 auto; background: #0c0f14; object-fit: cover; border: 1px solid #3a4353; border-radius: 8px; }
+.card img.thumb.is-blurred, #detailImg.is-blurred { filter: blur(6px) saturate(.85); }
+.body { padding: 12px 4px 4px; }
+.name { margin: 10px 0 6px; font-size: 19px; border: none; padding: 0; background: none; line-height: 1.35; }
+.stars { font-size: 15px; letter-spacing: 2px; margin: 0 0 4px; line-height: 1.3; }
+.stars .full { color: #f5c518; }
+.stars .empty { color: #3a4353; }
+.stars-num { color: #9aa6bd; font-size: 12px; letter-spacing: 0; margin-left: 4px; vertical-align: 1px; }
+.stars[hidden] { display: none; }
+.desc { margin: 10px 0 0; font-size: 13px; line-height: 1.55; color: #aeb9cf; border: none; padding: 0; background: none; min-height: calc(1.55em * 3); max-height: calc(1.55em * 3); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden; }
+.noimg { width: 250px; height: 250px; display: flex; margin: 0 auto; align-items: center; justify-content: center; background: #262e40; color: #aeb9cf; border: 1px solid #3a4353; border-radius: 8px; }
+
+.card-actions { display: flex; gap: 0.4rem; margin-top: 0.5rem; justify-content: center; }
+.card-actions button { padding: 0.35rem 0.7rem; border: 1px solid #3a4353; background: #232b38; color: #e8eaf0; border-radius: 6px; cursor: pointer; font-size: 12px; }
+.card-actions button:hover { border-color: #4f7cff; background: #2e456e; }
+.card-actions button:disabled { opacity: 0.5; cursor: default; }
+/* Uninstall is destructive, so it is red and never looks like Install. */
+.card-actions .uninstallBtn { background: #b3261e; border-color: #b3261e; color: #fff; }
+.card-actions .uninstallBtn:hover:not(:disabled) { background: #d33b30; border-color: #ef5b4e; }
+.card-actions .uninstallBtn:disabled { opacity: 0.6; cursor: default; }
+
+.meta { color: #9aa6bd; font-size: 12px; margin: 0 0 8px; }
+.links a { color: #8fb0ff; font-size: 12px; margin-right: 10px; }
+
+/* ---- detail page ---- */
+#detail { max-width: 800px; margin: 0 auto; padding: 28px 20px 48px; text-align: center; }
+#detailHead { display: flex; flex-direction: column; align-items: center; width: 100%; }
+/* Flex children size to max-content by default, which would push long text
+   past the viewport on narrow screens - always clamp them to the column. */
+#detailHead > * { max-width: 100%; }
+#detailImg { width: 250px; height: 250px; object-fit: cover; border-radius: 12px; display: block; margin: 0 auto; }
+#detailName { margin: 16px 0 0; font-size: 22px; line-height: 1.35; }
+#detailStars { margin-top: 6px; }
+#detailDesc { width: 100%; max-width: 640px; margin: 12px auto 0; font-size: 14px; line-height: 1.6; color: #aeb9cf; overflow-wrap: anywhere; }
+#detailMeta { margin: 16px 0 0; overflow-wrap: anywhere; }
+#detailLinks { margin-top: 10px; }
+#detailLinks a { margin-right: 0; }
+/* tags: same boxless, comma-separated look as the browse cards, display only */
+#detailTags { justify-content: center; margin-top: 10px; line-height: 1.6; }
+#detailTags[hidden] { display: none; }
+#detailTags .tag { color: #ccd6ec; font-size: 12px; font-weight: 700; letter-spacing: 0.02em; overflow-wrap: anywhere; }
+#detailTags .tag:not(:last-child)::after { content: ", "; }
+#detailFiles { display: flex; flex-direction: column; gap: 20px; margin-top: 28px; text-align: left; }
+.fileBlock { background: #1a1f27; border: 1px solid #3a4353; border-radius: 12px; padding: 16px; scroll-margin-top: 80px; }
+.fileBlock h3 { margin: 0; font-size: 14px; color: #a8c0ff; overflow-wrap: anywhere; }
+.fileBlock .sub { margin: 2px 0 0; }
+/* Content text is plain, fully expanded text - no max-height, no inner scrollbar. */
+.fileBlock pre { margin: 14px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; background: #0f141c; padding: 14px 16px; border-radius: 8px; }
+.sub { font-size: 12px; color: #aeb9cf; }
+
+@media (max-width: 860px) {
+  #detail { padding: 20px 14px 40px; }
+  #detailName { font-size: 19px; }
+  .fileBlock { padding: 12px; }
+  .fileBlock pre { padding: 12px; }
+}
+
+/* ---- mobile / responsive ---- */
+#menuBtn {
+  display: none;
+  background: #232b38;
+  border: 1px solid #3a4353;
+  color: #fff;
+  font-size: 20px;
+  line-height: 1;
+  border-radius: 10px;
+  padding: 8px 12px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+header { display: flex; align-items: center; gap: 12px; }
+#scrim {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.55);
+  z-index: 9;
+}
+#scrim[hidden] { display: none; }
+
+.card img.thumb, .noimg { width: 100%; max-width: 250px; height: auto; aspect-ratio: 1 / 1; }
+
+/* touch targets + prevent iOS zoom on focus */
+button, .pill, .tagOpt, .tab { min-height: 36px; }
+#tagOptions .tagOpt { min-height: 0; }
+input, textarea, select { font-size: 16px; }
+
+@media (max-width: 860px) {
+  header { padding: 12px 14px; position: sticky; top: 0; }
+  h1 { font-size: 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #menuBtn { display: inline-block; }
+  .layout { display: block; }
+  #sidebar {
+    position: fixed; top: 0; left: 0; bottom: 0;
+    width: min(84vw, 320px);
+    max-height: none; height: 100dvh;
+    padding: 16px;
+    background: #161b23;
+    border-right: 1px solid #3a4353;
+    z-index: 10;
+    overflow-y: auto;
+    transform: translateX(-105%);
+    transition: transform .22s ease;
+  }
+  body.nav-open #sidebar { transform: translateX(0); }
+  /* The drawer itself scrolls on phones, so the tag list must not open a second
+     scroll area inside it (nested scrollers are hard to use with a thumb). */
+  #tagOptions { max-height: none; overflow: visible; }
+  #grid { padding: 12px; gap: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .card { padding: 12px; }
+  .name { font-size: 16px; }
+}
+
+@media (max-width: 420px) {
+  #grid { grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
+  .card img.thumb, .noimg { max-width: none; border-radius: 6px; }
+  .name { font-size: 14px; }
+  .desc { font-size: 12px; }
+  .pill { font-size: 11px; padding: 2px 9px; }
+  .tags .pill { font-size: 11px; }
+}

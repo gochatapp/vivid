@@ -14,8 +14,10 @@ from telegram.ext import Application, ContextTypes
 
 from .config import (
     BASE_DIR,
+    CONFIG,
     CHAT_CONTEXT_DIR,
     CHAT_CONFIG_DIR,
+    CHAT_BACKUPS_DIR,
     CHAT_SESSIONS_DIR,
     CHAT_ROLES_DIR,
     CHAT_PERSONAS_DIR,
@@ -44,6 +46,7 @@ from .content import (
     get_element_content,
     get_scene_content,
 )
+from .voices import DEFAULT_SPEED, clamp_speed, default_voice_name
 
 
 def format_context_text(history: List[Dict[str, Any]]) -> str:
@@ -98,6 +101,9 @@ def get_bot_status_dict(bot: 'BotInstance') -> Dict[str, Any]:
         "think_mode": bot.think_mode,
         "verbose_mode": bot.verbose_mode,
         "trace_mode": bot.trace_mode,
+        "voice_mode": bot.voice_mode,
+        "voice_name": bot.voice_name,
+        "voice_speed": bot.voice_speed,
         "total_messages_sent": bot.total_messages_sent
     }
 
@@ -141,6 +147,12 @@ def apply_status_dict(bot: 'BotInstance', data: Dict[str, Any]):
         bot.verbose_mode = bool(data["verbose_mode"])
     if "trace_mode" in data:
         bot.trace_mode = bool(data["trace_mode"])
+    if "voice_mode" in data:
+        bot.voice_mode = bool(data["voice_mode"])
+    if "voice_name" in data:
+        bot.voice_name = str(data["voice_name"])
+    if "voice_speed" in data:
+        bot.voice_speed = clamp_speed(data["voice_speed"])
 
 
 class BotInstance:
@@ -163,6 +175,9 @@ class BotInstance:
         self.verbose_mode = False
         self.trace_mode = False
         self.lazy_mode = False
+        self.voice_mode = False
+        self.voice_name = default_voice_name()
+        self.voice_speed = DEFAULT_SPEED
         self.context_limit = CONTEXT_LIMIT
         self.response_length: Optional[int] = None
         self.last_latency = 0.0
@@ -204,6 +219,50 @@ class BotInstance:
         if not s:
             return None
         return STORIES_DIR / s / ".status"
+
+    def get_backup_dir(self) -> Path:
+        """Returns the backup folder for the active story, or for chats."""
+        if self.current_mode == "story" and self.active_story:
+            return STORIES_DIR / self.active_story / "backups"
+        return CHAT_BACKUPS_DIR
+
+    def backup_current_history(self) -> Optional[Path]:
+        """Saves a timestamped transcript and JSON snapshot of the conversation.
+
+        Chat mode backs up to `chats/backups`; story mode backs up to the active
+        story's `backups` folder. Returns the transcript path, or None when
+        there is no conversation to back up or the backup could not be written.
+        """
+        if len(self.chat_history) <= 1:
+            return None
+
+        backup_dir = self.get_backup_dir()
+        subject = self.active_story if self.current_mode == "story" and self.active_story else self.current_role
+        subject = subject or "chat"
+
+        try:
+            backup_dir.mkdir(parents=True, exist_ok=True)
+
+            stamp = time.strftime("%Y%m%d_%H%M%S")
+            base_name = f"{subject}_{stamp}"
+            counter = 1
+            while ((backup_dir / f"{base_name}.txt").exists()
+                   or (backup_dir / f"{base_name}.json").exists()):
+                counter += 1
+                base_name = f"{subject}_{stamp}_{counter}"
+
+            transcript_path = backup_dir / f"{base_name}.txt"
+            snapshot_path = backup_dir / f"{base_name}.json"
+
+            transcript_path.write_text(format_context_text(self.chat_history), encoding="utf-8")
+            with open(snapshot_path, 'w', encoding='utf-8') as f:
+                json.dump(self.get_session_data(), f, indent=4, ensure_ascii=False)
+
+            print(f"💾 Backed up conversation to {transcript_path}")
+            return transcript_path
+        except Exception as e:
+            print(f"❌ Error backing up conversation to {backup_dir}: {e}")
+            return None
 
     def save_current_context(self):
         if self.current_mode == "chat" and self.current_role:
@@ -416,10 +475,9 @@ class BotInstance:
         self.save_session("last_session")
         return True, ""
     
-    def save_session(self, name: str = "last_session"):
-        filename = f"{self.name}_{name}.json" if name == "last_session" else f"{name}.json"
-        file_path = CHAT_SESSIONS_DIR / filename
-        data = {
+    def get_session_data(self) -> Dict[str, Any]:
+        """Builds the metadata/history payload used for session saves and backups."""
+        return {
             "metadata": {
                 "bot_name": self.name,
                 "model": self.current_model,
@@ -436,10 +494,18 @@ class BotInstance:
                 "lazy_mode": self.lazy_mode,
                 "think_mode": self.think_mode,
                 "verbose_mode": self.verbose_mode,
-                "trace_mode": self.trace_mode
+                "trace_mode": self.trace_mode,
+                "voice_mode": self.voice_mode,
+                "voice_name": self.voice_name,
+                "voice_speed": self.voice_speed
             },
             "history": self.chat_history
         }
+
+    def save_session(self, name: str = "last_session"):
+        filename = f"{self.name}_{name}.json" if name == "last_session" else f"{name}.json"
+        file_path = CHAT_SESSIONS_DIR / filename
+        data = self.get_session_data()
         try:
             temp_path = file_path.with_suffix(".tmp")
             with open(temp_path, 'w', encoding='utf-8') as f:
@@ -475,6 +541,10 @@ class BotInstance:
                         self.think_mode = meta.get("think_mode", False)
                         self.verbose_mode = meta.get("verbose_mode", False)
                         self.trace_mode = meta.get("trace_mode", False)
+                        self.voice_mode = meta.get("voice_mode", False)
+                        self.voice_name = meta.get("voice_name", self.voice_name)
+                        if "voice_speed" in meta:
+                            self.voice_speed = clamp_speed(meta["voice_speed"])
                         if "num_ctx" in meta:
                             self.generation_options["num_ctx"] = meta["num_ctx"]
                     else:

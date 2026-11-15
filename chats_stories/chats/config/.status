@@ -1,12 +1,13 @@
 {
-    "model": "supergemma4-26b-uncensored-fast-v2-Q4_K_M",
-    "provider": "llamacpp",
-    "role": "Elena_Vance!d6cfff4839d5f4db2408ad86d489f95b",
+    "model": "google/gemma-4-31b-it",
+    "provider": "Nvidia",
+    "role": "Blaire",
     "mode": "chat",
     "active_story": "",
     "active_characters": [],
     "active_scenes": [],
     "context_limit": 50,
+    "response_length": 75,
     "num_ctx": 4096,
     "temperature": 0.8,
     "top_p": 0.9,
@@ -16,5 +17,8 @@
     "think_mode": false,
     "verbose_mode": false,
     "trace_mode": false,
-    "total_messages_sent": 0
+    "voice_mode": false,
+    "voice_name": "en-US-AvaNeural",
+    "voice_speed": 1.0,
+    "total_messages_sent": 1
 }

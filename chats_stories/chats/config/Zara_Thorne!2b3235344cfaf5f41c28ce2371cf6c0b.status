@@ -1,6 +1,6 @@
 {
     "model": "supergemma4-26b-uncensored-fast-v2-Q4_K_M",
-    "provider": "llamacpp",
+    "provider": "sloth-llama",
     "role": "Zara_Thorne!2b3235344cfaf5f41c28ce2371cf6c0b",
     "mode": "chat",
     "active_story": "",
@@ -16,5 +16,5 @@
     "think_mode": false,
     "verbose_mode": false,
     "trace_mode": false,
-    "total_messages_sent": 0
+    "total_messages_sent": 2
 }

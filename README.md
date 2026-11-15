@@ -103,7 +103,7 @@ Update the config.yaml file with the following information:
   - `TELEGRAM_TOKENS`: A map of bot names to bot tokens (get tokens from `@BotFather` using `/newbot` or `/mybots` command). Every token configured here will automatically be started as a concurrent bot instance.
   - `PROVIDERS`: List of provider configurations. Each provider has:
     - `name`: Unique identifier
-    - `type`: Provider type (`ollama`, `openai_compatible`, `gemini`)
+    - `type`: Provider type (`ollama`, `openai_compatible`, `gemini`). NVIDIA NIM uses `openai_compatible`.
     - `url`: API endpoint URL
     - `api_key`: (Optional) API key for authenticated providers
     - `extra_headers`: (Optional) Extra HTTP headers for OpenAI-compatible providers
@@ -227,7 +227,7 @@ NOTE: commands documentation (this section) may not be the most up to date. For 
 - `.provider [n]` — Switch to a different provider.
 - `.model` / `.m` — List models available on the current provider.
 - `.model [n]` — Switch to a model by index.
-- `.mf` / `.modelsfiltered` [n/next/prev] — (Ollama Online) List, select, or cycle standard models that do not require an account upgrade.
+- `.mf` / `.modelsfiltered` [name/n/next/prev] — Filter and select models on any provider that exposes a model list (Ollama, OpenRouter, llama.cpp, Gemini, NVIDIA NIM, ...).
 - `.think` — Toggle "Think Mode" (adds thinking logic/parameters for supported models).
 - `.llmctx [nk]` — Set or show the model context window size (e.g., 8k, 32k).
 - `.verbose` / `.v` — Toggle display of latency and message metadata.
@@ -236,8 +236,8 @@ NOTE: commands documentation (this section) may not be the most up to date. For 
 - `.chat` / `.chats` / `.c` — List saved JSON chat files.
 - `.chat save [name]` — Save the current session history and metadata.
 - `.chat load [name]` — Load a saved conversation.
-- `.clear` — Wipe the current conversation history (keeps the active role).
-- `.clean` / `.cl` — Wipe memory and delete messages from the Telegram UI.
+- `.clear` — Wipe the current conversation history (keeps the active role). A timestamped backup is written to `chats/backups/` or, in story mode, to the story's `backups/` folder first.
+- `.clean` / `.cl` — Back up, wipe memory, and delete messages from the Telegram UI.
 - `.mode` / `.mo` [chat/story] — Toggle history behavior (full history vs. assistant-only for context).
 - `.recap [n]` — Summarize the current conversation history using a template from `recap.json`.
 - `.story` / `.store` save [name] — Save all assistant messages from the current chat to a text file.
@@ -245,7 +245,7 @@ NOTE: commands documentation (this section) may not be the most up to date. For 
 - `.del` — Delete the last user message and vivid's response from memory.
 - `.resend` — Remove the last user message and re-trigger generation.
 - `.context [n]` — View or set the sliding context window limit (number of messages sent to LLM).
-- `.last [n]` — Show the last `n` messages from the chat history (default 3).
+- `.history [n]` / `.hist [n]` — Show the last `n` messages from the chat history (default 3).
 - `.length [n]` / `.l [n]` — Set target response length (~n words); `.length clear` to reset; `.length` to view current setting.
 
 ### 📝 Predefined Messages
@@ -338,6 +338,13 @@ PROVIDERS:
     type: "ollama"
     url: "https://ollama.com"
     api_key: "your-second-ollama-api-key"
+    show_on_provider_list: true
+  # NVIDIA NIM (build.nvidia.com). Get a key from any model page -> "Get API Key".
+  - name: "nvidia"
+    type: "openai_compatible"
+    url: "https://integrate.api.nvidia.com/v1"
+    api_key: "nvapi-your-nvidia-api-key"
+    model: "nvidia/nemotron-3-super-120b-a12b"
     show_on_provider_list: true
 ```
 

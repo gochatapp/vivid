@@ -2,6 +2,17 @@
 Vivid Chat - System Modules
 """
 
+import sys as _sys
+
+# Windows consoles (and redirected output) often use a legacy code page that
+# cannot encode the emoji used in status messages. Degrade unencodable
+# characters instead of crashing the process on startup.
+for _stream in (_sys.stdout, _sys.stderr):
+    try:
+        _stream.reconfigure(errors="replace")
+    except Exception:
+        pass
+
 from .config import (
     BASE_DIR,
     CONFIG,

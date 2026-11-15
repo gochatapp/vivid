@@ -1,0 +1,169 @@
+{
+  "default_voice": "en-US-AvaNeural",
+  "voices": [
+    {
+      "number": 1,
+      "name": "en-US-AnaNeural",
+      "locale": "en-US",
+      "region": "United States",
+      "gender": "Female",
+      "tags": [
+        "Child"
+      ]
+    },
+    {
+      "number": 2,
+      "name": "en-US-AriaNeural",
+      "locale": "en-US",
+      "region": "United States",
+      "gender": "Female",
+      "tags": []
+    },
+    {
+      "number": 3,
+      "name": "en-US-AvaNeural",
+      "locale": "en-US",
+      "region": "United States",
+      "gender": "Female",
+      "tags": []
+    },
+    {
+      "number": 4,
+      "name": "en-US-ChristopherNeural",
+      "locale": "en-US",
+      "region": "United States",
+      "gender": "Male",
+      "tags": []
+    },
+    {
+      "number": 5,
+      "name": "en-US-EricNeural",
+      "locale": "en-US",
+      "region": "United States",
+      "gender": "Male",
+      "tags": []
+    },
+    {
+      "number": 6,
+      "name": "en-US-GuyNeural",
+      "locale": "en-US",
+      "region": "United States",
+      "gender": "Male",
+      "tags": []
+    },
+    {
+      "number": 7,
+      "name": "en-US-JennyNeural",
+      "locale": "en-US",
+      "region": "United States",
+      "gender": "Female",
+      "tags": []
+    },
+    {
+      "number": 8,
+      "name": "en-US-MichelleNeural",
+      "locale": "en-US",
+      "region": "United States",
+      "gender": "Female",
+      "tags": []
+    },
+    {
+      "number": 9,
+      "name": "en-US-RogerNeural",
+      "locale": "en-US",
+      "region": "United States",
+      "gender": "Male",
+      "tags": []
+    },
+    {
+      "number": 10,
+      "name": "en-GB-LibbyNeural",
+      "locale": "en-GB",
+      "region": "United Kingdom",
+      "gender": "Female",
+      "tags": []
+    },
+    {
+      "number": 11,
+      "name": "en-GB-MaisieNeural",
+      "locale": "en-GB",
+      "region": "United Kingdom",
+      "gender": "Female",
+      "tags": [
+        "Child"
+      ]
+    },
+    {
+      "number": 12,
+      "name": "en-GB-RyanNeural",
+      "locale": "en-GB",
+      "region": "United Kingdom",
+      "gender": "Male",
+      "tags": []
+    },
+    {
+      "number": 13,
+      "name": "en-GB-SoniaNeural",
+      "locale": "en-GB",
+      "region": "United Kingdom",
+      "gender": "Female",
+      "tags": []
+    },
+    {
+      "number": 14,
+      "name": "en-GB-ThomasNeural",
+      "locale": "en-GB",
+      "region": "United Kingdom",
+      "gender": "Male",
+      "tags": []
+    },
+    {
+      "number": 15,
+      "name": "en-AU-NatashaNeural",
+      "locale": "en-AU",
+      "region": "Australia",
+      "gender": "Female",
+      "tags": []
+    },
+    {
+      "number": 16,
+      "name": "en-AU-WilliamNeural",
+      "locale": "en-AU",
+      "region": "Australia",
+      "gender": "Male",
+      "tags": []
+    },
+    {
+      "number": 17,
+      "name": "en-CA-ClaraNeural",
+      "locale": "en-CA",
+      "region": "Canada",
+      "gender": "Female",
+      "tags": []
+    },
+    {
+      "number": 18,
+      "name": "en-CA-LiamNeural",
+      "locale": "en-CA",
+      "region": "Canada",
+      "gender": "Male",
+      "tags": []
+    },
+    {
+      "number": 19,
+      "name": "en-IN-NeerjaNeural",
+      "locale": "en-IN",
+      "region": "India",
+      "gender": "Female",
+      "tags": []
+    },
+    {
+      "number": 20,
+      "name": "en-IN-PrabhatNeural",
+      "locale": "en-IN",
+      "region": "India",
+      "gender": "Male",
+      "tags": []
+    }
+  ]
+}

@@ -3,8 +3,10 @@
         "bot_name": "testbot1",
         "model": "test-model-custom",
         "role": "Test_Detective_Sarah",
-        "provider": "local-ollama",
+        "persona": "",
+        "provider": "none",
         "context_limit": 50,
+        "response_length": null,
         "mode": "story",
         "active_characters": [],
         "active_scenes": [],
@@ -13,7 +15,10 @@
         "lazy_mode": false,
         "think_mode": false,
         "verbose_mode": false,
-        "trace_mode": false
+        "trace_mode": false,
+        "voice_mode": false,
+        "voice_name": "en-US-AvaNeural",
+        "voice_speed": 1.0
     },
     "history": [
         {

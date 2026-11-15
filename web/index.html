@@ -1,39 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vivid Chat - Dashboard</title>
-    <link rel="stylesheet" href="/static/style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Character.XI Library — Dashboard</title>
+<!-- Tailwind CSS CDN for modern styling -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- FontAwesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link rel="stylesheet" href="/static/styles.css" />
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: #0f172a; }
+  ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+  /* Home Card Hover & Glassmorphism Styling */
+  .homeCard {
+    display: flex;
+    flex-direction: column;
+    background: #161f2e;
+    border: 1px solid rgba(30, 41, 59, 0.8);
+    border-radius: 16px;
+    padding: 22px;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .homeCard:hover {
+    transform: translateY(-3px);
+    border-color: rgba(99, 102, 241, 0.5);
+    box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.5), 0 0 15px rgba(99, 102, 241, 0.1);
+  }
+  .homeCard.disabled { opacity: .6; cursor: default; }
+  .homeCard.disabled:hover { transform: none; border-color: rgba(30, 41, 59, 0.8); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3); }
+
+  /* "What's New" — rendered markdown styling */
+  .news { font-size: 13.5px; line-height: 1.7; color: #cbd5e1; }
+  .news h1 { font-size: 20px; font-weight: 700; color: #fff; margin: 0 0 12px; }
+  .news h2 { font-size: 16px; font-weight: 700; color: #a5b4fc; margin: 20px 0 10px; padding-bottom: 6px; border-bottom: 1px solid rgba(71, 85, 105, 0.4); }
+  .news h2:first-child { margin-top: 0; }
+  .news h3 { font-size: 14px; font-weight: 700; color: #fbbf24; margin: 16px 0 8px; }
+  .news p { margin: 8px 0; }
+  .news ul { list-style: disc; padding-left: 22px; margin: 8px 0; }
+  .news li { margin: 5px 0; }
+  .news li::marker { color: #6366f1; }
+  .news strong { color: #e2e8f0; font-weight: 600; }
+  .news em { color: #94a3b8; }
+  .news hr { border: 0; border-top: 1px solid rgba(71, 85, 105, 0.5); margin: 18px 0; }
+  .news a { color: #818cf8; text-decoration: underline; text-underline-offset: 2px; }
+  .news a:hover { color: #a5b4fc; }
+  .news code { background: rgba(30, 41, 59, 0.8); padding: 2px 6px; border-radius: 4px; font-size: 12px; color: #c7d2fe; }
+</style>
 </head>
-<body>
-    <div class="container">
-        <header>
-            <h1>🤖 Vivid Chat Dashboard</h1>
-            <div class="status-indicator" id="connection-status">
-                <span class="dot"></span>
-                <span>Connecting...</span>
-            </div>
-        </header>
+<body class="bg-[#0b0f17] text-slate-200 min-h-screen flex flex-col font-sans antialiased selection:bg-indigo-500 selection:text-white">
 
-        <main>
-            <section class="bots-grid" id="bots-grid">
-                <!-- Bots will be populated here -->
-            </section>
+  <!-- Header Navigation -->
+  <header class="border-b border-slate-800/80 bg-[#0f172a]/80 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="h-9 w-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-emerald-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+          <i class="fa-solid fa-database text-white text-base"></i>
+        </div>
+        <div>
+          <h1 class="text-lg font-bold text-white leading-tight">Character.XI Library</h1>
+          <p class="text-xs text-slate-400 hidden sm:block">Character & Story Management Hub</p>
+        </div>
+      </div>
+    </div>
+  </header>
 
-            <section class="actions">
-                <button class="btn btn-secondary" onclick="refreshBots()">🔄 Refresh</button>
-            </section>
-        </main>
+  <!-- Main Container -->
+  <main id="home" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-1 w-full space-y-8">
+    
+    <!-- Group 1: Setup & Operations -->
+    <div class="space-y-4">
+      <h3 class="text-xs font-bold uppercase tracking-wider text-indigo-400 flex items-center gap-2 px-1">
+        <i class="fa-solid fa-sliders"></i> System & Chat
+      </h3>
+      <div id="homeGrid" class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2">
+
+        <a class="homeCard group" href="https://web.telegram.org/" target="_blank" rel="noopener noreferrer">
+          <div class="flex items-center justify-between mb-3">
+            <h4 class="text-base font-bold text-white group-hover:text-indigo-300 transition flex items-center gap-2.5">
+              <i class="fa-solid fa-comment-dots text-emerald-400"></i> Character.XI
+            </h4>
+            <span class="text-[11px] font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-2.5 py-0.5 rounded-full">/chat</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed flex-1">Engage in immersive conversations directly with your configured bots, custom roles, and personas.</p>
+        </a>
+
+        <a class="homeCard group" href="/setup">
+          <div class="flex items-center justify-between mb-3">
+            <h4 class="text-base font-bold text-white group-hover:text-indigo-300 transition flex items-center gap-2.5">
+              <i class="fa-solid fa-gear text-indigo-400"></i> Character.XI Setup
+            </h4>
+            <span class="text-[11px] font-mono text-indigo-400 bg-indigo-950/60 border border-indigo-800/60 px-2.5 py-0.5 rounded-full">/setup</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed flex-1">Configure LLM providers, active bots, API keys, and system parameters directly from your browser.</p>
+        </a>
+
+      </div>
     </div>
 
-    <script src="/static/app.js"></script>
+    <!-- Explore -->
+    <div class="space-y-4 pt-2">
+      <h3 class="text-xs font-bold uppercase tracking-wider text-blue-400 flex items-center gap-2 px-1">
+        <i class="fa-solid fa-compass"></i> EXPLORE
+      </h3>
+      <div id="exploreGrid" class="grid gap-4 grid-cols-1">
+        
+        <a class="homeCard group" href="/browse">
+          <div class="flex items-center justify-between mb-3">
+            <h4 class="text-base font-bold text-white group-hover:text-indigo-300 transition flex items-center gap-2.5">
+              <i class="fa-solid fa-store text-blue-400"></i> Asset Browser
+            </h4>
+            <span class="text-[11px] font-mono text-blue-400 bg-blue-950/60 border border-blue-800/60 px-2.5 py-0.5 rounded-full">/browse</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed flex-1">Browse, filter, and install community roles and stories by tag, contributor name, and rating.</p>
+        </a>
+      </div>
+    </div>
+
+    <!-- Creation Tools -->
+    <div class="space-y-4 pt-2">
+      <h3 class="text-xs font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-2 px-1">
+        <i class="fa-solid fa-wand-magic-sparkles"></i> Creation Tools
+      </h3>
+      <div id="creationGrid" class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+
+        <a class="homeCard group" href="/role_maker">
+          <div class="flex items-center justify-between mb-3">
+            <h4 class="text-sm font-bold text-white group-hover:text-indigo-300 transition flex items-center gap-2">
+              <i class="fa-solid fa-user-ninja text-indigo-400"></i> Role Maker
+            </h4>
+            <span class="text-[10px] font-mono text-indigo-400 bg-indigo-950/60 border border-indigo-800/60 px-2 py-0.5 rounded-full">/role_maker</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed flex-1">Transform plain-text character concepts into finished, fully formatted role cards and Perchance image assets.</p>
+        </a>
+
+        <a class="homeCard group" href="/persona">
+          <div class="flex items-center justify-between mb-3">
+            <h4 class="text-sm font-bold text-white group-hover:text-indigo-300 transition flex items-center gap-2">
+              <i class="fa-solid fa-user-gear text-teal-400"></i> Persona Maker
+            </h4>
+            <span class="text-[10px] font-mono text-teal-400 bg-teal-950/60 border border-teal-800/60 px-2 py-0.5 rounded-full">/persona</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed flex-1">Create, fine-tune, and enhance local chat personas using AI model assistance and image tools.</p>
+        </a>
+
+        <a class="homeCard group" href="/story">
+          <div class="flex items-center justify-between mb-3">
+            <h4 class="text-sm font-bold text-white group-hover:text-indigo-300 transition flex items-center gap-2">
+              <i class="fa-solid fa-book-open text-purple-400"></i> Story Maker
+            </h4>
+            <span class="text-[10px] font-mono text-purple-400 bg-purple-950/60 border border-purple-800/60 px-2 py-0.5 rounded-full">/story</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed flex-1">Draft, structure, and AI-enhance interconnected characters and settings for multi-part stories.</p>
+        </a>
+
+        <a class="homeCard group" href="/story2">
+          <div class="flex items-center justify-between mb-3">
+            <h4 class="text-sm font-bold text-white group-hover:text-indigo-300 transition flex items-center gap-2">
+              <i class="fa-solid fa-book-bookmark text-blue-400"></i> Story Maker 2
+            </h4>
+            <span class="text-[10px] font-mono text-blue-400 bg-blue-950/60 border border-blue-800/60 px-2 py-0.5 rounded-full">/story2</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed flex-1">Create characters and settings with local or GitHub Gist storage options for multi-part narratives.</p>
+        </a>
+
+        <a class="homeCard group" href="/general">
+          <div class="flex items-center justify-between mb-3">
+            <h4 class="text-sm font-bold text-white group-hover:text-indigo-300 transition flex items-center gap-2">
+              <i class="fa-solid fa-comments text-green-400"></i> General Chat
+            </h4>
+            <span class="text-[10px] font-mono text-green-400 bg-green-950/60 border border-green-800/60 px-2 py-0.5 rounded-full">/general</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed flex-1">Chat with your configured providers and select a provider and model from the chat composer.</p>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Reference -->
+    <div class="space-y-4 pt-2">
+      <h3 class="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-2 px-1">
+        <i class="fa-solid fa-terminal"></i> Reference
+      </h3>
+      <div id="referenceGrid" class="grid gap-4 grid-cols-1 lg:grid-cols-2">
+        <a class="homeCard group" href="/commands">
+          <div class="flex items-center justify-between mb-3">
+            <h4 class="text-base font-bold text-white group-hover:text-indigo-300 transition flex items-center gap-2.5">
+              <i class="fa-solid fa-terminal text-amber-400"></i> Commands Reference
+            </h4>
+            <span class="text-[11px] font-mono text-amber-400 bg-amber-950/60 border border-amber-800/60 px-2.5 py-0.5 rounded-full">/commands</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed flex-1">Explore the comprehensive list of bot control commands, syntax guidelines, shortcuts, and synonyms.</p>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- News / What's New -->
+    <div class="space-y-4 pt-3 border-t border-slate-800/60">
+      <div class="flex items-center justify-between gap-3 px-1">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-indigo-400 flex items-center gap-2">
+          <i class="fa-solid fa-newspaper"></i> What's New
+        </h3>
+        <a href="https://gist.github.com/gochatapp/4417e317f348db905d7a697c6b3ac37e" target="_blank" rel="noopener noreferrer" class="text-[11px] text-slate-400 hover:text-indigo-300 transition flex items-center gap-1.5">
+          <i class="fa-brands fa-github"></i> View on GitHub
+        </a>
+      </div>
+      <div id="newsContent" class="news">
+        <p class="text-slate-500 italic text-xs">Loading updates…</p>
+      </div>
+    </div>
+
     <script>
-        // Initialize dashboard
-        document.addEventListener('DOMContentLoaded', () => {
-            loadBots();
-            setInterval(loadBots, 10000); // Auto-refresh every 10 seconds
-        });
+      // Render the What's New release notes, read live on every page visit.
+      // The canonical source is the GitHub gist: its stable ".../raw/whats_new.md"
+      // URL always returns the latest revision, so editing the gist updates the
+      // dashboard on the next load with no rebuild. If the gist is unreachable
+      // (offline / blocked), fall back to the locally served /whats_new.md, then
+      // finally to a friendly error. Whitespace-only responses are skipped so a
+      // bad fetch can't wipe the panel.
+      const NEWS_SOURCES = [
+        'https://gist.githubusercontent.com/gochatapp/4417e317f348db905d7a697c6b3ac37e/raw/whats_new.md',
+        '/whats_new.md',
+      ];
+
+      async function loadNews() {
+        const el = document.getElementById('newsContent');
+        for (const src of NEWS_SOURCES) {
+          try {
+            const res = await fetch(src, { cache: 'no-store' });
+            if (!res.ok) continue;
+            const md = await res.text();
+            if (!md || !md.trim()) continue;
+            el.innerHTML = marked.parse(md);
+            return;
+          } catch (err) {
+            // Network/CORS error: try the next source.
+          }
+        }
+        el.innerHTML =
+          '<p class="text-slate-500 italic">Unable to load updates right now.</p>';
+      }
+      loadNews();
     </script>
+
+  </main>
 </body>
 </html>

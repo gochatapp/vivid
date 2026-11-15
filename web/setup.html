@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Character.XI Setup</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* Custom scrollbar */
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:#0f172a}
+::-webkit-scrollbar-thumb{background:#334155;border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:#475569}
+
+body{font-family:system-ui,sans-serif;background:#0b0f17;color:#e2e8f0;margin:0}
+header{padding:16px 20px;background:#0f172a;border-bottom:1px solid #1e293b;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50}
+header .logo{height:36px;width:36px;flex:0 0 auto;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;background:linear-gradient(135deg,#4f46e5,#3b82f6);box-shadow:0 6px 18px rgba(79,70,229,.25)}
+header h1{margin:0;font-size:18px;font-weight:700;color:#fff;line-height:1.2}
+header .subtitle{margin:0;font-size:12px;color:#94a3b8}
+header a{color:#cbd5e1;font-size:13px;margin-left:auto;text-decoration:none;transition:color .2s ease}
+header a:hover{color:#fff}
+.wrap{max-width:860px;margin:0 auto;padding:24px}
+.card{background:#0f172a;border:1px solid #1e293b;border-radius:12px;padding:20px;margin:16px 0}
+.card h2{margin:0 0 4px;font-size:16px;font-weight:700;color:#f1f5f9}
+label{display:block;font-size:13px;color:#94a3b8;margin:10px 0 4px}
+input,select{width:100%;padding:10px;border-radius:8px;border:1px solid #1e293b;background:#0b1017;color:#f1f5f9;box-sizing:border-box;transition:all .2s ease}
+input:focus,select:focus{border-color:#6366f1;outline:none;box-shadow:0 0 0 2px rgba(99,102,241,.2)}
+button{background:#4f46e5;border:1px solid #4f46e5;color:#fff;padding:10px 16px;border-radius:8px;cursor:pointer;margin:6px 6px 0 0;font-size:13px;font-weight:600;transition:all .2s ease}
+button:hover{background:#6366f1;border-color:#6366f1}
+button.ghost{background:#1e293b;border:1px solid #334155;color:#e2e8f0}
+button.ghost:hover{background:#27364b;border-color:#475569}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+/* Fetched model picker: the filter box rides the same line as the select so the
+   Models/Test/Delete buttons underneath never move down. */
+.modelline{display:flex;gap:8px;align-items:stretch}
+.modelline select,.modelline input{min-width:0}
+.modelline select{flex:1 1 60%}
+.modelline input{flex:1 1 40%}
+.ok{color:#22c55e}.err{color:#f87171}.muted,.msgmuted{color:#94a3b8;font-size:13px}
+.bot,.prov{background:#0b1017;border:1px solid #1e293b;border-radius:8px;padding:12px;margin:10px 0}
+a{color:#818cf8}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo"><i class="fa-solid fa-sliders"></i></div>
+  <div>
+    <h1>Character.XI Setup</h1>
+    <p class="subtitle">Telegram bots, providers &amp; tokens</p>
+  </div>
+  <a href="/" class="inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-medium text-slate-300 hover:text-white bg-slate-800/70 hover:bg-slate-700/80 border border-slate-700/60 rounded-lg transition-all">
+    <i class="fa-solid fa-arrow-left"></i> Home
+  </a>
+</header>
+<div class="wrap">
+  <div class="card">
+    <h2>1. Telegram</h2>
+    <label>Telegram User ID (from @userinfobot)</label>
+    <input id="user_id" type="number">
+    <div id="bots"></div>
+    <button class="ghost" onclick="addBot()">+ Add bot</button>
+  </div>
+  <div class="card">
+    <h2>2. Providers</h2>
+    <div id="provs"></div>
+    <button class="ghost" onclick="addProv('ollama')">+ Ollama (local)</button>
+    <button class="ghost" onclick="addProv('ollama_cloud')">+ Ollama (online)</button>
+    <button class="ghost" onclick="addProv('llamacpp')">+ llama.cpp</button>
+    <button class="ghost" onclick="addProv('openrouter')">+ OpenRouter</button>
+    <button class="ghost" onclick="addProv('google')">+ Google</button>
+    <button class="ghost" onclick="addProv('nvidia')">+ NVIDIA</button>
+  </div>
+  <div class="card">
+    <h2>3. GitHub gist token (classic PAT)</h2>
+    <label>Classic Personal Access Token with the <code>gist</code> scope — used for "Publish to Online Library". This is <em>not</em> the release token (that one lives in <code>executables/.release-token</code>).</label>
+    <input id="gist_github_token" type="password">
+  </div>
+  <div class="card">
+    <h2>4. Save</h2>
+    <label><input id="debug" type="checkbox" style="width:auto"> Debug</label><br>
+    <button onclick="save()">Save config.yaml</button> <span id="saveMsg" class="muted"></span>
+  </div>
+</div>
+<script src="/static/setup.js"></script>
+</body>
+</html>

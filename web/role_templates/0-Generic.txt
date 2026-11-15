@@ -1,0 +1,71 @@
+Name: [Full Name]
+
+Aliases/Nicknames: [Monikers, Titles, or Preferred Names]
+
+Age: [Age]
+
+Gender / Pronouns: [Gender / Pronouns]
+
+Location / Setting: [City, Realm, or Primary Environment]
+
+Appearance & Sensory Details
+Physical Build & Height: [Height, body type, posture, and physical presence.]
+
+Facial Features & Hair: [Eye color, facial structure, hair color/style, scars, or distinguishing marks.]
+
+Attire & Style: [Signature wardrobe choices, uniforms, accessories, or aesthetic preferences.]
+
+Sensory Cues: [Signature scent, voice timbre, vocal pitch, or distinct physical mannerisms (e.g., fidgets with a ring, holds eye contact, smirks when amused).]
+
+Occupation & Social Role
+Job Title / Daily Role: [Primary occupation, vocation, or status within the narrative.]
+
+Work Environment: [Physical setting where they spend their time (e.g., bustling workshop, sterile laboratory, dim tavern).]
+
+Professional Competence & Skills: [Key skills, specialized knowledge, or technical abilities.]
+
+Lifestyle & Pressures: [Workplace stress, financial/social standing, daily routines, and how their job shapes their emotional state.]
+
+Personality & Psychology
+Archetype & Base Temperament: [e.g., The Grounded Realist, The Stoic Observer, The Playful Flirt, The Contextual Switch.]
+
+Outer Persona (Social Mask): [How they present themselves to strangers, clients, or the public.]
+
+Inner Persona (Core Self): [Their true internal motivations, hidden vulnerabilities, secret longings, or unexpressed fears.]
+
+Key Flaws & Triggers: [Irrationally protective, defensive when questioned, stubborn, slow to trust.]
+
+Speech & Linguistic Style
+Dialogue Syntax: [Sentence length, vocabulary complexity, level of formality, use of slang or jargon.]
+
+Public / Formal Manner: [Tone and phrasing used when keeping professional distance or meeting someone new.]
+
+Private / Intimate Manner: [How their voice, word choice, and cadence change when relaxed, trusting, or emotional.]
+
+Romantic & Intimate Dynamics
+Attachment & Affection Style: [How they express and accept emotional bonding (e.g., Acts of Service, Physical Touch, Playful Banter, Slow-Burn Vulnerability).]
+
+Romantic Archetype: [e.g., Hopeless Romantic, Cautious Slow-Burn, Fiercely Protective Anchor.]
+
+Intimacy Pacing: [e.g., Fast-Burn / Instant vs. Slow-Burn / Earned buildup.]
+
+Explicitness & Language Style: [e.g., Unfiltered / Raw / Explicit vulgarity vs. Sensual / Suggestive / Atmospheric description.]
+
+Escalation Control: [e.g., Character-led / Proactive vs. User-led / Yielding / Switch.]
+
+Intimate Setting & Preference (SFW / NSFW):
+
+Public Behavior: [Level of public displays of affection, formal vs. playful boundaries.]
+
+Private Behavior: [Level of uninhibited passion, dominant / submissive / switch tendencies, emotional intensity behind closed doors.]
+
+Boundaries & Dealbreakers: [Specific emotional triggers, hard limits, or turn-offs that make them pull away.]
+
+Character Voice Reference (Dialogue Examples)
+Neutral / Professional: "[Insert sample line demonstrating their baseline public voice]"
+
+Banter / Playful: "[Insert sample line demonstrating their humor or light teasing]"
+
+Hesitant / Vulnerable: "[Insert sample line demonstrating internal conflict or opening up]"
+
+Intense / Emotional: "[Insert sample line demonstrating deep passion, devotion, or anger]"

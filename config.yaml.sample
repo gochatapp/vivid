@@ -42,21 +42,22 @@ PROVIDERS:
     type: "gemini"
     api_key: "your-gemini-api-key"
     show_on_provider_list: true
+  # NVIDIA NIM (build.nvidia.com) - OpenAI-compatible endpoint.
+  # Get a key at https://build.nvidia.com -> any model page -> "Get API Key".
+  # Model ids look like "nvidia/nemotron-3-super-120b-a12b",
+  # "meta/llama-3.3-70b-instruct" or "openai/gpt-oss-120b";
+  # use `.model` to list what your key can use.
+  - name: "nvidia"
+    type: "openai_compatible"
+    url: "https://integrate.api.nvidia.com/v1"
+    api_key: "nvapi-your-nvidia-api-key"
+    model: "nvidia/nemotron-3-super-120b-a12b"
+    show_on_provider_list: true
 
 OLLAMA_NUM_CTX: 4096
 
-# Paths
-CHATS_PATH_WINDOWS: "./chats"
-CHATS_PATH_LINUX: "./chats"
-ROLES_PATH_WINDOWS: "./roles"
-ROLES_PATH_LINUX: "./roles"
-CHARACTERS_PATH_WINDOWS: "./characters"
-CHARACTERS_PATH_LINUX: "./characters"
-SCENES_PATH_WINDOWS: "./scenes"
-SCENES_PATH_LINUX: "./scenes"
-CONTEXT_PATH_WINDOWS: "./context"
-CONTEXT_PATH_LINUX: "./context"
-SETTINGS_PATH_WINDOWS: "./settings"
-SETTINGS_PATH_LINUX: "./settings"
-STORY_PATH_WINDOWS: "./stories"
-STORY_PATH_LINUX: "./stories"
+# Voice / TTS Settings (for .voice on/off command)
+# DEFAULT_VOICE: "en-US-AvaNeural"
+# Voice list lives in settings/voices.json; `.nar` lists it and `.nar [n]` selects.
+# `.voice [n]` sets speed: 1 = 1.0x (normal), 2 = 1.2x, ... 9+ = 1.9x (max).
+

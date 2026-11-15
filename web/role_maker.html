@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Role Maker - Character.XI</title>
+<!-- Tailwind CSS CDN for modern styling -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- FontAwesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<style>
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: #0f172a; }
+  ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+  /* Collapsible LLM Configuration section (same behaviour as Story Maker 2):
+     the summary is the card header, the chevron flips when the card is open. */
+  details > summary {
+    list-style: none;
+    outline: none;
+  }
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+  details[open] > summary .fa-chevron-down {
+    transform: rotate(180deg);
+  }
+
+  select, input[type="text"], input[type="number"], textarea {
+    background-color: #0b1017 !important;
+    border: 1px solid #1e293b !important;
+    color: #f1f5f9 !important;
+    transition: all 0.2s ease;
+  }
+  select:focus, input[type="text"]:focus, input[type="number"]:focus, textarea:focus {
+    border-color: #6366f1 !important;
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2) !important;
+  }
+
+  #status { font-size: 13px; color: #9aa6bd; min-height: 20px; }
+  #status.err { color: #f87171; }
+  #publishStatus { font-size: 13px; min-height: 18px; }
+  #publishStatus.err { color: #f87171; }
+  #publishStatus a { color: #818cf8; }
+
+  /* Publish is visible as soon as a classic PAT exists, but it stays greyed
+     until Role Details hold something to publish - and greyed again after the
+     gist exists, so one role cannot be published twice by accident. */
+  #publishBtn:disabled,
+  #publishBtn:disabled:hover {
+    background: #1e293b !important;
+    color: #94a3b8 !important;
+    box-shadow: none !important;
+    cursor: not-allowed;
+  }
+
+  /* Publish Local needs no PAT, so it is always visible; it greys for the same
+     reason - Role Details are still empty. */
+  #publishLocalBtn:disabled,
+  #publishLocalBtn:disabled:hover {
+    background: #1e293b !important;
+    color: #94a3b8 !important;
+    box-shadow: none !important;
+    cursor: not-allowed;
+  }
+
+  #publishLocalStatus { font-size: 13px; min-height: 18px; }
+  #publishLocalStatus.err { color: #f87171; }
+
+  /* One dialog serves the local overwrite question (Overwrite / Save as _2 /
+     Cancel) and the online quality gate (Publish / No). */
+  .modalWrap { position: fixed; inset: 0; z-index: 60; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(2, 6, 23, 0.72); }
+  .modalWrap[hidden] { display: none; }
+  .modalCard { width: 100%; max-width: 460px; display: flex; flex-direction: column; gap: 12px; background: #161f2e; border: 1px solid #1e293b; border-radius: 16px; padding: 20px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55); }
+  .modalCard h3 { font-size: 14px; font-weight: 700; color: #f1f5f9; }
+  .modalCard p { font-size: 12px; line-height: 1.6; color: #94a3b8; }
+  .modalActions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+  .modalBtn { padding: 8px 14px; border-radius: 10px; font-size: 12px; font-weight: 600; color: #e2e8f0; background: #1e293b; border: 1px solid #334155; cursor: pointer; transition: all 0.2s ease; }
+  .modalBtn:hover { background: #27364b; }
+  .modalBtn.primary { background: #059669; border-color: #059669; color: #ffffff; }
+  .modalBtn.primary:hover { background: #10b981; }
+  .modalBtn.accent { background: #4f46e5; border-color: #4f46e5; color: #ffffff; }
+  .modalBtn.accent:hover { background: #6366f1; }
+  
+  #filenameOut { font-size: 14px; color: #e8eaf0; background: #0b1017; border: 1px solid #1e293b; border-radius: 8px; padding: 8px 12px; word-break: break-all; min-height: 20px; }
+  #filenameOut:empty::before { content: "GOCHATAPPROLETAG_[rolename].txt"; color: #64748b; }
+  
+  .gistBox { background: #0b1017; border: 1px solid #1e293b; border-radius: 12px; padding: 14px; font-size: 12px; color: #94a3b8; line-height: 1.6; }
+  .gistBox a { color: #818cf8; }
+  .gistBox ol { margin: 6px 0 0; padding-left: 20px; }
+  
+  #imgDrop { margin-top: 8px; padding: 12px; border: 2px dashed #334155; border-radius: 12px; text-align: center; font-size: 12px; color: #94a3b8; background: #0b1017/50; transition: all 0.2s; }
+  #imgDrop.over { border-color: #6366f1; background: #1e1b4b; color: #e2e8f0; }
+  
+  #clipWarn { color: #fbbf24; margin-top: 6px; font-size: 12px; }
+  #clipWarn a { color: #818cf8; }
+  
+  #imgPreviewWrap { margin-top: 8px; display: none; flex-direction: column; gap: 6px; }
+  #imgPreviewWrap.hasImg { display: flex; }
+  #imgPreview { max-width: 100%; max-height: 280px; object-fit: contain; border: 1px solid #334155; border-radius: 8px; background: #0b1017; align-self: flex-start; }
+</style>
+</head>
+<body class="bg-[#0b0f17] text-slate-200 min-h-screen flex flex-col font-sans antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Header Navigation -->
+  <header class="border-b border-slate-800/80 bg-[#0f172a]/80 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="h-9 w-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-blue-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+          <i class="fa-solid font-bold text-white text-lg">R</i>
+        </div>
+        <div>
+          <h1 class="text-lg font-bold text-white leading-tight">Role Maker</h1>
+          <p class="text-xs text-slate-400">Character.XI Character & Role Generator</p>
+        </div>
+      </div>
+      <a href="index.html" class="inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-medium text-slate-300 hover:text-white bg-slate-800/70 hover:bg-slate-700/80 border border-slate-700/60 rounded-lg transition-all">
+        <i class="fa-solid fa-arrow-left"></i> Home
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main id="creator" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full">
+    <div class="topNav hidden"><a href="index.html">&larr; Home</a></div>
+
+    <div class="grid grid-cols-1 gap-6 items-start">
+      
+      <div class="space-y-5">
+        
+        <!-- LLM Configuration Card (Collapsible, top of the page) -->
+        <details class="bg-[#161f2e] border border-slate-800/80 rounded-2xl p-5 shadow-xl space-y-3">
+          <summary class="text-xs font-bold uppercase tracking-wider text-blue-400 flex items-center gap-2 cursor-pointer select-none">
+            <i class="fa-solid fa-server"></i> 1. LLM Configuration
+            <i class="fa-solid fa-chevron-down ml-auto text-slate-500 transition-transform duration-200" aria-hidden="true"></i>
+          </summary>
+          <div class="pt-3 space-y-3" id="llmConfigContent">
+            <div id="llmRow" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="outRow flex flex-col gap-1">
+                <label for="serverSelect" class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">LLM Server</label>
+                <select id="serverSelect" class="w-full rounded-lg px-2.5 py-1.5 text-xs"><option value="">Loading servers...</option></select>
+              </div>
+              <div class="outRow flex flex-col gap-1">
+                <label for="modelSelect" class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Model</label>
+                <select id="modelSelect" class="w-full rounded-lg px-2.5 py-1.5 text-xs"><option value="">Loading models...</option></select>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 pt-1 border-t border-slate-800/50">
+              <label for="modelFilter" style="font-size:11px;margin:0;color:#9aa6bd" class="whitespace-nowrap font-medium">Model filter</label>
+              <input id="modelFilter" type="text" placeholder="e.g. free" class="flex-1 rounded-lg px-2.5 py-1 text-xs" />
+              <span id="modelFilterCount" class="text-[11px] text-slate-500 whitespace-nowrap">all models</span>
+            </div>
+            <div class="hint text-[11px] text-slate-500" id="serverHint">Uncensored llama.cpp boxes are slow; Ollama cloud is faster but may refuse NSFW.</div>
+          </div>
+        </details>
+
+        <!-- Template Selection Card -->
+        <div class="bg-[#161f2e] border border-slate-800/80 rounded-2xl p-5 shadow-xl space-y-3">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-indigo-400 flex items-center gap-2">
+            <i class="fa-solid fa-layer-group"></i> 2. Template Selection
+          </h2>
+          <div class="outRow flex flex-col gap-1.5">
+            <label for="templateSelect" class="text-xs font-semibold text-slate-300">Template</label>
+            <select id="templateSelect" class="w-full rounded-xl px-3 py-2 text-sm"><option value="">Select</option></select>
+            <div class="flex gap-2 items-start mt-2">
+              <button id="tplPreviewBtn" class="copyBtn px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700/60 rounded-xl text-xs font-medium transition" type="button">Preview template</button>
+            </div>
+            <pre id="tplPreview" style="display:none;" class="whitespace-pre-wrap text-xs text-slate-400 max-h-[200px] overflow-auto bg-[#0b1017] border border-slate-800 rounded-xl p-3 mt-2 font-mono"></pre>
+            <div class="hint text-[11px] text-slate-500 mt-1">Pick a template, then press Preview template. Changing template hides the preview — press it again to load the new one.</div>
+          </div>
+        </div>
+
+        <!-- General Description Card -->
+        <div class="bg-[#161f2e] border border-slate-800/80 rounded-2xl p-5 shadow-xl space-y-3">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-2">
+            <i class="fa-solid fa-pen"></i> 3. General Description
+          </h2>
+          <div class="outRow flex flex-col gap-1.5">
+            <label for="generalDesc" class="text-xs font-semibold text-slate-300">Description</label>
+            <textarea id="generalDesc" placeholder="Describe the character in plain words..." class="w-full rounded-xl px-3 py-2.5 text-sm font-mono min-h-[140px] leading-relaxed"></textarea>
+          </div>
+        </div>
+
+        <!-- Process & Publish Card. The id stays "imagePromptToolsSection"
+             because Process smooth-scrolls to it after starting the run. -->
+        <div id="imagePromptToolsSection" class="bg-[#161f2e] border border-slate-800/80 rounded-2xl p-5 shadow-xl space-y-4">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-blue-400 flex items-center gap-2">
+            <i class="fa-solid fa-bolt"></i> 4. Process &amp; Publish
+          </h2>
+
+          <!-- Action Buttons Bar -->
+          <div class="flex flex-wrap items-center gap-2.5 pt-2">
+            <button id="processBtn" type="button" class="py-2.5 px-6 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white font-bold text-sm shadow-lg shadow-indigo-500/10 transition flex items-center gap-2">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Process
+            </button>
+            <button id="resetBtn" type="button" class="py-2.5 px-5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 text-xs font-semibold transition flex items-center gap-1.5">
+              <i class="fa-solid fa-rotate-right"></i> Reset
+            </button>
+            <button id="publishLocalBtn" type="button" disabled title="Run Process first: there are no role details to publish." class="imgBtn primary py-2.5 px-5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold transition flex items-center gap-1.5">
+              <i class="fa-solid fa-hard-drive"></i> Publish Local
+            </button>
+            <button id="publishBtn" type="button" disabled title="Run Process first before publishing." class="imgBtn primary py-2.5 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition flex items-center gap-1.5">
+              <i class="fa-solid fa-cloud-arrow-up"></i> Publish to Online Library
+            </button>
+            <fieldset class="inline-flex items-center gap-2 border border-slate-700/50 rounded-lg p-1.5">
+              <legend class="text-[10px] uppercase tracking-wider text-slate-500 px-1">Thumbnail host</legend>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer">
+                <input type="radio" name="thumbHost" value="imgbb" id="thumbHostImgbb" class="accent-indigo-500" checked />
+                <span class="text-xs text-slate-300">imgbb</span>
+              </label>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer">
+                <input type="radio" name="thumbHost" value="catbox" id="thumbHostCatbox" class="accent-indigo-500" />
+                <span class="text-xs text-slate-300">Catbox</span>
+              </label>
+            </fieldset>
+            <span id="publishHint" class="hint text-[11px] text-slate-500" style="display:none;margin-left:4px">Add a GitHub classic PAT in <a href="/setup">Setup</a> to publish to the Online Library.</span>
+          </div>
+          <div class="hint text-[11px] text-slate-500">The gist includes the role and <code>image_prompt.md</code>. Thumbnail upload is optional; when enabled, <code>thumb.md</code> is created with the image.</div>
+
+          <div id="status" class="text-xs font-medium"></div>
+          <div id="publishStatus" class="hint text-xs"></div>
+          <div id="publishLocalStatus" class="hint text-xs"></div>
+        </div>
+
+      </div>
+
+      <div class="space-y-5">
+        
+        <!-- Perchance Image Description & Tools Card -->
+        <div class="bg-[#161f2e] border border-slate-800/80 rounded-2xl p-5 shadow-xl space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-indigo-400 flex items-center gap-2">
+              <i class="fa-regular fa-image"></i> 5. Image Prompt &amp; Tools
+            </h2>
+            <button class="copyBtn px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700/60 rounded-lg text-xs font-medium transition flex items-center gap-1" data-copy="imagePromptOut" type="button">
+              <i class="fa-regular fa-copy"></i> Copy image Prompt
+            </button>
+          </div>
+
+          <div class="hint text-xs text-slate-400 bg-slate-900/40 p-3 rounded-xl border border-slate-800/50 leading-relaxed">
+            Generate the image at <a href="https://perchance.org/ai-text-to-image-generator" target="_blank" rel="noopener" class="text-indigo-400 hover:underline font-medium">perchance.org/ai-text-to-image-generator</a> — choose an Art Style: <b>Drawn Anime</b>, <b>Manga</b>, Painted Anime, Anime, Anime Screencap, Cute Anime, Soft Anime, Vintage Anime, or Neon Vintage Anime. Use Shape: <b>Square</b> for best results. Paste the prompt below.
+          </div>
+
+          <div class="outRow flex flex-col gap-1.5">
+            <label for="imagePromptOut" class="text-xs font-semibold text-slate-300">Perchance Image Description</label>
+            <textarea id="imagePromptOut" readonly rows="3" placeholder="Image prompt appears here..." class="w-full rounded-xl px-3 py-2 text-xs font-mono leading-relaxed"></textarea>
+            <div class="hint text-[11px] text-slate-500 px-1">Generated prompts are framed from the hips up, with the mouth and expression matched to the character's personality.</div>
+          </div>
+
+          <!-- Image Tools Bar -->
+          <div id="imgTools" class="flex flex-wrap items-center gap-2 pt-1">
+            <button id="pasteImgBtn" class="imgBtn primary py-2 px-3 bg-indigo-600/20 hover:bg-indigo-600/30 border border-indigo-500/40 text-indigo-300 rounded-xl text-xs font-semibold transition flex items-center gap-1" type="button">
+              <i class="fa-solid fa-paste"></i> Paste image
+            </button>
+            <button id="uploadImgBtn" class="imgBtn py-2 px-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 rounded-xl text-xs font-medium transition flex items-center gap-1" type="button">
+              <i class="fa-solid fa-upload"></i> Upload image
+            </button>
+            <input id="uploadImgInput" type="file" accept="image/*" hidden />
+            
+            <span id="imgSizeWrap" class="text-xs text-slate-400 flex items-center gap-1.5 font-medium ml-auto">
+              Resize: 
+              <input id="imgW" type="number" value="450" min="16" max="4096" class="w-14 text-center rounded-md px-1 py-0.5 text-xs font-mono" /> x
+              <input id="imgH" type="number" value="450" min="16" max="4096" class="w-14 text-center rounded-md px-1 py-0.5 text-xs font-mono" /> px
+            </span>
+
+            <button id="copyImgBtn" class="imgBtn py-2 px-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 rounded-xl text-xs font-medium transition" type="button">Copy image</button>
+            <button id="downloadImgBtn" class="imgBtn py-2 px-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 rounded-xl text-xs font-medium transition" type="button">Download PNG</button>
+            <button id="clearImgBtn" class="imgBtn py-2 px-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-400 hover:text-red-400 rounded-xl text-xs font-medium transition" type="button">Clear</button>
+          </div>
+
+          <div id="imgDrop">Drag &amp; drop a Perchance image here, or press <b>Ctrl+V</b> (&#8984;V on Mac) anywhere on this page.</div>
+          <div id="clipWarn" style="display:none"></div>
+          
+          <div id="imgPreviewWrap">
+            <img id="imgPreview" alt="Resized image preview" />
+            <div id="imgMeta" class="text-[11px] text-slate-400 font-mono bg-slate-900/60 p-2 rounded-lg border border-slate-800"></div>
+          </div>
+          <div id="imgStatus" class="hint text-xs text-slate-500">Paste (Ctrl+V), drag &amp; drop, or Upload a Perchance image — it will be resized automatically.</div>
+        </div>
+
+        <!-- Gist Description & Filename Outputs Card -->
+        <div class="bg-[#161f2e] border border-slate-800/80 rounded-2xl p-5 shadow-xl space-y-4">
+          <div class="outRow flex flex-col gap-1.5">
+            <div class="outHead flex items-center justify-between">
+              <label for="summaryOut" class="text-xs font-semibold text-slate-300">Gist Description</label>
+              <button class="copyBtn px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700/60 rounded-lg text-xs font-medium transition" data-copy="summaryOut" type="button">Copy gist description</button>
+            </div>
+            <textarea id="summaryOut" readonly rows="3" placeholder="Gist description appears here..." class="w-full rounded-xl px-3 py-2 text-xs font-mono"></textarea>
+          </div>
+
+          <div class="outRow flex flex-col gap-1.5">
+            <div class="outHead flex items-center justify-between">
+              <label class="text-xs font-semibold text-slate-300">Filename Including Extension</label>
+              <button class="copyBtn px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700/60 rounded-lg text-xs font-medium transition" data-copy="filenameOut" type="button">Copy</button>
+            </div>
+            <div id="filenameOut"></div>
+            <div class="hint text-[11px] text-slate-400 mt-1">The publisher always creates <code>image_prompt.md</code>. It creates <code>thumb.md</code> only when Catbox upload is enabled.</div>
+          </div>
+
+          <div class="outRow flex flex-col gap-1.5">
+            <div class="outHead flex items-center justify-between">
+              <label for="localNameInput" class="text-xs font-semibold text-slate-300">Local Role Name</label>
+              <span class="text-[11px] text-slate-500 font-mono">chats/roles/&lt;name&gt;.txt</span>
+            </div>
+            <input id="localNameInput" type="text" placeholder="Amy Wong — saved as Amy_Wong.txt" class="w-full rounded-xl px-3 py-2 text-xs" />
+            <div class="hint text-[11px] text-slate-400">Spaces become <code>_</code>. <b>Publish Local</b> writes <code>chats/roles/Amy_Wong.txt</code> plus <code>Amy_Wong.jpg</code> when an image is pasted — with Image Tools empty it asks No / Cancel first. No GitHub account needed; a name already in use is offered as <code>Amy_Wong_2</code>.</div>
+          </div>
+        </div>
+
+        <!-- Role Details Output Card -->
+        <div class="bg-[#161f2e] border border-slate-800/80 rounded-2xl p-5 shadow-xl space-y-3">
+          <div class="outRow flex flex-col gap-1.5">
+            <div class="outHead flex items-center justify-between">
+              <label for="roleOut" class="text-xs font-semibold text-slate-300">Role Details</label>
+              <button class="copyBtn px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700/60 rounded-lg text-xs font-medium transition" data-copy="roleOut" type="button">Copy role details</button>
+            </div>
+            <textarea id="roleOut" readonly rows="16" placeholder="Formatted role appears here..." class="w-full rounded-xl px-3 py-2.5 text-xs font-mono leading-relaxed"></textarea>
+          </div>
+        </div>
+
+        <!-- Publish Guide Card -->
+        <div class="bg-[#161f2e] border border-slate-800/80 rounded-2xl p-5 shadow-xl space-y-3">
+          <div class="outHead"><label class="text-xs font-bold uppercase tracking-wider text-slate-400">Publish to the Online Library</label></div>
+          <div class="gistBox">
+            <ol class="space-y-1.5">
+              <li>Generate the image on Perchance, then <b>Paste / Upload image</b> above if you want to add it to the gist or upload it to Catbox.</li>
+              <li>Press <b>Process</b> and review the role details and description.</li>
+              <li>With a GitHub classic PAT saved in <a href="/setup">Setup</a>, click <b>Publish to Online Library</b> and confirm. The gist includes the role and <code>image_prompt.md</code>; when Catbox upload is enabled, <code>thumb.md</code> is created with the image.</li>
+              <li>Copy the published gist URL into the Contribute box on the home page when it goes live.</li>
+            </ol>
+            <div class="hint text-[11px] text-slate-400 mt-2.5 pt-2 border-t border-slate-800">Please only publish quality roles: every role in the Online Library is AI checked and will be rated.</div>
+            <div class="hint text-[11px] text-slate-400 mt-2.5 pt-2 border-t border-slate-800"><b>Publish Local</b> skips GitHub: it saves the role details as <code>chats/roles/Amy_Wong.txt</code> (plus <code>Amy_Wong.jpg</code> when an image is pasted) right here, so <code>.role Amy_Wong</code> loads it and you can still publish it online later.</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+  <!-- Shared choice dialog: local overwrite (Overwrite / Save as _2 / Cancel) and
+       the online publish quality gate (Publish / No). -->
+  <div id="confirmModal" class="modalWrap" role="dialog" aria-modal="true" aria-labelledby="confirmTitle" aria-describedby="confirmMessage" hidden>
+    <div class="modalCard">
+      <h3 id="confirmTitle"></h3>
+      <p id="confirmMessage"></p>
+      <div id="confirmActions" class="modalActions"></div>
+    </div>
+  </div>
+
+
+
+  <!-- JavaScript - 100% Original Logic & API Handlers Intact -->
+  <script>
+    let TEMPLATES = [];           
+    let TEMPLATE_CACHE = {};      
+
+    async function fetchTemplateText(name) {
+      if (TEMPLATE_CACHE[name]) return TEMPLATE_CACHE[name];
+      const r = await fetch("/api/templates?name=" + encodeURIComponent(name), { cache: "no-store" });
+      if (!r.ok) throw new Error("template not found on server");
+      const d = await r.json();
+      TEMPLATE_CACHE[name] = d.text || "";
+      return TEMPLATE_CACHE[name];
+    }
+    let LLM_SERVERS = [];
+    let LLM_MODELS = [];
+    const sel = document.getElementById("templateSelect");
+    const descEl = document.getElementById("generalDesc");
+    const btn = document.getElementById("processBtn");
+    const statusEl = document.getElementById("status");
+    const serverSel = document.getElementById("serverSelect");
+    const modelSel = document.getElementById("modelSelect");
+    const modelFilterEl = document.getElementById("modelFilter");
+    const modelFilterCount = document.getElementById("modelFilterCount");
+    let clearPublishStatus = () => {};
+    let refreshPublishButton = () => {};
+    // Same trick for "Publish Local": that button never waits for a PAT, so its
+    // helpers live outside the token block but Process/Reset still drive them.
+    let clearLocalStatus = () => {};
+    let refreshLocalButton = () => {};
+    let makerSaved = false;
+    let savedButtonStates = null;
+
+    function lockMakerAfterSave() {
+      if (makerSaved) return;
+      makerSaved = true;
+      savedButtonStates = Array.from(document.querySelectorAll("button"), button => [button, button.disabled]);
+      savedButtonStates.forEach(([button]) => {
+        button.disabled = button.id !== "resetBtn";
+      });
+      sel.value = "";
+      hidePreview();
+      sel.focus();
+    }
+
+    function unlockMakerAfterReset() {
+      makerSaved = false;
+      if (!savedButtonStates) return;
+      savedButtonStates.forEach(([button, wasDisabled]) => { button.disabled = wasDisabled; });
+      savedButtonStates = null;
+    }
+
+    function llmChoice() {
+      return {
+        server: (serverSel && serverSel.value) || "",
+        model: (modelSel && modelSel.value) || "",
+      };
+    }
+
+    function llmLabel() {
+      const c = llmChoice();
+      const srv = LLM_SERVERS.find(s => s.url === c.server) || {};
+      return (srv.name || c.server || "?") + " / " + (c.model || "?");
+    }
+
+    async function loadServers() {
+      let data = null;
+      try {
+        const res = await fetchJson("/api/servers", 6000);
+        if (res.ok) data = await res.json();
+      } catch (e) {}
+      LLM_SERVERS = (data && Array.isArray(data.servers) ? data.servers : []).filter(s => s && s.url);
+      // /api/servers sends "models" as one fallback string, not an array, so
+      // normalize it — .forEach on a string threw and froze both pickers.
+      const rawModels = data && data.models;
+      LLM_MODELS = Array.isArray(rawModels) ? rawModels : (rawModels ? [rawModels] : []);
+      if (!LLM_SERVERS.length) {
+        LLM_SERVERS = [{ name: "main-162", url: "http://192.168.1.162:8080",
+                         model: "supergemma4-26b-uncensored-fast-v2-Q4_K_M" }];
+        LLM_MODELS = [LLM_SERVERS[0].model];
+      }
+      const saved = (() => { try { return JSON.parse(localStorage.getItem("roleMakerLlm") || "{}"); } catch (e) { return {}; } })();
+      serverSel.innerHTML = "";
+      LLM_SERVERS.forEach(s => {
+        const o = document.createElement("option");
+        o.value = s.url; o.textContent = s.name + " → " + s.url;
+        serverSel.appendChild(o);
+      });
+      const prefer = saved.server
+        || (LLM_SERVERS.find(s => /ollama/i.test(s.name)) || {}).url
+        || (data && data.default_server)
+        || LLM_SERVERS[0].url;
+      serverSel.value = prefer;
+      serverSel.onchange = () => { saveLlm(); loadModels(); };
+      await loadModels(saved.model);
+    }
+
+    async function fetchJson(url, ms) {
+      const ctrl = new AbortController();
+      const t = setTimeout(() => ctrl.abort(), ms || 6000);
+      try {
+        const res = await fetch(url, { cache: "no-store", signal: ctrl.signal });
+        return res;
+      } finally { clearTimeout(t); }
+    }
+
+    async function loadModels(forceModel) {
+      const server = serverSel.value;
+      const srv = LLM_SERVERS.find(s => s.url === server) || {};
+      let names = [];
+      let live = false;
+      modelSel.innerHTML = "";
+      const loading = document.createElement("option");
+      loading.value = ""; loading.textContent = "Loading models...";
+      modelSel.appendChild(loading);
+      try {
+        const res = await fetchJson("/api/server_models?server=" + encodeURIComponent(srv.name || server), 8000);
+        if (res.ok) {
+          const data = await res.json();
+          names = data.models || [];
+          live = !!data.live;
+        }
+      } catch (e) {}
+      if (!names.length) {
+        names = [];
+        if (srv.model) names.push(srv.model);
+        LLM_MODELS.forEach(m => { if (!names.includes(m)) names.push(m); });
+      }
+      window.__roleMakerAllModels = names;
+      applyModelFilter(names, live);
+      const saved = forceModel || (() => { try { return (JSON.parse(localStorage.getItem("roleMakerLlm") || "{}")).model; } catch (e) { return ""; } })();
+      modelSel.value = (saved && names.includes(saved)) ? saved
+        : (srv.model && names.includes(srv.model)) ? srv.model
+        : names[0] || "";
+      modelSel.onchange = saveLlm;
+      saveLlm();
+    }
+
+    function applyModelFilter(names, live) {
+      const filter = (modelFilterEl && modelFilterEl.value || "").trim().toLowerCase();
+      modelSel.innerHTML = "";
+      let shown = 0;
+      names.forEach(m => {
+        if (!filter || m.toLowerCase().includes(filter)) {
+          const o = document.createElement("option");
+          o.value = m; o.textContent = m + (live ? "" : " (config)");
+          modelSel.appendChild(o);
+          shown++;
+        }
+      });
+      if (modelFilterCount) {
+        modelFilterCount.textContent = filter ? (shown + " of " + names.length + " models") : "all models";
+      }
+      if (modelSel.options.length === 0) {
+        const o = document.createElement("option");
+        o.value = ""; o.textContent = "No models match filter";
+        modelSel.appendChild(o);
+      }
+      if (!modelFilterEl.oninput) {
+        modelFilterEl.oninput = () => applyModelFilter(window.__roleMakerAllModels || names, live);
+      }
+    }
+
+    function saveLlm() {
+      try { localStorage.setItem("roleMakerLlm", JSON.stringify(llmChoice())); } catch (e) {}
+    }
+
+    async function loadTemplates() {
+      // The server merges the builtin templates baked into the binary with any
+      // .txt files under web/static/role_templates and the matching user folder,
+      // so this one call is the whole story. There is no directory-listing
+      // route, which is why the old relative-folder scrape always came back
+      // empty and left this picker blank on deployed installs.
+      let loadError = "";
+      try {
+        const res = await fetch("/api/templates?names_only=1", { cache: "no-store" });
+        if (!res.ok) throw new Error("API " + res.status);
+        const data = await res.json();
+        TEMPLATES = (data.templates || []).map(n =>
+          (typeof n === "string") ? { name: n } : n).filter(t => t && t.name);
+      } catch (e) {
+        TEMPLATES = [];
+        loadError = e.message;
+      }
+      sel.innerHTML = "";
+      if (!TEMPLATES.length) {
+        const o = document.createElement("option");
+        o.value = "";
+        o.textContent = loadError ? "Template list unavailable" : "No templates available";
+        sel.appendChild(o);
+        statusEl.textContent = loadError
+          ? "Could not load templates: " + loadError
+          : "No templates found. Add .txt files to web/static/role_templates/ and reload.";
+        statusEl.className = "err";
+        return;
+      }
+      const placeholder = document.createElement("option");
+      placeholder.value = "";
+      placeholder.textContent = "Select";
+      sel.appendChild(placeholder);
+      TEMPLATES.forEach(t => {
+        const o = document.createElement("option");
+        o.value = t.name; o.textContent = t.name;
+        sel.appendChild(o);
+      });
+      sel.onchange = hidePreview;   
+      hidePreview();
+      statusEl.textContent = "";
+      statusEl.className = "";
+    }
+
+    function hidePreview() {
+      const el = document.getElementById("tplPreview");
+      if (el) { el.textContent = ""; el.style.display = "none"; }
+      const b = document.getElementById("tplPreviewBtn");
+      if (b) b.textContent = "Preview template";
+    }
+
+    async function showPreview() {
+      const el = document.getElementById("tplPreview");
+      const b = document.getElementById("tplPreviewBtn");
+      const name = sel.value;
+      if (!name) { setStatus("Pick a template first.", true); return; }
+      if (el) { el.style.display = "block"; el.textContent = "Loading " + name + "..."; }
+      if (b) b.textContent = "Loading...";
+      try {
+        const text = await fetchTemplateText(name);
+        if (sel.value !== name) { hidePreview(); return; }
+        if (el) el.textContent = text || "(empty template)";
+        if (b) b.textContent = "Hide preview";
+        b.onclick = hidePreviewAndRewire;
+      } catch (e) {
+        if (el) el.textContent = "Could not load template: " + name;
+        if (b) b.textContent = "Preview template";
+      }
+    }
+
+    function hidePreviewAndRewire() {
+      hidePreview();
+      document.getElementById("tplPreviewBtn").onclick = showPreview;
+    }
+
+    function setStatus(msg, isErr) {
+      statusEl.textContent = msg;
+      statusEl.className = isErr ? "err text-xs text-red-400" : "text-xs text-indigo-300";
+    }
+
+    // Promise-based choice dialog shared by both publishing paths. Resolves with
+    // the picked button's value, or "" when the user cancels (Cancel/No, Escape
+    // or a click on the dark backdrop), so a question can be asked inline
+    // instead of with the browser's confirm() box.
+    function showChoice(title, message, actions) {
+      const modal = document.getElementById("confirmModal");
+      const titleEl = document.getElementById("confirmTitle");
+      const msgEl = document.getElementById("confirmMessage");
+      const box = document.getElementById("confirmActions");
+      if (!modal || !box || !titleEl || !msgEl) return Promise.resolve("");
+      titleEl.textContent = title;
+      msgEl.textContent = message;
+      box.innerHTML = "";
+      return new Promise((resolve) => {
+        const close = (value) => {
+          modal.hidden = true;
+          modal.onclick = null;
+          document.removeEventListener("keydown", onKey);
+          resolve(value);
+        };
+        const onKey = (e) => { if (e.key === "Escape") close(""); };
+        actions.forEach(a => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "modalBtn" + (a.style ? " " + a.style : "");
+          b.textContent = a.label;
+          b.onclick = () => close(a.value);
+          box.appendChild(b);
+        });
+        // Clicks inside the card never reach the backdrop handler.
+        modal.onclick = (e) => { if (e.target === modal) close(""); };
+        document.addEventListener("keydown", onKey);
+        modal.hidden = false;
+        if (box.firstChild) box.firstChild.focus();
+      });
+    }
+
+    // "Amy Wong" -> "Amy_Wong": the local role id is also the file name, so the
+    // dots, accents and punctuation a display name carries are dropped. Mirrors
+    // sanitizeRoleName() in role_save.go — the server stays authoritative.
+    function localRoleSlug(name) {
+      return (name || "").trim().replace(/\s+/g, "_").replace(/[^A-Za-z0-9_-]/g, "")
+        .replace(/[_-]{2,}/g, "_").replace(/^[_-]+|[_-]+$/g, "").slice(0, 80);
+    }
+
+    // The generated filename is the best guess for the local role name, minus the
+    // store's GOCHATAPPROLETAG_ prefix (local roles carry no prefix).
+    function suggestedLocalName() {
+      const shown = (document.getElementById("filenameOut").textContent || "").trim();
+      return localRoleSlug(shown.replace(/^GOCHATAPPROLETAG_/i, "").replace(/\.txt$/i, ""));
+    }
+
+    // Fill the Local Role Name box from the generated filename unless the person
+    // typed their own name (dataset.touched keeps what they wrote).
+    function prefillLocalName() {
+      const el = document.getElementById("localNameInput");
+      if (!el || el.dataset.touched === "1") return;
+      el.value = suggestedLocalName();
+    }
+
+    function resetLocalName() {
+      const el = document.getElementById("localNameInput");
+      if (!el) return;
+      el.value = "";
+      delete el.dataset.touched;
+    }
+
+    document.querySelectorAll(".copyBtn").forEach(b => {
+      const origLabel = b.textContent;
+      b.onclick = async () => {
+        const el = document.getElementById(b.dataset.copy);
+        const text = ("value" in el) ? (el.value || "") : (el.textContent || "");
+        try { await navigator.clipboard.writeText(text); b.textContent = "Copied!"; }
+        catch (e) {
+          if ("select" in el) { el.select(); document.execCommand("copy"); }
+          else {
+            const ta = document.createElement("textarea");
+            ta.value = text; document.body.appendChild(ta); ta.select();
+            document.execCommand("copy"); ta.remove();
+          }
+          b.textContent = "Copied!";
+        }
+        setTimeout(() => b.textContent = origLabel, 1200);
+      };
+    });
+
+    btn.onclick = async () => {
+      const name = sel.value;
+      const general = descEl.value.trim();
+      if (!name) { setStatus("Pick a template first.", true); return; }
+      if (!general) { setStatus("Enter a general description first.", true); return; }
+      document.getElementById("imagePromptToolsSection").scrollIntoView({ behavior: "smooth", block: "start" });
+      btn.disabled = true;
+      const roleEl = document.getElementById("roleOut");
+      const fileEl = document.getElementById("filenameOut");
+      const imgEl = document.getElementById("imagePromptOut");
+      const summaryEl = document.getElementById("summaryOut");
+      roleEl.value = ""; fileEl.textContent = ""; imgEl.value = ""; summaryEl.value = "";
+      roleEl.placeholder = "Generating role (" + llmLabel() + ")...";
+      refreshPublishButton();
+      refreshLocalButton();
+      // A new role means a new name: forget a hand-typed one so the generated
+      // filename can prefill #localNameInput again.
+      resetLocalName();
+      try {
+        setStatus("Loading template \"" + name + "\"...");
+        const templateText = await fetchTemplateText(name);
+        if (!templateText) throw new Error("template is empty on server");
+        const llm = llmChoice();
+        const res = await fetch("/api/create_role_stream", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ template_text: templateText, general_description: general,
+                                 server_url: llm.server, model: llm.model,
+                                 image_look: "sultry" })
+        });
+        if (!res.ok || !res.body) {
+          let msg = "HTTP " + res.status;
+          try { msg = (await res.json()).error || msg; } catch (e) {}
+          throw new Error(msg);
+        }
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let buf = "";
+        const handleEvent = (ev) => {
+          if (ev.error) throw new Error(ev.error);
+          if (ev.step === "role" && ev.status === "started") setStatus("1/4 formatting role (" + llmLabel() + ")...");
+          if (ev.step === "role" && ev.status === "done") {
+            roleEl.value = ev.role || ""; roleEl.placeholder = "Formatted role appears here...";
+            refreshPublishButton();
+            refreshLocalButton();
+            setStatus("2/4 role done — naming file (" + llmLabel() + ")...");
+          }
+          if (ev.step === "filename" && ev.status === "done") {
+            fileEl.textContent = ev.filename || "";
+            prefillLocalName();
+            setStatus("3/4 filename done — writing image prompt (" + llmLabel() + ")...");
+          }
+          if (ev.step === "image" && ev.status === "done") {
+            imgEl.value = ev.image_description || "";
+            refreshPublishButton();
+            setStatus("4/4 image done — writing the gist description (" + llmLabel() + ")...");
+          }
+          if (ev.step === "summary" && ev.status === "done") {
+            summaryEl.value = ev.summary || "";
+            setStatus("Done (" + llmLabel() + ").");
+          }
+        };
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          buf += decoder.decode(value, { stream: true });
+          let idx;
+          while ((idx = buf.indexOf("\n\n")) >= 0) {
+            const raw = buf.slice(0, idx).trim();
+            buf = buf.slice(idx + 2);
+            if (raw.startsWith("data:")) {
+              try { handleEvent(JSON.parse(raw.slice(5).trim())); }
+              catch (e) {}
+            }
+          }
+        }
+        if (!roleEl.value) throw new Error("Stream ended with no role output.");
+      } catch (e) {
+        setStatus("Failed: " + e.message, true);
+        roleEl.placeholder = "Formatted role appears here...";
+      } finally {
+        btn.disabled = false;
+      }
+    };
+
+    document.getElementById("resetBtn").onclick = () => {
+      unlockMakerAfterReset();
+      btn.disabled = false;
+      sel.selectedIndex = 0;
+      hidePreview();
+      descEl.value = "";
+      descEl.disabled = false;
+      descEl.readOnly = false;
+      document.getElementById("roleOut").value = "";
+      document.getElementById("imagePromptOut").value = "";
+      document.getElementById("summaryOut").value = "";
+      document.getElementById("filenameOut").textContent = "";
+      clearResizedImage();
+      clearPublishStatus();
+      clearLocalStatus();
+      resetLocalName();
+      refreshPublishButton();
+      refreshLocalButton();
+      setStatus("Cleared — enter a new description.");
+      sel.focus();
+    };
+
+    const pasteImgBtn = document.getElementById("pasteImgBtn");
+    const uploadImgBtn = document.getElementById("uploadImgBtn");
+    const uploadImgInput = document.getElementById("uploadImgInput");
+    const copyImgBtn = document.getElementById("copyImgBtn");
+    const downloadImgBtn = document.getElementById("downloadImgBtn");
+    const clearImgBtn = document.getElementById("clearImgBtn");
+    const imgDrop = document.getElementById("imgDrop");
+    const clipWarn = document.getElementById("clipWarn");
+    const imgWEl = document.getElementById("imgW");
+    const imgHEl = document.getElementById("imgH");
+    const imgPreview = document.getElementById("imgPreview");
+    const imgPreviewWrap = document.getElementById("imgPreviewWrap");
+    const imgMeta = document.getElementById("imgMeta");
+    const imgStatus = document.getElementById("imgStatus");
+    let origImage = null;   
+    let origSize = null;    
+    let resizedBlob = null; 
+    let resizedSize = null;
+    let resizeRequest = 0;
+    let catboxUploadBlob = null;
+    let catboxImageURL = "";
+
+    const hasAsyncClipboard = () => !!(window.isSecureContext && navigator.clipboard);
+    const localCreateURL = () => "http://localhost:" + (location.port || "8080") + location.pathname;
+
+    function firstImageURL(plain, html) {
+      const withExt = /https?:\/\/[^\s"'<>)\]]+\.(?:png|jpe?g|gif|webp|bmp|avif)(?:\?[^\s"'<>)\]]*)?/i;
+      let m = withExt.exec(plain || "");
+      if (m) return m[0];
+      m = /<img[^>]+src=["']([^"']+)["']/i.exec(html || "");
+      if (m) return m[1];
+      m = /https?:\/\/[^\s"'<>)\]]+/i.exec(plain || "");
+      if (m && /image|perchance/i.test(m[0])) return m[0];
+      return "";
+    }
+
+    function loadImageFromURL(url) {
+      if (!url) return;
+      clearResizedImage();
+      setImgStatus("Loading image from " + url.slice(0, 90) + "…");
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      img.onload = () => {
+        origImage = img;
+        origSize = { w: img.naturalWidth, h: img.naturalHeight };
+        renderResized();
+      };
+      img.onerror = () => setImgStatus("Could not read that image link (the host blocks browser access). Save the image, then use Upload image.", true);
+      img.src = url;
+    }
+
+    function setImgStatus(msg, isErr) {
+      if (!imgStatus) return;
+      imgStatus.textContent = msg;
+      imgStatus.className = isErr ? "err text-xs text-red-400" : "hint text-xs text-slate-500";
+    }
+
+    function targetSize() {
+      const w = Math.max(16, Math.min(4096, Number(imgWEl.value) || 450));
+      const h = Math.max(16, Math.min(4096, Number(imgHEl.value) || 450));
+      return { w, h };
+    }
+
+    function renderResized() {
+      if (!origImage) return;
+      const { w, h } = targetSize();
+      const request = ++resizeRequest;
+      resizedBlob = null;
+      resizedSize = null;
+      catboxUploadBlob = null;
+      catboxImageURL = "";
+      refreshPublishButton();
+      const canvas = document.createElement("canvas");
+      canvas.width = w; canvas.height = h;
+      const ctx = canvas.getContext("2d");
+      ctx.imageSmoothingQuality = "high";
+      ctx.drawImage(origImage, 0, 0, w, h);
+      try {
+        canvas.toBlob((blob) => {
+          if (request !== resizeRequest) return;
+          if (!blob) { setImgStatus("Resize failed in this browser.", true); return; }
+          resizedBlob = blob;
+          resizedSize = { w, h };
+          const url = URL.createObjectURL(blob);
+          imgPreview.src = url;
+          imgPreviewWrap.classList.add("hasImg");
+          imgMeta.textContent = "Original " + origSize.w + "x" + origSize.h + " → resized " + w + "x" + h + " PNG (" + (blob.size / 1024).toFixed(1) + " KB). Preview above — use Copy image or Download PNG.";
+          setImgStatus("Resized to " + w + "x" + h + ". Ready to publish, copy, or download.", false);
+          refreshPublishButton();
+        }, "image/png");
+      } catch (e) {
+        setImgStatus("This image can't be exported — its host blocks cross-origin access. Save it, then use Upload image.", true);
+      }
+    }
+
+    function handleImageFile(file) {
+      if (!file || !file.type.startsWith("image/")) { setImgStatus("That file had no image — pick an image file.", true); return; }
+      clearResizedImage();
+      setImgStatus("Loading image…", false);
+      const url = URL.createObjectURL(file);
+      const img = new Image();
+      img.onload = () => {
+        origImage = img;
+        origSize = { w: img.naturalWidth, h: img.naturalHeight };
+        URL.revokeObjectURL(url);
+        renderResized();
+      };
+      img.onerror = () => { URL.revokeObjectURL(url); setImgStatus("Could not read that image.", true); };
+      img.src = url;
+    }
+
+    function clearResizedImage() {
+      resizeRequest++;
+      origImage = null; origSize = null; resizedBlob = null;
+      resizedSize = null;
+      catboxUploadBlob = null; catboxImageURL = "";
+      if (imgPreview) imgPreview.removeAttribute("src");
+      if (imgPreviewWrap) imgPreviewWrap.classList.remove("hasImg");
+      if (imgMeta) imgMeta.textContent = "";
+      setImgStatus("Paste (Ctrl+V), drag & drop, or Upload a Perchance image — it will be resized automatically.", false);
+      refreshPublishButton();
+    }
+
+    function resizedImageBase64(blob) {
+      return new Promise((resolve, reject) => {
+        if (!blob) { reject(new Error("Paste or upload an image first.")); return; }
+        const reader = new FileReader();
+        reader.onload = () => {
+          const value = String(reader.result || "");
+          const comma = value.indexOf(",");
+          if (comma < 0) reject(new Error("Could not encode the resized image."));
+          else resolve(value.slice(comma + 1));
+        };
+        reader.onerror = () => reject(new Error("Could not read the resized image."));
+        reader.readAsDataURL(blob);
+      });
+    }
+
+    uploadImgBtn.onclick = () => uploadImgInput.click();
+
+    uploadImgInput.onchange = () => {
+      const f = (uploadImgInput.files || [])[0];
+      uploadImgInput.value = "";
+      if (f) handleImageFile(f);
+    };
+
+    pasteImgBtn.onclick = async () => {
+      if (!hasAsyncClipboard() || !navigator.clipboard.read) {
+        setImgStatus("Browsers hide the Clipboard API on plain-http LAN addresses. Press Ctrl+V here, drag the image in, or open " + localCreateURL() + " on this machine.", true);
+        return;
+      }
+      pasteImgBtn.disabled = true;
+      try {
+        let perm = null;
+        try { perm = await navigator.permissions.query({ name: "clipboard-read" }); } catch (e) {}
+        if (perm && perm.state === "denied") {
+          setImgStatus("Clipboard read is blocked for this site. Allow Clipboard access, reload, then retry.", true);
+          return;
+        }
+        const items = await navigator.clipboard.read();
+        let found = null, plain = "", html = "";
+        for (const item of items) {
+          for (const type of item.types) {
+            if (type.startsWith("image/")) { if (!found) found = await item.getType(type); }
+            else if (type === "text/plain" && !plain) plain = await (await item.getType(type)).text();
+            else if (type === "text/html" && !html) html = await (await item.getType(type)).text();
+          }
+          if (found) break;
+        }
+        if (found) { handleImageFile(found); return; }
+        const url = firstImageURL(plain, html);
+        if (url) { loadImageFromURL(url); return; }
+        setImgStatus("The clipboard has no image. Copy the Perchance image itself, then try again.", true);
+      } catch (e) {
+        setImgStatus("Clipboard read blocked — press Ctrl+V now to paste the image.", true);
+      } finally {
+        pasteImgBtn.disabled = false;
+      }
+    };
+
+    document.addEventListener("paste", (e) => {
+      const cd = e.clipboardData;
+      if (!cd) return;
+      const files = cd.files || [];
+      for (const f of files) { if (f.type.startsWith("image/")) { e.preventDefault(); handleImageFile(f); return; } }
+      const items = cd.items || [];
+      for (const it of items) { if (it.type && it.type.startsWith("image/")) { e.preventDefault(); handleImageFile(it.getAsFile()); return; } }
+      const t = e.target;
+      if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;
+      const url = firstImageURL(cd.getData("text/plain"), cd.getData("text/html"));
+      if (url) { e.preventDefault(); loadImageFromURL(url); }
+    });
+
+    if (imgDrop) {
+      const over = (on) => imgDrop.classList.toggle("over", on);
+      ["dragenter", "dragover"].forEach(ev => imgDrop.addEventListener(ev, (e) => { e.preventDefault(); e.stopPropagation(); over(true); }));
+      ["dragleave", "dragend"].forEach(ev => imgDrop.addEventListener(ev, () => over(false)));
+      imgDrop.addEventListener("drop", (e) => {
+        e.preventDefault(); e.stopPropagation(); over(false);
+        const dt = e.dataTransfer;
+        const f = dt && dt.files && dt.files[0];
+        if (f && f.type.startsWith("image/")) { handleImageFile(f); return; }
+        const url = firstImageURL(dt && dt.getData("text/uri-list"), dt && dt.getData("text/html"));
+        if (url) { loadImageFromURL(url); return; }
+        setImgStatus("Drop an image file or a direct image link.", true);
+      });
+    }
+
+    if (clipWarn && !window.isSecureContext) {
+      const a = document.createElement("a");
+      a.href = localCreateURL();
+      a.textContent = localCreateURL();
+      clipWarn.style.display = "";
+      clipWarn.append("Chrome/Edge disable the Clipboard API on http:// because it is not a secure context. Paste/Copy image work when you open ", a, " on this machine — Ctrl+V, drag & drop, Upload and Download always work.");
+    }
+
+    [imgWEl, imgHEl].forEach(el => el.addEventListener("change", () => { if (origImage) renderResized(); }));
+
+    copyImgBtn.onclick = async () => {
+      if (!resizedBlob) { setImgStatus("Paste an image first, then copy.", true); return; }
+      const origLabel = copyImgBtn.textContent;
+      copyImgBtn.textContent = "Copying…";
+      try {
+        if (!hasAsyncClipboard() || !window.ClipboardItem) throw new Error("no-clipboard-api");
+        await navigator.clipboard.write([new ClipboardItem({ "image/png": resizedBlob })]);
+        copyImgBtn.textContent = "Copied!";
+        setImgStatus("Resized image copied.", false);
+        setTimeout(() => copyImgBtn.textContent = origLabel, 1200);
+        return;
+      } catch (e) {}
+      downloadResized();
+      copyImgBtn.textContent = origLabel;
+      setImgStatus("Could not copy the image to the clipboard — downloaded the PNG instead.", true);
+    };
+
+    function downloadResized() {
+      if (!resizedBlob) return;
+      const { w, h } = targetSize();
+      const url = URL.createObjectURL(resizedBlob);
+      const a = document.createElement("a");
+      a.href = url; a.download = "role-image-" + w + "x" + h + ".png";
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+    }
+
+    if (downloadImgBtn) downloadImgBtn.onclick = () => {
+      if (!resizedBlob) { setImgStatus("Paste or upload an image first.", true); return; }
+      downloadResized();
+      setImgStatus("Downloaded the resized PNG.", false);
+    };
+
+    clearImgBtn.onclick = clearResizedImage;
+
+    const publishBtn = document.getElementById("publishBtn");
+    const publishHint = document.getElementById("publishHint");
+
+    if (publishBtn) {
+      const localToken = () => {
+        try { return (localStorage.getItem("githubClassicToken") || "").trim(); } catch (e) { return ""; }
+      };
+      const setPublishVisible = (visible) => {
+        publishBtn.style.display = visible ? "" : "none";
+        if (publishHint) publishHint.style.display = visible ? "none" : "";
+      };
+      let publishHasToken = false;
+      let publishBusy = false;
+      let publishedRoleText = "";
+      const thumbHostImgbb = document.getElementById("thumbHostImgbb");
+      const thumbHostCatbox = document.getElementById("thumbHostCatbox");
+      const roleDetailsText = () => {
+        const el = document.getElementById("roleOut");
+        return el ? (el.value || "").trim() : "";
+      };
+      const imagePromptText = () => {
+        const el = document.getElementById("imagePromptOut");
+        return el ? (el.value || "").trim() : "";
+      };
+      // Both publishing credentials reveal the button. It only turns green
+      // once Role Details, the image prompt, and a resized image are ready.
+      refreshPublishButton = () => {
+        if (!publishHasToken) { setPublishVisible(false); return; }
+        setPublishVisible(true);
+        const roleText = roleDetailsText();
+        const imagePrompt = imagePromptText();
+        const published = roleText !== "" && roleText === publishedRoleText;
+        const hasImage = !!resizedBlob;
+        const uploadThumb = thumbHostImgbb && thumbHostImgbb.checked || thumbHostCatbox && thumbHostCatbox.checked;
+        const needsImage = uploadThumb;
+        const ready = !makerSaved && !publishBusy && !published && roleText !== "" && imagePrompt !== "" && (!needsImage || hasImage);
+        const hostLabel = thumbHostCatbox && thumbHostCatbox.checked ? "Catbox" : "imgbb";
+        publishBtn.disabled = !ready;
+        publishBtn.title = publishBusy ? "Publishing…"
+          : published ? "This role is already published — run Process for a new one."
+          : !roleText ? "Run Process first: there are no role details to publish."
+          : !imagePrompt ? "Run Process first: there is no image prompt to publish."
+          : needsImage && !hasImage ? "Paste or upload an image before uploading to " + hostLabel + "."
+          : "";
+      };
+      const publishStatus = document.getElementById("publishStatus");
+      const setPublishStatus = (msg, isErr) => {
+        if (!publishStatus) return;
+        publishStatus.className = isErr ? "hint err text-xs text-red-400" : "hint text-xs text-indigo-300";
+        publishStatus.textContent = msg;
+      };
+      const setPublishLink = (url, withCatboxThumbnail) => {
+        if (!publishStatus) return;
+        publishStatus.className = "hint text-xs text-indigo-300";
+        publishStatus.innerHTML = "";
+        const a = document.createElement("a");
+        a.href = url; a.target = "_blank"; a.rel = "noopener"; a.textContent = url;
+        publishStatus.append(
+          withCatboxThumbnail
+            ? "Published with the Catbox thumbnail: "
+            : "Published without a thumbnail: ",
+          a
+        );
+      };
+
+      let publishEpoch = 0;
+      clearPublishStatus = () => {
+        publishEpoch++;
+        if (!publishStatus) return;
+        publishStatus.className = "hint";
+        publishStatus.textContent = "";
+      };
+      // GOCHATAPPROLETAG_<slug>.txt: the kind sits inside one separator-free
+      // tag so gist filename search can find the role (scan_gists.py looks for
+      // filename:GOCHATAPPROLETAG). Keep in sync with store_api.go.
+      const publishFilename = (description) => {
+        const shown = (document.getElementById("filenameOut").textContent || "").trim();
+        if (shown) return /\.txt$/i.test(shown) ? shown : shown + ".txt";
+        // Prefer the plain role-name box (prefilled from the processed role) so a
+        // fallback never turns the gist description sentence into a name_occupation file.
+        const nameEl = document.getElementById("localNameInput");
+        const typed = localRoleSlug((nameEl && nameEl.value) || "");
+        if (typed) return "GOCHATAPPROLETAG_" + typed + ".txt";
+        const slug = description.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "").slice(0, 80);
+        return "GOCHATAPPROLETAG_" + (slug || "role") + ".txt";
+      };
+      const publishRole = async () => {
+        const roleText = roleDetailsText();
+        if (!roleText) { setPublishStatus("Press Process first — there is no role to publish.", true); return; }
+        const imagePrompt = imagePromptText();
+        if (!imagePrompt) { setPublishStatus("Press Process first — there is no image prompt to publish.", true); return; }
+        if (roleText === publishedRoleText) { setPublishStatus("This role is already published — run Process to create a new one.", true); return; }
+                const useImgbb = thumbHostImgbb && thumbHostImgbb.checked;
+        const useCatbox = thumbHostCatbox && thumbHostCatbox.checked;
+        const includeThumbnail = useImgbb || useCatbox;
+        const hostLabel = useCatbox ? "Catbox" : "imgbb";
+        if (includeThumbnail && !resizedBlob) {
+          setPublishStatus("Paste or upload an image before uploading to " + hostLabel + ".", true);
+          return;
+        }
+        // The Online Library is public and rated, so the quality gate comes before
+        // any network call: a rough draft can stay local through Publish Local.
+        const confirmed = await showChoice(
+          "Publish to the Online Library",
+          "Please only publish quality roles — every role is AI checked and will be rated. " +
+            (includeThumbnail
+              ? "The resized image will be uploaded to " + hostLabel + " and publicly accessible by its URL. For best long-term availability, you can also add the image to the gist manually."
+              : "No image will be uploaded. The gist will contain the role and image prompt only.") +
+            " No host guarantees 100% retention.",
+          [
+            { label: "Publish", value: "publish", style: "primary" },
+            { label: "No", value: "" },
+          ]
+        );
+        if (confirmed !== "publish") {
+          setPublishStatus("Not published — only quality roles belong in the Online Library.", false);
+          return;
+        }
+        if (roleText !== roleDetailsText() || imagePrompt !== imagePromptText()) return;
+        const imageBlob = includeThumbnail ? resizedBlob : null;
+        const description = (document.getElementById("summaryOut").value || "").trim();
+        const filename = publishFilename(description);
+        const epoch = publishEpoch;   
+
+        const orig = publishBtn.textContent;
+        publishBusy = true;
+        refreshPublishButton();
+        publishBtn.textContent = "Publishing…";
+        try {
+          let imageURL = imageBlob && catboxUploadBlob === imageBlob ? catboxImageURL : "";
+          if (imageBlob && !imageURL) {
+            setPublishStatus("Uploading resized image to " + hostLabel + "…");
+            const uploadEndpoint = useCatbox ? "/api/catbox/upload" : "/api/imgbb/upload";
+            const imageRes = await fetch(uploadEndpoint, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ image_base64: await resizedImageBase64(imageBlob) }),
+            });
+            if (!imageRes.ok) throw new Error(((await imageRes.text()) || "").trim() || ("HTTP " + imageRes.status));
+            const uploaded = await imageRes.json();
+            imageURL = (uploaded && uploaded.link) || "";
+            if (!imageURL) throw new Error(hostLabel + " returned no image URL.");
+            if (resizedBlob !== imageBlob) throw new Error("The selected image changed during upload; please publish again.");
+            catboxUploadBlob = imageBlob;
+            catboxImageURL = imageURL;
+          }
+          if (epoch !== publishEpoch) return;
+          if (roleText !== roleDetailsText() || imagePrompt !== imagePromptText() ||
+              (imageBlob && resizedBlob !== imageBlob)) {
+            throw new Error("The role, image prompt, or selected image changed during upload; please publish again.");
+          }
+          setPublishStatus("Creating public gist as " + filename + "…");
+          const files = {
+            [filename]: { content: roleText },
+            "image_prompt.md": { content: imagePrompt },
+          };
+          if (imageURL) {
+            const size = resizedSize || targetSize();
+            const safeImageURL = imageURL.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            files["thumb.md"] = { content: '<img width="' + size.w + '" height="' + size.h + '" alt="image" src="' + safeImageURL + '" />\n' };
+          }
+          const res = await fetch("/api/github/gist", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              description: description || "Character.XI role: " + filename,
+              public: true,
+              files,
+            }),
+          });
+          if (!res.ok) throw new Error(((await res.text()) || "").trim() || ("HTTP " + res.status));
+          const gist = await res.json();
+          if (epoch !== publishEpoch) return;   
+          publishBtn.textContent = "Published!";
+          publishedRoleText = roleText;
+          if (gist.html_url) setPublishLink(gist.html_url, !!imageURL);
+          else setPublishStatus("Published, but GitHub returned no URL.", true);
+          lockMakerAfterSave();
+        } catch (e) {
+          console.error(e);
+          if (epoch !== publishEpoch) return;   
+          publishBtn.textContent = "Publish failed";
+          setPublishStatus("Publish failed: " + e.message, true);
+        } finally {
+          setTimeout(() => {
+            publishBusy = false;
+            publishBtn.textContent = orig;
+            refreshPublishButton();
+          }, 1800);
+        }
+      };
+      const enablePublish = () => {
+        publishHasToken = true;
+        publishBtn.onclick = publishRole;
+        refreshPublishButton();
+      };
+
+      // The thumbnail-host radios decide whether a resized image is required
+      // before publishing, so the button re-evaluates when either one changes.
+      [thumbHostImgbb, thumbHostCatbox].forEach(radio => {
+        if (radio) radio.addEventListener("change", refreshPublishButton);
+      });
+      refreshPublishButton();
+      fetch("/api/config", { cache: "no-store" })
+        .then(res => (res.ok ? res.json() : {}))
+        .then(cfg => {
+          const token = ((cfg && cfg.gist_github_token) || "").trim();
+          if (token || localToken()) enablePublish();
+        })
+        .catch(() => {
+          if (localToken()) enablePublish();
+        });
+    }
+
+    // ── Publish Local ────────────────────────────────────────────────────────
+    // Saves the role beside the others in chats/roles — <name>.txt plus
+    // <name>.jpg when an image is pasted — so `.role <name>` loads it with no
+    // GitHub account. A taken name asks Overwrite / Save as <name>_2 / Cancel
+    // instead of silently replacing a role that is already installed.
+    (() => {
+      const localBtn = document.getElementById("publishLocalBtn");
+      const localStatus = document.getElementById("publishLocalStatus");
+      const localNameEl = document.getElementById("localNameInput");
+      if (!localBtn) return;
+      let localBusy = false;
+      let localEpoch = 0;
+      const roleText = () => {
+        const el = document.getElementById("roleOut");
+        return el ? (el.value || "").trim() : "";
+      };
+      const setLocalStatus = (msg, isErr) => {
+        if (!localStatus) return;
+        localStatus.className = isErr ? "hint err text-xs text-red-400" : "hint text-xs text-indigo-300";
+        localStatus.textContent = msg;
+      };
+      clearLocalStatus = () => {
+        localEpoch++;
+        if (!localStatus) return;
+        localStatus.className = "hint";
+        localStatus.textContent = "";
+      };
+      refreshLocalButton = () => {
+        const ready = !makerSaved && !localBusy && roleText() !== "";
+        localBtn.disabled = !ready;
+        localBtn.title = localBusy ? "Saving…"
+          : ready ? "" : "Run Process first: there are no role details to save.";
+      };
+      const typedName = () => {
+        const typed = ((localNameEl && localNameEl.value) || "").trim();
+        return localRoleSlug(typed) || suggestedLocalName() || "role";
+      };
+      // Reuse the PNG Role Maker already resized; the server turns it into the
+      // .jpg that sits beside the role.
+      const imageBase64 = () => new Promise((resolve) => {
+        if (!resizedBlob) { resolve(""); return; }
+        const reader = new FileReader();
+        reader.onload = () => {
+          const s = String(reader.result || "");
+          const comma = s.indexOf(",");
+          resolve(comma >= 0 ? s.slice(comma + 1) : "");
+        };
+        reader.onerror = () => resolve("");
+        reader.readAsDataURL(resizedBlob);
+      });
+      // Only a resized image is saved, so an empty Image Tools section means the
+      // role would land without its <name>.jpg portrait.
+      const hasImage = () => !!resizedBlob;
+      const postRole = async (name, overwrite) => {
+        const res = await fetch("/api/roles/save", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, text: roleText(), image_png: await imageBase64(), overwrite: !!overwrite }),
+        });
+        const raw = (await res.text()).trim();
+        let data = null;
+        try { data = raw ? JSON.parse(raw) : null; } catch (e) {}
+        if (!res.ok) {
+          if (res.status === 409 && data && data.conflict) return { conflict: true, data };
+          throw new Error((data && (data.error || data.message)) || raw || ("HTTP " + res.status));
+        }
+        return { data: data || {} };
+      };
+      const publishLocal = async () => {
+        if (localBusy) return;
+        if (!roleText()) { setLocalStatus("Press Process first — there is no role to save.", true); return; }
+        const epoch = localEpoch;
+        const orig = localBtn.innerHTML;
+        let name = typedName();
+        // No image in Image Tools means chats/roles/<name>.jpg would be missing
+        // and the role shows a placeholder face in chat, so ask before saving
+        // the text on its own: No saves it anyway, Cancel goes back to paste an
+        // image first (Cancel is the escape value, so Escape and a backdrop click
+        // land there too).
+        if (!hasImage()) {
+          const proceed = await showChoice(
+            "No image for this role",
+            "Do you want to save an image with the role? Image Tools is empty, so chats/roles/" + name + ".jpg will not be saved and " + name + " shows a placeholder face in chat. No saves the role text on its own — Cancel goes back so you can paste an image first.",
+            [
+              { label: "No", value: "noimage" },
+              { label: "Cancel", value: "" },
+            ]
+          );
+          if (epoch !== localEpoch) return;
+          if (proceed !== "noimage") {
+            setLocalStatus("Nothing saved — paste an image, then press Publish Local again.", false);
+            return;
+          }
+        }
+        localBusy = true;
+        refreshLocalButton();
+        localBtn.textContent = "Saving…";
+        setLocalStatus("Saving chats/roles/" + name + ".txt…");
+        try {
+          let out = await postRole(name, false);
+          if (out.conflict) {
+            const suggested = (out.data && out.data.suggested) || (name + "_2");
+            const choice = await showChoice(
+              "Role name already saved",
+              "chats/roles/" + name + ".txt already exists. Overwrite that role, or keep both by saving as " + suggested + "?",
+              [
+                { label: "Overwrite", value: "overwrite", style: "primary" },
+                { label: "Save as " + suggested, value: "saveas" },
+                { label: "Cancel", value: "" },
+              ]
+            );
+            if (epoch !== localEpoch) return;
+            if (choice === "saveas") {
+              name = suggested;
+              if (localNameEl) { localNameEl.value = suggested; localNameEl.dataset.touched = "1"; }
+              setLocalStatus("Saving chats/roles/" + name + ".txt…");
+              out = await postRole(name, false);
+            } else if (choice === "overwrite") {
+              setLocalStatus("Overwriting chats/roles/" + name + ".txt…");
+              out = await postRole(name, true);
+            } else {
+              setLocalStatus("Nothing saved — chats/roles/" + name + ".txt is unchanged.", false);
+              return;
+            }
+            if (out.conflict) throw new Error("the role name is still taken");
+          }
+          if (epoch !== localEpoch) return;
+          const files = (out.data && out.data.files) || [];
+          const saved = (out.data && out.data.name) || name;
+          const listed = files.length ? files.join(" + ") : ("chats/roles/" + saved + ".txt");
+          localBtn.textContent = "Saved!";
+          setLocalStatus("Saved " + listed + (files.length > 1 ? "" : " (no image)") + " — load it with .role " + saved + ".", false);
+          lockMakerAfterSave();
+        } catch (e) {
+          console.error(e);
+          if (epoch !== localEpoch) return;
+          localBtn.textContent = "Save failed";
+          setLocalStatus("Save failed: " + e.message, true);
+        } finally {
+          setTimeout(() => {
+            localBusy = false;
+            localBtn.innerHTML = orig;
+            refreshLocalButton();
+          }, 1800);
+        }
+      };
+      localBtn.onclick = publishLocal;
+      if (localNameEl) {
+        localNameEl.addEventListener("input", () => {
+          localNameEl.dataset.touched = (localNameEl.value || "").trim() ? "1" : "";
+        });
+      }
+      refreshLocalButton();
+    })();
+
+
+    document.getElementById("tplPreviewBtn").onclick = showPreview;
+
+    loadTemplates();
+    // Last line of defence: a throw anywhere above used to leave both pickers on
+    // their "Loading ..." placeholder with nothing in the console to explain it.
+    loadServers().catch(err => {
+      console.error("LLM pickers failed to load:", err);
+      if (!serverSel.value) serverSel.innerHTML = '<option value="">No servers found</option>';
+      if (!modelSel.value) modelSel.innerHTML = '<option value="">No models found</option>';
+    });
+  </script>
+</body>
+</html>

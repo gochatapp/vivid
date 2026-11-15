@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Optional
 
 from .config import (
+    CHAT_ROLES_DIR,
     ROLES_DIR,
     CHAT_PERSONAS_DIR,
     STORIES_DIR,
@@ -22,7 +23,7 @@ def get_role_content(role_name: str) -> str:
     Returns a fallback string if the role file is missing.
     Supports both local files and Gist-backed files (name!gist_id.txt).
     """
-    role_file = ROLES_DIR / f"{role_name}.txt"
+    role_file = CHAT_ROLES_DIR / f"{role_name}.txt"
     if role_file.exists():
         content = role_file.read_text(encoding='utf-8').strip()
         if not content:
