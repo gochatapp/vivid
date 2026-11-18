@@ -346,6 +346,13 @@ PROVIDERS:
     api_key: "nvapi-your-nvidia-api-key"
     model: "nvidia/nemotron-3-super-120b-a12b"
     show_on_provider_list: true
+  # DeepSeek (platform.deepseek.com). OpenAI-compatible; models: deepseek-chat, deepseek-reasoner.
+  - name: "deepseek"
+    type: "openai_compatible"
+    url: "https://api.deepseek.com/v1"
+    api_key: "sk-your-deepseek-api-key"
+    model: "deepseek-chat"
+    show_on_provider_list: true
 ```
 
 ---------------------------------------------------------------------

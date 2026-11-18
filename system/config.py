@@ -72,7 +72,7 @@ def get_telegram_user_id() -> int:
         return 0
 
 
-CONTEXT_LIMIT = 50  # Number of recent messages to send
+CONTEXT_LIMIT = 4096  # Token budget for conversation history sent to LLM (approximate)
 
 # Telegram's Bot API rejects a single message longer than 4096 characters with
 # "BadRequest: Message is too long". The limit is counted in UTF-16 units, so

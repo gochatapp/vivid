@@ -230,6 +230,14 @@ class GeminiProvider(LLMProvider):
         self.client = genai.Client(api_key=api_key)
         self.model_name = config.get("model", "gemini-1.5-flash")
 
+    def _resolve_model(self, model: str) -> str:
+        """Strip gateway-style prefixes (``google/``, ``models/``) from model ids."""
+        resolved = (model or self.model_name or "").strip()
+        for prefix in ("google/", "models/"):
+            if resolved.startswith(prefix):
+                resolved = resolved[len(prefix):]
+        return resolved
+
     async def chat(self, model: str, messages: List[Dict[str, str]], options: Dict[str, Any]) -> str:
         system_instruction = None
         contents = []
@@ -251,8 +259,15 @@ class GeminiProvider(LLMProvider):
             system_instruction=system_instruction,
         )
 
-        response = await self.client.aio.models.generate_content_async(
-            model=model,
+        # google-genai >=1.0 exposes this coroutine as ``generate_content`` on
+        # ``client.aio.models``; some older releases used a ``_async`` suffix.
+        async_models = self.client.aio.models
+        generate = getattr(async_models, "generate_content", None)
+        if generate is None:
+            generate = getattr(async_models, "generate_content_async")
+
+        response = await generate(
+            model=self._resolve_model(model),
             contents=contents,
             config=config
         )
@@ -261,10 +276,18 @@ class GeminiProvider(LLMProvider):
     async def list_models(self) -> List[str]:
         try:
             models = []
-            for m in self.client.models.list():
-                if "generateContent" in m.supported_generation_methods:
-                    models.append(m.name.replace("models/", ""))
-            return models
+            pager = await self.client.aio.models.list()
+            async for m in pager:
+                actions = getattr(m, "supported_actions", None)
+                if actions is None:
+                    # google-genai <2.x reported this as supported_generation_methods.
+                    actions = getattr(m, "supported_generation_methods", None)
+                if actions is not None and "generateContent" not in actions:
+                    continue
+                name = getattr(m, "name", "") or ""
+                if name:
+                    models.append(name.split("/models/")[-1].replace("models/", ""))
+            return models or [self.model_name]
         except Exception:
             return [self.model_name]
 

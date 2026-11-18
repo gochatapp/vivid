@@ -4,12 +4,17 @@ Telegram TTS module for Vivid Chat.
 Provides:
 - strip_markdown(text) — strips markdown formatting so TTS reads clean text
 - async synthesize_speech(text, voice=None, speed=None) -> Optional[bytes] — returns MP3 audio bytes
+
+Text-to-speech is powered by ``edge-tts``, which streams MP3 audio straight from
+Microsoft Edge's online TTS service. No external binaries (ffmpeg, mpv, ...) are
+required — the only dependency is ``pip install edge-tts``.
 """
 
 import io
 import re
 from typing import Optional
 
+# Text-to-speech engine: Microsoft Edge TTS (MP3 output, pure Python)
 try:
     import edge_tts
     HAS_EDGE_TTS = True
@@ -71,18 +76,18 @@ async def synthesize_speech(
     voice: Optional[str] = None,
     speed: Optional[float] = None,
 ) -> Optional[bytes]:
-    """Convert text to MP3 bytes using edge-tts.
+    """Convert text to MP3 bytes using Microsoft Edge TTS (edge-tts).
 
     ``voice`` defaults to the catalog default and ``speed`` (a multiplier such
     as 1.2) defaults to normal 1.0x playback.
     Returns MP3 audio bytes, or None if synthesis fails or edge-tts is unavailable.
     """
-    if not HAS_EDGE_TTS or edge_tts is None:
-        print("⚠️ TTS warning: edge-tts is not installed or available.")
-        return None
-
     clean_text = strip_markdown(text)
     if not clean_text:
+        return None
+
+    if not HAS_EDGE_TTS or edge_tts is None:
+        print("⚠️ TTS warning: edge-tts is not installed; run `pip install edge-tts` to enable voice replies")
         return None
 
     selected_voice = voice or default_voice_name()

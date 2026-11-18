@@ -67,6 +67,7 @@ from .bot_instance import (
     generate_response,
     reply_and_log,
     reply_transient,
+    send_with_fallback,
 )
 from .tracker import BotUsageTracker, tracker
 from .voices import (
@@ -96,6 +97,109 @@ def format_story_display(story_name: str) -> str:
         story_name = story_name.split('!')[0]
     story_name = story_name.replace('_', ' ')
     return story_name.title()
+
+
+def backup_note(bot) -> str:
+    """Returns a short 'backup saved' note for the last switch, or an empty string."""
+    path = getattr(bot, "last_backup_path", None)
+    if not path:
+        return ""
+    return f"\n💾 Backup: `{path.name}`"
+
+
+def estimate_tokens(text: str) -> int:
+    """Rough token estimate: ~4 characters per token for English text.
+    This is a heuristic since we don't require tiktoken as a dependency.
+    For code, non-English, or whitespace-heavy text, actual tokens may vary.
+    """
+    if not text:
+        return 0
+    return max(1, len(text) // 4)
+
+
+def build_full_system_prompt(bot: 'BotInstance') -> str:
+    """Build the complete system prompt including role, persona, characters, and scenes."""
+    role_content = get_role_content(bot.current_role)
+    
+    # Include persona if set
+    if bot.current_persona:
+        persona_content = get_persona_content(bot.current_persona)
+        if persona_content:
+            role_content += f"\n\nUSER PERSONA:\n{persona_content}"
+    
+    char_blocks = []
+    for char_name in bot.active_characters:
+        content = get_character_content(char_name, bot.active_story)
+        if content:
+            char_blocks.append(f"--- CHARACTER: {char_name} ---\n{content}")
+    
+    scene_blocks = []
+    for scene_name in bot.active_scenes:
+        if bot.current_mode == "story" and bot.active_story:
+            content = get_element_content(scene_name, bot.active_story)
+        else:
+            content = get_scene_content(scene_name)
+        if content:
+            scene_blocks.append(f"--- SCENE/LOCATION: {scene_name} ---\n{content}")
+    
+    full_system_prompt = role_content
+    if char_blocks:
+        full_system_prompt += "\n\nACTIVE CHARACTERS IN SCENE:\n" + "\n\n".join(char_blocks)
+    
+    if scene_blocks:
+        full_system_prompt += "\n\nCURRENT SCENE SETTING:\n" + "\n\n".join(scene_blocks)
+    
+    if bot.response_length:
+        full_system_prompt += f"\n\nIMPORTANT INSTRUCTION: Your response must be approximately {bot.response_length} words long."
+    
+    return full_system_prompt
+
+
+def truncate_history_by_tokens(history: List[Dict[str, Any]], system_tokens: int, budget: int) -> List[Dict[str, Any]]:
+    """Truncate conversation history to fit within token budget.
+    
+    Keeps the system prompt implicitly (not in history), walks backward from
+    most recent messages, and always preserves the latest user message.
+    """
+    if not history:
+        return []
+    
+    # Reserve tokens for system prompt + response headroom
+    available = budget - system_tokens
+    if available <= 0:
+        # Budget too small for even system prompt; return just latest user msg
+        for msg in reversed(history):
+            if msg.get("role") == "user":
+                return [msg]
+        return [history[-1]] if history else []
+    
+    result = []
+    tokens_used = 0
+    
+    # Walk backward through history
+    for msg in reversed(history):
+        content = msg.get("content", "")
+        msg_tokens = estimate_tokens(content)
+        
+        if tokens_used + msg_tokens > available:
+            # Stop here, but ensure we keep at least the latest user message
+            if not result:
+                return [history[-1]]
+            break
+        
+        result.insert(0, msg)
+        tokens_used += msg_tokens
+    
+    # Ensure latest user message is always included
+    if result and result[-1].get("role") != "user":
+        # Find latest user message
+        for msg in reversed(history):
+            if msg.get("role") == "user":
+                if msg not in result:
+                    result.append(msg)
+                break
+    
+    return result
 
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -142,12 +246,12 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "• `.clear` - Clear conversation memory; backs up the chat or story first\n"
         "• `.clean` / `.cl` - Clear memory, back it up, and remove chat messages\n"
         "• `.mode [chat|story]` / `.mo` - Show or change mode\n"
-        f"• `.recap [N]` - Summarize the last {CONTEXT_LIMIT} messages, with optional prompt N\n"
+        f"• `.recap [N]` - Summarize recent conversation (token-limited), with optional prompt N\n"
         "• `.ask QUESTION` - Ask about conversation history\n"
         "• `.last [N]` - Show recent messages (3 by default)\n"
         "• `.length [N]` / `.len [N]` / `.l [N]` - Set target response length (~N words); `.length clear` resets\n"
         "• `.del` - Delete last exchange; `.resend` - Retry last user message\n"
-        "• `.context [NUMBER]` - Show/set history context limit\n\n"
+        "• `.context [Nk]` - Show/set history context limit in tokens (e.g., `16k`)\n\n"
         "*Settings and status*\n"
         "• `.status` / `.s` - Show current settings\n"
         "• `.verbose` / `.v` - Toggle response details\n"
@@ -363,7 +467,7 @@ async def role_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
             return
 
         display_name = format_role_display(bot.current_role)
-        await reply_transient(update, context, f"✅ Switched to `{display_name}`.")
+        await reply_transient(update, context, f"✅ Switched to `{display_name}`.{backup_note(bot)}")
         await show_role_image(update, context, bot.current_role)
     except:
         await reply_and_log(update, "❌ Use `.role [number]`", bot=bot)
@@ -385,6 +489,7 @@ async def show_role_image(update: Update, context: ContextTypes.DEFAULT_TYPE, ro
             except Exception as e:
                 print(f"⚠️ Failed to send role image: {e}")
     display_name = format_role_display(role_name)
+    await reply_and_log(update, f"🖼️ No image found for role `{display_name}`.", bot=bot)
 
 
 async def show_persona_image(update: Update, context: ContextTypes.DEFAULT_TYPE, persona_name: str):
@@ -400,7 +505,8 @@ async def show_persona_image(update: Update, context: ContextTypes.DEFAULT_TYPE,
             except Exception as e:
                 print(f"⚠️ Failed to send persona image: {e}")
     # No image found
-    return
+    display_name = format_role_display(persona_name)
+    await reply_and_log(update, f"🖼️ No image found for persona `{display_name}`.", bot=bot)
 
 
 async def list_personas_with_images(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -479,7 +585,7 @@ async def persona_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
             return
 
         display_name = format_role_display(bot.current_persona)
-        await reply_transient(update, context, f"✅ Switched to persona `{display_name}`.")
+        await reply_transient(update, context, f"✅ Switched to persona `{display_name}`.{backup_note(bot)}")
         await show_persona_image(update, context, bot.current_persona)
     except:
         await reply_and_log(update, "❌ Use `.persona [number]`, `.persona i`, or `.persona clear`", bot=bot)
@@ -551,7 +657,7 @@ async def chat_actions(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if is_clear or is_clean:
         # Preserve the conversation before wiping it from memory and disk.
-        backup_path = bot.backup_current_history()
+        backup_path = bot.backup_current_history(reason="clear")
 
         if is_clean:
             chat_id = update.effective_chat.id
@@ -608,18 +714,24 @@ async def chat_actions(update: Update, context: ContextTypes.DEFAULT_TYPE):
         bot.save_current_context()
         bot.save_current_status()
 
-        loaded = bot.load_session(target_name)
+        # Preserve the live conversation before replacing it with the saved one.
+        backup_path = bot.backup_current_history(reason=f"chat_load:{target_name}")
+
+        loaded = bot.load_session(target_name, backup=False)
         if not loaded:
             ctx_file = CHAT_CONTEXT_DIR / f"{target_name}.txt"
             if ctx_file.exists():
                 bot.current_role = target_name
-                bot.load_role_context_and_status(target_name)
+                bot.load_role_context_and_status(target_name, backup=False)
                 loaded = True
 
         if loaded:
             tracker.claim_chat(target_name, bot.name)
             bot.save_session("last_session")
-            await reply_and_log(update, f"📂 Loaded `{target_name}`", bot=bot)
+            notice = f"📂 Loaded `{target_name}`"
+            if backup_path:
+                notice += f"\n💾 Backup: `{backup_path.name}`"
+            await reply_and_log(update, notice, bot=bot)
 
             recent = bot.chat_history[1:][-5:]
             if recent:
@@ -725,33 +837,9 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE, inc
     if not bot.chat_history:
         bot.chat_history = [{"role": "system", "content": get_role_content(bot.current_role), "msg_ids": [], "is_command": False}]
 
-    # Build the dynamic system prompt including active characters
-    role_content = get_role_content(bot.current_role)
-    char_blocks = []
-    for char_name in bot.active_characters:
-        content = get_character_content(char_name, bot.active_story)
-        if content:
-            char_blocks.append(f"--- CHARACTER: {char_name} ---\n{content}")
-
-    scene_blocks = []
-    for scene_name in bot.active_scenes:
-        # In story mode with active story, use story elements; otherwise use legacy scenes
-        if bot.current_mode == "story" and bot.active_story:
-            content = get_element_content(scene_name, bot.active_story)
-        else:
-            content = get_scene_content(scene_name)
-        if content:
-            scene_blocks.append(f"--- SCENE/LOCATION: {scene_name} ---\n{content}")
-
-    full_system_prompt = role_content
-    if char_blocks:
-        full_system_prompt += "\n\nACTIVE CHARACTERS IN SCENE:\n" + "\n\n".join(char_blocks)
-
-    if scene_blocks:
-        full_system_prompt += "\n\nCURRENT SCENE SETTING:\n" + "\n\n".join(scene_blocks)
-
-    if bot.response_length:
-        full_system_prompt += f"\n\nIMPORTANT INSTRUCTION: Your response must be approximately {bot.response_length} words long."
+    # Build the full system prompt (role + persona + characters + scenes)
+    full_system_prompt = build_full_system_prompt(bot)
+    system_tokens = estimate_tokens(full_system_prompt)
 
     # Track ID for the user's incoming prompt
     user_entry = {"role": "user", "content": prompt, "is_command": False}
@@ -760,7 +848,9 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE, inc
     bot.chat_history.append(user_entry)
     bot.save_active_context_and_status()
 
-    history_subset = bot.chat_history[1:][-bot.context_limit:]
+    # Token-based history truncation
+    history = bot.chat_history[1:]  # Exclude system message from history
+    history_subset = truncate_history_by_tokens(history, system_tokens, bot.context_limit)
 
     if bot.current_mode == "story":
         # Filter: Only narrative assistant responses (not command outputs)
@@ -801,7 +891,9 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE, inc
 
         sent_ids = []
         for i in range(0, len(reply), 4000):
-            sent_msg = await update.message.reply_text(reply[i:i+4000], parse_mode='Markdown')
+            sent_msg = await send_with_fallback(
+                update.message.reply_text, reply[i:i+4000], 'Markdown'
+            )
             sent_ids.append(sent_msg.message_id)
 
         bot.chat_history.append({"role": "assistant", "content": reply, "msg_ids": sent_ids, "is_command": False})
@@ -832,7 +924,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE, inc
             history_json = json.dumps(bot.chat_history)
             size_kb = int(len(history_json.encode('utf-8')) / 1024)
             v_text = f"Status: {latency_str}, {len(payload)}msg, {size_kb}kb"
-            await update.message.reply_text(v_text, parse_mode='Markdown')
+            await send_with_fallback(update.message.reply_text, v_text, 'Markdown')
     except Exception as e:
         await update.message.reply_text(f"❌ Error: {e}")
 
@@ -866,6 +958,23 @@ async def llmcontext_command(update: Update, context: ContextTypes.DEFAULT_TYPE)
 
     try:
         num = int(val[:-1]) * 1024
+
+        # Validate against current history budget (context_limit)
+        system_prompt = build_full_system_prompt(bot)
+        system_tokens = estimate_tokens(system_prompt)
+        max_safe_history = max(256, int(num * 0.75) - system_tokens)
+        
+        if bot.context_limit > max_safe_history:
+            await reply_and_log(
+                update,
+                f"⚠️ Warning: Model context `{val}` ({num} tokens) may be too small for current history budget.\n"
+                f"Current history budget (context_limit): {bot.context_limit} tokens\n"
+                f"System prompt estimate: ~{system_tokens} tokens\n"
+                f"Max safe history budget at this num_ctx: ~{max_safe_history} tokens ({max_safe_history // 1024}k)\n"
+                f"Consider reducing with `.context {max_safe_history // 1024}k` after this change.",
+                bot=bot
+            )
+
         bot.generation_options["num_ctx"] = num
         bot.save_active_context_and_status()
         await reply_transient(update, context, f"✅ Model context window set to `{num}` ({val}).")
@@ -1031,9 +1140,20 @@ async def status_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     bot = get_bot(context, update)
     history_json = json.dumps(bot.chat_history)
     size_kb = round(len(history_json.encode('utf-8')) / 1024, 1)
+    
+    # Estimate tokens in conversation history (excluding system message)
+    history_tokens = sum(estimate_tokens(m.get("content", "")) for m in bot.chat_history[1:])
+    system_prompt = build_full_system_prompt(bot)
+    system_tokens = estimate_tokens(system_prompt)
+    total_estimated = history_tokens + system_tokens
+    
     display = provider_display_info.get(bot.current_provider, bot.current_provider)
     display_name = format_role_display(bot.current_role)
     persona_display = format_role_display(bot.current_persona) if bot.current_persona else "None"
+    if bot.voice_mode:
+        voice_status = f"🎙️ Voice: `{bot.voice_name}` Speed: `{describe_speed(bot.voice_speed)}`\n"
+    else:
+        voice_status = "Voice mode off\n"
     status_text = (
         f"📊 **Status (Bot: {bot.name})**\n---\n"
         f"🌐 Provider: `{display}`\n"
@@ -1042,13 +1162,11 @@ async def status_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"👤 Persona: `{persona_display}`\n"
         f"📖 Mode: `{bot.current_mode}`\n"
         f"📝 Trace Mode: `{'ON' if bot.trace_mode else 'OFF'}`\n"
-        f"🔊 Voice Mode: `{'ON' if bot.voice_mode else 'OFF'}`\n"
-        f"🎙️ Voice: `{bot.voice_name}`\n"
-        f"🎙️ Voice Speed: `{describe_speed(bot.voice_speed)}`\n"
+        f"{voice_status}"
         f"😴 Lazy Mode: `{'ON' if bot.lazy_mode else 'OFF'}`\n"
         f"👥 Active Chars: `{', '.join(bot.active_characters) if bot.active_characters else 'None'}`\n"
         f"🎬 Active Scenes: `{', '.join(bot.active_scenes) if bot.active_scenes else 'None'}`\n"
-        f"💾 Context: `{len(bot.chat_history)}` msgs `{size_kb}KB` max `{bot.context_limit}`\n"
+        f"💾 Context: ~{total_estimated//1024}.{total_estimated%1024//100}k used of {bot.context_limit//1024}k tokens (≈{len(bot.chat_history)-1} msgs, {size_kb}KB)\n"
         f"📏 Length: `{f'~{bot.response_length} words' if bot.response_length else 'None'}`\n"
         f"🧠 LLM Ctx: `{bot.generation_options['num_ctx']}`"
     )
@@ -1069,15 +1187,20 @@ async def mode_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if new_mode in ["chat", "story"]:
         bot.save_current_context()
         bot.save_current_status()
+        # Preserve the outgoing conversation before the mode switch reloads context.
+        backup_path = bot.backup_current_history(reason=f"mode:{new_mode}")
         bot.current_mode = new_mode
         if new_mode == "chat":
-            bot.load_role_context_and_status(bot.current_role)
+            bot.load_role_context_and_status(bot.current_role, backup=False)
             if bot.current_persona:
-                bot.load_persona_context_and_status(bot.current_persona)
+                bot.load_persona_context_and_status(bot.current_persona, backup=False)
         elif new_mode == "story" and bot.active_story:
-            bot.load_story_context_and_status(bot.active_story)
+            bot.load_story_context_and_status(bot.active_story, backup=False)
         bot.save_session("last_session")
-        await reply_transient(update, context, f"✅ Mode switched to `{bot.current_mode}`.")
+        notice = f"✅ Mode switched to `{bot.current_mode}`."
+        if backup_path:
+            notice += f" Backup: `{backup_path.name}`"
+        await reply_transient(update, context, notice)
     else:
         await reply_and_log(update, "❌ Invalid mode. Use `.mode chat` or `.mode story`.", bot=bot)
 
@@ -1097,8 +1220,11 @@ async def ask_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     question = " ".join(context.args)
-    history_subset = bot.chat_history[1:][-bot.context_limit:]
-    payload = [{"role": "system", "content": "You are a helpful assistant. Use the conversation history provided to answer the user's question accurately. Do not adopt any persona."}]
+    system_prompt = "You are a helpful assistant. Use the conversation history provided to answer the user's question accurately. Do not adopt any persona."
+    system_tokens = estimate_tokens(system_prompt)
+    history = bot.chat_history[1:]  # Exclude system message
+    history_subset = truncate_history_by_tokens(history, system_tokens, bot.context_limit)
+    payload = [{"role": "system", "content": system_prompt}]
     payload.extend(history_subset)
     payload.append({"role": "user", "content": question})
 
@@ -1160,25 +1286,50 @@ async def delete_last_message(update: Update, context: ContextTypes.DEFAULT_TYPE
 
 
 async def set_context_limit(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Sets how many history messages are sent to the LLM per prompt."""
+    """Sets the token budget for conversation history sent to the LLM (e.g., 16k)."""
     if update.effective_user.id != get_telegram_user_id():
         return
 
     bot = get_bot(context, update)
     if not context.args:
-        await reply_and_log(update, f"📊 Current context limit: `{bot.context_limit}` messages", bot=bot)
+        msg = f"📊 Current context limit: {bot.context_limit} tokens (~{bot.context_limit // 1024}k)"
+        await reply_and_log(update, escape_markdown(msg), bot=bot)
+        return
+
+    val = context.args[0].lower()
+    if not val.endswith("k"):
+        await reply_and_log(update, "❌ Error: Context must be specified with 'k' (e.g., 8k, 16k, 32k).", bot=bot)
         return
 
     try:
-        new_limit = int(context.args[0])
-        if new_limit < 1:
-            await reply_and_log(update, "❌ Context limit must be at least 1.", bot=bot)
+        num = int(val[:-1]) * 1024
+        if num < 256:
+            await reply_and_log(update, "❌ Context limit must be at least 256 tokens.", bot=bot)
             return
-        bot.context_limit = new_limit
+
+        # Validate against model's max context (num_ctx)
+        num_ctx = bot.generation_options.get("num_ctx", 4096)
+        system_prompt = build_full_system_prompt(bot)
+        system_tokens = estimate_tokens(system_prompt)
+        # Reserve ~25% for system prompt + response headroom
+        max_safe_limit = max(256, int(num_ctx * 0.75) - system_tokens)
+        
+        if num > max_safe_limit:
+            msg = (
+                f"⚠️ Warning: {val} ({num} tokens) exceeds safe limit for this model.\n"
+                f"Model context (num_ctx): {num_ctx} tokens\n"
+                f"System prompt estimate: ~{system_tokens} tokens\n"
+                f"Recommended max history budget: ~{max_safe_limit} tokens ({max_safe_limit // 1024}k)\n"
+                f"Setting anyway, but responses may be truncated or fail."
+            )
+            await reply_and_log(update, escape_markdown(msg), bot=bot)
+        
+        bot.context_limit = num
         bot.save_active_context_and_status()
-        await reply_transient(update, context, f"✅ Context limit changed to `{bot.context_limit}` messages.")
+        msg = f"✅ Context limit set to {num} tokens ({val})."
+        await reply_transient(update, context, escape_markdown(msg))
     except ValueError:
-        await reply_and_log(update, "❌ Usage: `.context [number]`", bot=bot)
+        await reply_and_log(update, "❌ Error: Invalid number format. Use e.g., 16k.", bot=bot)
 
 
 async def role_summary_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -1298,7 +1449,7 @@ async def story_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if not success:
             await reply_and_log(update, f"❌ {err}", bot=bot)
             return
-        await reply_and_log(update, f"📖 Active story set to: `{bot.active_story}`", bot=bot)
+        await reply_and_log(update, f"📖 Active story set to: `{bot.active_story}`{backup_note(bot)}", bot=bot)
         return
     else:
         await reply_and_log(update, "❌ Unknown subcommand. Use `.story save [name]` or `.story select [name]`", bot=bot)
@@ -1422,7 +1573,7 @@ async def st_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await reply_and_log(update, f"❌ {err}", bot=bot)
         return
 
-    await reply_and_log(update, f"📖 Active story set to: `{bot.active_story}`", bot=bot)
+    await reply_and_log(update, f"📖 Active story set to: `{bot.active_story}`{backup_note(bot)}", bot=bot)
 
 
 async def list_story_images(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -1493,7 +1644,10 @@ async def recap_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await reply_and_log(update, "❌ No conversation history to recap.", bot=bot)
         return
 
-    history_to_recap = bot.chat_history[1:][-bot.context_limit:]
+    system_prompt = "Summarize the conversation history as instructed."
+    system_tokens = estimate_tokens(system_prompt)
+    history = bot.chat_history[1:]  # Exclude system message
+    history_to_recap = truncate_history_by_tokens(history, system_tokens, bot.context_limit)
 
     index = 0
     if context.args:
@@ -1528,7 +1682,7 @@ async def recap_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     try:
         summary = await generate_response([{"role": "user", "content": recap_prompt}], bot=bot)
-        text = f"📝 **Conversation Recap (Last {len(history_to_recap)} msgs):**\n\n{summary}"
+        text = f"📝 **Conversation Recap (≈{sum(estimate_tokens(m.get('content','')) for m in history_to_recap)} tokens):**\n\n{summary}"
         await reply_and_log(update, text, bot=bot)
     except Exception as e:
         await reply_and_log(update, f"❌ Recap failed: {e}", bot=bot)

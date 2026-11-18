@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Story Creator — Character.XI</title>
+  <style>
+    :root{--fs:16px;--bg:#0f1115;--panel:#171a21;--panel2:#1e222c;--line:#262b38;--txt:#e8ebf1;--mut:#98a2b8;--acc:#6c5cff;--acc2:#8b7fff;--ok:#2fbf71;--err:#ff5c7a;--rad:16px}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--txt);font-size:var(--fs);line-height:1.5;-webkit-tap-highlight-color:transparent}
+    button,input,select,textarea{font:inherit;color:inherit}
+    button{cursor:pointer;border:none}
+    a{color:var(--acc2)}
+    ::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-thumb{background:#2e3444;border-radius:4px}
+    .btn{display:inline-block;background:var(--acc);color:#fff;font-weight:700;border-radius:10px;padding:12px 16px;transition:.15s;text-decoration:none;text-align:center}
+    .btn:hover:not(:disabled){background:var(--acc2)}
+    .btn:disabled{opacity:.45;cursor:not-allowed}
+    .btn.ghost{background:var(--panel2);border:1px solid var(--line);color:var(--txt);padding:10px 14px}
+    .btn.danger{background:transparent;border:1px solid var(--err);color:var(--err)}
+    .btn.sm{padding:9px 13px;font-size:.85em}
+    #makerView{min-height:100dvh;display:flex;align-items:flex-start;justify-content:center;padding:20px 14px;overflow-y:auto}
+    .makerCard{width:100%;max-width:1000px;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px 22px;margin:auto 0}
+    .makerHead{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+    .makerHead h1{font-size:1.4em;flex:1}
+    .lead{margin-bottom:18px}
+    .section{background:var(--panel2);border:1px solid var(--line);border-radius:var(--rad);padding:18px 16px;margin-bottom:18px}
+    .sectionHead{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+    .sectionHead h2{font-size:1em;letter-spacing:.02em}
+    .sectionGreen h2{color:var(--ok)}
+    .sectionBlue h2{color:var(--acc2)}
+    .sectionPurple h2{color:var(--acc2)}
+    .sectionHead .spacer{flex:1}
+    .badge{font-size:.75em;color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:3px 10px;max-width:60%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .badge.live{color:var(--ok);border-color:var(--ok)}
+    .section label{display:block;font-weight:600;font-size:.85em;margin:14px 0 6px}
+    .section label:first-of-type{margin-top:0}
+    .section input[type=text],.section select,.section textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:11px 12px;outline:none}
+    .section textarea{min-height:120px;resize:vertical;font-family:inherit}
+    .section textarea.small{min-height:80px}
+    .section input:focus,.section select:focus,.section textarea:focus{border-color:var(--acc)}
+    .helpText{font-size:.8em;color:var(--mut);margin-top:6px}
+    .fieldRow{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}
+    .fieldRow>div{flex:1;min-width:220px}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;align-items:center}
+    .btnRow .btn{margin-top:0}
+    .btnEnhance{background:var(--ok);color:#06280f}
+    .btnEnhance:hover:not(:disabled){background:#46d387}
+    #charImgPreview,#elemImgPreview,#storyImgPreview,#assignImgPreview{width:160px;height:160px;object-fit:cover;border-radius:12px;border:1px solid var(--line);display:none;margin-top:12px}
+    #charImgPreview.show,#elemImgPreview.show,#storyImgPreview.show,#assignImgPreview.show{display:block}
+    #makerMsg{margin-top:14px;font-size:.88em;min-height:1.2em;color:var(--mut);text-align:center}
+    #makerMsg.ok{color:var(--ok)}
+    #makerMsg.err{color:var(--err)}
+    .imageArea{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-top:8px}
+    .imagePreviewWrap{flex:0 0 160px}
+    .imageControls{flex:1;display:flex;flex-direction:column;gap:8px;min-width:220px}
+    .storyChildList{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+    .storyChildItem{display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+    .storyChildItem img{width:40px;height:40px;object-fit:cover;border-radius:8px;border:1px solid var(--line);flex-shrink:0;background:#242a37}
+    .storyChildInfo{flex:1;min-width:0}
+    .storyChildName{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .storyChildDesc{font-size:.8em;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .storyChildActions{display:flex;gap:6px}
+    .storyChildActions .btn.sm{padding:6px 10px;font-size:.75em}
+    .gistRow{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+    .gistRow>div{flex:1;min-width:240px}
+    .gistLink{display:block;margin-top:12px;font-size:.85em;word-break:break-all}
+  </style>
+</head>
+<body>
+<section id="makerView">
+  <div class="makerCard">
+
+    <div class="makerHead">
+      <h1>Story Creator</h1>
+      <a class="btn ghost sm" href="/">&larr; Dashboard</a>
+    </div>
+    <p class="helpText lead">
+      Build a story, then publish it as a public GitHub Gist in the GOCHATAPP format
+      (GOCHATAPPSTORYTAG_&lt;story&gt;.md, character_*.txt, storyelement_*.txt and thumbnails).
+      Anyone who installs the gist gets the story, its characters, its elements and its images.
+    </p>
+
+    <!-- Section 1: Story Setup -->
+    <div class="section">
+      <div class="sectionHead">
+        <h2>1. STORY SETUP</h2>
+        <span class="spacer"></span>
+        <span id="gistBadge" class="badge">Not published</span>
+      </div>
+
+      <label for="storyName">Story Name</label>
+      <input type="text" id="storyName" placeholder="e.g. The Crystal Chronicles">
+      <p class="helpText">Required. Publishes as GOCHATAPPSTORYTAG_&lt;story&gt;.md in the gist.</p>
+
+      <label for="storyDesc">Story Description</label>
+      <textarea id="storyDesc" placeholder="Describe the story premise, setting, tone..."></textarea>
+
+      <div class="btnRow">
+        <button class="btn btnEnhance" id="enhanceStoryBtn" type="button">AI Enhance</button>
+        <button class="btn ghost sm" id="undoEnhanceBtn" type="button">Undo</button>
+      </div>
+      <p class="helpText">AI Enhance runs on your configured provider and model (Setup page).</p>
+
+      <div class="imageArea">
+        <div class="imagePreviewWrap">
+          <img id="storyImgPreview" alt="Story image preview">
+          <div id="storyImgMeta" class="helpText"></div>
+        </div>
+        <div class="imageControls">
+          <p class="helpText">Use <b>Section 4: Image Assignment</b> to add or change the story cover (published as <code>thumb.md</code>).</p>
+        </div>
+      </div>
+    </div>
+    <!-- Section 2: Characters -->
+    <div class="section sectionGreen">
+      <div class="sectionHead"><h2>2. CHARACTERS</h2></div>
+
+      <div class="fieldRow">
+        <div>
+          <label for="charSel">Select Character</label>
+          <select id="charSel"><option value="">Select or create a character...</option></select>
+          <p class="helpText">Pick an existing character to edit, or leave blank for a new one.</p>
+        </div>
+        <div>
+          <label for="charName">Character Name</label>
+          <input type="text" id="charName" placeholder="e.g. Aiko Tanaka">
+          <p class="helpText">Required for a new character.</p>
+        </div>
+      </div>
+
+      <label for="charDesc">Character Description</label>
+      <textarea id="charDesc" placeholder="Describe the character: personality, appearance, background..."></textarea>
+
+      <div class="imageArea">
+        <div class="imagePreviewWrap">
+          <img id="charImgPreview" alt="Character image preview">
+          <div id="charImgMeta" class="helpText"></div>
+        </div>
+        <div class="imageControls">
+          <p class="helpText">Use <b>Section 4: Image Assignment</b> to add or change the character image.</p>
+        </div>
+      </div>
+
+      <div class="btnRow">
+        <button class="btn" id="addCharBtn" type="button">Add Character</button>
+        <button class="btn ghost sm" id="removeCharBtn" type="button">Remove Selected</button>
+        <button class="btn btnEnhance sm" id="enhanceCharBtn" type="button">AI Enhance</button>
+        <button class="btn ghost sm" id="copyCharPromptBtn" type="button" title="Copy the generated character image prompt" disabled>Copy Img Prompt</button>
+      </div>
+      <p class="helpText">AI Enhance fills the description and generates a Perchance image prompt you can copy.</p>
+
+      <div id="charList" class="storyChildList"></div>
+
+      <textarea id="charImagePrompt" hidden></textarea>
+    </div>
+    <!-- Section 3: Story Elements -->
+    <div class="section sectionBlue">
+      <div class="sectionHead"><h2>3. STORY ELEMENTS</h2></div>
+
+      <div class="fieldRow">
+        <div>
+          <label for="elemSel">Select Element</label>
+          <select id="elemSel"><option value="">Select or create a story element...</option></select>
+          <p class="helpText">Pick an existing element to edit, or leave blank for a new one.</p>
+        </div>
+        <div>
+          <label for="elemName">Element Name</label>
+          <input type="text" id="elemName" placeholder="e.g. The Crystal Palace">
+          <p class="helpText">Required for a new story element.</p>
+        </div>
+      </div>
+
+      <label for="elemDesc">Element Description</label>
+      <textarea id="elemDesc" placeholder="Describe the location, item, faction, or concept..."></textarea>
+
+      <div class="imageArea">
+        <div class="imagePreviewWrap">
+          <img id="elemImgPreview" alt="Story element image preview">
+          <div id="elemImgMeta" class="helpText"></div>
+        </div>
+        <div class="imageControls">
+          <p class="helpText">Use <b>Section 4: Image Assignment</b> to add or change the element image.</p>
+        </div>
+      </div>
+
+      <div class="btnRow">
+        <button class="btn" id="addElemBtn" type="button">Add Element</button>
+        <button class="btn ghost sm" id="removeElemBtn" type="button">Remove Selected</button>
+        <button class="btn btnEnhance sm" id="enhanceElemBtn" type="button">AI Enhance</button>
+        <button class="btn ghost sm" id="copyElemPromptBtn" type="button" title="Copy the generated element image prompt" disabled>Copy Img Prompt</button>
+      </div>
+      <p class="helpText">AI Enhance fills the description and generates a Perchance image prompt you can copy.</p>
+
+      <div id="elemList" class="storyChildList"></div>
+
+      <textarea id="elemImagePrompt" hidden></textarea>
+    </div>
+    <!-- Section 4: Image Assignment + publishing -->
+    <div class="section sectionPurple">
+      <div class="sectionHead"><h2>4. IMAGE ASSIGNMENT</h2></div>
+
+      <label for="imageTargetSel">Assign Image To</label>
+      <select id="imageTargetSel">
+        <option value="story">Story cover</option>
+        <optgroup label="Characters"></optgroup>
+        <optgroup label="Story Elements"></optgroup>
+      </select>
+      <p class="helpText">Pick a story, character, or story element, then upload or paste an image below.</p>
+
+      <div class="imageArea">
+        <div class="imagePreviewWrap">
+          <img id="assignImgPreview" alt="Image preview">
+          <div id="assignImgMeta" class="helpText"></div>
+        </div>
+        <div class="imageControls">
+          <div class="btnRow">
+            <button class="btn ghost sm" id="uploadAssignImageBtn" type="button">Upload Image</button>
+            <button class="btn ghost sm" id="clearAssignImageBtn" type="button">Clear</button>
+            <button class="btn ghost sm" id="applyImageBtn" type="button">Apply to Selected</button>
+          </div>
+          <input type="file" id="assignImageUpload" accept="image/*" hidden>
+          <p class="helpText">Upload or Ctrl+V paste &mdash; resized to 450x450 JPEG, then uploaded to ImgBB when you publish.</p>
+        </div>
+      </div>
+
+      <hr style="border:none;border-top:1px solid var(--line);margin:18px 0 0">
+
+      <label for="gistInput">Load a published story</label>
+      <div class="gistRow">
+        <div>
+          <input type="text" id="gistInput" placeholder="Paste a gist URL or gist id...">
+          <p class="helpText">Loads a story back into this form so you can edit and re-publish it.</p>
+        </div>
+        <button class="btn ghost" id="loadGistBtn" type="button">Load</button>
+      </div>
+
+      <div class="btnRow">
+        <button class="btn" id="saveStoryBtn" type="button">Publish to Gist</button>
+        <button class="btn ghost sm" id="installStoryBtn" type="button" disabled>Install Locally</button>
+        <button class="btn ghost sm" id="clearBtn" type="button">Clear Form</button>
+      </div>
+      <p class="helpText">
+        Every publish creates a new public gist (an existing gist is never overwritten).
+        "Install Locally" downloads the current gist into <code>chats_stories/stories/</code> so the bot can use it.
+      </p>
+
+      <a id="gistLink" class="gistLink" target="_blank" rel="noopener noreferrer" hidden></a>
+    </div>
+
+    <div id="makerMsg" aria-live="polite"></div>
+  </div>
+</section>
+
+<script src="/static/story_creator.js?v=1"></script>
+
+</body>
+</html>

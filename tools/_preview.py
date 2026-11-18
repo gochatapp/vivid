@@ -393,6 +393,7 @@ async def show_role_image(update: Update, context: ContextTypes.DEFAULT_TYPE, ro
             except Exception as e:
                 print(f"⚠️ Failed to send role image: {e}")
     display_name = format_role_display(role_name)
+await reply_and_log(update, f"🖼️ No image found for role `{display_name}`.", bot=bot)
 
 
 async def show_persona_image(update: Update, context: ContextTypes.DEFAULT_TYPE, persona_name: str):
@@ -408,6 +409,8 @@ async def show_persona_image(update: Update, context: ContextTypes.DEFAULT_TYPE,
             except Exception as e:
                 print(f"⚠️ Failed to send persona image: {e}")
     # No image found
+display_name = format_role_display(persona_name)
+    await reply_and_log(update, f"🖼️ No image found for persona `{display_name}`.", bot=bot)
     return
 
 

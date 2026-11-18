@@ -10,6 +10,7 @@ import re
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 from telegram import Update
+from telegram.error import BadRequest
 from telegram.ext import Application, ContextTypes
 
 from .config import (
@@ -127,7 +128,14 @@ def apply_status_dict(bot: 'BotInstance', data: Dict[str, Any]):
     if "active_scenes" in data and isinstance(data["active_scenes"], list):
         bot.active_scenes = list(data["active_scenes"])
     if "context_limit" in data:
-        bot.context_limit = int(data["context_limit"])
+        loaded_limit = int(data["context_limit"])
+        # Safeguard: old status files stored message counts (e.g., 50).
+        # If value is unreasonably small for tokens, treat as legacy and use default.
+        if loaded_limit < 256:
+            print(f"⚠️ Legacy context_limit ({loaded_limit}) detected; using default {CONTEXT_LIMIT} tokens")
+            bot.context_limit = CONTEXT_LIMIT
+        else:
+            bot.context_limit = loaded_limit
     if "response_length" in data:
         bot.response_length = int(data["response_length"]) if data["response_length"] is not None else None
     if "num_ctx" in data:
@@ -182,6 +190,7 @@ class BotInstance:
         self.context_limit = CONTEXT_LIMIT
         self.response_length: Optional[int] = None
         self.last_latency = 0.0
+        self.last_backup_path: Optional[Path] = None
         self.total_messages_sent = 0
         self.generation_options = {
             "repeat_penalty": 1.2,
@@ -227,14 +236,46 @@ class BotInstance:
             return STORIES_DIR / self.active_story / "backups"
         return CHAT_BACKUPS_DIR
 
-    def backup_current_history(self) -> Optional[Path]:
+    def history_message_count(self, history: Optional[List[Dict[str, Any]]] = None) -> int:
+        """Counts real conversation turns (user/assistant) in a history list."""
+        target = self.chat_history if history is None else history
+        return sum(1 for msg in target if msg.get("role") in ("user", "assistant"))
+
+    @staticmethod
+    def _history_signature(history: List[Dict[str, Any]]) -> List[Tuple[Any, Any, bool]]:
+        """Comparable fingerprint of a history list, used to detect real changes."""
+        return [
+            (msg.get("role"), msg.get("content"), bool(msg.get("is_command")))
+            for msg in history
+        ]
+
+    def set_history(self, new_history: List[Dict[str, Any]], *, reason: str = "",
+                    backup: bool = True) -> Optional[Path]:
+        """Replaces the in-memory history, preserving the old chat in backups.
+
+        Any replacement that would discard a live conversation is backed up
+        first, so switching roles, stories, personas, modes, or loading a saved
+        chat can never silently destroy messages. Returns the backup transcript
+        path when a backup was written.
+        """
+        new_history = list(new_history or [])
+        backup_path = None
+        if (backup
+                and self.history_message_count() > 0
+                and self._history_signature(self.chat_history) != self._history_signature(new_history)):
+            backup_path = self.backup_current_history(reason=reason)
+        self.chat_history = new_history
+        return backup_path
+
+    def backup_current_history(self, reason: str = "") -> Optional[Path]:
         """Saves a timestamped transcript and JSON snapshot of the conversation.
 
         Chat mode backs up to `chats/backups`; story mode backs up to the active
         story's `backups` folder. Returns the transcript path, or None when
         there is no conversation to back up or the backup could not be written.
         """
-        if len(self.chat_history) <= 1:
+        self.last_backup_path = None
+        if self.history_message_count() == 0:
             return None
 
         backup_dir = self.get_backup_dir()
@@ -255,11 +296,16 @@ class BotInstance:
             transcript_path = backup_dir / f"{base_name}.txt"
             snapshot_path = backup_dir / f"{base_name}.json"
 
+            snapshot = self.get_session_data()
+            if reason:
+                snapshot["backup_reason"] = reason
+
             transcript_path.write_text(format_context_text(self.chat_history), encoding="utf-8")
             with open(snapshot_path, 'w', encoding='utf-8') as f:
-                json.dump(self.get_session_data(), f, indent=4, ensure_ascii=False)
+                json.dump(snapshot, f, indent=4, ensure_ascii=False)
 
             print(f"💾 Backed up conversation to {transcript_path}")
+            self.last_backup_path = transcript_path
             return transcript_path
         except Exception as e:
             print(f"❌ Error backing up conversation to {backup_dir}: {e}")
@@ -323,7 +369,7 @@ class BotInstance:
         self.save_current_status()
         self.save_session("last_session")
 
-    def load_role_context_and_status(self, role_name: str) -> bool:
+    def load_role_context_and_status(self, role_name: str, *, backup: bool = True) -> bool:
         st_path = self.get_role_status_path(role_name)
         if not st_path.exists():
             st_path = CHAT_CONFIG_DIR / ".status"
@@ -350,12 +396,36 @@ class BotInstance:
             except Exception as e:
                 print(f"⚠️ Error reading role context {ctx_path}: {e}")
 
-        self.chat_history = [system_msg] + loaded_msgs
+        self.set_history([system_msg] + loaded_msgs, reason=f"role:{role_name}", backup=backup)
         return True
 
-    def load_persona_context_and_status(self, persona_name: str) -> bool:
+    def build_system_message(self) -> Dict[str, Any]:
+        """Builds the system prompt for the current role plus active persona."""
+        sys_content = get_role_content(self.current_role)
+        if self.current_persona:
+            persona_content = get_persona_content(self.current_persona)
+            if persona_content:
+                sys_content += f"\n\nUSER PERSONA:\n{persona_content}"
+        return {"role": "system", "content": sys_content, "msg_ids": [], "is_command": False}
+
+    def refresh_system_prompt(self):
+        """Updates the system prompt without touching the conversation history."""
+        system_msg = self.build_system_message()
+        if self.chat_history and self.chat_history[0].get("role") == "system":
+            self.chat_history[0] = system_msg
+        else:
+            self.chat_history.insert(0, system_msg)
+
+    def load_persona_context_and_status(self, persona_name: str, *, backup: bool = True) -> bool:
+        """Applies persona status and overlays the persona on the system prompt.
+
+        A persona is a *user* overlay, so switching personas must never replace
+        the role's conversation. Persona context is only used as a fallback when
+        there is no live conversation in memory.
+        """
         if not persona_name:
             self.current_persona = ""
+            self.refresh_system_prompt()
             return True
 
         st_path = self.get_persona_status_path(persona_name)
@@ -368,26 +438,24 @@ class BotInstance:
                 print(f"⚠️ Error reading persona status {st_path}: {e}")
 
         self.current_persona = persona_name
+        system_msg = self.build_system_message()
 
-        ctx_path = self.get_persona_context_path(persona_name)
-        loaded_msgs = []
-        if ctx_path.exists():
-            try:
-                text = ctx_path.read_text(encoding='utf-8')
-                loaded_msgs = parse_context_text(text)
-            except Exception as e:
-                print(f"⚠️ Error reading persona context {ctx_path}: {e}")
-
-        sys_content = get_role_content(self.current_role)
-        persona_content = get_persona_content(persona_name)
-        if persona_content:
-            sys_content += f"\n\nUSER PERSONA:\n{persona_content}"
-        system_msg = {"role": "system", "content": sys_content, "msg_ids": [], "is_command": False}
-
-        self.chat_history = [system_msg] + loaded_msgs
+        if self.history_message_count() == 0:
+            ctx_path = self.get_persona_context_path(persona_name)
+            loaded_msgs = []
+            if ctx_path.exists():
+                try:
+                    text = ctx_path.read_text(encoding='utf-8')
+                    loaded_msgs = parse_context_text(text)
+                except Exception as e:
+                    print(f"⚠️ Error reading persona context {ctx_path}: {e}")
+            self.set_history([system_msg] + loaded_msgs,
+                             reason=f"persona:{persona_name}", backup=backup)
+        else:
+            self.refresh_system_prompt()
         return True
 
-    def load_story_context_and_status(self, story_name: str) -> bool:
+    def load_story_context_and_status(self, story_name: str, *, backup: bool = True) -> bool:
         st_path = self.get_story_status_path(story_name)
         if st_path and st_path.exists():
             try:
@@ -428,8 +496,12 @@ class BotInstance:
         role_content = get_role_content(self.current_role)
         if backstory:
             role_content += f"\n\nSTORY BACKSTORY / PREMISE:\n{backstory}"
+        if self.current_persona:
+            persona_content = get_persona_content(self.current_persona)
+            if persona_content:
+                role_content += f"\n\nUSER PERSONA:\n{persona_content}"
         system_msg = {"role": "system", "content": role_content, "msg_ids": [], "is_command": False}
-        self.chat_history = [system_msg] + loaded_msgs
+        self.set_history([system_msg] + loaded_msgs, reason=f"story:{story_name}", backup=backup)
         return True
 
     async def switch_role(self, new_role: str) -> Tuple[bool, str]:
@@ -439,19 +511,26 @@ class BotInstance:
 
         self.save_current_context()
         self.save_current_status()
+        self.last_backup_path = None
+
+        # Keep the outgoing conversation safe before the role changes state.
+        same_subject = new_role == self.current_role and self.current_mode == "chat"
+        if not same_subject:
+            self.backup_current_history(reason=f"switch_role:{new_role}")
 
         tracker.claim_chat(new_role, self.name)
         self.current_role = new_role
 
-        self.load_role_context_and_status(new_role)
+        self.load_role_context_and_status(new_role, backup=same_subject)
         if self.current_persona:
-            self.load_persona_context_and_status(self.current_persona)
+            self.load_persona_context_and_status(self.current_persona, backup=False)
         self.save_session("last_session")
         return True, ""
 
     async def switch_persona(self, new_persona: str) -> Tuple[bool, str]:
         self.save_current_context()
         self.save_current_status()
+        self.last_backup_path = None
 
         self.current_persona = new_persona
 
@@ -466,13 +545,19 @@ class BotInstance:
 
         self.save_current_context()
         self.save_current_status()
+        self.last_backup_path = None
+
+        # Keep the outgoing conversation safe before the story changes state.
+        same_subject = new_story == self.active_story and self.current_mode == "story"
+        if not same_subject:
+            self.backup_current_history(reason=f"switch_story:{new_story}")
 
         tracker.claim_story(new_story, self.name)
         self.active_story = new_story
         self.active_characters = []
         self.active_scenes = []
 
-        self.load_story_context_and_status(new_story)
+        self.load_story_context_and_status(new_story, backup=same_subject)
         self.save_session("last_session")
         return True, ""
     
@@ -515,7 +600,8 @@ class BotInstance:
         except Exception as e:
             print(f"❌ Error saving session {file_path}: {e}")
 
-    def load_session(self, name: str = "last_session") -> bool:
+    def load_session(self, name: str = "last_session", *, backup: bool = True) -> bool:
+        self.last_backup_path = None
         clean_name = name.replace(".json", "")
         file_path = (CHAT_SESSIONS_DIR / f"{self.name}_{clean_name}.json").resolve()
         if not file_path.exists():
@@ -525,41 +611,95 @@ class BotInstance:
             try:
                 with open(file_path, 'r', encoding='utf-8') as f:
                     data = json.load(f)
-                    if isinstance(data, dict) and "history" in data:
-                        self.chat_history = data["history"]
-                        meta = data.get("metadata", {})
-                        self.current_model = meta.get("model", self.current_model)
-                        self.current_role = meta.get("role", self.current_role)
-                        self.current_persona = meta.get("persona", self.current_persona)
-                        self.current_provider = meta.get("provider", self.current_provider)
-                        self.context_limit = meta.get("context_limit", self.context_limit)
-                        self.response_length = meta.get("response_length", None)
-                        self.current_mode = meta.get("mode", "chat")
-                        self.active_characters = meta.get("active_characters", [])
-                        self.active_scenes = meta.get("active_scenes", [])
-                        self.active_story = meta.get("active_story", "")
-                        self.lazy_mode = meta.get("lazy_mode", False)
-                        self.think_mode = meta.get("think_mode", False)
-                        self.verbose_mode = meta.get("verbose_mode", False)
-                        self.trace_mode = meta.get("trace_mode", False)
-                        self.voice_mode = meta.get("voice_mode", False)
-                        self.voice_name = meta.get("voice_name", self.voice_name)
-                        if "voice_speed" in meta:
-                            self.voice_speed = clamp_speed(meta["voice_speed"])
-                        if "num_ctx" in meta:
-                            self.generation_options["num_ctx"] = meta["num_ctx"]
-                    else:
-                        self.chat_history = data
-                    return True
+                if isinstance(data, dict) and "history" in data:
+                    self.set_history(data["history"], reason=f"session:{clean_name}", backup=backup)
+                    meta = data.get("metadata", {})
+                    self.current_model = meta.get("model", self.current_model)
+                    self.current_role = meta.get("role", self.current_role)
+                    self.current_persona = meta.get("persona", self.current_persona)
+                    self.current_provider = meta.get("provider", self.current_provider)
+                    self.context_limit = meta.get("context_limit", self.context_limit)
+                    self.response_length = meta.get("response_length", None)
+                    self.current_mode = meta.get("mode", "chat")
+                    self.active_characters = meta.get("active_characters", [])
+                    self.active_scenes = meta.get("active_scenes", [])
+                    self.active_story = meta.get("active_story", "")
+                    self.lazy_mode = meta.get("lazy_mode", False)
+                    self.think_mode = meta.get("think_mode", False)
+                    self.verbose_mode = meta.get("verbose_mode", False)
+                    self.trace_mode = meta.get("trace_mode", False)
+                    self.voice_mode = meta.get("voice_mode", False)
+                    self.voice_name = meta.get("voice_name", self.voice_name)
+                    if "voice_speed" in meta:
+                        self.voice_speed = clamp_speed(meta["voice_speed"])
+                    if "num_ctx" in meta:
+                        self.generation_options["num_ctx"] = meta["num_ctx"]
+                else:
+                    self.set_history(data, reason=f"session:{clean_name}", backup=backup)
+                return True
             except Exception as e:
                 print(f"❌ Error loading session {file_path}: {e}")
                 return False
         return False
 
+    def _prefer_session_history(self, session_history: List[Dict[str, Any]], session_loaded: bool,
+                                session_mode: str, session_role: str, session_story: str) -> bool:
+        """Keeps a richer saved session from being clobbered by a stale context file.
+
+        Startup used to reload role/story context over the freshly loaded session.
+        When those context files were empty or older than the session, the live
+        conversation was silently discarded. The session is the newest snapshot,
+        so it wins whenever it belongs to the same subject and holds more turns.
+        """
+        if not session_loaded or self.history_message_count(session_history) == 0:
+            return False
+
+        same_subject = (
+            self.current_mode == "chat"
+            and session_mode == "chat"
+            and session_role == self.current_role
+        ) or (
+            self.current_mode == "story"
+            and session_mode == "story"
+            and bool(session_story)
+            and session_story == self.active_story
+        )
+        if not same_subject:
+            return False
+        if self.history_message_count(session_history) <= self.history_message_count():
+            return False
+
+        # Preserve the (smaller) context conversation before preferring the session.
+        self.backup_current_history(reason="startup_context")
+
+        # Keep the freshly built system prompt (role + persona + story premise) and
+        # graft the session's conversation onto it, so prompt fixes survive restarts.
+        restored = list(session_history)
+        if self.chat_history and self.chat_history[0].get("role") == "system":
+            fresh_system = self.chat_history[0]
+            if restored and restored[0].get("role") == "system":
+                restored[0] = fresh_system
+            else:
+                restored.insert(0, fresh_system)
+        self.chat_history = restored
+        self.save_current_context()
+        print(f"♻️ [{self.name}] Restored {self.history_message_count()} messages from the last session "
+              f"(context file was stale).")
+        return True
+
     def init_state(self, tracker_instance):
         loaded = self.load_session("last_session")
+        session_history = list(self.chat_history)
+        session_mode = self.current_mode
+        session_role = self.current_role
+        session_story = self.active_story
+
         if not loaded:
-            self.chat_history = [{"role": "system", "content": get_role_content(self.current_role), "msg_ids": [], "is_command": False}]
+            self.set_history(
+                [{"role": "system", "content": get_role_content(self.current_role),
+                  "msg_ids": [], "is_command": False}],
+                reason="startup", backup=False
+            )
 
         if self.current_mode == "story" and self.active_story:
             if tracker_instance.is_story_in_use(self.active_story, self.name):
@@ -572,7 +712,10 @@ class BotInstance:
                     self.active_story = ""
             if self.active_story:
                 tracker_instance.claim_story(self.active_story, self.name)
-                self.load_story_context_and_status(self.active_story)
+                same_story = session_mode == "story" and session_story == self.active_story
+                self.load_story_context_and_status(self.active_story, backup=not same_story)
+                self._prefer_session_history(session_history, loaded, session_mode,
+                                             session_role, session_story)
 
         if self.current_mode == "chat":
             if tracker_instance.is_chat_in_use(self.current_role, self.name):
@@ -587,9 +730,15 @@ class BotInstance:
                 if not assigned:
                     self.current_role = f"Assistant_{self.name}"
             tracker_instance.claim_chat(self.current_role, self.name)
-            self.load_role_context_and_status(self.current_role)
+            same_role = session_mode == "chat" and session_role == self.current_role
+            self.load_role_context_and_status(self.current_role, backup=not same_role)
             if self.current_persona:
-                self.load_persona_context_and_status(self.current_persona)
+                self.load_persona_context_and_status(self.current_persona, backup=False)
+            self._prefer_session_history(session_history, loaded, session_mode,
+                                         session_role, session_story)
+
+        # Keep the session in sync with the resolved startup state.
+        self.save_session("last_session")
 
 # Utility functions (originally standalone in vivid.py, now module-level in bot_instance)
 
@@ -668,8 +817,154 @@ def split_telegram_message(text: str, limit: int = TELEGRAM_MESSAGE_LIMIT) -> Li
     return chunks
 
 
+# Characters the MarkdownV2 parser reserves. Every one of them has to be
+# escaped with a preceding backslash or Telegram rejects the whole message
+# with "BadRequest: Can't parse entities".
+MARKDOWN_V2_RESERVED = frozenset('_*[]()~`>#+-=|{}.!')
+_PLACEHOLDER_RE = re.compile("\x00(\\d+)\x00")
+
+
+def escape_markdown_v2(text: str) -> str:
+    """Escapes every MarkdownV2 reserved character so *text* is shown literally."""
+    if not text:
+        return text
+    return "".join(
+        f"\\{char}" if char in MARKDOWN_V2_RESERVED or char == "\\" else char
+        for char in text
+    )
+
+
+def _find_occurrences(text: str, needle: str) -> List[int]:
+    """Returns every (non-overlapping) start index of *needle* in *text*."""
+    positions: List[int] = []
+    start = text.find(needle)
+    while start != -1:
+        positions.append(start)
+        start = text.find(needle, start + len(needle))
+    return positions
+
+
+def _convert_markdown_line(line: str, stash) -> str:
+    """Escapes one line, keeping code spans, existing escapes and bold spans."""
+    if not line:
+        return line
+
+    body_parts: List[str] = []
+    index = 0
+    length = len(line)
+    while index < length:
+        char = line[index]
+        if char == "\\" and index + 1 < length:
+            following = line[index + 1]
+            if following in MARKDOWN_V2_RESERVED or following == "\\":
+                body_parts.append(stash("\\" + following))
+            else:
+                # A literal backslash that is not an escape sequence.
+                body_parts.append(stash("\\\\"))
+                body_parts.append(stash(following))
+            index += 2
+            continue
+        if char == "`":
+            closing = line.find("`", index + 1)
+            if closing == -1:
+                body_parts.append(stash("\\`"))
+                index += 1
+                continue
+            code = line[index + 1:closing]
+            code = code.replace("\\", "\\\\").replace("`", "\\`")
+            body_parts.append(stash(f"`{code}`"))
+            index = closing + 1
+            continue
+        body_parts.append(char)
+        index += 1
+
+    body = "".join(body_parts)
+
+    # Prefer **bold** spans; otherwise fall back to the *bold* style used in
+    # the help text. Unpaired asterisks stay literal so nothing is swallowed.
+    doubles = _find_occurrences(body, "**")
+    if doubles and len(doubles) % 2 == 0:
+        marker_length = 2
+        positions = doubles
+    elif not doubles:
+        marker_length = 1
+        positions = _find_occurrences(body, "*")
+        if len(positions) % 2 != 0:
+            positions = []
+    else:
+        marker_length = 1
+        positions = []
+
+    replacements = {}
+    skipped = set()
+    for open_pos, close_pos in zip(positions[0::2], positions[1::2]):
+        if close_pos - open_pos <= marker_length:
+            continue  # Empty span such as "****" - keep the asterisks literal.
+        replacements[open_pos] = "*"
+        replacements[close_pos] = "*"
+        skipped.update(range(open_pos, open_pos + marker_length))
+        skipped.update(range(close_pos, close_pos + marker_length))
+
+    converted: List[str] = []
+    for position, char in enumerate(body):
+        if position in replacements:
+            converted.append("*")
+        elif position in skipped:
+            continue
+        elif char in MARKDOWN_V2_RESERVED:
+            converted.append("\\" + char)
+        else:
+            converted.append(char)
+    return "".join(converted)
+
+
+def markdown_to_v2(text: str) -> str:
+    """Converts the light Markdown used by command replies into valid MarkdownV2.
+
+    ``**bold**`` (and ``*bold*``) become MarkdownV2 bold, backtick spans stay
+    code spans, already-escaped characters are preserved and every other
+    reserved character is escaped. Handlers can therefore keep writing
+    ``**bold**`` and plain punctuation without Telegram answering with
+    ``BadRequest: Can't parse entities``.
+    """
+    if not text:
+        return text
+
+    placeholders: List[str] = []
+
+    def stash(value: str) -> str:
+        placeholders.append(value)
+        return f"\x00{len(placeholders) - 1}\x00"
+
+    converted = "\n".join(
+        _convert_markdown_line(line, stash) for line in text.split("\n")
+    )
+    return _PLACEHOLDER_RE.sub(lambda match: placeholders[int(match.group(1))], converted)
+
+
+async def send_with_fallback(send, text: str, parse_mode: Optional[str] = "MarkdownV2"):
+    """Sends *text* via *send*, retrying as plain text if the markup is invalid.
+
+    ``send`` must be an async callable accepting ``text`` and ``parse_mode``
+    keyword arguments (e.g. ``update.message.reply_text``).
+    """
+    try:
+        return await send(text, parse_mode=parse_mode)
+    except BadRequest as error:
+        reason = str(error).lower()
+        if "entit" not in reason and "parse" not in reason:
+            raise
+        print(f"⚠️ Telegram rejected {parse_mode} markup, sending plain text: {error}")
+        return await send(text, parse_mode=None)
+
+
 async def reply_and_log(update: Update, text: str, is_command: bool = True, bot: Optional[BotInstance] = None) -> None:
     """Helper to send a message, capture IDs, and log to history for session persistence.
+
+    *text* may use the same light Markdown as the handlers (``**bold**``,
+    ``*bold*``, backtick code spans); it is converted to valid MarkdownV2
+    before sending so Telegram never answers with
+    ``BadRequest: Can't parse entities``.
 
     Messages longer than ``TELEGRAM_MESSAGE_LIMIT`` are split into multiple
     Telegram messages so the API's "Message is too long" error is avoided.
@@ -685,21 +980,22 @@ async def reply_and_log(update: Update, text: str, is_command: bool = True, bot:
         if user_msg_id not in bot.chat_history[-1].get("msg_ids", []):
             bot.chat_history[-1].setdefault("msg_ids", []).append(user_msg_id)
 
-    chunks = split_telegram_message(text)
+    chunks = split_telegram_message(markdown_to_v2(text))
     sent_msg_ids: List[int] = []
     chat_id = update.effective_chat.id if update.effective_chat else None
+    app = getattr(bot, "app", None)
 
     # Send the first chunk as a reply to the triggering message so the normal
     # reply thread is preserved; send any extra chunks as plain messages.
     for index, chunk in enumerate(chunks):
-        if index == 0:
-            sent_msg = await update.message.reply_text(chunk, parse_mode="Markdown")
-        elif getattr(bot, "app", None) is not None and chat_id is not None:
-            sent_msg = await bot.app.bot.send_message(
-                chat_id=chat_id, text=chunk, parse_mode="Markdown"
-            )
+        if index == 0 or app is None or chat_id is None:
+            send = update.message.reply_text
         else:
-            sent_msg = await update.message.reply_text(chunk, parse_mode="Markdown")
+            async def send(text, parse_mode=None, _chat_id=chat_id):
+                return await app.bot.send_message(
+                    chat_id=_chat_id, text=text, parse_mode=parse_mode
+                )
+        sent_msg = await send_with_fallback(send, chunk, "MarkdownV2")
         sent_msg_ids.append(sent_msg.message_id)
     
     if is_command:
@@ -716,7 +1012,9 @@ async def reply_transient(update: Update, context: ContextTypes.DEFAULT_TYPE, te
         try: await update.message.delete()
         except: pass
 
-        sent_msg = await update.message.reply_text(text, parse_mode="Markdown")
+        sent_msg = await send_with_fallback(
+            update.message.reply_text, markdown_to_v2(text), "MarkdownV2"
+        )
         async def _delete():
             await asyncio.sleep(delay)
             try: await sent_msg.delete()

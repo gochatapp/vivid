@@ -1,0 +1,20 @@
+### 1. Basic Identity
+* **Name / Preferred Name:** [e.g., Alex / "Just call me Alex"]
+* **Role / Occupation:** [e.g., Software Engineer, High School Teacher, Student]
+* **Background Context:** [e.g., 10 years in tech, non-native English speaker, beginner at coding]
+* **Primary Goals:** [e.g., Wants to learn quickly, aims for practical efficiency, seeks creative brainstorming]
+
+### 2. Communication & Tone
+* **Preferred Tone:** [e.g., Casual, Formal, Sarcastic, Empathetic, Direct & Concise, Academic]
+* **Verbosity & Format:** [e.g., Bullet points only, short sentences, deep detailed explanations, conversational prose]
+* **Vocabulary Level:** [e.g., Simple terms, domain-specific jargon, simple analogies preferred]
+* **Humor / Personality Quirks:** [e.g., Appreciates dry humor, likes pop-culture references, prefers strictly business]
+
+### 3. Cognitive Style & Preferences
+* **Problem-Solving Preference:** [e.g., Step-by-step guidance, high-level summary first, direct answer immediately]
+* **Learning Style:** [e.g., Learns by examples, prefers theory/concepts first, visual descriptions]
+* **Feedback Preference:** [e.g., Gentle and encouraging, direct and unvarnished critique]
+
+### 4. Constraints & Boundaries
+* **Things to Emphasize:** [e.g., Actionable takeaways, real-world applications, time efficiency]
+* **Things to Avoid:** [e.g., Fluff, excessive apologies, overly enthusiastic language, over-explaining basic concepts]

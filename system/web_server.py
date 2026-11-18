@@ -19,6 +19,7 @@ from .config import (
     BASE_DIR,
     CHAT_CONFIG_DIR,
     CHAT_CONTEXT_DIR,
+    CHAT_PERSONAS_DIR,
     CHAT_ROLES_DIR,
     CONFIG,
     CONFIG_PATH,
@@ -40,9 +41,13 @@ from .providers import create_provider
 WEB_DIR = BASE_DIR / "web"
 ROLE_TEMPLATES_DIR = WEB_DIR / "role_templates"
 ROLE_IMAGES_DIR = WEB_DIR / "role_images"
+PERSONA_TEMPLATES_DIR = WEB_DIR / "persona_templates"
+USER_PERSONA_TEMPLATES_DIR = WEB_DIR / "user" / "persona_templates"
 
-# Ensure role images directory exists
+# Ensure role images and persona template directories exist
 ROLE_IMAGES_DIR.mkdir(parents=True, exist_ok=True)
+PERSONA_TEMPLATES_DIR.mkdir(parents=True, exist_ok=True)
+USER_PERSONA_TEMPLATES_DIR.mkdir(parents=True, exist_ok=True)
 
 # Composition rules every generated Role Maker image prompt must follow: the
 # character is shown from the hips up, and the mouth/expression (plus pose) has
@@ -392,6 +397,7 @@ _EDITOR_TYPES = {
     "ollama_cloud": ("ollama", "https://ollama.com"),
     "llamacpp": ("openai_compatible", "http://localhost:8080/v1"),
     "openrouter": ("openai_compatible", "https://openrouter.ai/api/v1"),
+    "deepseek": ("openai_compatible", "https://api.deepseek.com/v1"),
     "nvidia": ("openai_compatible", "https://integrate.api.nvidia.com/v1"),
     "google": ("gemini", "https://generativelanguage.googleapis.com/"),
 }
@@ -408,6 +414,8 @@ def _provider_to_editor(p: dict) -> dict:
         editor_type = "google"
     elif "nvidia" in low:
         editor_type = "nvidia"
+    elif "deepseek" in low:
+        editor_type = "deepseek"
     elif "openrouter" in low:
         editor_type = "openrouter"
     elif "googleapis" in low or "generativelanguage" in low:
@@ -682,6 +690,151 @@ async def api_templates(request: Request) -> Response:
 
     text = template_file.read_text(encoding="utf-8")
     return web.json_response({"text": text})
+
+
+def _sanitize_install_name(name: str) -> str:
+    """Mirror the Go ``sanitizeInstallName`` used by the persona/store APIs.
+
+    Spaces become underscores, anything outside ``[A-Za-z0-9_-]`` is dropped,
+    leading/trailing ``_`` or ``-`` are trimmed, and an empty result becomes
+    ``untitled``.
+    """
+    import re
+    name = (name or "").strip().replace(" ", "_")
+    name = re.sub(r"[^A-Za-z0-9_-]", "", name)
+    name = name.strip("_-")
+    return name or "untitled"
+
+
+async def api_personas(request: Request) -> Response:
+    """Persona Maker: list or show personas, and save one.
+
+    GET  /api/personas?name=X  -> {"name", "text", "image_desc"?}
+    GET  /api/personas         -> {"personas": [names]}
+    POST /api/personas         -> {"status": "saved", "name": safe}
+    """
+    if request.method == "GET":
+        name = request.query.get("name")
+        if name:
+            safe_name = _sanitize_install_name(name)
+            persona_file = CHAT_PERSONAS_DIR / f"{safe_name}.txt"
+            if not persona_file.exists():
+                return web.json_response(
+                    {"error": f"Persona '{name}' not found"}, status=404
+                )
+            out = {
+                "name": safe_name,
+                "text": persona_file.read_text(encoding="utf-8"),
+            }
+            image_desc_file = CHAT_PERSONAS_DIR / f"{safe_name}.image_desc"
+            if image_desc_file.exists():
+                out["image_desc"] = image_desc_file.read_text(encoding="utf-8")
+            return web.json_response(out)
+
+        # List persona names, skipping image-description sidecars.
+        names = []
+        if CHAT_PERSONAS_DIR.exists():
+            for f in sorted(CHAT_PERSONAS_DIR.glob("*.txt")):
+                if f.stem.endswith(".image"):
+                    continue
+                names.append(f.stem)
+        return web.json_response({"personas": names})
+
+    # POST -> save (always overwrites, mirroring the Go handler)
+    try:
+        data = await request.json()
+    except Exception:
+        return web.json_response({"error": "invalid JSON"}, status=400)
+
+    name = data.get("name", "") or ""
+    text = data.get("text", "") or ""
+    image_desc = data.get("image_desc", "") or ""
+    image_jpeg = data.get("image_jpeg", "") or ""
+
+    if not name:
+        return web.json_response({"error": "name required"}, status=400)
+
+    safe_name = _sanitize_install_name(name)
+    CHAT_PERSONAS_DIR.mkdir(parents=True, exist_ok=True)
+
+    (CHAT_PERSONAS_DIR / f"{safe_name}.txt").write_text(text, encoding="utf-8")
+
+    # Image description sidecar. Using ".image_desc" (instead of the Go
+    # ".image.txt") keeps it out of the bot's *.txt persona listing.
+    image_desc_file = CHAT_PERSONAS_DIR / f"{safe_name}.image_desc"
+    if image_desc.strip():
+        image_desc_file.write_text(image_desc, encoding="utf-8")
+    elif image_desc_file.exists():
+        image_desc_file.unlink()
+
+    # Optional JPEG avatar supplied as base64 (the page strips the data: prefix).
+    image_path = CHAT_PERSONAS_DIR / f"{safe_name}.jpg"
+    if image_jpeg.strip():
+        try:
+            raw = base64.b64decode(image_jpeg.split(",")[-1])
+        except Exception:
+            return web.json_response(
+                {"error": "invalid image_jpeg base64"}, status=400
+            )
+        image_path.write_bytes(raw)
+    elif image_path.exists():
+        image_path.unlink()
+
+    return web.json_response({"status": "saved", "name": safe_name})
+
+
+def _template_names_from_dir(directory: Path) -> list:
+    """Return sorted template stems (*.txt) for a directory."""
+    if not directory.exists():
+        return []
+    return sorted(f.stem for f in directory.glob("*.txt") if f.is_file())
+
+
+def _read_template_text_from_dir(directory: Path, name: str):
+    """Read one template's text from a directory, or None if missing."""
+    path = directory / f"{_sanitize_install_name(name)}.txt"
+    if path.exists():
+        return path.read_text(encoding="utf-8")
+    return None
+
+
+def _read_merged_persona_template(name: str):
+    """Merge user + builtin persona templates, like the Go helper."""
+    parts = []
+    for directory in (USER_PERSONA_TEMPLATES_DIR, PERSONA_TEMPLATES_DIR):
+        text = _read_template_text_from_dir(directory, name)
+        if text is not None:
+            parts.append(text)
+    if not parts:
+        return None
+    return "\n---\n".join(parts)
+
+
+async def api_persona_templates(request: Request) -> Response:
+    """Persona Maker: list templates or return one merged template's text."""
+    name = request.query.get("name")
+    if name:
+        text = _read_merged_persona_template(name)
+        if text is None:
+            # Templates are optional; mirror Go by returning empty text (200).
+            return web.json_response({"name": name, "text": ""})
+        return web.json_response({"name": name, "text": text})
+
+    # Merge builtin + user template names.
+    all_names = sorted(
+        set(_template_names_from_dir(PERSONA_TEMPLATES_DIR))
+        | set(_template_names_from_dir(USER_PERSONA_TEMPLATES_DIR))
+    )
+
+    if request.query.get("names_only") == "1":
+        return web.json_response({"templates": all_names})
+
+    out = []
+    for n in all_names:
+        text = _read_merged_persona_template(n)
+        if text is not None:
+            out.append({"name": n, "text": text})
+    return web.json_response({"templates": out})
 
 
 async def api_servers(request: Request) -> Response:
@@ -1312,9 +1465,590 @@ async def api_store_uninstall(request: Request) -> Response:
     return web.json_response({"ok": True, "removed": removed})
 
 
+# --- Story Creator (public gist publishing) ---------------------------------
+# /story runs web/story_creator.html. The page builds a story in the browser and
+# posts it here, and this module publishes it as a public gist in the GOCHATAPP
+# convention so any install can pick it up with /api/story/install:
+#
+#   GOCHATAPPSTORYTAG_<story>.md    story backstory -> story_context/context.txt
+#   character_<name>.txt            one file per character
+#   <name>_thumb.md                 <img src="..."> portrait for that character
+#   storyelement_<name>.txt         one file per story element
+#   thumb.md                        <img src="..."> story cover
+#
+# Gist files are text only, so images are uploaded to ImgBB (IMGBB_API_KEY) and
+# the gist carries the public URLs.
+
+STORY_TAG_PREFIX = "GOCHATAPPSTORYTAG_"
+STORY_IMAGE_SIZE = 450
+
+
+def _story_file_slug(value: str) -> str:
+    """Sanitize a story/character/element name into a gist-safe file stem."""
+    return _sanitize_role_name(str(value or ""))
+
+
+def _story_thumb_markdown(image_url: str, size: int = STORY_IMAGE_SIZE) -> str:
+    """Wrap a public image URL in the <img> markup the installers parse."""
+    safe = (
+        str(image_url or "")
+        .replace("&", "&amp;")
+        .replace('"', "&quot;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+    )
+    return f'<img width="{size}" height="{size}" alt="image" src="{safe}" />\n'
+
+
+def _story_first_image_url(text: str) -> str:
+    """First src="..." URL inside a thumb markdown file."""
+    match = re.search(r'src="([^"]+)"', text or "")
+    return match.group(1) if match else ""
+
+
+def _story_description_text(value) -> str:
+    """Normalize a description (string or list of lines) to plain text."""
+    if isinstance(value, (list, tuple)):
+        value = "\n".join(str(part) for part in value)
+    return str(value or "").strip()
+
+
+def _story_unique_stem(stem: str, used: set) -> str:
+    """Return a file stem that is not in *used* yet, and reserve it."""
+    candidate = stem or "story"
+    counter = 2
+    while candidate in used:
+        candidate = f"{stem}_{counter}"
+        counter += 1
+    used.add(candidate)
+    return candidate
+
+
+async def _imgbb_upload_base64(
+    session: aiohttp.ClientSession, image_base64: str, name: str = ""
+) -> str:
+    """Upload a base64 (or data-URL) image to ImgBB and return its public URL."""
+    api_key = str(CONFIG.get("IMGBB_API_KEY", "") or "").strip()
+    if not api_key:
+        raise RuntimeError(
+            "ImgBB API key is not configured. Add IMGBB_API_KEY to config.yaml "
+            "or on the Setup page."
+        )
+
+    payload = str(image_base64 or "").strip()
+    if payload.startswith("data:") and "," in payload:
+        payload = payload.split(",", 1)[1]
+    if not payload:
+        raise RuntimeError("No image data to upload.")
+
+    form = aiohttp.FormData()
+    form.add_field("key", api_key)
+    form.add_field("image", payload)
+    if name:
+        form.add_field("name", str(name)[:64])
+
+    async with session.post(
+        "https://api.imgbb.com/1/upload",
+        data=form,
+        timeout=aiohttp.ClientTimeout(total=60),
+    ) as resp:
+        try:
+            body = await resp.json(content_type=None)
+        except Exception:
+            body = {}
+        if resp.status >= 400 or not isinstance(body, dict) or not body.get("success"):
+            error = body.get("error") if isinstance(body, dict) else None
+            if isinstance(error, dict):
+                error = error.get("message")
+            raise RuntimeError(
+                f"ImgBB upload failed: {error or f'HTTP {resp.status}'}"
+            )
+        data = body.get("data") or {}
+        url = str(data.get("display_url") or data.get("url") or "")
+        if not url:
+            raise RuntimeError("ImgBB returned no image URL.")
+        return url
+
+
+async def _story_public_image_url(
+    session: aiohttp.ClientSession, image, label: str
+) -> str:
+    """Resolve an image entry to a public URL (data URLs go up to ImgBB)."""
+    if isinstance(image, str):
+        image = {"url": image}
+    if not isinstance(image, dict):
+        return ""
+    url = str(image.get("url") or image.get("data_url") or "").strip()
+    if not url:
+        return ""
+    if url.startswith("data:"):
+        return await _imgbb_upload_base64(session, url, label)
+    return url
+
+
+async def _create_gist(gist_data: dict) -> dict:
+    """POST a new gist to GitHub and return the API JSON."""
+    github_token = str(CONFIG.get("GITHUB_TOKEN", "") or "").strip()
+    headers = {
+        "Authorization": f"token {github_token}",
+        "Accept": "application/vnd.github.v3+json",
+        "User-Agent": "Vivid-Story-Creator",
+    }
+    async with aiohttp.ClientSession() as session:
+        async with session.post(
+            "https://api.github.com/gists",
+            json=gist_data,
+            headers=headers,
+            timeout=aiohttp.ClientTimeout(total=60),
+        ) as resp:
+            if resp.status >= 400:
+                detail = (await resp.text()).strip()
+                raise RuntimeError(f"GitHub API error {resp.status}: {detail[:300]}")
+            return await resp.json()
+
+
+async def _download_bytes(session: aiohttp.ClientSession, url: str) -> bytes:
+    """Download one image (ImgBB or GitHub raw) as bytes."""
+    async with session.get(
+        url,
+        headers={"User-Agent": "Mozilla/5.0"},
+        timeout=aiohttp.ClientTimeout(total=60),
+    ) as resp:
+        if resp.status >= 400:
+            raise RuntimeError(f"HTTP {resp.status}")
+        return await resp.read()
+
+
+async def api_story_save(request: Request) -> Response:
+    """Publish the Story Creator's story as a new public GitHub gist."""
+    try:
+        payload = await request.json()
+    except Exception as exc:
+        return web.json_response({"error": f"Invalid JSON: {exc}"}, status=400)
+
+    name = str(payload.get("name") or "").strip()
+    if not name:
+        return web.json_response(
+            {"error": "A story name is required."}, status=400
+        )
+
+    github_token = str(CONFIG.get("GITHUB_TOKEN", "") or "").strip()
+    if not github_token or github_token == "your-github-token":
+        return web.json_response({"error": "GitHub token not configured"}, status=400)
+
+    characters = payload.get("characters") or []
+    elements = payload.get("story_elements")
+    if elements is None:
+        elements = payload.get("storyElements")
+    elements = elements or []
+    if not isinstance(characters, list) or not isinstance(elements, list):
+        return web.json_response(
+            {"error": "characters and story_elements must be lists."}, status=400
+        )
+    characters = [entry for entry in characters if isinstance(entry, dict)]
+    elements = [entry for entry in elements if isinstance(entry, dict)]
+
+    story_slug = _story_file_slug(name)
+    description = _story_description_text(payload.get("description"))
+
+    # Upload any new (data URL) images first: a failed upload must not leave a
+    # half-published gist behind.
+    async with aiohttp.ClientSession() as session:
+        try:
+            story_image = await _story_public_image_url(
+                session, payload.get("image"), f"{story_slug}_thumb"
+            )
+            character_images = [
+                await _story_public_image_url(
+                    session,
+                    entry.get("image"),
+                    f"character_{_story_file_slug(entry.get('name'))}",
+                )
+                for entry in characters
+            ]
+            element_images = [
+                await _story_public_image_url(
+                    session,
+                    entry.get("image"),
+                    f"storyelement_{_story_file_slug(entry.get('name'))}",
+                )
+                for entry in elements
+            ]
+        except Exception as exc:
+            return web.json_response(
+                {"ok": False, "error": f"Image upload failed: {exc}"}, status=502
+            )
+
+    files: dict[str, str] = {}
+    used: set[str] = set()
+
+    tag_stem = _story_unique_stem(story_slug, used)
+    files[f"{STORY_TAG_PREFIX}{tag_stem}.md"] = (
+        f"# {name}\n\n{description}\n" if description else f"# {name}\n"
+    )
+    if story_image:
+        files["thumb.md"] = _story_thumb_markdown(story_image)
+
+    for entry, image_url in zip(characters, character_images):
+        display = str(entry.get("name") or "").strip()
+        text = _story_description_text(entry.get("description"))
+        if not display or not text:
+            continue
+        stem = _story_unique_stem(_story_file_slug(display), used)
+        files[f"character_{stem}.txt"] = text + "\n"
+        if image_url:
+            files[f"{stem}_thumb.md"] = _story_thumb_markdown(image_url)
+
+    for entry, image_url in zip(elements, element_images):
+        display = str(entry.get("name") or "").strip()
+        text = _story_description_text(entry.get("description"))
+        if not display or not text:
+            continue
+        stem = _story_unique_stem(_story_file_slug(display), used)
+        files[f"storyelement_{stem}.txt"] = text + "\n"
+        if image_url:
+            files[f"{stem}_thumb.md"] = _story_thumb_markdown(image_url)
+
+    gist_data = {
+        "description": f"Character.XI story: {name}",
+        "public": bool(payload.get("public", True)),
+        "files": {fname: {"content": content} for fname, content in files.items()},
+    }
+    try:
+        result = await _create_gist(gist_data)
+    except Exception as exc:
+        return web.json_response({"ok": False, "error": str(exc)}, status=502)
+
+    return web.json_response({
+        "ok": True,
+        "gist_id": result.get("id", ""),
+        "html_url": result.get("html_url", ""),
+        "files": sorted(files),
+    })
+
+
+async def _read_story_gist(
+    session: aiohttp.ClientSession, files: dict
+) -> dict | None:
+    """Parse a GOCHATAPP story gist into the Story Creator's story shape."""
+    tag_name = next(
+        (name for name in files if STORY_TAG_PREFIX in Path(name).name), None
+    )
+    if not tag_name:
+        return None
+
+    tag_text = await _read_gist_file(session, files[tag_name]) or ""
+    story_slug = Path(tag_name).stem.replace(STORY_TAG_PREFIX, "")
+
+    story_name = story_slug
+    description = tag_text.strip()
+    if description.startswith("# "):
+        first_line, _, rest = description.partition("\n")
+        story_name = first_line[2:].strip() or story_slug
+        description = rest.strip()
+
+    story = {
+        "name": story_name,
+        "description": description,
+        "image": {"url": "", "meta": ""},
+        "characters": [],
+        "story_elements": [],
+    }
+
+    thumb_cache: dict[str, str] = {}
+
+    async def _thumb_url(slug: str) -> str:
+        for candidate in (
+            f"{slug}_thumb.md",
+            f"character_{slug}_thumb.md",
+            f"storyelement_{slug}_thumb.md",
+        ):
+            info = files.get(candidate)
+            if info is None:
+                continue
+            if candidate not in thumb_cache:
+                text = await _read_gist_file(session, info) or ""
+                thumb_cache[candidate] = _story_first_image_url(text)
+            return thumb_cache[candidate]
+        return ""
+
+    if "thumb.md" in files:
+        text = await _read_gist_file(session, files["thumb.md"]) or ""
+        story["image"]["url"] = _story_first_image_url(text)
+
+    for name, info in files.items():
+        base = Path(name).name
+        stem = Path(base).stem
+        if base.startswith("character_") and base.endswith(".txt"):
+            slug = stem[len("character_"):]
+            text = await _read_gist_file(session, info) or ""
+            story["characters"].append({
+                "name": slug.replace("_", " "),
+                "description": text.strip(),
+                "image": {"url": await _thumb_url(slug), "meta": ""},
+            })
+        elif base.startswith("storyelement_") and base.endswith(".txt"):
+            slug = stem[len("storyelement_"):]
+            text = await _read_gist_file(session, info) or ""
+            story["story_elements"].append({
+                "name": slug.replace("_", " "),
+                "description": text.strip(),
+                "image": {"url": await _thumb_url(slug), "meta": ""},
+            })
+
+    return story
+
+
+async def api_story_gist(request: Request) -> Response:
+    """Read a story gist back into the Story Creator."""
+    gist_id = _parse_gist_id(
+        request.query.get("gist_id") or request.query.get("id")
+    )
+    if not gist_id:
+        return web.json_response(
+            {"error": "A valid gist_id is required."}, status=400
+        )
+
+    try:
+        async with aiohttp.ClientSession() as session:
+            gist = await _fetch_gist(session, gist_id)
+            files = gist.get("files") or {}
+            story = await _read_story_gist(session, files)
+    except Exception as exc:
+        return web.json_response({"ok": False, "error": str(exc)}, status=502)
+
+    if story is None:
+        return web.json_response(
+            {
+                "ok": False,
+                "error": "That gist does not contain a "
+                f"{STORY_TAG_PREFIX}* story file.",
+            },
+            status=400,
+        )
+
+    return web.json_response({
+        "ok": True,
+        "gist_id": gist_id,
+        "html_url": f"https://gist.github.com/{gist_id}",
+        "story": story,
+    })
+
+
+async def _install_story_gist(gist_id: str) -> dict:
+    """Download a story gist into chats_stories/stories/<name>!<gist_id>/."""
+    async with aiohttp.ClientSession() as session:
+        gist = await _fetch_gist(session, gist_id)
+        files = gist.get("files") or {}
+
+        tag_name = next(
+            (name for name in files if STORY_TAG_PREFIX in Path(name).name), None
+        )
+        if not tag_name:
+            raise RuntimeError(
+                f"This gist does not contain a {STORY_TAG_PREFIX}* story file."
+            )
+
+        tag_text = await _read_gist_file(session, files[tag_name]) or ""
+        story_name = _sanitize_role_name(
+            Path(tag_name).stem.replace(STORY_TAG_PREFIX, "")
+        )
+        full_name = f"{story_name}!{gist_id}"
+        story_dir = STORIES_DIR / full_name
+
+        (story_dir / "characters").mkdir(parents=True, exist_ok=True)
+        (story_dir / "storyelements").mkdir(parents=True, exist_ok=True)
+        (story_dir / "story_context").mkdir(parents=True, exist_ok=True)
+        (story_dir / "backups").mkdir(parents=True, exist_ok=True)
+
+        context_path = story_dir / "story_context" / "context.txt"
+        context_path.write_text(tag_text, encoding="utf-8")
+        saved = [f"stories/{full_name}/story_context/context.txt"]
+
+        async def _save_image(url: str, dest: Path) -> None:
+            if not url:
+                return
+            try:
+                dest.write_bytes(await _download_bytes(session, url))
+            except Exception as exc:
+                print(f"Failed to download story image {url}: {exc}")
+                return
+            saved.append(f"stories/{full_name}/{dest.relative_to(story_dir).as_posix()}")
+
+        for name, info in files.items():
+            base = Path(name).name
+            stem = Path(base).stem
+            if base.startswith("character_") and base.endswith(".txt"):
+                slug = stem[len("character_"):]
+                text = await _read_gist_file(session, info) or ""
+                dest = story_dir / "characters" / f"{slug}.txt"
+                dest.write_text(text, encoding="utf-8")
+                saved.append(f"stories/{full_name}/characters/{dest.name}")
+                thumb = files.get(f"{slug}_thumb.md")
+                if thumb is None:
+                    thumb = files.get(f"character_{slug}_thumb.md")
+                if thumb is not None:
+                    await _save_image(
+                        _story_first_image_url(
+                            await _read_gist_file(session, thumb) or ""
+                        ),
+                        story_dir / "characters" / f"{slug}.jpg",
+                    )
+            elif base.startswith("storyelement_") and base.endswith(".txt"):
+                slug = stem[len("storyelement_"):]
+                text = await _read_gist_file(session, info) or ""
+                dest = story_dir / "storyelements" / f"{slug}.txt"
+                dest.write_text(text, encoding="utf-8")
+                saved.append(f"stories/{full_name}/storyelements/{dest.name}")
+                thumb = files.get(f"{slug}_thumb.md")
+                if thumb is not None:
+                    await _save_image(
+                        _story_first_image_url(
+                            await _read_gist_file(session, thumb) or ""
+                        ),
+                        story_dir / "storyelements" / f"{slug}.jpg",
+                    )
+            elif base.lower() == "thumb.md":
+                await _save_image(
+                    _story_first_image_url(
+                        await _read_gist_file(session, info) or ""
+                    ),
+                    story_dir / "thumb.jpg",
+                )
+
+    return {"name": full_name, "story": story_name, "files": saved}
+
+
+async def api_story_install(request: Request) -> Response:
+    """Install a published story gist into chats_stories/stories/."""
+    try:
+        payload = await request.json()
+    except Exception as exc:
+        return web.json_response({"error": f"Invalid JSON: {exc}"}, status=400)
+
+    gist_id = _parse_gist_id(payload.get("gist_id") or payload.get("id"))
+    if not gist_id:
+        return web.json_response(
+            {"error": "A valid gist_id is required."}, status=400
+        )
+
+    try:
+        result = await _install_story_gist(gist_id)
+    except Exception as exc:
+        return web.json_response({"ok": False, "error": str(exc)}, status=502)
+
+    return web.json_response({"ok": True, **result})
+
+
+async def api_story_imgbb(request: Request) -> Response:
+    """Upload one Story Creator image to ImgBB and return its public URL."""
+    try:
+        payload = await request.json()
+    except Exception as exc:
+        return web.json_response({"error": f"Invalid JSON: {exc}"}, status=400)
+
+    image_base64 = payload.get("image_base64") or payload.get("image") or ""
+    if not image_base64:
+        return web.json_response({"error": "image_base64 required"}, status=400)
+
+    try:
+        async with aiohttp.ClientSession() as session:
+            url = await _imgbb_upload_base64(
+                session, image_base64, str(payload.get("name") or "story")
+            )
+    except Exception as exc:
+        return web.json_response({"ok": False, "error": str(exc)}, status=502)
+
+    return web.json_response({"ok": True, "url": url, "link": url})
+
+
+async def api_ai_enhance(request: Request) -> Response:
+    """Run one server-side completion for the Story Creator's AI Enhance."""
+    try:
+        payload = await request.json()
+    except Exception as exc:
+        return web.json_response({"error": f"Invalid JSON: {exc}"}, status=400)
+
+    prompt = str(payload.get("prompt") or payload.get("user") or "").strip()
+    if not prompt:
+        return web.json_response({"error": "prompt required"}, status=400)
+    system = str(payload.get("system") or "").strip()
+
+    requested = str(payload.get("provider") or "").strip()
+    provider = providers.get(requested) if requested else None
+    provider_name = requested if provider is not None else ""
+    if provider is None:
+        for candidate in AI_PROVIDERS:
+            if candidate in providers:
+                provider_name, provider = candidate, providers[candidate]
+                break
+    if provider is None and providers:
+        provider_name, provider = next(iter(providers.items()))
+    if provider is None:
+        return web.json_response(
+            {"error": "No LLM provider is configured. Add one on the Setup page."},
+            status=400,
+        )
+
+    model = str(payload.get("model") or "").strip()
+    if not model:
+        for cfg in providers_config:
+            if cfg.get("name") == provider_name:
+                model = str(cfg.get("model") or "").strip()
+                break
+    if not model:
+        for bot in BOT_INSTANCES.values():
+            if getattr(bot, "current_provider", "") == provider_name:
+                model = str(getattr(bot, "current_model", "") or "").strip()
+                if model:
+                    break
+    if not model:
+        return web.json_response(
+            {"error": f"No model selected for provider '{provider_name}'."},
+            status=400,
+        )
+
+    messages = []
+    if system:
+        messages.append({"role": "system", "content": system})
+    messages.append({"role": "user", "content": prompt})
+
+    try:
+        text = await provider.chat(model, messages, {"temperature": 0.8})
+    except Exception as exc:
+        return web.json_response({"ok": False, "error": str(exc)}, status=502)
+
+    text = str(text or "").strip()
+    if not text:
+        return web.json_response(
+            {"ok": False, "error": "The model returned an empty reply."}, status=502
+        )
+    return web.json_response({
+        "ok": True,
+        "text": text,
+        "provider": provider_name,
+        "model": model,
+    })
+
+
 async def role_maker_page(request: Request) -> Response:
     """Serve the Role Maker page."""
     return await _serve_page("role_maker.html")
+
+
+async def story_creator_page(request: Request) -> Response:
+    """Serve the Story Creator page (builds and publishes story gists)."""
+    return await _serve_page("story_creator.html")
+
+
+async def persona_maker_page(request: Request) -> Response:
+    """Serve the Persona Maker page."""
+    return await _serve_page("persona_maker.html")
+
+
+async def commands_page(request: Request) -> Response:
+    """Serve the Commands Reference page."""
+    return await _serve_page("commands.html")
 
 
 async def _serve_page(filename: str) -> Response:
@@ -1344,6 +2078,9 @@ def create_web_app() -> web.Application:
         app.router.add_static("/static/", path=WEB_DIR, name="static")
 
     app.router.add_get("/", index, name="index")
+    # Some pages (role_maker.html, persona_maker.html) link back with a
+    # relative "index.html"; serve the dashboard there too.
+    app.router.add_get("/index.html", index, name="index_html")
     app.router.add_get("/chat", chat_page, name="chat")
     app.router.add_get("/setup", setup_page, name="setup")
     app.router.add_get("/browse", browser_page, name="browse")
@@ -1351,6 +2088,13 @@ def create_web_app() -> web.Application:
     app.router.add_get("/browser_static", browser_static_page, name="browser_static")
     app.router.add_get("/role_maker", role_maker_page, name="role_maker")
     app.router.add_get("/role", role_maker_page, name="role")
+    app.router.add_get("/persona_maker", persona_maker_page, name="persona_maker")
+    app.router.add_get("/persona", persona_maker_page, name="persona")
+    app.router.add_get("/story_creator", story_creator_page, name="story_creator")
+    # The dashboard's Story Maker cards link to /story and /story2.
+    app.router.add_get("/story", story_creator_page, name="story")
+    app.router.add_get("/story2", story_creator_page, name="story2")
+    app.router.add_get("/commands", commands_page, name="commands")
 
     app.router.add_get("/api/bots", api_bots)
     app.router.add_get("/api/bots/{name}/status", api_bot_status)
@@ -1374,11 +2118,23 @@ def create_web_app() -> web.Application:
     app.router.add_post("/api/github/gist", api_github_gist)
     app.router.add_post("/api/roles/save", api_roles_save)
 
+    # Persona Maker API
+    app.router.add_get("/api/personas", api_personas)
+    app.router.add_post("/api/personas", api_personas)
+    app.router.add_get("/api/persona_templates", api_persona_templates)
+
     # Community store API (backs /browse)
     app.router.add_get("/api/store", api_store)
     app.router.add_get("/api/installed", api_installed)
     app.router.add_post("/api/store/install", api_store_install)
     app.router.add_post("/api/store/uninstall", api_store_uninstall)
+
+    # Story Creator API (backs /story)
+    app.router.add_post("/api/story/save", api_story_save)
+    app.router.add_get("/api/story/gist", api_story_gist)
+    app.router.add_post("/api/story/install", api_story_install)
+    app.router.add_post("/api/story/imgbb", api_story_imgbb)
+    app.router.add_post("/api/ai/enhance", api_ai_enhance)
 
     app.router.add_get("/api/config", api_config_get)
     app.router.add_post("/api/config", api_config_post)

@@ -24,6 +24,7 @@ from vivid import (
     BotInstance,
     CHAT_CONTEXT_DIR,
     CHAT_CONFIG_DIR,
+    CHAT_BACKUPS_DIR,
     CHAT_ROLES_DIR,
     STORIES_DIR,
     SETTINGS_DIR,
@@ -249,9 +250,13 @@ async def test_bot_instance_role_and_story_switching():
         (CHAT_CONTEXT_DIR / f"{role_b}.txt").unlink(missing_ok=True)
         (CHAT_CONFIG_DIR / f"{role_a}.status").unlink(missing_ok=True)
         (CHAT_CONFIG_DIR / f"{role_b}.status").unlink(missing_ok=True)
+        # Switching roles/stories writes safety backups; remove the test ones.
+        for leftover in CHAT_BACKUPS_DIR.glob("Test_Architect_Clara_*"):
+            leftover.unlink(missing_ok=True)
+        for leftover in CHAT_BACKUPS_DIR.glob("Test_Detective_Sarah_*"):
+            leftover.unlink(missing_ok=True)
         if story_a_dir.exists(): shutil.rmtree(story_a_dir, ignore_errors=True)
         if story_b_dir.exists(): shutil.rmtree(story_b_dir, ignore_errors=True)
-        (SETTINGS_DIR / "bot_assignments.json").unlink(missing_ok=True)
 
 
 def test_status_dict_serialization():
@@ -322,12 +327,21 @@ def test_init_state_conflict_resolution():
 
 
 async def main_async():
-    test_context_format_and_parse()
-    test_usage_tracker()
-    test_status_dict_serialization()
-    test_init_state_conflict_resolution()
-    await test_bot_instance_role_and_story_switching()
-    print("\n🎉 ALL TESTS PASSED SUCCESSFULLY!")
+    # Tests claim roles through the real tracker, so preserve the live assignments file.
+    assignments_file = SETTINGS_DIR / "bot_assignments.json"
+    original_assignments = assignments_file.read_bytes() if assignments_file.exists() else None
+    try:
+        test_context_format_and_parse()
+        test_usage_tracker()
+        test_status_dict_serialization()
+        test_init_state_conflict_resolution()
+        await test_bot_instance_role_and_story_switching()
+        print("\n🎉 ALL TESTS PASSED SUCCESSFULLY!")
+    finally:
+        if original_assignments is not None:
+            assignments_file.write_bytes(original_assignments)
+        else:
+            assignments_file.unlink(missing_ok=True)
 
 if __name__ == "__main__":
     asyncio.run(main_async())

@@ -1,0 +1,58 @@
+~# User Persona Template
+# This defines YOUR character in the roleplay - who you are playing as
+
+## Core Identity
+**Name:** {{NAME}}
+**Age:** {{AGE}}
+**Gender:** {{GENDER}}
+**Archetype:** {{ARCHETYPE}} (e.g., ex-military, detective, noble, survivor, etc.)
+
+## Physical Description
+**Build:** {{BUILD}} (e.g., tall, muscular, lean, athletic, average)
+**Height:** {{HEIGHT}}
+**Hair:** {{HAIR_COLOR}}, {{HAIR_STYLE}}
+**Eyes:** {{EYE_COLOR}}
+**Distinguishing Features:** {{FEATURES}} (scars, tattoos, piercings, birthmarks, etc.)
+**Typical Attire:** {{CLOTHING_STYLE}}
+
+## Background & History
+**Origin:** {{ORIGIN}}
+**Former Occupation:** {{FORMER_JOB}}
+**Key Life Events:** {{KEY_EVENTS}}
+**Skills & Expertise:** {{SKILLS}}
+**Languages:** {{LANGUAGES}}
+
+## Personality
+**Core Traits:** {{TRAITS}} (3-5 defining characteristics)
+**Strengths:** {{STRENGTHS}}
+**Weaknesses/Flaws:** {{FLAWS}}
+**Fears:** {{FEARS}}
+**Desires/Goals:** {{GOALS}}
+**Moral Compass:** {{MORALITY}}
+
+## Behavioral Patterns
+**Speech Style:** {{SPEECH}} (terse, verbose, formal, slang, accent, etc.)
+**Body Language:** {{BODY_LANGUAGE}}
+**Reaction to Stress:** {{STRESS_RESPONSE}}
+**Combat/Conflict Style:** {{COMBAT_STYLE}}
+**Social Approach:** {{SOCIAL_STYLE}}
+
+## Equipment & Resources
+**Signature Items:** {{SIGNATURE_ITEMS}}
+**Weapons:** {{WEAPONS}}
+**Vehicles:** {{VEHICLES}}
+**Safe Houses/Locations:** {{LOCATIONS}}
+**Contacts/Allies:** {{CONTACTS}}
+
+## Current Situation
+**Location:** {{CURRENT_LOCATION}}
+**Immediate Goal:** {{IMMEDIATE_GOAL}}
+**Ongoing Conflicts:** {{CONFLICTS}}
+**Secrets:** {{SECRETS}}
+
+---
+# Usage Notes
+- Replace all {{PLACEHOLDERS}} with your character details
+- Delete sections that don't apply
+- Add custom sections as needed
+- This persona is YOU in the story - the LLM (role) will respond TO you

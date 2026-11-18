@@ -3,8 +3,9 @@ Smoke test for the /setup page styling.
 
 Only issues GET requests (no /api/config POST), so it never starts bots or
 touches the real config. It verifies the page still serves, still references
-/static/setup.js, and now uses the Role Maker design tokens (indigo accent,
-#0b0f17 input background, indigo focus ring) instead of the old blue palette.
+/static/setup.js, and uses the Role Maker design (sticky blurred header, #161f2e
+cards with rounded-2xl corners, indigo gradient primary button, #0b1017 input
+wells, indigo focus ring) instead of the old blue palette.
 
 Run:  python testing/test_setup_page.py
 """
@@ -47,7 +48,9 @@ async def run():
         check("references /static/setup.js", "/static/setup.js" in body)
 
         # Role Maker design tokens now drive the page.
-        check("indigo primary button", "#4f46e5" in body)
+        check("gradient primary button", "from-indigo-600" in body)
+        check("role maker card surface", "bg-[#161f2e]" in body)
+        check("role maker card radius", "rounded-2xl" in body)
         check("indigo hover/accent", "#6366f1" in body)
         check("dark input background", "#0b1017" in body)
         check("page background", "#0b0f17" in body)

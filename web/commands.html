@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Commands - Character.XI</title>
+<!-- Tailwind CSS CDN for modern styling -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- FontAwesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link rel="stylesheet" href="/static/styles.css?v=9" />
+<style>
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: #0f172a; }
+  ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+  .cmd-section { margin-bottom: 24px; }
+  .cmd-section h2 { 
+    font-size: 13px; 
+    color: #818cf8; 
+    margin: 0 0 12px; 
+    padding-bottom: 8px; 
+    border-bottom: 1px solid rgba(30, 41, 59, 0.8); 
+    text-transform: uppercase; 
+    letter-spacing: 0.06em; 
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .cmd-list { display: flex; flex-direction: column; gap: 0; background: #161f2e; border: 1px solid rgba(30, 41, 59, 0.8); border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3); }
+  .cmd-item { background: transparent; border: 0; border-bottom: 1px solid rgba(30, 41, 59, 0.6); border-radius: 0; padding: 12px 18px; transition: background 0.15s; }
+  .cmd-item:last-child { border-bottom: 0; }
+  .cmd-item:hover { background: rgba(30, 41, 59, 0.5); }
+  .cmd-trigger { font-family: ui-monospace, monospace; font-size: 13px; color: #a5b4fc; font-weight: 600; }
+  .cmd-trigger .alias { color: #94a3b8; font-weight: 400; }
+  .cmd-desc { margin: 4px 0 0; font-size: 13px; color: #cbd5e1; line-height: 1.5; }
+  .cmd-synonyms { margin-top: 4px; font-size: 11px; color: #94a3b8; display: flex; flex-wrap: wrap; gap: 6px; }
+  .cmd-synonyms code { background: #0b1017; padding: 2px 6px; border-radius: 4px; font-size: 11px; color: #a5b4fc; border: 1px solid #1e293b; }
+  @media (max-width: 600px) {
+    .cmd-item { padding: 10px 12px; }
+    .cmd-trigger { font-size: 12px; }
+    .cmd-desc { font-size: 12px; }
+  }
+</style>
+</head>
+<body class="bg-[#0b0f17] text-slate-200 min-h-screen flex flex-col font-sans antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Header Navigation -->
+  <header class="border-b border-slate-800/80 bg-[#0f172a]/80 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <button id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar" class="md:hidden p-2 text-slate-400 hover:text-white rounded-lg bg-slate-800/60 border border-slate-700/60 transition">
+          <i class="fa-solid fa-bars text-base"></i>
+        </button>
+        <div class="h-9 w-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-blue-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+          <i class="fa-solid fa-terminal text-white text-base"></i>
+        </div>
+        <div>
+          <h1 class="text-lg font-bold text-white leading-tight">Commands Reference</h1>
+          <p class="text-xs text-slate-400 hidden sm:block">Character.XI Bot Controls</p>
+        </div>
+      </div>
+      <a href="index.html" class="inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-medium text-slate-300 hover:text-white bg-slate-800/70 hover:bg-slate-700/80 border border-slate-700/60 rounded-lg transition-all">
+        <i class="fa-solid fa-arrow-left"></i> Home
+      </a>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full space-y-6">
+    <div class="bg-[#161f2e] border border-slate-800/80 rounded-2xl p-4 shadow-xl text-sm text-slate-400 leading-relaxed">
+      Commands start with a dot. Use the shown arguments where needed. On Web, prefix with a dot (e.g. <code class="text-indigo-300 bg-[#0b1017] px-1.5 py-0.5 rounded border border-slate-800">.help</code>). In Telegram the dot is required too, unless lazy mode is on (<code class="text-indigo-300 bg-[#0b1017] px-1.5 py-0.5 rounded border border-slate-800">.lazy</code> / <code class="text-indigo-300 bg-[#0b1017] px-1.5 py-0.5 rounded border border-slate-800">.lz</code>).
+    </div>
+
+    <section class="cmd-section">
+      <h2><i class="fa-solid fa-circle-question"></i> Help &amp; Roles</h2>
+      <div class="cmd-list">
+        <div class="cmd-item"><div class="cmd-trigger">.help <span class="alias">/ .h</span></div><div class="cmd-desc">Show this command list</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.role <span class="alias">/ .r</span></div><div class="cmd-desc">List roles; <code class="text-indigo-300">.role N</code> switches role</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.role i <span class="alias">/ .role image / .r i / .r image</span></div><div class="cmd-desc">List all roles with their images</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.reload</div><div class="cmd-desc">Reload the current role</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.image</div><div class="cmd-desc">Show the current role's image</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.rs [N] <span class="alias">/ .rolesummary [N]</span></div><div class="cmd-desc">Summarize the current role (optional prompt N)</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.roles</div><div class="cmd-desc">List all available roles (chat mode only)</div></div>
+      </div>
+    </section>
+
+    <section class="cmd-section">
+      <h2><i class="fa-solid fa-user-shield"></i> Personas (user identity)</h2>
+      <div class="cmd-list">
+        <div class="cmd-item"><div class="cmd-trigger">.persona <span class="alias">/ .per</span></div><div class="cmd-desc">List personas; <code class="text-indigo-300">.persona N</code> switches persona</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.persona i <span class="alias">/ .persona image</span></div><div class="cmd-desc">List all personas with their images</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.persona clear</div><div class="cmd-desc">Clear the current persona</div></div>
+      </div>
+    </section>
+
+    <section class="cmd-section">
+      <h2><i class="fa-solid fa-brain"></i> Providers &amp; Models</h2>
+      <div class="cmd-list">
+        <div class="cmd-item"><div class="cmd-trigger">.provider <span class="alias">/ .p</span></div><div class="cmd-desc">List providers; <code class="text-indigo-300">.provider N</code> switches provider</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.model <span class="alias">/ .m</span></div><div class="cmd-desc">List models; <code class="text-indigo-300">.model N</code> switches model</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.mf [NAME|n|next|prev] <span class="alias">/ .modelsfiltered</span></div><div class="cmd-desc">Filter/select models on any provider</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.think</div><div class="cmd-desc">Toggle think mode</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.llmctx [Nk] <span class="alias">/ .mc / .mcontext</span></div><div class="cmd-desc">Show/set the context size, e.g. <code class="text-indigo-300">8k</code></div></div>
+      </div>
+    </section>
+
+    <section class="cmd-section">
+      <h2><i class="fa-solid fa-book-bookmark"></i> Stories</h2>
+      <div class="cmd-list">
+        <div class="cmd-item"><div class="cmd-trigger">.story select</div><div class="cmd-desc">List stories; <code class="text-indigo-300">.story select NAME|N</code> activates one</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.story save NAME <span class="alias">/ .store save NAME</span></div><div class="cmd-desc">Save assistant story text</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.stories <span class="alias">/ .st</span></div><div class="cmd-desc">List stories (story mode only); <code class="text-indigo-300">.st [N]</code> selects a story</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.stories image <span class="alias">/ .stories i</span></div><div class="cmd-desc">Show story thumbnails</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.char</div><div class="cmd-desc">List characters; <code class="text-indigo-300">.char [N|NAME] [on|off]</code> toggles one</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.char all off</div><div class="cmd-desc">Deactivate all characters</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.char edit N <span class="alias">/ .char save NAME TEXT</span></div><div class="cmd-desc">Show a character bio, or save one</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.element <span class="alias">/ .el</span></div><div class="cmd-desc">List story elements</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.element [N|NAME] [on|off] <span class="alias">/ .element all off</span></div><div class="cmd-desc">Toggle a story element, or deactivate all of them</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.element edit N <span class="alias">/ .element save NAME TEXT</span></div><div class="cmd-desc">Show a story element, or save one</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.install GIST_ID_OR_URL</div><div class="cmd-desc">Install a role or story from a GitHub Gist</div></div>
+      </div>
+    </section>
+
+    <section class="cmd-section">
+      <h2><i class="fa-solid fa-comments"></i> Chats &amp; History</h2>
+      <div class="cmd-list">
+        <div class="cmd-item"><div class="cmd-trigger">.chat <span class="alias">/ .chats / .c</span></div><div class="cmd-desc">List saved chats</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.chat save NAME <span class="alias">/ .chat load NAME</span></div><div class="cmd-desc">Save or load a chat</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.clear</div><div class="cmd-desc">Clear conversation memory; backs up the chat or story first</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.clean <span class="alias">/ .cl</span></div><div class="cmd-desc">Clear memory, back it up, and remove the chat messages</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.mode [chat|story] <span class="alias">/ .mo</span></div><div class="cmd-desc">Show or change the mode</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.recap [N]</div><div class="cmd-desc">Summarize the last 50 messages, with optional prompt N</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.ask QUESTION</div><div class="cmd-desc">Ask about conversation history</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.last [N]</div><div class="cmd-desc">Show recent messages (3 by default)</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.length [N] <span class="alias">/ .len [N] / .l [N]</span></div><div class="cmd-desc">Set the target response length (~N words); <code class="text-indigo-300">.length clear</code> resets</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.del</div><div class="cmd-desc">Delete the last exchange</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.resend</div><div class="cmd-desc">Retry the last user message</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.context [NUMBER]</div><div class="cmd-desc">Show/set the history context limit</div></div>
+      </div>
+    </section>
+
+    <section class="cmd-section">
+      <h2><i class="fa-solid fa-gears"></i> Settings &amp; Status</h2>
+      <div class="cmd-list">
+        <div class="cmd-item"><div class="cmd-trigger">.status <span class="alias">/ .s</span></div><div class="cmd-desc">Show current settings</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.verbose <span class="alias">/ .v</span></div><div class="cmd-desc">Toggle response details</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.trace [on|off]</div><div class="cmd-desc">Toggle request tracing</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.lazy <span class="alias">/ .lz</span></div><div class="cmd-desc">Toggle commands without the dot</div></div>
+      </div>
+    </section>
+
+    <section class="cmd-section">
+      <h2><i class="fa-solid fa-volume-high"></i> Voice (text to speech)</h2>
+      <div class="cmd-list">
+        <div class="cmd-item"><div class="cmd-trigger">.voice <span class="alias">/ .voice on|off</span></div><div class="cmd-desc">Toggle spoken replies</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.voice [1-10]</div><div class="cmd-desc">Set speed: <code class="text-indigo-300">1</code> = normal, <code class="text-indigo-300">2</code> = 1.2x, <code class="text-indigo-300">9</code>+ = 1.9x; decimals like <code class="text-indigo-300">1.5</code> work</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.nar <span class="alias">/ .narrator</span></div><div class="cmd-desc">List voices with numbers, current voice and speed</div></div>
+        <div class="cmd-item"><div class="cmd-trigger">.nar [n|name]</div><div class="cmd-desc">Select a voice, e.g. <code class="text-indigo-300">.nar 3</code> or <code class="text-indigo-300">.nar sonia</code></div></div>
+      </div>
+    </section>
+
+    <section class="cmd-section">
+      <h2><i class="fa-solid fa-link"></i> Synonyms</h2>
+      <div class="cmd-list">
+        <div class="cmd-item">
+          <div class="cmd-synonyms">
+            <code>h</code>=help, <code>r</code>=role, <code>per</code>=persona, <code>p</code>=provider, <code>m</code>=model, <code>mf</code>=modelsfiltered, <code>mc</code> / <code>mcontext</code>=llmctx, <code>store</code>=story, <code>st</code>=stories, <code>el</code>=element, <code>c</code> / <code>chats</code>=chat, <code>cl</code>=clean, <code>mo</code>=mode, <code>s</code>=status, <code>v</code>=verbose, <code>len</code> / <code>l</code>=length, <code>lz</code>=lazy, <code>narrator</code>=nar
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

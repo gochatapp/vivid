@@ -3,8 +3,8 @@ Tests for the TTS voice catalog (settings/voices.json), `.nar` voice selection
 and `.voice [n]` speed control.
 
 Covers catalog seeding/loading, `.nar [n]` number resolution, name lookups,
-region grouping, speed mapping/rate conversion, and per-bot voice persistence
-via status/session dicts.
+region grouping, speed mapping/rate conversion, per-bot voice persistence via
+status/session dicts, and ffmpeg-free edge-tts synthesis.
 
 Run:  python testing/test_voices.py
 """
@@ -406,6 +406,41 @@ def test_voice_reply():
     check("voice payload carries audio bytes", data == b"ID3fake-audio", repr(data))
 
 
+def test_tts_without_ffmpeg():
+    print("\nTTS runs without ffmpeg")
+
+    source = Path(tts_mod.__file__).read_text(encoding="utf-8").lower()
+    check("no ffmpeg PATH lookup in tts module",
+          "shutil.which" not in source and "ffmpeg not found" not in source)
+    check("no ffmpeg transcode call in tts module",
+          "'ffmpeg'" not in source and '"ffmpeg"' not in source)
+    check("no local SAPI fallbacks (pyttsx3/win32com)",
+          "pyttsx3" not in source and "win32com" not in source)
+
+    class FakeCommunicate:
+        def __init__(self, text, voice, **kwargs):
+            self.text = text
+            self.voice = voice
+            self.kwargs = kwargs
+
+        async def stream(self):
+            yield {"type": "audio", "data": b"ID3-edge-only"}
+
+    with mock.patch.object(tts_mod, "edge_tts",
+                           types.SimpleNamespace(Communicate=FakeCommunicate)), \
+            mock.patch.object(tts_mod, "HAS_EDGE_TTS", True), \
+            mock.patch("shutil.which", return_value=None):
+        audio = asyncio.run(tts_mod.synthesize_speech("**hi** there", speed=1.2))
+        check("edge-tts produced audio with no external binaries",
+              audio == b"ID3-edge-only", repr(audio))
+
+    with mock.patch.object(tts_mod, "edge_tts", None), \
+            mock.patch.object(tts_mod, "HAS_EDGE_TTS", False):
+        audio = asyncio.run(tts_mod.synthesize_speech("hello"))
+        check("missing edge-tts returns None instead of crashing",
+              audio is None, repr(audio))
+
+
 def main():
     test_shipped_catalog()
     test_lookups()
@@ -414,6 +449,7 @@ def main():
     test_handlers()
     test_speed_mapping()
     test_tts_rate()
+    test_tts_without_ffmpeg()
     test_voice_reply()
     print(f"\n=== {PASS} passed, {FAIL} failed ===")
     return FAIL == 0

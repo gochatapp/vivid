@@ -625,6 +625,7 @@ async def show_role_image(update: Update, context: ContextTypes.DEFAULT_TYPE, ro
                 print(f"⚠️ Failed to send role image: {e}")
 
     display_name = format_role_display(role_name)
+await reply_and_log(update, f"🖼️ No image found for role `{display_name}`.", bot=bot)
 
 
 
@@ -656,6 +657,8 @@ async def show_persona_image(update: Update, context: ContextTypes.DEFAULT_TYPE,
 
     # No image found
 
+display_name = format_role_display(persona_name)
+    await reply_and_log(update, f"🖼️ No image found for persona `{display_name}`.", bot=bot)
     return
 
 
